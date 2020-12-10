@@ -5,7 +5,20 @@
     <title>Nieuw Labjournaal</title>
 </head>
 <body>
-
+<?PHP
+    if(!empty($_GET['addLabjournaal']))
+    {
+        $addlabjournaal = $_GET["addLabjournaal"];
+        if($addlabjournaal != "failed")
+        {
+            echo"de query is uitgevoerd.";
+        }
+        else
+        {
+            echo"niet alle velden zijn ingevuld.";
+        }
+    }
+?>
 <form action="includes/addlabjournaal.inc.php" method="post">
 
     <h1>Nieuw Labjournaal aanmaken</h1>
@@ -63,13 +76,6 @@
 
     <p><input type="submit" id="submit" name="submit"></p>
 
-    <?php
 
-    if(isset($_POST['submit'])) {
-        echo "Query uitgevoerd en succesvol verzonden";
-
-    }
-
-?>
 
 </form>

@@ -18,11 +18,10 @@ if (isset($_POST['submit']))
     {
         if(empty($input))
         {
-            echo "Een verplicht veld is niet ingevoerd.";
             header("location: ../index.php?addLabjournaal=failed");
+            DIE;
         }
     }
-
     queryAanmaken('INSERT INTO labjournaal(studentID,docentID,labjournaalTitel,experimentDatum,experimentBeginDatum,
     experimentEindDatum,logboek,bijlageLogboek,observaties,bijlageObservaties,weeggegevens,bijlageWeeggegevens,afbeelding)
                    VALUES ("1","1","'.$titelLabjournaal.'","'.$experimentdatum.'","'.$experimentstartdatum.'"
