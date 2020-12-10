@@ -1,5 +1,5 @@
 <?PHP
-include_once 'includes/dbh.inc.php';
+include_once 'dbh.inc.php';
 if (isset($_POST['submit']))
 {
     $titelLabjournaal =  filter_input(INPUT_POST,'titelLabjournaal', FILTER_SANITIZE_SPECIAL_CHARS); 
@@ -20,4 +20,5 @@ if (isset($_POST['submit']))
                    ,"'.$observaties.'","'.$uploadobservaties.'","'.$weeggegevens.'"
                    ,"'.$uploadweeggegevens.'","'.$uploadafbeelding.'");');
     querySluiten();
+	header("location: ../index.php?addLabjournaal=succes");    
 }
