@@ -1,22 +1,113 @@
+:root {
+    --blue: #003a6b;
+    --white: #ffffff;
+}
+
 body{
+    display: grid;
+    height: 100vh;
     margin: 0;
     padding: 0;
-    font-size: 5vw;
-    color: green;
+    font-size: 1vw;
+    color: black;
+    grid-template-rows: 10vh auto 3vh;
+    grid-template-columns: auto;
 }
 p{
     margin: 0;
     padding: 0;    
 }
+a{
+    text-decoration: none;
+}
+
+ul {
+    list-style-type: none;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    max-height: 10vh;
+}
+
+li {
+    float: left;
+}
+
+
 /* Header */
 nav{
+    grid-row: 1;
+    grid-column: 1;
+    display: grid;
+    grid-template-rows: 10vh;
+    grid-template-columns: 30vw 40vw 30vw;
     margin: 0;
     padding: 0;
     width: 100vw;
     height: 10vh;
+    background-color: var(--blue);
+    color: white;
+}
+
+#navLogo{
+    height: 100%;
+    margin:0;
+    padding: 0;
+}
+.menu {
+    grid-column: 2/3;
+    font-size: 1vw;
     
 }
-#bannerimage {
-    width: 100vw;
-    height: auto;
+.menu ul li{
+    display: block;
+    margin-top: 5vh;
 }
+.account{
+    color: white;
+    height: 3vh;
+    font-size: 4vw;
+    margin: 0;
+}
+/* Footer */
+footer{
+    display: grid;
+    color: white;
+    background-color: var(--blue);
+    font-size: 1em;
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 3vh; 
+}
+.footer{
+    display: block;
+    margin: auto;
+    margin-left: 20vw;
+    padding:0
+}
+
+/* Login */
+
+
+/* Home */
+
+
+/* Labjournaal */
+
+
+/* Nieuw Labjournaal */
+
+
+/* Voorbereiding */
+
+
+/* Nieuw voorbereiding */
+
+
+/* Protocol */
+
+
+/* Nieuw Protocol */
+
+
+/* Instellingen */

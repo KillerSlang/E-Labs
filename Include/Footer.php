@@ -1,5 +1,3 @@
 <footer>
-<?php
-echo "<p>hallo ik ben een footer</p>"
-?>
+    <p class='footer'>&copy NHL Stenden Emmen 2020</p>
 </footer>
