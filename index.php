@@ -5,17 +5,8 @@
     <title>Nieuw Labjournaal</title>
 </head>
 <body>
-<?php
-include_once 'includes/dbh.inc.php';
-if (isset($_POST['submit']))
-{
-    $titelLabjournaal =  filter_input(INPUT_POST,'titelLabjournaal', FILTER_SANITIZE_SPECIAL_CHARS); 
-    queryAanmaken('INSERT INTO labjournaal(studentID,docentID,labjournaalTitel)
-                   VALUES ("1","1","'.$titelLabjournaal.'");');
-    querySluiten();
-}
-?>
-<form action=<?php echo $_SERVER['PHP_SELF']?> method="post">
+
+<form action="includes/addlabjournaal.inc.php" method="post">
 
     <h1>Nieuw Labjournaal aanmaken</h1>
 
@@ -31,13 +22,13 @@ if (isset($_POST['submit']))
     <br>
 
     <p><label for="experimentdatum">Experiment datum: </label>
-    <input type="datetime-local" id="experimentdatum" name="experimentdatum"></p>
+    <input type="date" id="experimentdatum" name="experimentdatum"></p>
 
     <p><label for="experimentstartdatum">Start datum experiment: </label>
-    <input type="datetime-local" id="experimentstartdatum" name="experimentstartdatum"></p>
+    <input type="date" id="experimentstartdatum" name="experimentstartdatum"></p>
 
-    <p><label for="experimentstartdatum">Eind datum experiment: </label>
-    <input type="datetime-local" id="experimenteinddatum" name="experimenteinddatum"></p>
+    <p><label for="experimenteinddatum">Eind datum experiment: </label>
+    <input type="date" id="experimenteinddatum" name="experimenteinddatum"></p>
 
     <br>
 
@@ -71,5 +62,14 @@ if (isset($_POST['submit']))
     <br>
 
     <p><input type="submit" id="submit" name="submit"></p>
+
+    <?php
+
+    if(isset($_POST['submit'])) {
+        echo "Query uitgevoerd en succesvol verzonden";
+
+    }
+
+?>
 
 </form>
