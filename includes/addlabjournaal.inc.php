@@ -13,6 +13,16 @@ if (isset($_POST['submit']))
     $weeggegevens = filter_input(INPUT_POST,'weeggegevens',FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $uploadweeggegevens = $_POST['uploadweeggegevens'];
     $uploadafbeelding = $_POST['uploadafbeelding'];
+    $verplichteInput = array($titelLabjournaal,$experimentdatum);//studentnummer
+    foreach($verplichteInput as $input)
+    {
+        if(empty($input))
+        {
+            echo "Een verplicht veld is niet ingevoerd.";
+            header("location: ../index.php?addLabjournaal=failed");
+        }
+    }
+
     queryAanmaken('INSERT INTO labjournaal(studentID,docentID,labjournaalTitel,experimentDatum,experimentBeginDatum,
     experimentEindDatum,logboek,bijlageLogboek,observaties,bijlageObservaties,weeggegevens,bijlageWeeggegevens,afbeelding)
                    VALUES ("1","1","'.$titelLabjournaal.'","'.$experimentdatum.'","'.$experimentstartdatum.'"
@@ -22,3 +32,4 @@ if (isset($_POST['submit']))
     querySluiten();
 	header("location: ../index.php?addLabjournaal=succes");    
 }
+

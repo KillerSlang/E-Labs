@@ -12,7 +12,7 @@
 
     <h2>Voer data in: </h2>
 
-    <p><label for="titellabjournaal">Titel labjournaal: </label>
+    <p><label for="titellabjournaal">Titel labjournaal: * </label>
     <input type="text" id="titellabjournaal" name="titelLabjournaal" size="40"></p>
 
     
@@ -21,7 +21,7 @@
     
     <br>
 
-    <p><label for="experimentdatum">Experiment datum: </label>
+    <p><label for="experimentdatum">Experiment datum: * </label>
     <input type="date" id="experimentdatum" name="experimentdatum"></p>
 
     <p><label for="experimentstartdatum">Start datum experiment: </label>
