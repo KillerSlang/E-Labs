@@ -9,16 +9,29 @@
     <?php 
     /* Header */
     include_once '../Include/Header.php';
+    include_once '../Include/Dbh.inc.php';
     ?>
     <main id="Protocol">
         <div class="whitebg">
             <div class="content">
                 <a id="Pbutton" href="NewProtocol.php">Nieuw Protocol</a>
                 <?php
-                    foreach($Newprotocol as $Protocol => $Pvalue) { ?>
-                        <dt><label for="<?php echo $Protocol ?>">$Protocol</label></dt>
-
-                   <?php } ?>
+                    queryAanmaken(
+                        'SELECT studentID 
+                        FROM protocol
+                        ORDER BY uploadDatum DESC
+                        limit 5
+                        ');
+                    mysqli_stmt_bind_result($stmt, $Presults);
+                    mysqli_stmt_store_result($stmt);
+                    $i=0;
+                    while(mysqli_stmt_num_rows($stmt) > $i)
+                    {
+                        mysqli_stmt_fetch($stmt);
+                        echo $Presults;
+                        $i++;
+                    }
+                ?>
             </div>
         </div>
     </main>
@@ -27,3 +40,6 @@
     include_once '../Include/Footer.php';
     ?>    
 </body>
+
+
+                

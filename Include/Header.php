@@ -5,7 +5,7 @@ session_start();
 $_SESSION["Name"] = 'Ömer avici'
 ?>
 <div>
-    <img id='navLogo'src='../Images/Logo.png'>
+    <img onclick='location.href="../index.html"' id='navLogo'src='../Images/Logo.png'>
 </div>
 <div class = 'menu'>
     <ul>

@@ -1,6 +1,5 @@
 :root {
     --blue: #003a6b;
-    --white: #ffffff;
 }
 
 body{
@@ -34,7 +33,9 @@ li {
     float: left;
 }
 
-
+hr{
+    border-color: black;
+}
 /* Header */
 nav{
     grid-row: 1;
@@ -54,6 +55,7 @@ nav{
     height: 8vh;
     margin: 1vh;
     padding: 0;
+    cursor: pointer;
 }
 .menu {
     margin: 0;
@@ -153,21 +155,36 @@ footer{
 /* all pages*/
 main{
     display: grid;
-    grid-template-rows: auto;
+    grid-template-rows: 13vh auto;
     grid-template-columns: 20vw 60vw 20vw;  
     margin: 0;
     padding: 0;
+    background-attachment: fixed;
 }
 .whitebg{
     grid-column: 2/3;
     background-color: rgba(255,255,255,0.5);
     padding: 1vw;
     margin: 0;
+    border: solid 0.1vw;
 }
 .content{
     color:black;
 }
-
+.PageTitle{
+    grid-column: 1/4;
+    color: black;
+    text-align: center;
+    margin: 0;
+}
+.bluebtn{
+    color: white;
+    background-color: var(--blue);
+    border-radius: 0.8vw;
+    height: 3vw;
+    border: black solid 0.1vw;
+    cursor: pointer;
+}
 /* Login */
 
 
@@ -194,10 +211,11 @@ main{
 }
 
 /* Nieuw Protocol */
+
 .Pform {
     display: grid;
     grid-template-columns: 18vw 30vw 10vw;
-    grid-template-rows: auto;
+
 }
 .Pform label{
     font-weight: bold;
