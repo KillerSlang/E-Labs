@@ -12,25 +12,75 @@
     include_once '../Include/Dbh.inc.php';
     ?>
     <main id="Protocol">
+    <div class="PageTitle">
+            <h1>Protocol</h1>
+            <hr>
+        </div>
         <div class="whitebg">
             <div class="content">
-                <a id="Pbutton" href="NewProtocol.php">Nieuw Protocol</a>
+                <button class="bluebtn" id="Pbutton"><a href='NewProtocol.php'>Nieuw Protocol</a></button>
+                <button class="bluebtn" id="Pbutton"><a href='Protocollen.php?jaar=3'>Jaar 3</a></button>
+                <button class="bluebtn" id="Pbutton"><a href='Protocollen.php?jaar=2'>Jaar 2</a></button>
+                <button class="bluebtn" id="Pbutton"><a href='Protocollen.php?jaar=1'>Jaar 1</a></button>
+                <button class="bluebtn" id="Pbutton"><a href='Protocollen.php?jaar=0'>Alle jaren</a></button>
+                <br>
                 <?php
-                    queryAanmaken(
-                        'SELECT studentID 
-                        FROM protocol
-                        ORDER BY uploadDatum DESC
-                        limit 5
-                        ');
-                    mysqli_stmt_bind_result($stmt, $Presults);
-                    mysqli_stmt_store_result($stmt);
-                    $i=0;
-                    while(mysqli_stmt_num_rows($stmt) > $i)
-                    {
-                        mysqli_stmt_fetch($stmt);
-                        echo $Presults;
-                        $i++;
+                    $sql = 'SELECT studentNaam, uploadDatum, titel, protocol, vakken, jaar
+                    FROM protocol AS p
+                    JOIN student AS s ON p.studentID = s.studentID ';
+                    if(!empty($_GET['jaar'])){
+                        if($_GET['jaar'] == 0){
+                            
+                        } else {
+                            $jaar = $_GET['jaar'];
+                            $sql = $sql.'WHERE jaar = '.$jaar.' ';
+                        }
                     }
+
+                    $sql = $sql.'ORDER BY uploadDatum DESC ';
+                    
+                    if(!isset($_GET['page']) || $_GET['page'] == 0){
+                        $sql = $sql.'LIMIT 5'; 
+                    } else {
+                        $counter = $_GET['page'];
+                        $limit = 30*$counter;
+                        $offset = 30*($counter-1);
+                        $sql = $sql.'LIMIT '.$limit.' OFFSET '.$offset.'';
+                    }
+
+                    queryAanmaken($sql);
+                    mysqli_stmt_bind_result($stmt, $studentNaam, $uploadDatum, $titel, $protocol, $vakken, $jaar);
+                    mysqli_stmt_store_result($stmt);
+                    if(mysqli_stmt_num_rows($stmt) != 0)
+                    {
+                        echo "<table class='PTable'><th>Titel</th><th>Auteur</th><th>UploadDatum</th><th>Protocol</th><th>Vakken</th><th>Jaar</th>";
+                        while(mysqli_stmt_fetch($stmt))
+                        {
+                            echo "<tr>
+                            <td>".$titel."</td>
+                            <td>".$studentNaam."</td>
+                            <td>".$uploadDatum."</td>
+                            <td>test"/*.$protocol*/."</td>
+                            <td>".$vakken."</td>
+                            <td>".$jaar."</td>
+                            </tr>";
+                        }
+                        echo"</table>";
+                    }
+                    querySluiten();
+                    if(!isset($_GET['page']) || $_GET['page'] == 0){
+                        $url = 'Protocollen.php?jaar='.$_GET['jaar'].'&page=';
+                        $next = $url.'1';
+                        echo'<button class="bluebtn" id="Pbutton"><a href='.$next.'>Alle Protocollen</a></button>';
+                    } else {
+                        $url = 'Protocollen.php?jaar='.$_GET['jaar'].'&page=';
+                        $next = $_GET['page']+1;
+                        $back = $_GET['page']-1;
+                        echo'<button class="bluebtn" id="Pbutton"><a href='.$url.$next.'>Volgende pagina</a></button>';
+                        echo'<button class="bluebtn" id="Pbutton"><a href='.$url.$back.'>Vorige pagina</a></button>';
+                    }
+                    
+                    
                 ?>
             </div>
         </div>

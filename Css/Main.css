@@ -18,6 +18,10 @@ p{
 }
 a{
     text-decoration: none;
+    color: white;
+}
+a:visited{
+    color: white;
 }
 
 ul {
@@ -209,7 +213,28 @@ main{
     background-repeat: no-repeat;
     background-size: 100vw;
 }
-
+#Pbutton{
+    float: right;
+    margin: 0 0 1vw 1vw;
+}
+.PTable{
+	border-collapse: collapse;
+    width: 100%;
+}
+.PTable tr:nth-child(odd){
+    background-color: rgba(0,0,0,0.3);
+}
+.PTable td {
+	text-align: center;
+	padding: 8px;
+}
+.PTable th {
+    text-align: center;
+	padding: 8px;
+    background-color: var(--blue);
+	color: white;
+	width: 10%;
+}
 /* Nieuw Protocol */
 
 .Pform {
