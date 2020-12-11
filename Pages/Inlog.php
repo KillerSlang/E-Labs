@@ -16,3 +16,5 @@
         <input type = "submit" name = "Submit" value = "Inloggen">
     </p>
 </form>
+
+de php gedeelte moet hier nog komen (validaten)

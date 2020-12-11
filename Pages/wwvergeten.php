@@ -19,3 +19,5 @@
 
     <input type = "submit" name = "Submit" value = "Wijzig Wachtwoord">
 </form>
+
+de php moet hier nog komen (validaten)

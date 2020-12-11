@@ -31,8 +31,8 @@
 
 <?php
     // Data ophalen uit de Form
-    $Voornaam = $_POST["Voornaam"];
-    $Achternaam = $_POST["Achternaam"];
+    $Voornaam = filter_input(INPUT_GET, '$_POST["Voornaam"]', FILTER_SANITIZE_SPECIAL_CHARS);
+    $Achternaam = filter_input(INPUT_GET, '$_POST["Achternaam"]', FILTER_SANITIZE_SPECIAL_CHARS);
 
     // voornaam + achternaam samen voegen tot een gehele Naam
     $Naam = $Voornaam . " " . $Achternaam;
@@ -41,6 +41,7 @@
 
     $Email = filter_var($Email, FILTER_SANITIZE_EMAIL);
 
+    // checken of het een juiste email is
     if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
         echo("$email is a valid email address");
     } else {
@@ -62,12 +63,12 @@
     }
 
 
-    $Studentnummer = $_POST["Studentnummer"];
+    $Studentnummer = filter_input(INPUT_GET, '$_POST["Studentnummer"]', FILTER_SANITIZE_NUMBER_INT);
 
-    $Password = $_POST["Password"];
-    $vraag1 = $_POST["vraag1"];
-    $vraag2 = $_POST["vraag2"];
-    $vraag3 = $_POST["vraag3"];
+    $Password = $_POST["Password"]; //moet nog gencrypt worden 
+    $vraag1 = $_POST["vraag1"]; //moet nog gencrypt worden 
+    $vraag2 = $_POST["vraag2"]; //moet nog gencrypt worden 
+    $vraag3 = $_POST["vraag3"]; //moet nog gencrypt worden 
 
     // Data controleren + in de database schrijven 
 
