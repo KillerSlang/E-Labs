@@ -147,8 +147,25 @@ footer{
 .footer{
     display: block;
     margin: auto;
-    margin-left: 20vw;
+    margin-left: 21vw;
     padding:0
+}
+/* all pages*/
+main{
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: 20vw 60vw 20vw;  
+    margin: 0;
+    padding: 0;
+}
+.whitebg{
+    grid-column: 2/3;
+    background-color: rgba(255,255,255,0.5);
+    padding: 1vw;
+    margin: 0;
+}
+.content{
+    color:black;
 }
 
 /* Login */
@@ -170,9 +187,27 @@ footer{
 
 
 /* Protocol */
-
+#Protocol{
+    background-image: url(../Images/Leerlingen.jpg);
+    background-repeat: no-repeat;
+    background-size: 100vw;
+}
 
 /* Nieuw Protocol */
-
-
+.Pform {
+    display: grid;
+    grid-template-columns: 18vw 30vw 10vw;
+    grid-template-rows: auto;
+}
+.Pform label{
+    font-weight: bold;
+    grid-column: 1/2;
+}
+.Pform input{
+    grid-column: 2/4;
+}
+#PSubmit {
+    grid-column: 3/4;
+    width: 10vw;
+}
 /* Instellingen */
