@@ -96,6 +96,7 @@ nav{
     margin-left: 5px;
 }
 .accountDropdownButton {
+    margin-top: 1vh;
     background-color: var(--blue);
     color: white;
     padding: 16px;
