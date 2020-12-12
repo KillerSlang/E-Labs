@@ -29,7 +29,7 @@
                     FROM protocol AS p
                     JOIN student AS s ON p.studentID = s.studentID ';
                     if(!empty($_GET['jaar'])){
-                        if($_GET['jaar'] == 0){
+                        if($_GET['jaar'] == 0 ){
                             
                         } else {
                             $jaar = $_GET['jaar'];
@@ -43,11 +43,10 @@
                         $sql = $sql.'LIMIT 5'; 
                     } else {
                         $counter = $_GET['page'];
-                        $limit = 30*$counter;
+                        $limit = 30;
                         $offset = 30*($counter-1);
                         $sql = $sql.'LIMIT '.$limit.' OFFSET '.$offset.'';
                     }
-
                     queryAanmaken($sql);
                     mysqli_stmt_bind_result($stmt, $studentNaam, $uploadDatum, $titel, $protocol, $vakken, $jaar);
                     mysqli_stmt_store_result($stmt);
@@ -60,9 +59,9 @@
                             <td>".$titel."</td>
                             <td>".$studentNaam."</td>
                             <td>".$uploadDatum."</td>
-                            <td>test"/*.$protocol*/."</td>
                             <td>".$vakken."</td>
                             <td>".$jaar."</td>
+                            <td><button class='bluebtn' id='Pbutton'><a href=''>Download</a></button>"/*.$protocol*/."</td>
                             </tr>";
                         }
                         echo"</table>";

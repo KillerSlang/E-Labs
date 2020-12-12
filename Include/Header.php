@@ -2,7 +2,8 @@
 <?php
 // Start the session
 session_start();
-$_SESSION["Name"] = 'Ömer avici'
+$_SESSION["Name"] = 'Ömer avici';
+$_SESSION["studentID"] = '1';
 ?>
 <div>
     <img onclick='location.href="../index.html"' id='navLogo'src='../Images/Logo.png'>
