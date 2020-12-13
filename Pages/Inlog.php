@@ -6,7 +6,7 @@ session_start();
 
 <img src="" alt = "Logo wit" >
 <h1><b>Welkom!</b></h1>
-<form action = "inlogredirect.php" method = "POST">
+<form action = "<?php echo $_SERVER['PHP_SELF']; ?>" method = "POST">
     <p><label for="Email"><b>E-mail:</b></label><br> 
     <input type = "email" name = "Email" placeholder="voer hier uw e-mail in..."></p>
 
@@ -42,9 +42,9 @@ session_start();
         {
     
                 $connection = mysqli_connect("localhost","root","");
-                mysqli_select_db($connection, 'e-labs');
+                mysqli_select_db($connection, 'elabs');
     
-                $SQL = "SELECT studentID FROM student WHERE wachtwoord = '$wachtwoord' and studentEmail = '$email'";
+                $SQL = "SELECT studentID, studentNummer, studentNaam FROM student WHERE wachtwoord = '$wachtwoord' and studentEmail = '$email'";
                 $login = mysqli_query($connection, $SQL);
     
  
@@ -53,12 +53,20 @@ session_start();
                         $row = mysqli_fetch_array($login);
                         
                         $studentID = $row['studentID'];
+                        $studentNummer = $row['studentNummer'];
+                        $studentNaam = $row['studentNaam'];
 
                         $_SESSION["StudentID"] = $studentID;
                         $_SESSION["SorD"] = "Student";
+                        $_SESSION["studentNummer"] = $studentNummer;
+                        $_SESSION["studentNaam"] = $studentNaam;
                        
+                        header("location: testsession.php"); //hier locatie van homapagina nog neerzetten.
                     }else{
                         echo "Probeer opnieuw";
+                        // session_destroy();
+                        
+                        // header("location: inlog.php");
                     }
     
     

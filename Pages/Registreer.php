@@ -111,7 +111,7 @@ if($link)
 
 
                     $conn = mysqli_connect("127.0.0.1","root","");
-                    mysqli_select_db($conn, "e-labs");
+                    mysqli_select_db($conn, "elabs");
                     
               
                     $SQLSNum = "SELECT * FROM student WHERE studentNummer = '$Studentnummer'";
