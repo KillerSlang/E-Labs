@@ -61,7 +61,50 @@ session_start();
                         $_SESSION["studentNummer"] = $studentNummer;
                         $_SESSION["studentNaam"] = $studentNaam;
                        
-                        header("location: testsession.php"); //hier locatie van homapagina nog neerzetten.
+                        header("location: testsession.php"); //hier locatie van homapagina voor studenten nog neerzetten.
+                    }else{
+                        echo "Probeer opnieuw";
+                        // session_destroy();
+                        
+                        // header("location: inlog.php");
+                    }
+    
+    
+                
+    
+    
+                mysqli_close($connection);
+                
+                
+            
+        }
+    }elseif(isset($_POST["Submit"]) and $SorD == "Docent")
+    {
+
+        $link = mysqli_connect("localhost","root","") 
+        OR DIE("Could not connect to the database!");
+        if($link)
+        {
+    
+                $connection = mysqli_connect("localhost","root","");
+                mysqli_select_db($connection, 'e-labs');
+    
+                $SQL = "SELECT docentID, docentNaam FROM docent WHERE wachtwoord = '$wachtwoord' and docentEmail = '$email'";
+                $login = mysqli_query($connection, $SQL);
+    
+ 
+                    if(mysqli_num_rows($login) == 1){
+                        
+                        $row = mysqli_fetch_array($login);
+                        
+                        $docentID = $row['studentID'];
+                        $docentNaam = $row['studentNaam'];
+
+                        $_SESSION["docentID"] = $docentID;
+                        $_SESSION["SorD"] = "Docent";
+                        $_SESSION["docentNaam"] = $docentNaam;
+                       
+                        header("location: testsession.php"); //hier locatie van homapagina voor studenten nog neerzetten.
                     }else{
                         echo "Probeer opnieuw";
                         // session_destroy();
