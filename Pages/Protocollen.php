@@ -19,11 +19,12 @@
         </div>
         <div class="whitebg">
             <div class="content">
-                <button class="bluebtn" id="Pbutton"><a href='NewProtocol.php'>Nieuw Protocol</a></button>
-                <button class="bluebtn" id="Pbutton"><a href='Protocollen.php?jaar=3'>Jaar 3</a></button>
-                <button class="bluebtn" id="Pbutton"><a href='Protocollen.php?jaar=2'>Jaar 2</a></button>
-                <button class="bluebtn" id="Pbutton"><a href='Protocollen.php?jaar=1'>Jaar 1</a></button>
-                <button class="bluebtn" id="Pbutton"><a href='Protocollen.php?jaar=0'>Alle jaren</a></button>
+                <a class="bluebtn" id="Pbutton" href='NewProtocol.php'>Nieuw Protocol</a>
+                <a class="bluebtn" id="Pbutton" href='Protocollen.php?jaar=3'>Jaar 3</a>
+                <a class="bluebtn" id="Pbutton" href='Protocollen.php?jaar=2'>Jaar 2</a>
+                <a class="bluebtn" id="Pbutton" href='Protocollen.php?jaar=1'>Jaar 1</a>
+                <a class="bluebtn" id="Pbutton" href='Protocollen.php?jaar=0'>Alle jaren</a>
+                
                 <br>
                 <?php
                     if(isset($_POST['protocolSubmit'])){
@@ -92,13 +93,14 @@
                     if(!isset($_GET['page']) || $_GET['page'] == 0){
                         $url = 'Protocollen.php?jaar='.$_GET['jaar'].'&page=';
                         $next = $url.'1';
-                        echo'<button class="bluebtn" id="Pbutton"><a href='.$next.'>Alle Protocollen</a></button>';
+                        echo'<a class="bluebtn" id="Pbutton" href='.$url.$next.'>Alle Protocollen</a>';
                     } else {
                         $url = 'Protocollen.php?jaar='.$_GET['jaar'].'&page=';
-                        $next = $_GET['page']+1;
-                        $back = $_GET['page']-1;
-                        echo'<button class="bluebtn" id="Pbutton"><a href='.$url.$next.'>Volgende pagina</a></button>';
-                        echo'<button class="bluebtn" id="Pbutton"><a href='.$url.$back.'>Vorige pagina</a></button>';
+                        $next = $url.$_GET['page']+1;
+                        $back = $url.$_GET['page']-1;
+
+                        echo'<a class="bluebtn" id="Pbutton" href='.$next.'>Volgende pagina</a>';
+                        echo'<a class="bluebtn" id="Pbutton" href='.$back.'>Volgende pagina</a>';
                     }
                     
                     

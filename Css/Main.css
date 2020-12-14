@@ -194,10 +194,11 @@ main{
     color: white;
     background-color: var(--blue);
     border-radius: 0.8vw;
-    height: 3vw;
     border: black solid 0.1vw;
     cursor: pointer;
+    padding: 0.8vw 0.3vw;
 }
+
 
 
 /* Login */
