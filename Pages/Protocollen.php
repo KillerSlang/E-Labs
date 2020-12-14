@@ -10,6 +10,21 @@
     /* Header */
     include_once '../Include/Header.php';
     include_once '../Include/Dbh.inc.php';
+    function downloadFile($queryResult, $fileName){
+
+		ob_end_clean();
+            
+		//Bestandsnaam genereren aan de hand van waarden uit database
+			
+		//Headers genereren voor export pdf + pdf downloaden door echo
+		header('Content-type: application/x-download');
+		header('Content-Disposition: attachment; filename="'.$fileName.'"');
+		header('Content-Transfer-Encoding: binary');
+		header('Content-Length: '.strlen($queryResult));
+		
+		return $queryResult;
+
+	}
     ?>
     <main id="Protocol">
     <div class="PageTitle">
@@ -25,6 +40,21 @@
                 <button class="bluebtn" id="Pbutton"><a href='Protocollen.php?jaar=0'>Alle jaren</a></button>
                 <br>
                 <?php
+                    print_r($_POST);
+                    if(isset($_POST['protocolSubmit'])){
+                        $fileName = $titel.' '.$vakken.'-'.$jaar.' - Protocol.pdf';
+                        ob_end_clean();
+        
+                        //Bestandsnaam genereren aan de hand van waarden uit database
+                            
+                        //Headers genereren voor export pdf + pdf downloaden door echo
+                        header('Content-type: application/x-download');
+                        header('Content-Disposition: attachment; filename="'.$fileName.'"');
+                        header('Content-Transfer-Encoding: binary');
+                        header('Content-Length: '.strlen($protocol));
+                        echo downloadFile($protocol, $fileName);
+                    
+                    }
                     $sql = 'SELECT studentNaam, uploadDatum, titel, protocol, vakken, jaar
                     FROM protocol AS p
                     JOIN student AS s ON p.studentID = s.studentID ';
@@ -43,8 +73,8 @@
                         $sql = $sql.'LIMIT 5'; 
                     } else {
                         $counter = $_GET['page'];
-                        $limit = 30;
-                        $offset = 30*($counter-1);
+                        $limit = 20;
+                        $offset = $limit*($counter-1);
                         $sql = $sql.'LIMIT '.$limit.' OFFSET '.$offset.'';
                     }
                     queryAanmaken($sql);
@@ -52,7 +82,7 @@
                     mysqli_stmt_store_result($stmt);
                     if(mysqli_stmt_num_rows($stmt) != 0)
                     {
-                        echo "<table class='PTable'><th>Titel</th><th>Auteur</th><th>UploadDatum</th><th>Protocol</th><th>Vakken</th><th>Jaar</th>";
+                        echo "<table class='PTable'><th>Titel</th><th>Auteur</th><th>UploadDatum</th><th>Vakken</th><th>Jaar</th><th>Protocol</th>";
                         while(mysqli_stmt_fetch($stmt))
                         {
                             echo "<tr>
@@ -61,7 +91,7 @@
                             <td>".$uploadDatum."</td>
                             <td>".$vakken."</td>
                             <td>".$jaar."</td>
-                            <td><button class='bluebtn' id='Pbutton'><a href=''>Download</a></button>"/*.$protocol*/."</td>
+                            <td><form method='post'><button  class='bluebtn' type='submit' value'download' name='protocolSubmit'>Download</button></form></td>
                             </tr>";
                         }
                         echo"</table>";

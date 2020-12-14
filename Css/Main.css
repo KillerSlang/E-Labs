@@ -11,6 +11,7 @@ body{
     color: black;
     grid-template-rows: 10vh auto 3vh;
     grid-template-columns: auto;
+    overflow-x: hidden;
 }
 p{
     margin: 0;
@@ -40,6 +41,8 @@ li {
 hr{
     border-color: black;
 }
+
+
 /* Header */
 nav{
     grid-row: 1;
@@ -102,6 +105,7 @@ nav{
     margin-left: 5px;
 }
 .accountDropdownButton {
+    margin-right: 2vw;
     margin-top: 1vh;
     background-color: var(--blue);
     color: white;
@@ -116,7 +120,7 @@ nav{
     display: none;
     position: absolute;
     background-color: var(--white);
-    min-width: 160px;
+    min-width: 8vw;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
 }
@@ -125,12 +129,13 @@ nav{
     padding: 12px 16px;
     text-decoration: none;
     display: block;
+    background-color: white;
 }
-  
+
 .accountDropdownContent a:hover {
-    background-color: #f1f1f1
+    background-color: #f1f1f1;
 }
-  
+
 .accountDropdown:hover .accountDropdownContent {
     display: block;
 }
@@ -139,6 +144,8 @@ nav{
     background-color: white;
     color: var(--blue);
 }
+
+
 /* Footer */
 footer{
     display: grid;
@@ -156,6 +163,8 @@ footer{
     margin-left: 21vw;
     padding:0
 }
+
+
 /* all pages*/
 main{
     display: grid;
@@ -189,6 +198,8 @@ main{
     border: black solid 0.1vw;
     cursor: pointer;
 }
+
+
 /* Login */
 
 
@@ -235,8 +246,9 @@ main{
 	color: white;
 	width: 10%;
 }
-/* Nieuw Protocol */
 
+
+/* Nieuw Protocol */
 .Pform {
     display: grid;
     grid-template-columns: 18vw 30vw 10vw;
@@ -253,4 +265,6 @@ main{
     grid-column: 3/4;
     width: 10vw;
 }
+
+
 /* Instellingen */
