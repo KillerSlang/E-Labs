@@ -1,0 +1,160 @@
+body { 
+    font-family: Arial; 
+    
+    
+}
+
+#container {
+	width: 100%;
+	margin: 0 auto;
+	
+	  display: grid;
+	  
+	  
+      /* grid-template-columns: 15% 15% 12.5% 15% 12.5% 15% 15%; */
+      grid-template-columns: 15% 250px 12.5% 250px 12.5% 250px 15%;
+	  grid-template-rows: 10% 250px 10% 250px 10%;
+      
+      align-content: flex ;
+     
+	  
+}    
+
+#Voorbereidingen{
+    color: white;
+    background-color: #003a6b;
+    grid-column: 2;
+	grid-row: 2;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    padding-top: 10px;
+    box-shadow: 8px 7px 6px black;
+}
+
+#Voorbereidingenimage{
+
+    
+
+
+}
+
+
+#Labjournalen{
+    color: white;
+    background-color: #003a6b;
+    grid-column: 4;
+	grid-row: 2;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    padding-top: 10px;
+    box-shadow: 8px 7px 6px black;
+}
+
+#Labjournalenimage{
+
+    padding-top: 25px;
+    
+
+
+}
+
+#Protocollen{
+    color: white;
+    background-color: #003a6b;
+    grid-column: 6;
+	grid-row: 2;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    padding-top: 10px;
+    box-shadow: 8px 7px 6px black;
+}
+
+#Protocollenimage{
+
+    padding-top: 10px;
+    padding-left: 25px;
+
+    
+}
+
+
+/* aanmaken */
+
+#Voorbereidingenaanmaken{
+    color: white;
+    background-color: #003a6b;
+    grid-column: 2;
+	grid-row: 4;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    padding-top: 10px;
+    box-shadow: 8px 7px 6px black;
+}
+
+#Voorbereidingenaanmakenimage{
+
+    padding-top: 10px;
+
+
+}
+
+
+#Labjournalenaanmaken{
+    color: white;
+    background-color: #003a6b;
+    grid-column: 4;
+	grid-row: 4;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    padding-top: 10px;
+    box-shadow: 8px 7px 6px black;
+}
+
+#Labjournalenaanmakenimage{
+
+    padding-top: 10px;
+    
+
+
+}
+
+#Protocollenaanmaken{
+    color: white;
+    background-color: #003a6b;
+    grid-column: 6;
+	grid-row: 4;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    padding-top: 10px;
+    box-shadow: 8px 7px 6px black;
+}
+
+#Protocollenaanmakenimage{
+
+    padding-top: 10px;
+    padding-left: 25px;
+
+    
+}
+
+h1{
+
+    text-align: center;
+
+
+}
+
+
+/* link styling */
+
+a:hover{
+
+cursor: pointer;
+
+}

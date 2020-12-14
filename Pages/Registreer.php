@@ -20,9 +20,9 @@
 <p><label for="Word">Voor wachtwoord opnieuw in:</label><br>
 <input type = "password" name = "Word"></p>
 
-<p>vraag1 <input type = "text" name = "Vraag1"></p>
-<p>vraag2 <input type = "text" name = "Vraag2"></p>
-<p>vraag3 <input type = "text" name = "Vraag3"></p>
+<p>Vraag 1: Wat is je lievelingskleur? <input type = "text" name = "Vraag1"></p>
+<p>Vraag 2: Wat is de naam van je eerste huisdier? <input type = "text" name = "Vraag2"></p>
+<p>Vraag 3: Hoe heet de stad/dorp waarin je bent geboren? <input type = "text" name = "Vraag3"></p>
 
 <p>   
     <input type = "submit" name = "Submit" value = "Submit">
