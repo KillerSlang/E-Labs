@@ -10,21 +10,7 @@
     /* Header */
     include_once '../Include/Header.php';
     include_once '../Include/Dbh.inc.php';
-    function downloadFile($queryResult, $fileName){
 
-		ob_end_clean();
-            
-		//Bestandsnaam genereren aan de hand van waarden uit database
-			
-		//Headers genereren voor export pdf + pdf downloaden door echo
-		header('Content-type: application/x-download');
-		header('Content-Disposition: attachment; filename="'.$fileName.'"');
-		header('Content-Transfer-Encoding: binary');
-		header('Content-Length: '.strlen($queryResult));
-		
-		return $queryResult;
-
-	}
     ?>
     <main id="Protocol">
     <div class="PageTitle">
@@ -40,22 +26,27 @@
                 <button class="bluebtn" id="Pbutton"><a href='Protocollen.php?jaar=0'>Alle jaren</a></button>
                 <br>
                 <?php
-                    print_r($_POST);
                     if(isset($_POST['protocolSubmit'])){
-                        $fileName = $titel.' '.$vakken.'-'.$jaar.' - Protocol.pdf';
-                        ob_end_clean();
-        
-                        //Bestandsnaam genereren aan de hand van waarden uit database
+                        if(!empty($_POST['protocolID'])) {
                             
-                        //Headers genereren voor export pdf + pdf downloaden door echo
-                        header('Content-type: application/x-download');
-                        header('Content-Disposition: attachment; filename="'.$fileName.'"');
-                        header('Content-Transfer-Encoding: binary');
-                        header('Content-Length: '.strlen($protocol));
-                        echo downloadFile($protocol, $fileName);
-                    
+                            $protocolID = $_POST['protocolID'];
+                            queryAanmaken('SELECT titel, vakken, jaar, protocol
+                                            FROM protocol 
+                                            WHERE protocolID = '.$protocolID.'');
+                            echo( mysqli_stmt_bind_result($stmt, $titel, $vakken, $jaar, $protocol));
+                            mysqli_stmt_store_result($stmt);
+                            mysqli_stmt_fetch($stmt);
+                            
+                            querySluiten();
+
+                            //Bestandsnaam genereren aan de hand van waarden uit database
+                            $fileName = $titel.' '.$vakken.' - Jaar'.$jaar.' - Protocol.pdf';
+                            echo downloadFile($protocol, $fileName);
+                            ob_end_clean();
+
+                        }
                     }
-                    $sql = 'SELECT studentNaam, uploadDatum, titel, protocol, vakken, jaar
+                    $sql = 'SELECT protocolID, studentNaam, uploadDatum, titel, vakken, jaar
                     FROM protocol AS p
                     JOIN student AS s ON p.studentID = s.studentID ';
                     if(!empty($_GET['jaar'])){
@@ -78,7 +69,7 @@
                         $sql = $sql.'LIMIT '.$limit.' OFFSET '.$offset.'';
                     }
                     queryAanmaken($sql);
-                    mysqli_stmt_bind_result($stmt, $studentNaam, $uploadDatum, $titel, $protocol, $vakken, $jaar);
+                    mysqli_stmt_bind_result($stmt, $protocolID, $studentNaam, $uploadDatum, $titel, $vakken, $jaar);
                     mysqli_stmt_store_result($stmt);
                     if(mysqli_stmt_num_rows($stmt) != 0)
                     {
@@ -91,7 +82,8 @@
                             <td>".$uploadDatum."</td>
                             <td>".$vakken."</td>
                             <td>".$jaar."</td>
-                            <td><form method='post'><button  class='bluebtn' type='submit' value'download' name='protocolSubmit'>Download</button></form></td>
+                            <td><form method='post'><input type='hidden' name='protocolID' value='{$protocolID}'>
+                            <button  class='bluebtn' type='submit' value'submit' name='protocolSubmit'>Download</button></form></td>
                             </tr>";
                         }
                         echo"</table>";

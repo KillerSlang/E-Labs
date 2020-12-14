@@ -58,18 +58,18 @@
                                     $studentID =  filter_var($_SESSION["studentID"], FILTER_SANITIZE_SPECIAL_CHARS);
                                     $uploadDatum =  date("Y-m-d");
                                     $titel =  filter_input(INPUT_POST,'PTitle', FILTER_SANITIZE_SPECIAL_CHARS);
+                                    $vakken =  filter_input(INPUT_POST,'PVak', FILTER_SANITIZE_SPECIAL_CHARS);
+                                    $jaar =  filter_input(INPUT_POST,'PJaar', FILTER_SANITIZE_SPECIAL_CHARS); 
 
-                                    //Protocol
+                                    //Protocol pdf
                                     $fileName = basename($_FILES["PUpload"]["name"]); 
                                     $fileType = pathinfo($fileName, PATHINFO_EXTENSION); 
-                                    
-                                    if($fileType == 'pdf'){ 
+
+                                    if($fileType == 'docx'){ 
+
                                         $pdf = $_FILES['PUpload']['tmp_name']; 
                                         $pdfContent = addslashes(file_get_contents($pdf)); 
 
-                                        $vakken =  filter_input(INPUT_POST,'PVak', FILTER_SANITIZE_SPECIAL_CHARS);
-                                        $jaar =  filter_input(INPUT_POST,'PJaar', FILTER_SANITIZE_SPECIAL_CHARS); 
-                                        
                                         queryAanmaken('INSERT INTO protocol(studentID,uploadDatum,titel,protocol,vakken,jaar)
                                         VALUES ("'.$studentID.'","'.$uploadDatum.'","'.$titel.'","'.$pdfContent.'","'.$vakken.'","'.$jaar.'")');
                                         querySluiten();
@@ -78,9 +78,6 @@
                                     else {
                                         echo "Je mag alleen een .pdf bestand uploaden.";
                                     }
-
-
-                                    
                                 }else{
                                     echo "Geen Bestand geselecteerd";
                                 }
@@ -95,48 +92,6 @@
                     }
                 }
                 ?>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
             </div>
         </div>
     </main>
