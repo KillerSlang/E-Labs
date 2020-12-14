@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<head>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="../Css/Main.css">
+    <link rel="stylesheet" href="../Css/Responsive.css">
+    
+</head>
+<body>
+    <?php 
+    /* Header */
+    include_once '../Include/Header.php';
+    ?>
+    <main>
+        <div id="Ibody">
+            <h1>Instellingen</h1>
+            <?php
+            echo "<p>$_SESSION(name)</p>";
+            ?>
+        </div>
+    </main>
+    <?php 
+    /* Footer */
+    include_once '../Include/Footer.php';
+    ?>    
+</body>
