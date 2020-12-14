@@ -80,8 +80,7 @@
                             echo "Error updating record: " . mysqli_error($conn);
                           }
                             
-                        //  header("location: inlog.php");
-                            
+                        
                         
                     }else{
                         echo "Probeer opnieuw gegevens zijn onjuist";

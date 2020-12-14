@@ -2,7 +2,12 @@
 <?php
 // Start the session
 session_start();
-$_SESSION["Name"] = 'Ömer avici'
+
+if(!isset($_SESSION['SorD'])){
+    header("Location: ../Login/login.php");
+    exit;
+}
+
 ?>
 <div>
     <img id='navLogo'src='../Images/Logo.png'>

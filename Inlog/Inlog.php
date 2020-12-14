@@ -1,6 +1,7 @@
 <?php
 // Starting session
 session_start();
+
 ?>
 
 
@@ -12,7 +13,7 @@ session_start();
 
     <p><label for="Password"><b>Wachtwoord:</b></label><br>
     <input type = "password" name = "Password" placeholder="voer hier uw wachtwoord in..."><br>
-    <a href = "" >Wachtwoord vergeten?</a></p>
+    <a href = "wwvergeten.php" >Wachtwoord vergeten?</a></p>
 
     <p><input type = "radio" id = "Student" name = "SorD" value = "Student" checked = "checked">Student
     <input type = "radio" id = "Docent" name = "SorD" value = "Docent">Docent</p>
@@ -23,9 +24,7 @@ session_start();
     </p>
 </form>
 
-<!-- de php gedeelte moet hier nog komen (validaten) -->
-
-
+<!-- Validaten -->
 <?php
 
     $email = $_POST["Email"];
@@ -59,14 +58,12 @@ session_start();
                         $_SESSION["StudentID"] = $studentID;
                         $_SESSION["SorD"] = "Student";
                         $_SESSION["studentNummer"] = $studentNummer;
-                        $_SESSION["studentNaam"] = $studentNaam;
+                        $_SESSION["Name"] = $studentNaam;
                        
-                        header("location: testsession.php"); //hier locatie van homapagina voor studenten nog neerzetten.
+                        header("location: ../Homepage/Homepage.php");
                     }else{
                         echo "Probeer opnieuw";
-                        // session_destroy();
-                        
-                        // header("location: inlog.php");
+
                     }
     
     
@@ -102,14 +99,12 @@ session_start();
 
                         $_SESSION["docentID"] = $docentID;
                         $_SESSION["SorD"] = "Docent";
-                        $_SESSION["docentNaam"] = $docentNaam;
+                        $_SESSION["Name"] = $docentNaam;
                        
-                        header("location: testsession.php"); //hier locatie van homapagina voor studenten nog neerzetten.
+                        header("location: ../Homepage/Homepage.php");
                     }else{
                         echo "Probeer opnieuw";
-                        // session_destroy();
-                        
-                        // header("location: inlog.php");
+
                     }
     
     

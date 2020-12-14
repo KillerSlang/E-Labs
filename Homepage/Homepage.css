@@ -12,10 +12,10 @@ body {
 	  
 	  
       /* grid-template-columns: 15% 15% 12.5% 15% 12.5% 15% 15%; */
-      grid-template-columns: 15% 250px 12.5% 250px 12.5% 250px 15%;
-	  grid-template-rows: 10% 250px 10% 250px 10%;
+      grid-template-columns: auto 250px 12.5% 250px 12.5% 250px auto;
+	  grid-template-rows: 10% 250px 10% 250px 300px;
       
-      align-content: flex ;
+      align-content: flex;
      
 	  
 }    
@@ -29,13 +29,12 @@ body {
     width: 100%;
     text-align: center;
     padding-top: 10px;
-    box-shadow: 8px 7px 6px black;
+    box-shadow: 9px 8px 11px black;
 }
 
 #Voorbereidingenimage{
 
-    
-
+    padding-top: 5px;
 
 }
 
@@ -49,7 +48,7 @@ body {
     width: 100%;
     text-align: center;
     padding-top: 10px;
-    box-shadow: 8px 7px 6px black;
+    box-shadow: 9px 8px 11px black;
 }
 
 #Labjournalenimage{
@@ -69,7 +68,7 @@ body {
     width: 100%;
     text-align: center;
     padding-top: 10px;
-    box-shadow: 8px 7px 6px black;
+    box-shadow: 9px 8px 11px black;
 }
 
 #Protocollenimage{
@@ -92,7 +91,7 @@ body {
     width: 100%;
     text-align: center;
     padding-top: 10px;
-    box-shadow: 8px 7px 6px black;
+    box-shadow: 9px 8px 11px black;
 }
 
 #Voorbereidingenaanmakenimage{
@@ -112,7 +111,7 @@ body {
     width: 100%;
     text-align: center;
     padding-top: 10px;
-    box-shadow: 8px 7px 6px black;
+    box-shadow: 9px 8px 11px black;
 }
 
 #Labjournalenaanmakenimage{
@@ -132,13 +131,13 @@ body {
     width: 100%;
     text-align: center;
     padding-top: 10px;
-    box-shadow: 8px 7px 6px black;
+    box-shadow: 9px 8px 11px black;
 }
 
 #Protocollenaanmakenimage{
 
     padding-top: 10px;
-    padding-left: 25px;
+   
 
     
 }

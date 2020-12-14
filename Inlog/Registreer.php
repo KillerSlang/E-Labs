@@ -34,7 +34,7 @@
 
 <?php
 
-// if(isset($_POST['submit'])){
+
 
 // Data ophalen uit de Form
 $Voornaam = $_POST["Voornaam"];
@@ -51,12 +51,6 @@ $Email = $_POST["Email"];
 $Email = filter_var($Email, FILTER_SANITIZE_EMAIL);
 
 // checken of het een juiste email is
-// if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-//      echo("$email is a valid email address ");
-//  } else {
-//     echo("$email is not a valid email address ");
-//   }
-
 
 $explodemail = explode("@" , $Email);
 
@@ -97,8 +91,6 @@ $vraag3 = sha1($_POST["Vraag3"]);
 
 // Data controleren + in de database schrijven 
 
-
-   
     
 $link = mysqli_connect("localhost","root","") 
 OR DIE("Could not connect to the database!");
@@ -199,18 +191,5 @@ if($link)
 
   
 
-
-?>
-
-
-
-
-<?php
-
-
-//$text = "HAHA";
-//$encrypt = sha1($text);
-
-//echo $encrypt;
 
 ?>
