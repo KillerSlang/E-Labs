@@ -26,6 +26,21 @@ a[class="labjournaalLink"]
     color:blue;
     text-decoration: underline;
 }
+a[class="labjournaalLink"]:visited
+{
+    color:blue;
+    text-decoration: underline;
+}
+a[class="labjournaalTitel"]
+{
+    color:black;
+    font-weight: bold;
+}
+a[class="labjournaalTitel"]:visited
+{
+    color:black;
+    font-weight: bold;
+}
 a:visited{
     color: white;
 }

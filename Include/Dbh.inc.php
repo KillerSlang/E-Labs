@@ -20,6 +20,7 @@
         mysqli_close($GLOBALS['conn']);
     }
   }
+  
 // bind result kun je gewoon met $stmt aanroepen zie hieronder voor voorbeelden.
 /* titel van labjournalen en loboeken van studentID 1 ophalen.
     queryAanmaken('SELECT `labjournaalTitel`,`logboek` 

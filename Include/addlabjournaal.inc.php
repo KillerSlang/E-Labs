@@ -1,5 +1,6 @@
 <?PHP
 include_once 'dbh.inc.php';
+
 if (isset($_POST['LSubmit']))
 {
     $titelLabjournaal =  filter_input(INPUT_POST,'titelLabjournaal', FILTER_SANITIZE_SPECIAL_CHARS); 
@@ -7,7 +8,7 @@ if (isset($_POST['LSubmit']))
     $experimentdatum = filter_input(INPUT_POST,'experimentdatum',FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $experimentstartdatum = filter_input(INPUT_POST,'experimentstartdatum',FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $experimenteinddatum = filter_input(INPUT_POST,'experimenteinddatum',FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $veiligheid = "veiligheid"; // $_POST['uploadveiligheid'];
+    $veiligheid = "veiligheid";    
     $doel = filter_input(INPUT_POST,'doel', FILTER_SANITIZE_SPECIAL_CHARS);
     $bijlageWaarnemingen = "waarnemingen";//$_POST['uploadwaarnemingen'];
     $hypothese = filter_input(INPUT_POST,'hypothese', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -23,10 +24,10 @@ if (isset($_POST['LSubmit']))
     $bijlageAfbeelding = "afbeelding";//$_POST['uploadafbeelding'];
     $vak = $_POST['LVak'];
     $jaar = $_POST['PJaar'];
-    // $afbeelding = file_get_contents($uploadwaarnemingen);
-    // $uploadwaarnemingendata = base64_encode($afbeelding);
+  
 
-    $verplichteInput = array($titelLabjournaal,$experimentdatum);//studentnummer
+    $verplichteInput = array($titelLabjournaal,$uitvoerders, $experimentdatum, $experimentstartdatum, $experimenteinddatum, $veiligheid, $doel,
+                             $hypothese, $materialen, $methode, $logboek, $observaties, $weeggegevens, $vak, $jaar);//studentnummer
   
     foreach($verplichteInput as $input)
     {

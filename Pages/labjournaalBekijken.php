@@ -233,7 +233,7 @@
                             <br>
                             <br>
         
-                    <input class="bluebtn" type="Submit" id="LSubmit" name="LSubmit" value="Opslaan">
+                    
             </form>';
         }
             querySluiten();
