@@ -13,34 +13,13 @@
 <?PHP
     /* Header */
     include_once '../Include/Header.php';
-<<<<<<< Updated upstream
-
 ?>
 
 <main id="Labjournaal">
-=======
-    
-    if(!empty($_GET['addLabjournaal']))
-    {
-        $addlabjournaal = $_GET["addLabjournaal"];
-        if($addlabjournaal != "failed")
-        {
-            echo"de query is uitgevoerd.";
-        }
-        else
-        {
-            echo"niet alle velden zijn ingevuld.";
-        }
-    }
-?>
-
-<main id="Protocol">
->>>>>>> Stashed changes
     <div class="PageTitle">
         <h1>Nieuw Labjournaal formulier aanmaken</h1>
         <hr>
     </div>
-<<<<<<< Updated upstream
     <div class="whitebg">
         <div class="content">
             <?PHP
@@ -161,95 +140,12 @@
 
             <br>
             <br>
-=======
-    
-    <div class="whitebg">
-        <div class="content">
-
-            <form class="Lform" action="includes/addlabjournaal.inc.php" method="post">
-
-            <h2>Voer data in: </h2>
-
-            <p><label for="titellabjournaal">Titel labjournaal: * </label>
-            <input type="text" id="titellabjournaal" name="titelLabjournaal" size="40"></p>
-
-            <p><label for="uitvoerders">Uitvoerders: * </label>
-            <input type="text" id="uitvoerders" name="uitvoerders" size="40"></p>
-
-            <br>
-
-            <p><label for="experimentdatum">Experiment datum: * </label>
-            <input type="date" id="experimentdatum" name="experimentdatum"></p>
-
-            <p><label for="experimentstartdatum">Start datum experiment: </label>
-            <input type="date" id="experimentstartdatum" name="experimentstartdatum"></p>
-
-            <p><label for="experimenteinddatum">Eind datum experiment: </label>
-            <input type="date" id="experimenteinddatum" name="experimenteinddatum"></p>
-
-            <br>
-
-            <p><label for="uploadveiligheid">Upload veiligheid: </label><br>
-            <input type="file" id="uploadveiligheid" name="uploadveiligheid" accept=".xls,.xlsx,image/*"></p>
-
-            <p><label for="doel">Doel: </label><br>
-            <textarea id="doel" name="doel" rows="4" cols="50" placeholder="Voer gegevens in..."></textarea></p>
-
-            <p><label for="uploadwaarnemingen">Upload waarnemingen bestand: </label><br>
-            <input type="file" id="uploadwaarnemingen" name="uploadwaarnemingen" accept="image/*"></p>
-        
-            <p><label for="hypothese">Hypothese: </label><br>
-            <textarea id="hypothese" name="hypothese" rows="4" cols="50" placeholder="Voer gegevens in..."></textarea></p>
-
-            <p><label for="materialen">Materialen: </label><br>
-            <textarea id="materialen" name="materialen" rows="4" cols="50" placeholder="Voer gegevens in..."></textarea></p>
-
-            <p><label for="methode">Methode: </label><br>
-            <textarea id="methode" name="methode" rows="4" cols="50" placeholder="Voer gegevens in..."></textarea></p>
-
-            <p><label for="uploadmeetresultaten">Upload meetresultaten bestand: </label><br>
-            <input type="file" id="uploadmeetresultaten" name="uploadmeetresultaten" accept=".xls,.xlsx,image/*"></p>
-
-            <br>
-            
-
-
-            <p><label for="logboek">Logboek: </label><br>
-            <textarea id="logboek" name="logboek" rows="4" cols="50" placeholder="Voer gegevens in..."></textarea></p>
-            
-            <p><label for="uploadlogboek">Upload logboek bestand: </label><br>
-            <input type="file" id="uploadlogboek" name="uploadlogboek" accept=".xls,.xlsx,.doc,.docx"></p>
-
-            <br>
-
-            <p><label for="observaties">Observaties: </label><br>
-            <textarea id="observaties" name="observaties" rows="4" cols="50" placeholder="Voer gegevens in..."></textarea></p>
-            
-            <p><label for="uploadobservaties">Upload observatie bestand: </label><br>
-            <input type="file" id="uploadobservaties" name="uploadobservaties" accept="image/*,.doc,.docx"></p>
-
-                <br>
-
-            <p><label for="weeggegevens">Weeggegevens: </label><br>
-            <textarea id="weeggegevens" name="weeggegevens" rows="4" cols="50" placeholder="Voer gegevens in..."></textarea></p>
-            
-            <p><label for="uploadweegegevens">Upload weeggegevens bestand: </label><br>
-            <input type="file" id="uploadweeggegevens" name="uploadweeggegevens" accept=".xls,.xlsx"></p>
-
-            <br>
-
-            <p><label for="uploadafbeelding">Upload afbeeldingen: </label><br>
-            <input type="file" id="uploadafbeelding" name="uploadafbeelding" accept="image/*" multiple></p>
->>>>>>> Stashed changes
-
-
-            <label for="Vakken">Vak: *</label>
+			<label for="Vakken">Vak: *</label>
                     <div name="Vakken">
                         <input type="radio" id="BML" name="LVak" value="BML" checked>
                         <label for="BML">BML</label><br>
                         <input type="radio" id="Chemie" name="LVak" value="Chemie">
                         <label for="Chemie">Chemie</label>
-<<<<<<< Updated upstream
                     </div>    
 
                 
@@ -270,18 +166,9 @@
                     <br>
 
             <input class="bluebtn" type="Submit" id="LSubmit" name="LSubmit" value="Opslaan">
+    </form>
+</main>            
 
-            </form>
-        </div>
-    </div>
-</main>
-
-=======
-            
-            <p><input type="submit" id="submit" name="submit"></p>
-
-            </form>
->>>>>>> Stashed changes
 <?php
     /* Footer */
     include_once '../Include/Footer.php';
