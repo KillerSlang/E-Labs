@@ -28,19 +28,50 @@
     ?>
     <main id="Protocol">
     <div class="PageTitle">
-            <h1>Protocol</h1>
+            <h1>Labjournaal</h1>
             <hr>
         </div>
         <div class="whitebg">
             <div class="content">
-                <button class="bluebtn" id="Pbutton"><a href='NewProtocol.php'>Nieuw Protocol</a></button>
+                <button class="bluebtn" id="Pbutton"><a href='labjournaalformulier.php'>Nieuw Labjournaal</a></button>
                 <button class="bluebtn" id="Pbutton"><a href='labjournalen.php?jaar=3'>Jaar 3</a></button>
                 <button class="bluebtn" id="Pbutton"><a href='labjournalen.php?jaar=2'>Jaar 2</a></button>
                 <button class="bluebtn" id="Pbutton"><a href='labjournalen.php?jaar=1'>Jaar 1</a></button>
-                <button class="bluebtn" id="Pbutton"><a href='labjournalen.php?jaar=0'>Alle jaren</a></button>
+                <button class="bluebtn" id="Pbutton"><a href='labjournalen.php'>Alle jaren</a></button>
                 <br>
                 <?php
-                    print_r($_POST);
+                    $sql = '
+                    SELECT studentNaam,labjournaalTitel,experimentDatum,vak,jaar,labjournaalID
+                    FROM labjournaal as l
+                    JOIN student AS s ON l.studentID = s.studentID
+                    ';
+                    if(!empty($_GET['jaar']))
+                    {
+                        $jaar = $_GET['jaar'];
+                        $sql .= 'WHERE jaar = '.$jaar.' ';                        
+                    }
+                    $sql .= 'ORDER BY experimentDatum DESC';
+                    queryAanmaken($sql);
+                    mysqli_stmt_bind_result($stmt, $studentNaam, $labjournaalTitel,$experimentDatum, $vak, $jaar,$labjournaalID);
+                    mysqli_stmt_store_result($stmt);
+                    if(mysqli_stmt_num_rows($stmt) != 0)
+                    {
+                        echo "<table class='LTable'><th>Titel</th><th>Auteur</th><th>Experiment datum</th><th>Vakken</th><th>Jaar</th><th></th>";
+                        while(mysqli_stmt_fetch($stmt))
+                        {
+                            echo '<tr>
+                            <td>'.$labjournaalTitel.'</td>
+                            <td>'.$studentNaam.'</td>
+                            <td>'.$experimentDatum.'</td>
+                            <td>'.$vak.'</td>
+                            <td>'.$jaar.'</td>
+                            <td><a class="labjournaalLink"href="labjournaal.php?ID='.$labjournaalID .'"</a>Aanpassen</td>
+                            </tr>' ;
+                        }
+                        echo"</table>";
+                    }
+                    querySluiten();
+                    /*print_r($_POST);
                     if(isset($_POST['protocolSubmit'])){
                         $fileName = $titel.' '.$vakken.'-'.$jaar.' - Protocol.pdf';
                         ob_end_clean();
@@ -56,10 +87,11 @@
                     
                     }
                     $sql = 'SELECT studentNaam, experimentDatum, labjournaalTitel, vak, jaar
-                    FROM labjournaal AS p
+                    FROM protocol AS p
                     JOIN student AS s ON p.studentID = s.studentID ';
                     if(!empty($_GET['jaar'])){
-                        if($_GET['jaar'] == 0 ){
+                        if($_GET['jaar'] == 0 )
+                        {
                             
                         } else {
                             $jaar = $_GET['jaar'];
@@ -108,7 +140,7 @@
                         echo'<button class="bluebtn" id="Pbutton"><a href='.$url.$next.'>Volgende pagina</a></button>';
                         echo'<button class="bluebtn" id="Pbutton"><a href='.$url.$back.'>Vorige pagina</a></button>';
                     }
-                    
+                    */
                     
                 ?>
             </div>

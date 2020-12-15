@@ -13,11 +13,12 @@
 <?PHP
     /* Header */
     include_once '../Include/Header.php';
+	include_once '../Include/Dbh.inc.php';
 ?>
 
 <main id="Labjournaal">
     <div class="PageTitle">
-        <h1>Nieuw Labjournaal formulier aanmaken</h1>
+        <h1>Labjournaal</h1>
         <hr>
     </div>
     <div class="whitebg">
@@ -37,6 +38,20 @@
                         }
                     echo'</div>';
                 }
+				if(!empty($_GET['ID']))
+				{
+					$ID = filter_input(INPUT_GET,'ID', FILTER_SANITIZE_SPECIAL_CHARS);
+				}else{ $ID = 0; }
+
+				queryAanmaken('
+				SELECT labjournaalTitel,uitvoerders,experimentdatum,
+				experimentBeginDatum,experimentEindDatum,veiligheid,doel,bijlageWaarnemingen,
+				hypothese,materialen,methode,bijlageMeetresultaten,logboek,bijlageLogboek,
+				observaties,bijlageObservaties,weeggegevens,bijlageWeeggegevens,
+				bijlageAfbeelding,vak,jaar
+				FROM labjournaal
+				WHERE labjournaalID ='.$ID);
+
             ?>
             <form class="Lform" action="../Include/addlabjournaal.inc.php" method="post" enctype="multipart/form-data">
             

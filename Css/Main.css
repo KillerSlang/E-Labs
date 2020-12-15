@@ -21,6 +21,11 @@ a{
     text-decoration: none;
     color: white;
 }
+a[class="labjournaalLink"]
+{
+    color:blue;
+    text-decoration: underline;
+}
 a:visited{
     color: white;
 }
@@ -185,6 +190,7 @@ main{
 {
 	text-align: center;
 }
+
 .content{
     color:black;
 }
