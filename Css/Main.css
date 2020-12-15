@@ -181,6 +181,10 @@ main{
     margin: 0;
     border: solid 0.1vw;
 }
+.bericht
+{
+	text-align: center;
+}
 .content{
     color:black;
 }

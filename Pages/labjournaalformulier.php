@@ -25,18 +25,20 @@
             <?PHP
                 if(!empty($_GET['addLabjournaal']))
                 {
-                    $addlabjournaal = $_GET["addLabjournaal"];
-                    if($addlabjournaal != "failed")
-                    {
-                        echo'<b class="bericht">de query is uitgevoerd</b><hr>';
-                    }
-                    else
-                    {
-                        echo'<b class="bericht">Niet alle velden zijn ingevuld</b><hr>';
-                    }
+                    echo'<div class="bericht">';
+                        $addlabjournaal = $_GET["addLabjournaal"];
+                        if($addlabjournaal != "failed")
+                        {
+                            echo'<b>de query is uitgevoerd</b><hr>';
+                        }
+                        else
+                        {
+                            echo'<b>Niet alle velden zijn ingevuld</b><hr>';
+                        }
+                    echo'</div>';
                 }
             ?>
-            <form class="Lform" action="../includes/addlabjournaal.inc.php" method="post" enctype="multipart/form-data">
+            <form class="Lform" action="../Include/addlabjournaal.inc.php" method="post" enctype="multipart/form-data">
             
             <label for="titellabjournaal">Titel labjournaal: * </label>
             <input type="text" id="titellabjournaal" name="titelLabjournaal" size="40">
