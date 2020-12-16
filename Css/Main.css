@@ -222,8 +222,10 @@ main{
 /* Protocol */
 #Protocol{
     background-image: url(../Images/Leerlingen.jpg);
+    background-position: center;
     background-repeat: no-repeat;
-    background-size: 100vw;
+    background-size: cover;
+
 }
 #Pbutton{
     float: right;

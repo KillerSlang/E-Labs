@@ -92,15 +92,15 @@
                     querySluiten();
                     if(!isset($_GET['page']) || $_GET['page'] == 0){
                         $url = 'Protocollen.php?jaar='.$_GET['jaar'].'&page=';
-                        $next = $url.'1';
-                        echo'<a class="bluebtn" id="Pbutton" href='.$url.$next.'>Alle Protocollen</a>';
+                        $next = '1';
+                        echo'<a class="bluebtn" id="Pbutton" href='.$url.'1>Alle Protocollen</a>';
                     } else {
                         $url = 'Protocollen.php?jaar='.$_GET['jaar'].'&page=';
-                        $next = $url.$_GET['page']+1;
-                        $back = $url.$_GET['page']-1;
+                        $next = $_GET['page']+1;
+                        $back = $_GET['page']-1;
 
-                        echo'<a class="bluebtn" id="Pbutton" href='.$next.'>Volgende pagina</a>';
-                        echo'<a class="bluebtn" id="Pbutton" href='.$back.'>Volgende pagina</a>';
+                        echo'<a class="bluebtn" id="Pbutton" href='.$url.$next.'>Volgende pagina</a>';
+                        echo'<a class="bluebtn" id="Pbutton" href='.$url.$back.'>Vorige pagina</a>';
                     }
                     
                     
