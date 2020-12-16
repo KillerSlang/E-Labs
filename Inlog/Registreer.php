@@ -1,40 +1,60 @@
+<!DOCTYPE HTML>
+<html>
+    <head>  
+        <title>Registreren</title>
+        <link href="../Css/inlog.css" rel="stylesheet" type="text/css">
+    </head>
+        <div id="Container">
+            <div id="inlogbox">
+                <div id="logobalk">
+                    <div id="logobalklogo">
+                        <img src="../Images/Logo.png" alt = "Logo wit" >
+                    </div>
+                    <div id="logobalktext">
+                        <h1><b>Registreren</b></h1>                       
+                    </div>
+                </div>
+                <div id="inlogruimte">
+                        <form action = "<?php echo $_SERVER['PHP_SELF']; ?>" method = "POST">
 
+                            <div id="Invoerveld1"><p><label for="Voornaam">Voornaam:</label><br> 
+                            <input type = "Text" name = "Voornaam"></p></div>
 
-<form action = "<?php echo $_SERVER['PHP_SELF']; ?>" method = "POST">
+                            <div id="Invoerveld2"><p><label for="Achternaam">Achternaam:</label><br> 
+                            <input type = "Text" name = "Achternaam"></p></div>
 
-<p><label for="Voornaam">Voornaam:</label><br> 
-<input type = "Text" name = "Voornaam"></p>
+                            <div id="Invoerveld3"><p><label for="Studentnummer">Studentnummer:</label><br> 
+                            <input type = "Number" name = "Studentnummer"></p></div>
 
-<p><label for="Achternaam">Achternaam:</label><br> 
-<input type = "Text" name = "Achternaam"></p>
+                            <div id="Invoerveld4"><p><label for="Email">E-Mail:</label><br> 
+                            <input type = "email" name = "Email"></p></div>
 
-<p><label for="Studentnummer">Studentnummer:</label><br> 
-<input type = "Number" name = "Studentnummer"></p>
+                            <div id="Invoerveld5"><p><label for="Pass">Wachtwoord:</label><br>
+                            <input type = "password" name = "Pass"></p></div>
 
-<p><label for="Email">E-Mail:</label><br> 
-<input type = "email" name = "Email"></p>
+                            <div id="Invoerveld6"><p><label for="Word">Voor wachtwoord opnieuw in:</label><br>
+                            <input type = "password" name = "Word"></p></div>
 
-<p><label for="Pass">Wachtwoord:</label><br>
-<input type = "password" name = "Pass"></p>
+                            <div id="Invoerveld7"><p>Vraag 1: Wat is je lievelingskleur? <input type = "text" name = "Vraag1"></p></div>
+                            <div id="Invoerveld8"><p>Vraag 2: Wat is de naam van je eerste huisdier? <input type = "text" name = "Vraag2"></p></div>
+                            <div id="Invoerveld9"><p>Vraag 3: Hoe heet de stad/dorp waarin je bent geboren? <input type = "text" name = "Vraag3"></p></div>
 
-<p><label for="Word">Voor wachtwoord opnieuw in:</label><br>
-<input type = "password" name = "Word"></p>
+                            <div id="registreerbutton"><p>   
+                                <input type = "submit" name = "Submit" value = "Submit">
+                            </p></div>
+                        </form>
 
-<p>Vraag 1: Wat is je lievelingskleur? <input type = "text" name = "Vraag1"></p>
-<p>Vraag 2: Wat is de naam van je eerste huisdier? <input type = "text" name = "Vraag2"></p>
-<p>Vraag 3: Hoe heet de stad/dorp waarin je bent geboren? <input type = "text" name = "Vraag3"></p>
-
-<p>   
-    <input type = "submit" name = "Submit" value = "Submit">
-</p>
-
-
-</form>
+                    <div id="errorcodes"><b>
 
 
 <?php
 
+//controleren of alle velden ingevuld zijn
+if(isset($_POST['Submit']) and strlen($_POST['Voornaam']) == 0 or strlen($_POST['Studentnummer']) == 0 or strlen($_POST['Achternaam']) == 0 or strlen($_POST['Password']) == 0 or strlen($_POST['Vraag1']) == 0 or strlen($_POST['Vraag2']) == 0 or strlen($_POST['Vraag3']) == 0){
 
+    Echo "Niet alle velden waren ingevuld";
+
+}
 
 // Data ophalen uit de Form
 $Voornaam = $_POST["Voornaam"];
@@ -78,8 +98,6 @@ $PW = $Pass;
 
 }else{
     
-  //  echo similar_text($Pass, $Word);
-   // echo $Pass . $Word;
     echo "Ingevoerde wachtwoorden niet hetzelfde";
     Die;
 }
@@ -177,11 +195,6 @@ if($link)
             Echo "Geen Studenten Email ingevoerd";
 
 
-        }elseif(isset($_POST['Submit'])){
-
-            Echo "Niet Alle velden waren ingevuld";
-
-
         }
 
         }
@@ -193,3 +206,10 @@ if($link)
 
 
 ?>
+
+                    </b></div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
