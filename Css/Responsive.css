@@ -1,9 +1,101 @@
-@media only screen and (max-width: 600px) {
-body{
-    font-size: 1vw;
-    color: red;
-}
+@media (max-width: 950px) {
+    /* all pages*/
+    main{
+        display: block;
+        grid-template-columns: 20vw 60vw 20vw;  
+        margin: 0;
+        padding: 0;
+        background-attachment: fixed;
+    }
+    .whitebg{
+        grid-column: 1/4;
+        background-color: rgba(255,255,255,0.5);
+        padding: 1vw;
+        margin: 0;
+        border: solid 0.1vw;
+        height: 82vh;
+    }
+    .content{
+        color:black;
+    }
+    .PageTitle{
+        grid-column: 1/4;
+        color: black;
+        text-align: center;
+        height: 5vh;
+        font-size: 2vh;
+    }
+    .PageTitle hr{
+        display: none;
+    }
+    .PageTitle h1{
+        margin: 0;
+    }
+    .bluebtn{
+        color: white;
+        background-color: var(--blue);
+        border-radius: 0.8vw;
+        border: black solid 0.1vw;
+        cursor: pointer;
+        padding: 0.8vw 0.4vw;
+    }
+    /* Protocol */
+    #Protocol{
+        background-image: url(../Images/Leerlingen.jpg);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
 
+    }
+    #Pbutton{
+        float: right;
+        margin: 0 0 1vw 1vw;
+        font-size: 2vh;
+    }
+    .PTable{
+        border-collapse: collapse;
+        width: 100%;
+        font-size: 2vh;
+    }
+    .PTable tr:nth-child(odd){
+        background-color: rgba(0,0,0,0.3);
+    }
+    .PTable td {
+        text-align: center;
+        padding: 8px;
+    }
+    .PTable th {
+        text-align: center;
+        padding: 8px;
+        background-color: var(--blue);
+        color: white;
+        width: 10%;
+        font-weight: bold;
+    }
+    #Ptbutton {
+        font-size: 1.5vh;
+    }
 
+    /* Nieuw Protocol */
+    .Pform {
+        display: grid;
+        grid-template-columns: 18vw auto 33vw;
+        font-size: 3vh;
+    }
+    .Pform label{
+        font-weight: bold;
+        grid-column: 1/4;
+    }
+    .Pform input{
+        grid-column: 1/4;
+        font-size: 2vh;
+    }
+    #PSubmit {
+        padding: 2vw;
+        grid-column: 3/4;
+        width: 30vw;
+        font-size: 2vh;
+        margin-right: 3vw;
+    }
 
 }

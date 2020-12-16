@@ -2,7 +2,7 @@
 <head>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
     <link rel="stylesheet" href="../Css/Main.css">
-    <link rel="stylesheet" href="../Css/Responsive.css">
+    <link rel="stylesheet" media="screen and (max-width: 950px)" href="../Css/Responsive.css">
     
 </head>
 <body>
@@ -84,7 +84,7 @@
                             <td>".$vakken."</td>
                             <td>".$jaar."</td>
                             <td><form method='post'><input type='hidden' name='protocolID' value='{$protocolID}'>
-                            <button  class='bluebtn' type='submit' value'submit' name='protocolSubmit'>Download</button></form></td>
+                            <button id='Ptbutton' class='bluebtn' type='submit' value'submit' name='protocolSubmit'>Download</button></form></td>
                             </tr>";
                         }
                         echo"</table>";
