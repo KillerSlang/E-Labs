@@ -65,7 +65,7 @@
                                     $fileName = basename($_FILES["PUpload"]["name"]); 
                                     $fileType = pathinfo($fileName, PATHINFO_EXTENSION); 
 
-                                    if($fileType == 'docx'){ 
+                                    if($fileType == 'pdf'){ 
 
                                         $pdf = $_FILES['PUpload']['tmp_name']; 
                                         $pdfContent = addslashes(file_get_contents($pdf)); 
