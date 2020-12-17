@@ -49,6 +49,7 @@
 
 
         <?php
+if(isset($_POST["submit"])){
 
             $email = $_POST["Email"];
             $studentnummer = $_POST["Studentnummer"];
@@ -110,7 +111,9 @@
                             }
                         mysqli_close($conn);
                 }
-            }      
+            } 
+            
+        }
         ?>
 
                     </div>

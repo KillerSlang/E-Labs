@@ -48,6 +48,8 @@
         <!-- Validaten -->
         <?php
 
+if(isset($_POST["submit"])){
+
             $email = $_POST["Email"];
             $ww = $_POST["Password"];
             $wachtwoord = sha1($ww);
@@ -124,7 +126,9 @@
                             }
                         mysqli_close($connection);
                 }
-            }      
+            }   
+            
+        }
         ?>
 
         </b></div>

@@ -49,6 +49,8 @@
 
 <?php
 
+if(isset($_POST["submit"])){
+
 //controleren of alle velden ingevuld zijn
 if(isset($_POST['Submit']) and strlen($_POST['Voornaam']) == 0 or strlen($_POST['Studentnummer']) == 0 or strlen($_POST['Achternaam']) == 0 or strlen($_POST['Password']) == 0 or strlen($_POST['Vraag1']) == 0 or strlen($_POST['Vraag2']) == 0 or strlen($_POST['Vraag3']) == 0){
 
@@ -201,6 +203,7 @@ if($link)
         
     }
 
+}
 
   
 
