@@ -60,7 +60,7 @@
             <br>
 
             <label for="uploadveiligheid">Upload veiligheid: </label>
-            <input type="file" id="uploadveiligheid" name="uploadveiligheid" accept=".xls,.xlsx,image/*">
+            <input type="file" id="uploadveiligheid" name="uploadveiligheid" accept=".docx">
 
             <br>
             <br>
@@ -168,6 +168,7 @@
                     <br>
 
             <input class="bluebtn" type="Submit" id="LSubmit" name="LSubmit" value="Opslaan">
+            
     </form>
 </main>            
 

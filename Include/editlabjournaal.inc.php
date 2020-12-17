@@ -1,6 +1,4 @@
 <?PHP
-// Start the session
-session_start();
 include_once 'dbh.inc.php';
 
 if (isset($_POST['LSubmit']))
@@ -10,7 +8,7 @@ if (isset($_POST['LSubmit']))
     $experimentdatum = filter_input(INPUT_POST,'experimentdatum',FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $experimentstartdatum = filter_input(INPUT_POST,'experimentstartdatum',FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $experimenteinddatum = filter_input(INPUT_POST,'experimenteinddatum',FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $veiligheid = $_FILES['uploadveiligheid'];
+    $veiligheid = "veiligheid";    
     $doel = filter_input(INPUT_POST,'doel', FILTER_SANITIZE_SPECIAL_CHARS);
     $bijlageWaarnemingen = "waarnemingen";//$_POST['uploadwaarnemingen'];
     $hypothese = filter_input(INPUT_POST,'hypothese', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -35,56 +33,29 @@ if (isset($_POST['LSubmit']))
     {
         if(empty($input))
         {
-            header("location: ../pages/labjournaalformulier.php?addLabjournaal=failed");
+            header("location: ../pages/labjournaal.php?addLabjournaal=failed");
             DIE;
         }
     }
-
+    
     queryAanmaken('
     INSERT INTO labjournaal
     (
        studentID,docentID,labjournaalTitel,uitvoerders,experimentdatum,
-       experimentBeginDatum,experimentEindDatum,doel,bijlageWaarnemingen,
+       experimentBeginDatum,experimentEindDatum,veiligheid,doel,bijlageWaarnemingen,
        hypothese,materialen,methode,bijlageMeetresultaten,logboek,bijlageLogboek,
        observaties,bijlageObservaties,weeggegevens,bijlageWeeggegevens,
        bijlageAfbeelding,vak,jaar   
     )
     VALUES
     (
-        '.$_SESSION["ID"].',"1","'.$titelLabjournaal.'","'.$uitvoerders.'","'.$experimentdatum.'","'.$experimentstartdatum.'","'.$experimenteinddatum.'","'.$doel.'","'.$bijlageWaarnemingen.'","'.$hypothese.'","'.$materialen.'","'.$methode.'","'
+        "'.$_SESSION["ID"].'","1","'.$titelLabjournaal.'","'.$uitvoerders.'","'.$experimentdatum.'","'.$experimentstartdatum.'","'.$experimenteinddatum.'","'
+        .$veiligheid.'","'.$doel.'","'.$bijlageWaarnemingen.'","'.$hypothese.'","'.$materialen.'","'.$methode.'","'
         .$bijlageMeetresultaten.'","'.$logboek.'","'.$bijlageLogboek.'","'.$observaties.'","'.$bijlageObservaties.'","'.$weeggegevens.'","'
         .$bijlageWeeggegevens.'","'.$bijlageAfbeelding.'","'.$vak.'","'.$jaar.'"
     );');
-    $last_id = mysqli_insert_id($conn);
-    
-    
-    
-    
-    
-    if(!empty($veiligheid)){
-        $fileName = basename($_FILES["uploadveiligheid"]["name"]); 
-        $fileType = pathinfo($fileName, PATHINFO_EXTENSION);
-        if($fileType == 'docx'){ 
-
-            $docx = $_FILES['uploadveiligheid']['tmp_name']; 
-            $docxContent = addslashes(base64_encode($docx)); 
-            queryAanmaken('UPDATE labjournaal
-            SET veiligheid="'.$docxContent.'"
-            WHERE labjournaalID = '.$last_id );
-            querySluiten();
-
-        }
-    }
+    querySluiten();
 	header("location: ../pages/labjournalen.php?addLabjournaal=succes");    
-	//header("location: ../pages/labjournalen.php?addLabjournaal=succes");    
-	//header("location: ../pages/labjournalen.php?addLabjournaal=succes");    
-	//header("location: ../pages/labjournalen.php?addLabjournaal=succes");    
-	//header("location: ../pages/labjournalen.php?addLabjournaal=succes");    
-	//header("location: ../pages/labjournalen.php?addLabjournaal=succes");    
-	//header("location: ../pages/labjournalen.php?addLabjournaal=succes");    
-	//header("location: ../pages/labjournalen.php?addLabjournaal=succes");    
 
-
-**
 }
 

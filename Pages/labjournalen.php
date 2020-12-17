@@ -18,11 +18,11 @@
         </div>
         <div class="whitebg">
             <div class="content">
-                <button class="bluebtn" id="Pbutton"><a href='labjournaalformulier.php'>Nieuw Labjournaal</a></button>
-                <button class="bluebtn" id="Pbutton"><a href='labjournalen.php?jaar=3'>Jaar 3</a></button>
-                <button class="bluebtn" id="Pbutton"><a href='labjournalen.php?jaar=2'>Jaar 2</a></button>
-                <button class="bluebtn" id="Pbutton"><a href='labjournalen.php?jaar=1'>Jaar 1</a></button>
-                <button class="bluebtn" id="Pbutton"><a href='labjournalen.php'>Alle jaren</a></button>
+                <a class="bluebtn" id="Pbutton" href='labjournaalformulier.php'>Nieuw Labjournaal</a>
+                <a class="bluebtn" id="Pbutton" href='labjournalen.php?jaar=3'>Jaar 3</a>
+                <a class="bluebtn" id="Pbutton" href='labjournalen.php?jaar=2'>Jaar 2</a>
+                <a class="bluebtn" id="Pbutton" href='labjournalen.php?jaar=1'>Jaar 1</a>
+                <a class="bluebtn" id="Pbutton" href='labjournalen.php?jaar=0'>Alle jaren</a>
                 <br>
                 <?php
                     $sql = '
@@ -32,10 +32,23 @@
                     ';
                     if(!empty($_GET['jaar']))
                     {
-                        $jaar = $_GET['jaar'];
-                        $sql .= 'WHERE jaar = '.$jaar.' ';                        
+                        $jaarlaag = $_GET['jaar'];
+                        $sql .= 'WHERE jaar = '.$jaarlaag.' AND s.studentID = '.$_SESSION["ID"].' ';                        
                     }
-                    $sql .= 'ORDER BY experimentDatum DESC';
+                    else
+                    {
+                        $jaarlaag = 0;
+                        $sql .= 'WHERE s.studentID = '.$_SESSION["ID"].' ';
+                    }
+                    $sql .= 'ORDER BY experimentDatum DESC ';
+                    if(!isset($_GET['page']) || $_GET['page'] == 0){
+                        $sql = $sql.'LIMIT 5'; 
+                    } else {
+                        $counter = $_GET['page'];
+                        $limit = 20;
+                        $offset = $limit*($counter-1);
+                        $sql = $sql.'LIMIT '.$limit.' OFFSET '.$offset.'';
+                    }
                     queryAanmaken($sql);
                     mysqli_stmt_bind_result($stmt, $studentNaam, $labjournaalTitel,$experimentDatum, $vak, $jaar,$labjournaalID);
                     mysqli_stmt_store_result($stmt);
@@ -54,9 +67,21 @@
                             </tr>' ;
                         }
                         echo"</table>";
+                        
                     }
                     querySluiten();
-                   
+                    if(!isset($_GET['page']) || $_GET['page'] == 0){
+                        $url = 'labjournalen.php?jaar='.$jaarlaag.'&page=';
+                        $next = $url.'1';
+                        echo'<a class="bluebtn" id="Pbutton" href='.$next.'>Alle Labjournalen</a>';
+                    } else {
+                        $url = 'labjournalen.php?jaar='.$jaarlaag.'&page=';
+                        $next = $_GET['page']+1;
+                        $back = $_GET['page']-1;
+
+                        echo'<a class="bluebtn" id="Pbutton" href="'.$url.$next.'">Volgende pagina</a>';
+                        echo'<a class="bluebtn" id="Pbutton" href="'.$url.$back.'">Vorige pagina</a>';
+                    }
                 ?>
             </div>
         </div>

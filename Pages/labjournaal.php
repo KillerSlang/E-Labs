@@ -49,8 +49,9 @@
 				hypothese,materialen,methode,bijlageMeetresultaten,logboek,bijlageLogboek,
 				observaties,bijlageObservaties,weeggegevens,bijlageWeeggegevens,
 				bijlageAfbeelding,vak,jaar
-				FROM labjournaal
-                WHERE labjournaalID ='.$ID;
+				FROM labjournaal as l
+                JOIN student AS s ON l.studentID = s.studentID
+                WHERE labjournaalID ='.$ID.' AND s.studentID = '.$_SESSION["ID"];
 
                 queryAanmaken($sql);
                 
@@ -63,7 +64,7 @@
                  
                                               
                 while (mysqli_stmt_fetch($stmt)) {
-                    echo '<form class="Lform" action="../Include/addlabjournaal.inc.php" method="post" enctype="multipart/form-data">
+                    echo '<form class="Lform" action="../Include/editlabjournaal.inc.php" method="post" enctype="multipart/form-data">
             
                     <label for="titellabjournaal">Titel labjournaal: * </label>
                     <input type="text" id="titellabjournaal" name="titelLabjournaal" value="'.$labjournaalTitel.'" size="40">

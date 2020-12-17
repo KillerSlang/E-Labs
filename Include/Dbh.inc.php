@@ -16,7 +16,7 @@
     mysqli_stmt_execute($GLOBALS ['stmt']) or DIE(mysqli_error($GLOBALS['conn']));
     function querySluiten ()
     {
-        mysqli_stmt_close($GLOBALS ['stmt']);
+        mysqli_stmt_close($GLOBALS['stmt']);
         mysqli_close($GLOBALS['conn']);
     }
   }
@@ -44,3 +44,16 @@
     VALUES ("1","1","'.$titelLabjournaal.'");');
     querySluiten();
 */
+function downloadFile($queryResult, $fileName){
+
+  ob_end_clean();
+
+  //Headers genereren voor export pdf + pdf downloaden door echo
+  header('Content-type: application/x-download');
+  header('Content-Disposition: attachment; filename="'.$fileName.'"');
+  header('Content-Transfer-Encoding: binary');
+  header('Content-Length: '.strlen($queryResult));
+
+  return $queryResult;
+
+}
