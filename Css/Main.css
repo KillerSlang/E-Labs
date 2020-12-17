@@ -271,13 +271,3 @@ main{
 
 
 /* Instellingen */
-#Imain {
-    width: 100%;
-}
-
-#ibody {
-    position: absolute;
-    width: 50%;
-    margin: auto;
-    background-color: red;
-}
