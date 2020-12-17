@@ -11,11 +11,34 @@
     include_once '../Include/Header.php';
     ?>
     <main>
-        <div id="Ibody">
-            <h1>Instellingen</h1>
-            <?php
-            echo "<p>$_SESSION(name)</p>";
-            ?>
+        <div id="Imain">
+            <div id="Ibody">
+                <h1>Accountinstellingen</h1>
+                <hr>
+                <h2>Naam:</h2>
+                <?php
+                echo "<p>$_SESSION(name)</p>";
+                ?>
+                <h2>Studentennummer:</h2>
+                <?php
+
+                ?>
+                <form>
+                    <h2>Jaar</h2>
+                    <select>
+                        <option>Jaar 1</option>
+                        <option>Jaar 2</option>
+                        <option>Jaar 3</option>
+                    </select>
+                    <h2>Taal</h2>
+                    <input type="radio" name="taal" value="Nederlands">
+                    <label>Nederlands</label>
+                    <input type="radio" name="taal" value="English">
+                    <label>English</label><br>
+                    <input type="submit" name="WWwijzig" value="Wachtwoord Wijzigen">
+                    <input type="submit" name="Uitloggen" value="Uitloggen">
+                </form>
+            </div>
         </div>
     </main>
     <?php 
