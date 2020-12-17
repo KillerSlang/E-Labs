@@ -20,7 +20,7 @@
             /* naam weergeven van student */
             echo $_SESSION["Name"];
             ?>
-            <h2>Studentennummer:</h2>
+            <h2>Studenten nummer:</h2>
             <?php
             /* studentnummer weergeven */
             echo $_SESSION["studentID"];
@@ -45,6 +45,7 @@
             if(!empty($_POST["WWwijzig"])) {
                 header("location:wwvergeten.php");
             }
+            
             /* Uitloggen met de knop */
             if(!empty($_POST["Uitloggen"])) {
                 session_unset();
@@ -52,6 +53,7 @@
                 header("location:Inlog.php");
                 exit();
             }
+
             /* taal selectie
             if(isset($_POST['taal'])) {
                 if ("taal" = "Nederlands") {
