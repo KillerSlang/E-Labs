@@ -49,7 +49,7 @@
 
 
         <?php
-if(isset($_POST["submit"])){
+if(isset($_POST["Submit"])){
 
             $email = $_POST["Email"];
             $studentnummer = $_POST["Studentnummer"];

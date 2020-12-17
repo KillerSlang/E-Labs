@@ -3,10 +3,11 @@
 // Start the session
 session_start();
 
+/*
 if(!isset($_SESSION['SorD'])){
     header("Location: ../Login/login.php");
     exit;
-}
+} */
 
 ?>
 <div>

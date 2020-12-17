@@ -1,6 +1,5 @@
 :root {
     --blue: #003a6b;
-    --white: #ffffff;
 }
 
 body{
@@ -12,6 +11,7 @@ body{
     color: black;
     grid-template-rows: 10vh auto 3vh;
     grid-template-columns: auto;
+    overflow-x: hidden;
 }
 p{
     margin: 0;
@@ -19,6 +19,10 @@ p{
 }
 a{
     text-decoration: none;
+    color: white;
+}
+a:visited{
+    color: white;
 }
 
 ul {
@@ -32,6 +36,10 @@ ul {
 
 li {
     float: left;
+}
+
+hr{
+    border-color: black;
 }
 
 
@@ -54,6 +62,7 @@ nav{
     height: 8vh;
     margin: 1vh;
     padding: 0;
+    cursor: pointer;
 }
 .menu {
     margin: 0;
@@ -96,6 +105,7 @@ nav{
     margin-left: 5px;
 }
 .accountDropdownButton {
+    margin-right: 2vw;
     margin-top: 1vh;
     background-color: var(--blue);
     color: white;
@@ -110,7 +120,7 @@ nav{
     display: none;
     position: absolute;
     background-color: var(--white);
-    min-width: 160px;
+    min-width: 8vw;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
 }
@@ -119,12 +129,13 @@ nav{
     padding: 12px 16px;
     text-decoration: none;
     display: block;
+    background-color: white;
 }
-  
+
 .accountDropdownContent a:hover {
-    background-color: #f1f1f1
+    background-color: #f1f1f1;
 }
-  
+
 .accountDropdown:hover .accountDropdownContent {
     display: block;
 }
@@ -133,6 +144,8 @@ nav{
     background-color: white;
     color: var(--blue);
 }
+
+
 /* Footer */
 footer{
     display: grid;
@@ -147,9 +160,46 @@ footer{
 .footer{
     display: block;
     margin: auto;
-    margin-left: 20vw;
+    margin-left: 21vw;
     padding:0
 }
+
+
+/* all pages*/
+main{
+    display: grid;
+    grid-template-rows: 13vh auto;
+    grid-template-columns: 20vw 60vw 20vw;  
+    margin: 0;
+    padding: 0;
+    background-attachment: fixed;
+}
+.whitebg{
+    grid-column: 2/3;
+    background-color: rgba(255,255,255,0.5);
+    padding: 1vw;
+    margin: 0;
+    border: solid 0.1vw;
+}
+.content{
+    color:black;
+}
+.PageTitle{
+    grid-column: 1/4;
+    color: black;
+    text-align: center;
+    margin: 0;
+}
+.bluebtn{
+    color: white;
+    background-color: var(--blue);
+    border-radius: 0.8vw;
+    border: black solid 0.1vw;
+    cursor: pointer;
+    padding: 0.8vw 0.3vw;
+}
+
+
 
 /* Login */
 
@@ -170,9 +220,54 @@ footer{
 
 
 /* Protocol */
+#Protocol{
+    background-image: url(../Images/Leerlingen.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+#Pbutton{
+    float: right;
+    margin: 0 0 1vw 1vw;
+}
+.PTable{
+	border-collapse: collapse;
+    width: 100%;
+}
+.PTable tr:nth-child(odd){
+    background-color: rgba(0,0,0,0.3);
+}
+.PTable td {
+	text-align: center;
+	padding: 8px;
+}
+.PTable th {
+    text-align: center;
+	padding: 8px;
+    background-color: var(--blue);
+	color: white;
+	width: 10%;
+}
 
 
 /* Nieuw Protocol */
+.Pform {
+    display: grid;
+    grid-template-columns: 18vw 30vw 10vw;
+
+}
+.Pform label{
+    font-weight: bold;
+    grid-column: 1/2;
+}
+.Pform input{
+    grid-column: 2/4;
+}
+#PSubmit {
+    grid-column: 3/4;
+    width: 10vw;
+}
 
 
 /* Instellingen */

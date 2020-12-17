@@ -31,7 +31,7 @@
                             <input type = "password" name = "Password" placeholder="voer hier uw wachtwoord in..."></div>
                             <div id="wwvergeten"><a href = "wwvergeten.php" >Wachtwoord vergeten?</a></p></div>
 
-                            <div id="SorD"><p><input type = "radio" id = "Student" name = "SorD" value = "Student" checked = "checked">Student	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                            <div id="SorD"><p><input type = "radio" id = "Student" name = "SorD" value = "Student" checked = "checked">Student
                             <input type = "radio" id = "Docent" name = "SorD" value = "Docent">Docent</p></div>
                             
                             <div id="registrerenbutton">
@@ -48,7 +48,7 @@
         <!-- Validaten -->
         <?php
 
-if(isset($_POST["submit"])){
+if(isset($_POST["Submit"])){
 
             $email = $_POST["Email"];
             $ww = $_POST["Password"];
@@ -83,7 +83,7 @@ if(isset($_POST["submit"])){
                                 $_SESSION["studentNummer"] = $studentNummer;
                                 $_SESSION["Name"] = $studentNaam;
                             
-                                header("location: ../Homepage/Homepage.php");
+                                header("location: Homepage.php");
                             }else{
                                 echo "Probeer opnieuw";
                                 
@@ -116,7 +116,7 @@ if(isset($_POST["submit"])){
                                 $_SESSION["SorD"] = "Docent";
                                 $_SESSION["Name"] = $docentNaam;
                             
-                                header("location: ../Homepage/Homepage.php");
+                                header("location: Homepage.php");
                             }else{
 
                                 echo "Probeer opnieuw";
