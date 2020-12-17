@@ -38,8 +38,8 @@
                         querySluiten();
 
                         //Bestandsnaam genereren aan de hand van waarden uit database
-                        $fileName = $titel.' '.$vakken.' - Jaar'.$jaar.' - veiligheid.docx';
-                        echo downloadFile(base64_decode($veiligheid), $fileName);
+                        $fileName = $titel.' '.$vakken.' - Jaar'.$jaar.' - veiligheid.pdf';
+                        echo downloadFile($veiligheid	, $fileName);
 
                     }
                 }
@@ -83,10 +83,10 @@
                     <label for="experimentdatum">Experiment datum: * </label>';
                     echo $experimentDatum.'
         
-                    <label for="experimentstartdatum">Start datum experiment: </label>';
+                    <br><label for="experimentstartdatum">Start datum experiment: </label>';
                     echo $experimentBeginDatum.'
         
-                    <label for="experimenteinddatum">Eind datum experiment: </label>';
+                    <br><label for="experimenteinddatum">Eind datum experiment: </label>';
                     echo $experimentEindDatum.'
         
                     <br>

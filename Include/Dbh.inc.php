@@ -14,12 +14,13 @@
     $sql = $query;
     $GLOBALS ['stmt'] = mysqli_prepare($GLOBALS['conn'], $sql) or DIE("Preparation error"); // is het een werkende query
     mysqli_stmt_execute($GLOBALS ['stmt']) or DIE(mysqli_error($GLOBALS['conn']));
-    function querySluiten ()
+
+  }
+      function querySluiten ()
     {
         mysqli_stmt_close($GLOBALS['stmt']);
         mysqli_close($GLOBALS['conn']);
     }
-  }
   
 // bind result kun je gewoon met $stmt aanroepen zie hieronder voor voorbeelden.
 /* titel van labjournalen en loboeken van studentID 1 ophalen.

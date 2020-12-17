@@ -55,19 +55,16 @@ if (isset($_POST['LSubmit']))
         .$bijlageMeetresultaten.'","'.$logboek.'","'.$bijlageLogboek.'","'.$observaties.'","'.$bijlageObservaties.'","'.$weeggegevens.'","'
         .$bijlageWeeggegevens.'","'.$bijlageAfbeelding.'","'.$vak.'","'.$jaar.'"
     );');
-    $last_id = mysqli_insert_id($conn);
-    
-    
-    
+    $last_id = mysqli_insert_id($conn);    
     
     
     if(!empty($veiligheid)){
         $fileName = basename($_FILES["uploadveiligheid"]["name"]); 
         $fileType = pathinfo($fileName, PATHINFO_EXTENSION);
-        if($fileType == 'docx'){ 
+        if($fileType == 'pdf'){ 
 
             $docx = $_FILES['uploadveiligheid']['tmp_name']; 
-            $docxContent = addslashes(base64_encode($docx)); 
+            $docxContent = addslashes(file_get_contents($docx)); 
             queryAanmaken('UPDATE labjournaal
             SET veiligheid="'.$docxContent.'"
             WHERE labjournaalID = '.$last_id );

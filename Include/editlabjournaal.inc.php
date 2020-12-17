@@ -1,4 +1,5 @@
 <?PHP
+session_start();
 include_once 'dbh.inc.php';
 
 if (isset($_POST['LSubmit']))
@@ -49,7 +50,7 @@ if (isset($_POST['LSubmit']))
     )
     VALUES
     (
-        "'.$_SESSION["ID"].'","1","'.$titelLabjournaal.'","'.$uitvoerders.'","'.$experimentdatum.'","'.$experimentstartdatum.'","'.$experimenteinddatum.'","'
+        "'.$_SESSION["StudentID"].'","1","'.$titelLabjournaal.'","'.$uitvoerders.'","'.$experimentdatum.'","'.$experimentstartdatum.'","'.$experimenteinddatum.'","'
         .$veiligheid.'","'.$doel.'","'.$bijlageWaarnemingen.'","'.$hypothese.'","'.$materialen.'","'.$methode.'","'
         .$bijlageMeetresultaten.'","'.$logboek.'","'.$bijlageLogboek.'","'.$observaties.'","'.$bijlageObservaties.'","'.$weeggegevens.'","'
         .$bijlageWeeggegevens.'","'.$bijlageAfbeelding.'","'.$vak.'","'.$jaar.'"
