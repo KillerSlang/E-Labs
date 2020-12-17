@@ -3,7 +3,7 @@
 // Start the session
 session_start();
 $_SESSION["Name"] = 'Ömer avici';
-$_SESSION["ID"] = 1;
+$_SESSION["StudentID"] = 1;
 ?>
 <div>
     <img id='navLogo'src='../Images/Logo.png'>

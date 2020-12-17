@@ -51,7 +51,7 @@ if (isset($_POST['LSubmit']))
     )
     VALUES
     (
-        '.$_SESSION["ID"].',"1","'.$titelLabjournaal.'","'.$uitvoerders.'","'.$experimentdatum.'","'.$experimentstartdatum.'","'.$experimenteinddatum.'","'.$doel.'","'.$bijlageWaarnemingen.'","'.$hypothese.'","'.$materialen.'","'.$methode.'","'
+        '.$_SESSION["StudentID"].',"1","'.$titelLabjournaal.'","'.$uitvoerders.'","'.$experimentdatum.'","'.$experimentstartdatum.'","'.$experimenteinddatum.'","'.$doel.'","'.$bijlageWaarnemingen.'","'.$hypothese.'","'.$materialen.'","'.$methode.'","'
         .$bijlageMeetresultaten.'","'.$logboek.'","'.$bijlageLogboek.'","'.$observaties.'","'.$bijlageObservaties.'","'.$weeggegevens.'","'
         .$bijlageWeeggegevens.'","'.$bijlageAfbeelding.'","'.$vak.'","'.$jaar.'"
     );');
@@ -75,16 +75,7 @@ if (isset($_POST['LSubmit']))
 
         }
     }
-	header("location: ../pages/labjournalen.php?addLabjournaal=succes");    
-	//header("location: ../pages/labjournalen.php?addLabjournaal=succes");    
-	//header("location: ../pages/labjournalen.php?addLabjournaal=succes");    
-	//header("location: ../pages/labjournalen.php?addLabjournaal=succes");    
-	//header("location: ../pages/labjournalen.php?addLabjournaal=succes");    
-	//header("location: ../pages/labjournalen.php?addLabjournaal=succes");    
-	//header("location: ../pages/labjournalen.php?addLabjournaal=succes");    
-	//header("location: ../pages/labjournalen.php?addLabjournaal=succes");    
+	header("location: ../pages/labjournalen.php?addLabjournaal=succes");  
 
-
-**
 }
 

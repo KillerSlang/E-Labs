@@ -33,12 +33,12 @@
                     if(!empty($_GET['jaar']))
                     {
                         $jaarlaag = $_GET['jaar'];
-                        $sql .= 'WHERE jaar = '.$jaarlaag.' AND s.studentID = '.$_SESSION["ID"].' ';                        
+                        $sql .= 'WHERE jaar = '.$jaarlaag.' AND s.studentID = '.$_SESSION["StudentID"].' ';                        
                     }
                     else
                     {
                         $jaarlaag = 0;
-                        $sql .= 'WHERE s.studentID = '.$_SESSION["ID"].' ';
+                        $sql .= 'WHERE s.studentID = '.$_SESSION["StudentID"].' ';
                     }
                     $sql .= 'ORDER BY experimentDatum DESC ';
                     if(!isset($_GET['page']) || $_GET['page'] == 0){
