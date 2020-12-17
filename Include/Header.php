@@ -2,16 +2,17 @@
 <?php
 // Start the session
 session_start();
-$_SESSION["Name"] = 'Ömer avici'
+$_SESSION["Name"] = 'Ömer avici';
+$_SESSION["studentID"] = '1';
 ?>
 <div>
-    <img id='navLogo'src='../Images/Logo.png'>
+    <img onclick='location.href="../index.html"' id='navLogo'src='../Images/Logo.png'>
 </div>
 <div class = 'menu'>
     <ul>
         <li id=''><a href='Voorbereidingen.php'>Voorbereidingen</a></li>
         <li id=''><a href='Labjournalen.php'>Labjournalen</a></li>
-        <li id=''><a href='Protocollen.php'>Protocollen</a></li>
+        <li id=''><a href='Protocollen.php?jaar=0'>Protocollen</a></li>
     </ul>    
 </div>
 <div class = 'account'>
@@ -27,17 +28,5 @@ $_SESSION["Name"] = 'Ömer avici'
             <a href='Logout.php'>Logout</a>
         </div>
     </div>
-    
-    <!--
-    <div class='accountDropdown'>
-        <p id='accountName'><?= $_SESSION["Name"]?> </p>
-        <i id='accountDrop' class="fa fa-caret-down" aria-hidden="true"></i>
-        <div class='accountDropdownContent'>
-            <ul>
-                <li id=''><a href='Instellingen.php'>Instellingen</a></li>
-                <li id=''><a href='Logout.php'>Logout</a></li>
-            </ul>   
-        </div>
-    </div>-->
 </div>
 </nav>
