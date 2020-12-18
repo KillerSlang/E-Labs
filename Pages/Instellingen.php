@@ -12,18 +12,20 @@
     include_once '../Include/Dbh.inc.php';
     ?>
     <main>
+        <div></div>
         <div id="Imain">
-            <h1>Accountinstellingen</h1>
+            <h1 id="Ih1">Accountinstellingen</h1>
             <hr>
             <h2>Naam:</h2>
             <?php
-            /* naam weergeven van student */
+            /* naam weergeven van student/docent */
             echo $_SESSION["Name"];
-            ?>
-            <h2>Studenten nummer:</h2>
-            <?php
+            
             /* studentnummer weergeven */
-            echo $_SESSION["studentID"];
+            if ($_SESSION['SorD'] == 'Student') {
+                echo "<h2>Student Nummer</h2>";
+                echo $_SESSION["studentID"];
+            }
             ?>
             <form action="Instellingen.php" method="POST">
                 <h2>Jaar</h2>
@@ -37,8 +39,11 @@
                 <label>Nederlands</label>
                 <input type="radio" name="taal" value="English">
                 <label>English</label><br>
-                <input type="submit" name="WWwijzig" value="Wachtwoord Wijzigen">
-                <input type="submit" name="Uitloggen" value="Uitloggen">
+                <div id="Iknoppen">
+                <input class="bluebtn" type="submit" name="WWwijzig" value="Wachtwoord Wijzigen">
+                <div class="empty">
+                <input id="Iuitlog" type="submit" name="Uitloggen" value="Uitloggen">
+                </div>
             </form>
             <?php
             /* wachtwoord wijzigen */
@@ -50,7 +55,7 @@
             if(!empty($_POST["Uitloggen"])) {
                 session_unset();
                 session_destroy();
-                header("location:Inlog.php");
+                header("location:Logout.php");
                 exit();
             }
 
