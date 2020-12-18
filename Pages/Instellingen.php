@@ -41,7 +41,7 @@
                 <label>English</label><br>
                 <div id="Iknoppen">
                 <input class="bluebtn" type="submit" name="WWwijzig" value="Wachtwoord Wijzigen">
-                <div class="empty">
+                <div class="empty"></div>
                 <input id="Iuitlog" type="submit" name="Uitloggen" value="Uitloggen">
                 </div>
             </form>
