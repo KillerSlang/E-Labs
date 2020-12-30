@@ -3,7 +3,8 @@
 // Start the session
 session_start();
 $_SESSION["Name"] = 'Ömer avici';
-$_SESSION["studentID"] = '1';
+$_SESSION["StudentID"] = '1';
+$_SESSION["SorD"] = true;
 ?>
 <div>
     <img onclick='location.href="../index.html"' id='navLogo'src='../Images/Logo.png'>

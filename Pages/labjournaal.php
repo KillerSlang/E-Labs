@@ -51,7 +51,7 @@
 				bijlageAfbeelding,vak,jaar
 				FROM labjournaal as l
                 JOIN student AS s ON l.studentID = s.studentID
-                WHERE labjournaalID ='.$ID.' AND s.studentID = '.$_SESSION["ID"];
+                WHERE labjournaalID ='.$ID.' AND s.studentID = '.$_SESSION["StudentID"];
 
                 queryAanmaken($sql);
                 

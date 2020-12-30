@@ -3,13 +3,36 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
     <link rel="stylesheet" href="../Css/Main.css">
     <link rel="stylesheet" href="../Css/Responsive.css">
-    
+    <script src="../Include/selectLabjournaal.inc.js"></script>
 </head>
 <body>
     <?php 
     /* Header */
     include_once '../Include/Header.php';
     include_once '../Include/Dbh.inc.php';
+
+    function get_options($select)
+    {
+        $vakken = array('BML','Chemie');
+        $options = '';
+        foreach($vakken as $input)
+        {
+            echo $input;
+            if($select == $input)
+            {
+                $options .= '<option value="'.$input.'" selected>'.$input.'</option>';
+            }
+            else
+            {
+                $options .= '<option value="'.$input.'" >'.$input.'</option>';
+            }
+        }
+        return $options;
+    }
+    if(isset($_POST["vak"]))
+    {
+        $selected = $_POST["vak"];
+    }
     ?>
     <main id="Protocol">
     <div class="PageTitle">
@@ -23,6 +46,14 @@
                 <a class="bluebtn" id="Pbutton" href='labjournalen.php?jaar=2'>Jaar 2</a>
                 <a class="bluebtn" id="Pbutton" href='labjournalen.php?jaar=1'>Jaar 1</a>
                 <a class="bluebtn" id="Pbutton" href='labjournalen.php?jaar=0'>Alle jaren</a>
+                <form action="<?php echo $_SERVER['PHP_SELF']; ?>" name="selectform" method="post">
+                    <select class="bluebtn" id="Pbutton" name="vak" onchange="this.form.submit();">                        
+                        <?PHP
+                            echo get_options($selected);
+                        ?>
+                    </select>
+                </form>
+
                 <br>
                 <?php
                     $sql = '
@@ -33,12 +64,19 @@
                     if(!empty($_GET['jaar']))
                     {
                         $jaarlaag = $_GET['jaar'];
-                        $sql .= 'WHERE jaar = '.$jaarlaag.' AND s.studentID = '.$_SESSION["StudentID"].' ';                        
+                        $sql .= 'WHERE jaar = '.$jaarlaag.' AND s.studentID = '.$_SESSION["StudentID"];                 // student of docent       
                     }
                     else
                     {
                         $jaarlaag = 0;
-                        $sql .= 'WHERE s.studentID = '.$_SESSION["StudentID"].' ';
+                        $sql .= 'WHERE s.studentID = '.$_SESSION["StudentID"].' ';      // student of docent
+                    }
+                    if(!empty($_POST['vak']))
+                    {
+                        $sql .= ' AND l.vak = "'.$_POST['vak'].'" ';
+                    }else
+                    {
+                        $sql .= ' AND l.vak = "BML" ';
                     }
                     $sql .= 'ORDER BY experimentDatum DESC ';
                     if(!isset($_GET['page']) || $_GET['page'] == 0){
@@ -54,7 +92,7 @@
                     mysqli_stmt_store_result($stmt);
                     if(mysqli_stmt_num_rows($stmt) != 0)
                     {
-                        echo "<table class='LTable'><th>Titel</th><th>Auteur</th><th>Experiment datum</th><th>Vakken</th><th>Jaar</th><th>Bewerken</th>";
+                        echo "<table class='LTable'><th>Titel</th><th>Auteur</th><th>Experiment datum</th><th>Vakken</th><th>Jaar</th><th>download</th><th>Bewerken</th>";
                         while(mysqli_stmt_fetch($stmt))
                         {
                             echo '<tr>
@@ -63,6 +101,7 @@
                             <td>'.$experimentDatum.'</td>
                             <td>'.$vak.'</td>
                             <td>'.$jaar.'</td>
+                            <td><a class="labjournaalLink"href="../Include/downloadLabjournaal.inc.php?ID='.$labjournaalID .'"</a><i class="fas fa-download"></i></td>
                             <td><a class="labjournaalLink"href="labjournaal.php?ID='.$labjournaalID .'"</a>Bewerken</td>
                             </tr>' ;
                         }
