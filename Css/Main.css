@@ -19,10 +19,10 @@ p{
 }
 a{
     text-decoration: none;
-    color: white;
+    
 }
 a:visited{
-    color: white;
+    text-decoration: none;
 }
 
 ul {
@@ -258,6 +258,16 @@ a[class="labjournaalTitel"]:visited
 {
     color:black;
     font-weight: bold;
+}
+.userToevoegen
+{
+    grid-row: 3 / 4;
+    grid-column: 2 / 3;
+    width: 35px;
+    background-color: transparent; 
+    border: 1px solid black;
+    margin-bottom: 1px;
+    margin-top: 1px;
 }
 
 

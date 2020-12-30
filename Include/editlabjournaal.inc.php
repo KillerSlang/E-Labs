@@ -34,7 +34,7 @@ if (isset($_POST['LSubmit']))
     {
         if(empty($input))
         {
-            header("location: ../pages/labjournaal.php?addLabjournaal=failed");
+            header("location: ../pages/labjournaalNieuw.php?addLabjournaal=failed");
             DIE;
         }
     }

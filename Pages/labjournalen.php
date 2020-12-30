@@ -1,9 +1,9 @@
 <!DOCTYPE HTML>
 <head>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/cda83c7af3.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../Css/Main.css">
     <link rel="stylesheet" href="../Css/Responsive.css">
-    <script src="../Include/selectLabjournaal.inc.js"></script>
 </head>
 <body>
     <?php 
@@ -41,7 +41,7 @@
         </div>
         <div class="whitebg">
             <div class="content">
-                <a class="bluebtn" id="Pbutton" href='labjournaalformulier.php'>Nieuw Labjournaal</a>
+                <a class="bluebtn" id="Pbutton" href='labjournaalNieuw.php'>Nieuw Labjournaal</a>
                 <a class="bluebtn" id="Pbutton" href='labjournalen.php?jaar=3'>Jaar 3</a>
                 <a class="bluebtn" id="Pbutton" href='labjournalen.php?jaar=2'>Jaar 2</a>
                 <a class="bluebtn" id="Pbutton" href='labjournalen.php?jaar=1'>Jaar 1</a>
@@ -102,7 +102,7 @@
                             <td>'.$vak.'</td>
                             <td>'.$jaar.'</td>
                             <td><a class="labjournaalLink"href="../Include/downloadLabjournaal.inc.php?ID='.$labjournaalID .'"</a><i class="fas fa-download"></i></td>
-                            <td><a class="labjournaalLink"href="labjournaal.php?ID='.$labjournaalID .'"</a>Bewerken</td>
+                            <td><a class="labjournaalLink"href="labjournaalBewerk.php?ID='.$labjournaalID .'"</a>Bewerken</td>
                             </tr>' ;
                         }
                         echo"</table>";

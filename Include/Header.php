@@ -17,7 +17,7 @@ $_SESSION["SorD"] = true;
     </ul>    
 </div>
 <div class = 'account'>
-    <i id='accountLogo' class="fa fa-user-circle-o" aria-hidden="true"></i>
+    <i id='accountLogo' class="fas fa-user-circle" aria-hidden="true"></i>
     
     <div class="accountDropdown">
         <div class="accountDropdownButton">        

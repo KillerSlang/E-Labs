@@ -12,20 +12,46 @@ if (isset($_POST['LSubmit']))
     $experimenteinddatum = filter_input(INPUT_POST,'experimenteinddatum',FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     $veiligheid = $_FILES['uploadveiligheid'];
     $doel = filter_input(INPUT_POST,'doel', FILTER_SANITIZE_SPECIAL_CHARS);
-    $bijlageWaarnemingen = "waarnemingen";//$_POST['uploadwaarnemingen'];
+    $bijlageWaarnemingen = "bijlageWaarnemingen";//$_POST['uploadwaarnemingen'];
     $hypothese = filter_input(INPUT_POST,'hypothese', FILTER_SANITIZE_SPECIAL_CHARS);
     $materialen = filter_input(INPUT_POST,'materialen', FILTER_SANITIZE_SPECIAL_CHARS);
     $methode = filter_input(INPUT_POST,'methode', FILTER_SANITIZE_SPECIAL_CHARS);
-    $bijlageMeetresultaten = "meetresultaten";//$_POST['uploadmeetresultaten'];
+    $bijlageMeetresultaten = "bijlageMeetresultaten";//$_POST['uploadmeetresultaten'];
     $logboek = filter_input(INPUT_POST,'logboek',FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $bijlageLogboek = "logboek";//$_POST['uploadlogboek'];
+    $bijlageLogboek = "bijlageLogboek";//$_POST['uploadlogboek'];
     $observaties = filter_input(INPUT_POST,'observaties',FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $bijlageObservaties = "observaties";//$_POST['uploadobservaties'];
+    $bijlageObservaties = "bijlageObservaties";//$_POST['uploadobservaties'];
     $weeggegevens = filter_input(INPUT_POST,'weeggegevens',FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $bijlageWeeggegevens = "weeggegevens";//$_POST['uploadweeggegevens'];
+    $bijlageWeeggegevens = "bijlageWeeggegevens";//$_POST['uploadweeggegevens'];
     $bijlageAfbeelding = "afbeelding";//$_POST['uploadafbeelding'];
     $vak = $_POST['LVak'];
     $jaar = $_POST['PJaar'];
+    
+
+    
+    $_SESSION['titelLabjournaal'] = $titelLabjournaal;
+    $_SESSION['uitvoerders'] = $uitvoerders;
+    $_SESSION['experimentdatum'] = $experimentdatum;
+    $_SESSION['experimentstartdatum'] = $experimentstartdatum;
+    $_SESSION['experimenteinddatum'] = $experimenteinddatum;
+    $_SESSION['uploadveiligheid'] = $veiligheid;
+    $_SESSION['doel'] = $doel;
+    $_SESSION['bijlageWaarnemingen'] = $bijlageWaarnemingen;
+    $_SESSION['hypothese'] = $hypothese;
+    $_SESSION['materialen'] = $materialen;
+    $_SESSION['methode'] = $methode;
+    $_SESSION['meetresultaten'] = $bijlageMeetresultaten;
+    $_SESSION['logboek'] = $logboek;
+    $_SESSION['bijlageLogboek'] = $bijlageLogboek;
+    $_SESSION['observaties'] = $observaties;
+    $_SESSION['bijlageObservaties'] = $bijlageObservaties;
+    $_SESSION['weeggegevens'] = $weeggegevens;
+    $_SESSION['bijlageWeeggegevens'] = $bijlageWeeggegevens;
+    $_SESSION['bijlageAfbeelding'] = $bijlageAfbeelding;
+    $_SESSION['vak'] = $vak;
+    $_SESSION['jaar'] = $jaar;
+
+
   
 
     $verplichteInput = array($titelLabjournaal,$uitvoerders, $experimentdatum, $experimentstartdatum, $experimenteinddatum, $veiligheid, $doel,
@@ -35,10 +61,10 @@ if (isset($_POST['LSubmit']))
     {
         if(empty($input))
         {
-            header("location: ../pages/labjournaalformulier.php?addLabjournaal=failed");
+            header("location: ../pages/labjournaalNieuw.php?addLabjournaal=failed");
             DIE;
         }
-    }
+    }   
 
     queryAanmaken('
     INSERT INTO labjournaal
@@ -75,4 +101,21 @@ if (isset($_POST['LSubmit']))
 	header("location: ../pages/labjournalen.php?addLabjournaal=succes");  
 
 }
+if (isset($_POST['userSubmit']))
+{
+    $uitvoerders = filter_input(INPUT_POST,'uitvoerders', FILTER_SANITIZE_SPECIAL_CHARS);
+    $sql = ' 
+    SELECT studentNaam
+    FROM student
+    WHERE studentNummer = 
+    '.$uitvoerders;
+    queryAanmaken($sql);
+    mysqli_stmt_bind_result($stmt, $studentNaam);
+    mysqli_stmt_store_result($stmt);
+    querysluiten();
+    $_SESSION['studentNaam'] = $studentNaam;
+    header("location: ../pages/labjournaalNieuw.php?adduser=succes");  
+}
+
+
 
