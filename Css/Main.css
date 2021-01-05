@@ -259,16 +259,42 @@ a[class="labjournaalTitel"]:visited
     color:black;
     font-weight: bold;
 }
-.userToevoegen
+#buttonArea
 {
     grid-row: 3 / 4;
     grid-column: 2 / 3;
+    display: grid;
+    grid-template-columns: 35px 35px auto;  
+}
+.userToevoegen
+{
+    grid-column: 1 / 2;
     width: 35px;
     background-color: transparent; 
     border: 1px solid black;
     margin-bottom: 1px;
     margin-top: 1px;
 }
+.userVerwijderen
+{
+    grid-column: 2 / 3;
+    width: 35px;
+    background-color: transparent; 
+    border: 1px solid black;
+    margin-bottom: 1px;
+    margin-top: 1px;
+    margin-left: 3px;
+}
+input[class="studentInput"]
+{
+    margin-left: 1%;
+    border: none;
+    outline: none;
+}
+/*input[class="studentInput"]:visited
+{
+    border:none;
+}*/
 
 
 /* Nieuw Labjournaal */

@@ -1,5 +1,5 @@
 <?php
-  function queryAanmaken ($query)
+  function queryAanmaken ($sql)
   {
     $dbServername= "localhost";
     $dbUsername = "root";
@@ -10,8 +10,6 @@
     {
       DIE("Could not connect". mysqli_error($GLOBALS['conn']));
     }  
-
-    $sql = $query;
     $GLOBALS ['stmt'] = mysqli_prepare($GLOBALS['conn'], $sql) or DIE("Preparation error"); // is het een werkende query
     mysqli_stmt_execute($GLOBALS ['stmt']) or DIE(mysqli_error($GLOBALS['conn']));
 

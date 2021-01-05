@@ -2,59 +2,141 @@
 // Start the session
 session_start();
 include_once 'dbh.inc.php';
+$titelLabjournaal =  filter_input(INPUT_POST,'titelLabjournaal', FILTER_SANITIZE_SPECIAL_CHARS); 
+$uitvoerders = base64_encode(serialize($_SESSION ['studentNummerArray']));
+$experimentdatum = filter_input(INPUT_POST,'experimentdatum',FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+$experimentstartdatum = filter_input(INPUT_POST,'experimentstartdatum',FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+$experimenteinddatum = filter_input(INPUT_POST,'experimenteinddatum',FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+$veiligheid = $_FILES['uploadveiligheid'];
+$doel = filter_input(INPUT_POST,'doel', FILTER_SANITIZE_SPECIAL_CHARS);
+$bijlageWaarnemingen = "bijlageWaarnemingen";//$_POST['uploadwaarnemingen'];
+$hypothese = filter_input(INPUT_POST,'hypothese', FILTER_SANITIZE_SPECIAL_CHARS);
+$materialen = filter_input(INPUT_POST,'materialen', FILTER_SANITIZE_SPECIAL_CHARS);
+$methode = filter_input(INPUT_POST,'methode', FILTER_SANITIZE_SPECIAL_CHARS);
+$bijlageMeetresultaten = "bijlageMeetresultaten";//$_POST['uploadmeetresultaten'];
+$logboek = filter_input(INPUT_POST,'logboek',FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+$bijlageLogboek = "bijlageLogboek";//$_POST['uploadlogboek'];
+$observaties = filter_input(INPUT_POST,'observaties',FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+$bijlageObservaties = "bijlageObservaties";//$_POST['uploadobservaties'];
+$weeggegevens = filter_input(INPUT_POST,'weeggegevens',FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+$bijlageWeeggegevens = "bijlageWeeggegevens";//$_POST['uploadweeggegevens'];
+$bijlageAfbeelding = "afbeelding";//$_POST['uploadafbeelding'];
+$vak = $_POST['LVak'];
+$jaar = $_POST['PJaar'];
 
+
+$_SESSION['titelLabjournaal'] = $titelLabjournaal;
+//$_SESSION['uitvoerders'] = $uitvoerders;
+$_SESSION['experimentdatum'] = $experimentdatum;
+$_SESSION['experimentstartdatum'] = $experimentstartdatum;
+$_SESSION['experimenteinddatum'] = $experimenteinddatum;
+$_SESSION['uploadveiligheid'] = $veiligheid;
+$_SESSION['doel'] = $doel;
+$_SESSION['bijlageWaarnemingen'] = $bijlageWaarnemingen;
+$_SESSION['hypothese'] = $hypothese;
+$_SESSION['materialen'] = $materialen;
+$_SESSION['methode'] = $methode;
+$_SESSION['meetresultaten'] = $bijlageMeetresultaten;
+$_SESSION['logboek'] = $logboek;
+$_SESSION['bijlageLogboek'] = $bijlageLogboek;
+$_SESSION['observaties'] = $observaties;
+$_SESSION['bijlageObservaties'] = $bijlageObservaties;
+$_SESSION['weeggegevens'] = $weeggegevens;
+$_SESSION['bijlageWeeggegevens'] = $bijlageWeeggegevens;
+$_SESSION['bijlageAfbeelding'] = $bijlageAfbeelding;
+$_SESSION['vak'] = $vak;
+$_SESSION['jaar'] = $jaar;
 if (isset($_POST['LSubmit']))
 {
-    $titelLabjournaal =  filter_input(INPUT_POST,'titelLabjournaal', FILTER_SANITIZE_SPECIAL_CHARS); 
-    $uitvoerders = filter_input(INPUT_POST,'uitvoerders', FILTER_SANITIZE_SPECIAL_CHARS);
-    $experimentdatum = filter_input(INPUT_POST,'experimentdatum',FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $experimentstartdatum = filter_input(INPUT_POST,'experimentstartdatum',FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $experimenteinddatum = filter_input(INPUT_POST,'experimenteinddatum',FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $veiligheid = $_FILES['uploadveiligheid'];
-    $doel = filter_input(INPUT_POST,'doel', FILTER_SANITIZE_SPECIAL_CHARS);
-    $bijlageWaarnemingen = "bijlageWaarnemingen";//$_POST['uploadwaarnemingen'];
-    $hypothese = filter_input(INPUT_POST,'hypothese', FILTER_SANITIZE_SPECIAL_CHARS);
-    $materialen = filter_input(INPUT_POST,'materialen', FILTER_SANITIZE_SPECIAL_CHARS);
-    $methode = filter_input(INPUT_POST,'methode', FILTER_SANITIZE_SPECIAL_CHARS);
-    $bijlageMeetresultaten = "bijlageMeetresultaten";//$_POST['uploadmeetresultaten'];
-    $logboek = filter_input(INPUT_POST,'logboek',FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $bijlageLogboek = "bijlageLogboek";//$_POST['uploadlogboek'];
-    $observaties = filter_input(INPUT_POST,'observaties',FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $bijlageObservaties = "bijlageObservaties";//$_POST['uploadobservaties'];
-    $weeggegevens = filter_input(INPUT_POST,'weeggegevens',FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-    $bijlageWeeggegevens = "bijlageWeeggegevens";//$_POST['uploadweeggegevens'];
-    $bijlageAfbeelding = "afbeelding";//$_POST['uploadafbeelding'];
-    $vak = $_POST['LVak'];
-    $jaar = $_POST['PJaar'];
+        // upload veiligheid //
+        $target_dir = "../uploads/";
+        $target_file_veiligheid = $target_dir . basename($_FILES["uploadveiligheid"]["name"]);
+        $imageFileTypeveiligheid = strtolower(pathinfo($target_file_veiligheid,PATHINFO_EXTENSION));
+        
+        // Check if file already exists
+        if (file_exists($target_file_veiligheid)) {
+        echo "Sorry, bestand is al geupload";
+        }
+        // Check file size
+        if ($_FILES["uploadveiligheid"]["size"] > 5000000) {
+        echo "Sorry, bestand is te groot (maximaal 5MB toegestaan)";
+        }
+        // Allow certain file formats
+        if($_FILES['uploadveiligheid']['type'] == 'image/png' ||  $_FILES['uploadveiligheid']['type'] == 'image/jpeg' || $_FILES['uploadveiligheid']['type'] == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' || $_FILES['uploadveiligheid']['type'] == 'application/vnd.ms-excel' ) {
+            if (move_uploaded_file($_FILES["uploadveiligheid"]["tmp_name"], $target_file_veiligheid)) {
+                echo "Het bestand ". htmlspecialchars( basename( $_FILES["uploadveiligheid"]["name"])). " is succesvol geupload.";
+            } else {
+                echo "Sorry, there was an error uploading your file.";
+            }
     
+        } else {
+            echo "Sorry, alleen JPG, JPEG, PNG & Excel bestanden zijn toegestaan.";
+        }
 
+        $uploadveiligheid = $_FILES['uploadveiligheid']['tmp_name']; 
+        $veiligheid = addslashes(file_get_contents($uploadveiligheid)); 
+
+           // upload waarnemingen //
+           $target_dir = "../uploads/";
+           $target_file_waarnemingen = $target_dir . basename($_FILES["uploadwaarnemingen"]["name"]);
+           $imageFileTypewaarnemingen = strtolower(pathinfo($target_file_waarnemingen,PATHINFO_EXTENSION));
+           
+           // Check if file already exists
+           if (file_exists($target_file_waarnemingen)) {
+           echo "Sorry, bestand is al geupload";
+           }
+           // Check file size
+           if ($_FILES["uploadwaarnemingen"]["size"] > 5000000) {
+           echo "Sorry, bestand is te groot (maximaal 5MB toegestaan)";
+           }
+           // Allow certain file formats
+           if($_FILES['uploadwaarnemingen']['type'] == 'image/png' ||  $_FILES['uploadwaarnemingen']['type'] == 'image/jpeg' ||  $_FILES['uploadwaarnemingen']['type'] == 'image/jpg') {
+               if (move_uploaded_file($_FILES["uploadwaarnemingen"]["tmp_name"], $target_file_waarnemingen)) {
+                   echo "Het bestand ". htmlspecialchars( basename( $_FILES["uploadwaarnemingen"]["name"])). " is succesvol geupload.";
+               } else {
+                   echo "Sorry, there was an error uploading your file.";
+               }
+       
+           } else {
+               echo "Sorry, alleen JPG, JPEG, PNG bestanden zijn toegestaan.";
+           }
+   
+           $uploadwaarnemingen = $_FILES['uploadwaarnemingen']['tmp_name']; 
+           $waarnemingen = addslashes(file_get_contents($uploadwaarnemingen));
+
+            // upload meetresultaten //
+            $target_dir = "../uploads/";
+            $target_file_meetresultaten = $target_dir . basename($_FILES["uploadmeetresultaten"]["name"]);
+            $imageFileTypemeetresultaten = strtolower(pathinfo($target_file_meetresultaten,PATHINFO_EXTENSION));
+            
+            // Check if file already exists
+            if (file_exists($target_file_meetresultaten)) {
+            echo "Sorry, bestand is al geupload";
+            }
+            // Check file size
+            if ($_FILES["uploadmeetresultaten"]["size"] > 5000000) {
+            echo "Sorry, bestand is te groot (maximaal 5MB toegestaan)";
+            }
+            // Allow certain file formats
+            if($_FILES['uploadmeetresultaten']['type'] == 'image/png' ||  $_FILES['uploadmeetresultaten']['type'] == 'image/jpeg' || $_FILES['uploadmeetresultaten']['type'] == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' || $_FILES['uploadmeetresultaten']['type'] == 'application/vnd.ms-excel' ) {
+                if (move_uploaded_file($_FILES["uploadmeetresultaten"]["tmp_name"], $target_file_meetresultaten)) {
+                    echo "Het bestand ". htmlspecialchars( basename( $_FILES["uploadmeetresultaten"]["name"])). " is succesvol geupload.";
+                } else {
+                    echo "Sorry, there was an error uploading your file.";
+                }
+        
+            } else {
+                echo "Sorry, alleen JPG, JPEG, PNG & Excel bestanden zijn toegestaan.";
+            }
     
-    $_SESSION['titelLabjournaal'] = $titelLabjournaal;
-    $_SESSION['uitvoerders'] = $uitvoerders;
-    $_SESSION['experimentdatum'] = $experimentdatum;
-    $_SESSION['experimentstartdatum'] = $experimentstartdatum;
-    $_SESSION['experimenteinddatum'] = $experimenteinddatum;
-    $_SESSION['uploadveiligheid'] = $veiligheid;
-    $_SESSION['doel'] = $doel;
-    $_SESSION['bijlageWaarnemingen'] = $bijlageWaarnemingen;
-    $_SESSION['hypothese'] = $hypothese;
-    $_SESSION['materialen'] = $materialen;
-    $_SESSION['methode'] = $methode;
-    $_SESSION['meetresultaten'] = $bijlageMeetresultaten;
-    $_SESSION['logboek'] = $logboek;
-    $_SESSION['bijlageLogboek'] = $bijlageLogboek;
-    $_SESSION['observaties'] = $observaties;
-    $_SESSION['bijlageObservaties'] = $bijlageObservaties;
-    $_SESSION['weeggegevens'] = $weeggegevens;
-    $_SESSION['bijlageWeeggegevens'] = $bijlageWeeggegevens;
-    $_SESSION['bijlageAfbeelding'] = $bijlageAfbeelding;
-    $_SESSION['vak'] = $vak;
-    $_SESSION['jaar'] = $jaar;
+            $uploadmeetresultaten = $_FILES['uploadmeetresultaten']['tmp_name']; 
+            $meetresultaten = addslashes(file_get_contents($uploadmeetresultaten));
 
+            // Nog volgende upload fixen: Logboek, observatie, weeggegevens, afbeeldingen //
+        
 
-  
-
-    $verplichteInput = array($titelLabjournaal,$uitvoerders, $experimentdatum, $experimentstartdatum, $experimenteinddatum, $veiligheid, $doel,
+    //$_SESSION['studentNaam'] = "";
+    $verplichteInput = array($titelLabjournaal,$uitvoerders, $experimentdatum, $experimentstartdatum, $experimenteinddatum, $doel,
                              $hypothese, $materialen, $methode, $logboek, $observaties, $weeggegevens, $vak, $jaar);//studentnummer
   
     foreach($verplichteInput as $input)
@@ -65,7 +147,7 @@ if (isset($_POST['LSubmit']))
             DIE;
         }
     }   
-
+    
     queryAanmaken('
     INSERT INTO labjournaal
     (
@@ -73,13 +155,13 @@ if (isset($_POST['LSubmit']))
        experimentBeginDatum,experimentEindDatum,doel,bijlageWaarnemingen,
        hypothese,materialen,methode,bijlageMeetresultaten,logboek,bijlageLogboek,
        observaties,bijlageObservaties,weeggegevens,bijlageWeeggegevens,
-       bijlageAfbeelding,vak,jaar   
+       bijlageAfbeelding,vak,jaar,veiligheid   
     )
     VALUES
     (
         '.$_SESSION["StudentID"].',"1","'.$titelLabjournaal.'","'.$uitvoerders.'","'.$experimentdatum.'","'.$experimentstartdatum.'","'.$experimenteinddatum.'","'.$doel.'","'.$bijlageWaarnemingen.'","'.$hypothese.'","'.$materialen.'","'.$methode.'","'
         .$bijlageMeetresultaten.'","'.$logboek.'","'.$bijlageLogboek.'","'.$observaties.'","'.$bijlageObservaties.'","'.$weeggegevens.'","'
-        .$bijlageWeeggegevens.'","'.$bijlageAfbeelding.'","'.$vak.'","'.$jaar.'"
+        .$bijlageWeeggegevens.'","'.$bijlageAfbeelding.'","'.$vak.'","'.$jaar.'","'.$veiligheid.'"
     );');
     $last_id = mysqli_insert_id($conn);    
     
@@ -101,20 +183,54 @@ if (isset($_POST['LSubmit']))
 	header("location: ../pages/labjournalen.php?addLabjournaal=succes");  
 
 }
+$GLOBALS ['array'] = array();
 if (isset($_POST['userSubmit']))
 {
     $uitvoerders = filter_input(INPUT_POST,'uitvoerders', FILTER_SANITIZE_SPECIAL_CHARS);
-    $sql = ' 
-    SELECT studentNaam
-    FROM student
-    WHERE studentNummer = 
-    '.$uitvoerders;
-    queryAanmaken($sql);
-    mysqli_stmt_bind_result($stmt, $studentNaam);
-    mysqli_stmt_store_result($stmt);
-    querysluiten();
-    $_SESSION['studentNaam'] = $studentNaam;
-    header("location: ../pages/labjournaalNieuw.php?adduser=succes");  
+    if(!empty($uitvoerders))
+    {
+        $sql = ' 
+        SELECT studentNaam,studentNummer
+        FROM student
+        WHERE studentNummer = 
+        '.$uitvoerders;
+        queryAanmaken($sql);
+        mysqli_stmt_bind_result($stmt, $studentNaam,$studentNummer);
+        mysqli_stmt_store_result($stmt);
+        
+        if(mysqli_stmt_num_rows($stmt) != 0)
+        {
+            while (mysqli_stmt_fetch($stmt)) 
+            {
+                
+                if (empty($_SESSION ['studentNummerArray']))
+                {
+                    
+                    $_SESSION ['studentNaamArray'] =  array();
+                    $_SESSION ['studentNummerArray'] =  array();
+                }
+                
+                array_push($_SESSION ['studentNaamArray'],$studentNaam);  
+                array_push($_SESSION ['studentNummerArray'],$studentNummer);            
+            }
+            querysluiten();
+            
+            header("location: ../pages/labjournaalNieuw.php?adduser=succes"); 
+        }
+        else
+        {
+            header("location: ../pages/labjournaalNieuw.php?adduser=failed");  
+        }
+    }    
+}
+if(isset($_POST['userVerwijderen']))
+{
+    if (isset($_SESSION["studentNaamArray"]))
+    {
+        array_pop($_SESSION ['studentNaamArray']);
+        array_pop($_SESSION ['studentNummerArray']);
+    }
+    header("location: ../pages/labjournaalNieuw.php?deleteuser=succes"); 
 }
 
 

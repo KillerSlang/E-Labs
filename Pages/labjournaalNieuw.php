@@ -26,39 +26,38 @@
     <div class="whitebg">
         <div class="content">
             <?PHP
-                if(!empty($_GET['addLabjournaal']))
+                if(isset($_GET['NEW']))
+                {
+                    $_SESSION ['studentNaamArray'] =  array();
+                    $_SESSION ['studentNummerArray'] =  array();
+                }
+                if(!empty($_GET['addLabjournaal'])||!empty($_GET['adduser'])||!empty($_GET['deleteuser']))
                 {
                     echo'<div class="bericht">';
-                        $addlabjournaal = $_GET["addLabjournaal"];
-                        if($addlabjournaal != "failed")
-                        {
-                            echo'<b>Het labjournaal is opgeslagen.</b><hr>';
-                        }
-                        else
+                        if(!empty($_GET['addLabjournaal']))
                         {
                             echo'<b>Niet alle velden zijn ingevuld</b><hr>';
-                            $titelLabjournaal = $_SESSION['titelLabjournaal'];
-                            $uitvoerders = $_SESSION['uitvoerders'];
-                            $experimentdatum = $_SESSION['experimentdatum'];
-                            $experimentstartdatum = $_SESSION['experimentstartdatum'];
-                            $experimenteinddatum = $_SESSION['experimenteinddatum'];
-                            $veiligheid = $_SESSION['uploadveiligheid'];
-                            $doel = $_SESSION['doel'];
-                            $bijlageWaarnemingen = $_SESSION['bijlageWaarnemingen'];
-                            $hypothese = $_SESSION['hypothese'];
-                            $materialen = $_SESSION['materialen'];
-                            $methode = $_SESSION['methode'];
-                            $bijlageMeetresultaten = $_SESSION['meetresultaten'];
-                            $logboek = $_SESSION['logboek'];
-                            $bijlageLogboek = $_SESSION['bijlageLogboek'] ;
-                            $observaties = $_SESSION['observaties'];
-                            $bijlageObservaties = $_SESSION['bijlageObservaties'];
-                            $weeggegevens = $_SESSION['weeggegevens'];
-                            $bijlageWeeggegevens =  $_SESSION['bijlageWeeggegevens'];
-                            $bijlageAfbeelding = $_SESSION['bijlageAfbeelding'];
-                            $vak = $_SESSION['vak'];
-                            $jaar = $_SESSION['jaar'];
                         }
+                        $titelLabjournaal = $_SESSION['titelLabjournaal'];
+                        $experimentdatum = $_SESSION['experimentdatum'];
+                        $experimentstartdatum = $_SESSION['experimentstartdatum'];
+                        $experimenteinddatum = $_SESSION['experimenteinddatum'];
+                        $veiligheid = $_SESSION['uploadveiligheid'];
+                        $doel = $_SESSION['doel'];
+                        $bijlageWaarnemingen = $_SESSION['bijlageWaarnemingen'];
+                        $hypothese = $_SESSION['hypothese'];
+                        $materialen = $_SESSION['materialen'];
+                        $methode = $_SESSION['methode'];
+                        $bijlageMeetresultaten = $_SESSION['meetresultaten'];
+                        $logboek = $_SESSION['logboek'];
+                        $bijlageLogboek = $_SESSION['bijlageLogboek'] ;
+                        $observaties = $_SESSION['observaties'];
+                        $bijlageObservaties = $_SESSION['bijlageObservaties'];
+                        $weeggegevens = $_SESSION['weeggegevens'];
+                        $bijlageWeeggegevens =  $_SESSION['bijlageWeeggegevens'];
+                        $bijlageAfbeelding = $_SESSION['bijlageAfbeelding'];
+                        $vak = $_SESSION['vak'];
+                        $jaar = $_SESSION['jaar'];
                     echo'</div>';
                 }
                 else
@@ -93,13 +92,31 @@ echo '<form class="Lform" action="../Include/addlabjournaal.inc.php" method="pos
             <input type="text" id="titellabjournaal" name="titelLabjournaal" value="'.$titelLabjournaal.'" size="40">
             
             <label for="uitvoerders">Uitvoerders: * </label>
-            <input type="text" id="uitvoerders" name="uitvoerders" value="'.$uitvoerders.'" size="40">
-
-            <button class="userToevoegen" type="Submit" id="userSubmit" name="userSubmit">
-                <i class="fas fa-user-plus"> </i>
-            </button>
-            
-            <br>
+            <input type="number" id="uitvoerders" name="uitvoerders" placeholder="studentnummer"  size="40">
+            '; 
+            if (isset($_SESSION["studentNaamArray"]))
+            {
+                foreach($_SESSION["studentNaamArray"] as $naam)
+                {
+                    echo '<input type="text" class="studentInput" value=" '.$naam.'" size="40" readonly/>' ;
+                }
+            } 
+            if(isset($_GET["adduser"]))
+            {
+                if($_GET["adduser"] == "failed")
+                {
+                    echo  'Het studentnummer is niet gevonden in de database.' ;
+                }
+            }
+            echo'
+            <div id="buttonArea">
+                <button class="userToevoegen" type="Submit" id="userSubmit" name="userSubmit">
+                    <i class="fas fa-user-plus"> </i>
+                </button>
+                <button class="userVerwijderen" type="Submit" id="userVerwijderen" name="userVerwijderen">
+                    <i class="fas fa-user-minus"> </i>
+                </button>
+            </div>
 
             <label for="experimentdatum">Experiment datum: * </label>
             <input type="date" id="experimentdatum" name="experimentdatum" value="'.$experimentdatum.'">
@@ -112,7 +129,7 @@ echo '<form class="Lform" action="../Include/addlabjournaal.inc.php" method="pos
 
             <br>
 
-            <label for="uploadveiligheid">Upload veiligheid: </label>
+            <label for="uploadveiligheid">Upload veiligheid: </label><p>alleen .xls, .xlsx en afbeeldingen toegestaan</p>
             <input type="file" id="uploadveiligheid" name="uploadveiligheid" accept=".xls,.xlsx,image/*">
 
             <br>
@@ -263,6 +280,55 @@ echo '<form class="Lform" action="../Include/addlabjournaal.inc.php" method="pos
 
             <input class="bluebtn" type="Submit" id="LSubmit" name="LSubmit" value="Opslaan">
     </form>';
+/*if(isset($_POST["LSubmit"])){
+    // upload veiligheid //
+    $target_dir = "uploads/";
+    $target_file = $target_dir . basename($_FILES["uploadveiligheid"]["name"]);
+    $uploadOk = 1;
+    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+
+    // Check if image file is a actual image or fake image
+    $check = getimagesize($_FILES["uploadveiligheid"]["tmp_name"]);
+    if($check !== false) {
+        echo "Bestand is een afbeelding of Excel bestand - " . $check["mime"] . ".";
+        $uploadOk = 1;
+    } else {
+        echo "Niet correcte bestandstype geupload";
+        $uploadOk = 0;
+    }
+
+    // Check if file already exists
+    if (file_exists($target_file)) {
+    echo "Sorry, bestand is al geupload";
+    $uploadOk = 0;
+    }
+
+    // Check file size
+    if ($_FILES["uploadveiligheid"]["size"] > 5000000) {
+    echo "Sorry, bestand is te groot (maximaal 5MB toegestaan)";
+    $uploadOk = 0;
+    }
+
+    // Allow certain file formats
+    if($imageFileType == "jpg" && $imageFileType == "png" && $imageFileType == "jpeg"
+    && $imageFileType == "xlsx" && $imageFileType == 'xls') {
+    echo "Sorry, alleen JPG, JPEG, PNG & Excel bestanden zijn toegestaan.";
+    $uploadOk = 0;
+    }
+
+    // Check if $uploadOk is set to 0 by an error
+    if ($uploadOk == 0) {
+    echo "Sorry, your file was not uploaded.";
+    // if everything is ok, try to upload file
+    } else {
+    if (move_uploaded_file($_FILES["uploadveiligheid"]["tmp_name"], $target_file)) {
+        echo "Het bestand ". htmlspecialchars( basename( $_FILES["uploadveiligheid"]["name"])). " is succesvol geupload.";
+    } else {
+        echo "Sorry, there was an error uploading your file.";
+    }
+    }
+
+}    */           
     ?>
 </main>            
 
