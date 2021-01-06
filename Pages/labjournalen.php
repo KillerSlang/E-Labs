@@ -32,7 +32,14 @@
     {
         $selected = $_POST["vak"];
         $_SESSION["select"] = $selected;
-    } $selected = $_SESSION["select"];
+    }
+    else
+    {
+        if(isset($_SESSION["select"]))
+        {
+            $selected = $_SESSION["select"];
+        }else {$selected = "BML";}
+    };
     ?>
     <main id="Protocol">
     <div class="PageTitle">
