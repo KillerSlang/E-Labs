@@ -50,10 +50,16 @@
 				hypothese,materialen,methode,bijlageMeetresultaten,logboek,bijlageLogboek,
 				observaties,bijlageObservaties,weeggegevens,bijlageWeeggegevens,
 				bijlageAfbeelding,vak,jaar
-				FROM labjournaal as l
-                JOIN student AS s ON l.studentID = s.studentID
-                WHERE labjournaalID ='.$ID.' AND s.studentID = '.$_SESSION["StudentID"];
-
+                FROM labjournaal as l';
+                if($_SESSION['SorD'] == "Student")
+                {
+                    $sql .= 'JOIN student AS s ON l.studentID = s.studentID
+                    WHERE labjournaalID ='.$ID.' AND s.studentID = '.$_SESSION["StudentID"];      // student of docent
+                } 
+                else
+                {
+                    $sql .= 'WHERE labjournaalID ='.$ID;
+                }
                 queryAanmaken($sql);
                 
                 mysqli_stmt_bind_result($stmt, $labjournaalTitel, $uitvoerders, $experimentDatum, $experimentBeginDatum, $experimentEindDatum, 

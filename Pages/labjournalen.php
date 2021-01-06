@@ -39,7 +39,7 @@
         {
             $selected = $_SESSION["select"];
         }else {$selected = "BML";}
-    };
+    }
     ?>
     <main id="Protocol">
     <div class="PageTitle">
@@ -48,11 +48,17 @@
         </div>
         <div class="whitebg">
             <div class="content">
-                <a class="bluebtn" id="Pbutton" href='labjournaalNieuw.php?NEW'>Nieuw Labjournaal</a>
-                <a class="bluebtn" id="Pbutton" href='labjournalen.php?jaar=3'>Jaar 3</a>
-                <a class="bluebtn" id="Pbutton" href='labjournalen.php?jaar=2'>Jaar 2</a>
-                <a class="bluebtn" id="Pbutton" href='labjournalen.php?jaar=1'>Jaar 1</a>
-                <a class="bluebtn" id="Pbutton" href='labjournalen.php?jaar=0'>Alle jaren</a>
+            <?PHP
+                 if($_SESSION['SorD'] == "Student")
+                 {
+                     echo '<a class="bluebtn" id="Pbutton" href="labjournaalNieuw.php?NEW">Nieuw Labjournaal</a>';
+                 }
+                 echo ' 
+                <a class="bluebtn" id="Pbutton" href="labjournalen.php?jaar=3">Jaar 3</a>
+                <a class="bluebtn" id="Pbutton" href="labjournalen.php?jaar=2">Jaar 2</a>
+                <a class="bluebtn" id="Pbutton" href="labjournalen.php?jaar=1">Jaar 1</a>
+                <a class="bluebtn" id="Pbutton" href="labjournalen.php?jaar=0">Alle jaren</a>';
+            ?>
                 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" name="selectform" method="post">
                     <select class="bluebtn" id="Pbutton" name="vak" onchange="this.form.submit();">                        
                         <?PHP
@@ -60,23 +66,33 @@
                         ?>
                     </select>
                 </form>
-                <a class="bluebtn" id="Pbutton" href='labjournalenBekijken.php'>Bekijk labjournalen</a>
-                <br>
-                <?php
+            <?PHP
+                if($_SESSION['SorD'] == "Student")
+                {
+                    echo'<a class="bluebtn" id="PbuttonLeft" href="labjournalenBekijken.php">Bekijk labjournalen</a>';
+                }
+                
                     $sql = '
                     SELECT studentNaam,labjournaalTitel,experimentDatum,vak,jaar,labjournaalID
                     FROM labjournaal as l
                     JOIN student AS s ON l.studentID = s.studentID
-                    ';
+                    ';    
                     if(!empty($_GET['jaar']))
                     {
                         $jaarlaag = $_GET['jaar'];
-                        $sql .= 'WHERE jaar = '.$jaarlaag.' AND s.studentID = '.$_SESSION["StudentID"];                 // student of docent       
+                        $sql .= ' WHERE jaar = '.$jaarlaag;
+                        if($_SESSION['SorD'] == "Student")
+                        {
+                            $sql .= ' AND s.studentID = '.$_SESSION["StudentID"];  
+                        }       
                     }
                     else
                     {
                         $jaarlaag = 0;
-                        $sql .= 'WHERE s.studentID = '.$_SESSION["StudentID"].' ';      // student of docent
+                        if($_SESSION['SorD'] == "Student")
+                        {
+                             $sql .= ' WHERE s.studentID = '.$_SESSION["StudentID"].' ';      // student of docent
+                        }       
                     }
                     $sql .= ' AND l.vak = "'.$selected.'" ';                    
                     $sql .= 'ORDER BY experimentDatum DESC ';
@@ -93,7 +109,11 @@
                     mysqli_stmt_store_result($stmt);
                     if(mysqli_stmt_num_rows($stmt) != 0)
                     {
-                        echo "<table class='LTable'><th>Titel</th><th>Auteur</th><th>Experiment datum</th><th>Vakken</th><th>Jaar</th><th>download</th><th>Bewerken</th>";
+                        echo "<table class='LTable'><th>Titel</th><th>Auteur</th><th>Experiment datum</th><th>Vakken</th><th>Jaar</th><th>download</th>";
+                        if($_SESSION["SorD"] == "Student")
+                        {
+                            echo"<th>Bewerken</th>";
+                        }else{ echo"<th>Bekijken</th>";}
                         while(mysqli_stmt_fetch($stmt))
                         {
                             echo '<tr>
@@ -102,9 +122,13 @@
                             <td>'.$experimentDatum.'</td>
                             <td>'.$vak.'</td>
                             <td>'.$jaar.'</td>
-                            <td><a class="labjournaalLink"href="../Include/downloadLabjournaal.inc.php?ID='.$labjournaalID .'"</a><i class="fas fa-download"></i></td>
-                            <td><a class="labjournaalLink"href="labjournaalBewerk.php?ID='.$labjournaalID .'"</a>Bewerken</td>
-                            </tr>' ;
+                            <td><a class="labjournaalLink"href="../Include/downloadLabjournaal.inc.php?ID='.$labjournaalID .'"</a><i class="fas fa-download"></i></td>';
+                            if($_SESSION["SorD"] == "Student")
+                            {
+                                echo'<td><a class="labjournaalLink"href="labjournaalBewerk.php?ID='.$labjournaalID .'"</a>Bewerken</td>';
+                            }else{ echo'<td><a class="labjournaalLink"href="labjournaalBekijken.php?ID='.$labjournaalID .'"</a>Bekijken</td>';}
+                            
+                            echo '</tr>' ;
                         }
                         echo"</table>";
                         

@@ -4,7 +4,7 @@
 session_start();
 $_SESSION["Name"] = 'Ömer avici';
 $_SESSION["StudentID"] = '1';
-$_SESSION["SorD"] = true;
+$_SESSION["SorD"] = "Docent";
 ?>
 <div>
     <img onclick='location.href="../index.html"' id='navLogo'src='../Images/Logo.png'>

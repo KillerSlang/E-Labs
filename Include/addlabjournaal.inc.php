@@ -73,8 +73,16 @@ if (isset($_POST['LSubmit']))
             echo "Sorry, alleen JPG, JPEG, PNG & Excel bestanden zijn toegestaan.";
         }
 
-        $uploadveiligheid = $_FILES['uploadveiligheid']['tmp_name']; 
+        $uploadveiligheid = $_FILES['uploadveiligheid']['name']; 
         $veiligheid = addslashes(file_get_contents($uploadveiligheid)); 
+        
+       /* $last_id = mysqli_insert_id($conn); 
+        queryAanmaken('UPDATE labjournaal
+        SET veiligheid="'.$veiligheid.'"
+        WHERE labjournaalID = '.$last_id );
+        querySluiten();*/
+        
+    
 
            // upload waarnemingen //
            $target_dir = "../uploads/";
@@ -102,7 +110,7 @@ if (isset($_POST['LSubmit']))
            }
    
            $uploadwaarnemingen = $_FILES['uploadwaarnemingen']['tmp_name']; 
-           $waarnemingen = addslashes(file_get_contents($uploadwaarnemingen));
+           $bijlageWaarnemingen = addslashes(file_get_contents($uploadwaarnemingen));
 
             // upload meetresultaten //
             $target_dir = "../uploads/";
@@ -118,7 +126,7 @@ if (isset($_POST['LSubmit']))
             echo "Sorry, bestand is te groot (maximaal 5MB toegestaan)";
             }
             // Allow certain file formats
-            if($_FILES['uploadmeetresultaten']['type'] == 'image/png' ||  $_FILES['uploadmeetresultaten']['type'] == 'image/jpeg' || $_FILES['uploadmeetresultaten']['type'] == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' || $_FILES['uploadmeetresultaten']['type'] == 'application/vnd.ms-excel' ) {
+            if($_FILES['uploadmeetresultaten']['type'] == 'image/png' ||  $_FILES['uploadmeetresultaten']['type'] == 'image/jpeg' ||  $_FILES['uploadmeetresultaten']['type'] == 'image/jpg' || $_FILES['uploadmeetresultaten']['type'] == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' || $_FILES['uploadmeetresultaten']['type'] == 'application/vnd.ms-excel' ) {
                 if (move_uploaded_file($_FILES["uploadmeetresultaten"]["tmp_name"], $target_file_meetresultaten)) {
                     echo "Het bestand ". htmlspecialchars( basename( $_FILES["uploadmeetresultaten"]["name"])). " is succesvol geupload.";
                 } else {
@@ -130,9 +138,124 @@ if (isset($_POST['LSubmit']))
             }
     
             $uploadmeetresultaten = $_FILES['uploadmeetresultaten']['tmp_name']; 
-            $meetresultaten = addslashes(file_get_contents($uploadmeetresultaten));
+            $bijlageMeetresultaten = addslashes(file_get_contents($uploadmeetresultaten));
 
-            // Nog volgende upload fixen: Logboek, observatie, weeggegevens, afbeeldingen //
+            // upload logboek //
+            $target_dir = "../uploads/";
+            $target_file_logboek = $target_dir . basename($_FILES["uploadlogboek"]["name"]);
+            $imageFileTypelogboek = strtolower(pathinfo($target_file_logboek,PATHINFO_EXTENSION));
+            
+            // Check if file already exists
+            if (file_exists($target_file_logboek)) {
+            echo "Sorry, bestand is al geupload";
+            }
+            // Check file size
+            if ($_FILES["uploadlogboek"]["size"] > 5000000) {
+            echo "Sorry, bestand is te groot (maximaal 5MB toegestaan)";
+            }
+            // Allow certain file formats
+            if($_FILES['uploadlogboek']['type'] == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' ||  $_FILES['uploadlogboek']['type'] == 'application/vnd.ms-excel' || $_FILES['uploadlogboek']['type'] == 'application/msword' || $_FILES['uploadlogboek']['type'] == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' ) {
+                if (move_uploaded_file($_FILES["uploadlogboek"]["tmp_name"], $target_file_logboek)) {
+                    echo "Het bestand ". htmlspecialchars( basename( $_FILES["uploadlogboek"]["name"])). " is succesvol geupload.";
+                } else {
+                    echo "Sorry, there was an error uploading your file.";
+                }
+        
+            } else {
+                echo "Sorry, alleen Excel & Word bestanden zijn toegestaan.";
+            }
+    
+            $uploadlogboek = $_FILES['uploadlogboek']['tmp_name']; 
+            $bijlageLogboek = addslashes(file_get_contents($uploadlogboek));
+
+
+                    // upload observatie //
+                    $target_dir = "../uploads/";
+                    $target_file_observaties = $target_dir . basename($_FILES["uploadobservaties"]["name"]);
+                    $imageFileTypeobservaties = strtolower(pathinfo($target_file_observaties,PATHINFO_EXTENSION));
+                    
+                    // Check if file already exists
+                    if (file_exists($target_file_observaties)) {
+                    echo "Sorry, bestand is al geupload";
+                    }
+                    // Check file size
+                    if ($_FILES["uploadobservaties"]["size"] > 5000000) {
+                    echo "Sorry, bestand is te groot (maximaal 5MB toegestaan)";
+                    }
+                    // Allow certain file formats
+                    if($_FILES['uploadobservaties']['type'] == 'image/png' ||  $_FILES['uploadobservaties']['type'] == 'image/jpeg' ||  $_FILES['uploadobservaties']['type'] == 'image/jpg' || $_FILES['uploadobservaties']['type'] == 'application/msword' || $_FILES['uploadobservaties']['type'] == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' ) {
+                        if (move_uploaded_file($_FILES["uploadobservaties"]["tmp_name"], $target_file_observaties)) {
+                            echo "Het bestand ". htmlspecialchars( basename( $_FILES["uploadobservaties"]["name"])). " is succesvol geupload.";
+                        } else {
+                            echo "Sorry, there was an error uploading your file.";
+                        }
+                
+                    } else {
+                        echo "Sorry, alleen PNG, JPG, JPEG & Word bestanden zijn toegestaan.";
+                    }
+            
+                    $uploadobservaties = $_FILES['uploadobservaties']['tmp_name']; 
+                    $bijlageObservaties = addslashes(file_get_contents($uploadobservaties));
+
+
+                                    // upload weeggegevens //
+                                    $target_dir = "../uploads/";
+                                    $target_file_weeggegevens = $target_dir . basename($_FILES["uploadweeggegevens"]["name"]);
+                                    $imageFileTypeweeggegevens = strtolower(pathinfo($target_file_weeggegevens,PATHINFO_EXTENSION));
+                                    
+                                    // Check if file already exists
+                                    if (file_exists($target_file_weeggegevens)) {
+                                    echo "Sorry, bestand is al geupload";
+                                    }
+                                    // Check file size
+                                    if ($_FILES["uploadweeggegevens"]["size"] > 5000000) {
+                                    echo "Sorry, bestand is te groot (maximaal 5MB toegestaan)";
+                                    }
+                                    // Allow certain file formats
+                                    if($_FILES['uploadweeggegevens']['type'] == 'application/vnd.ms-excel' || $_FILES['uploadweeggegevens']['type'] == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' ) {
+                                        if (move_uploaded_file($_FILES["uploadweeggegevens"]["tmp_name"], $target_file_weeggegevens)) {
+                                            echo "Het bestand ". htmlspecialchars( basename( $_FILES["uploadweeggegevens"]["name"])). " is succesvol geupload.";
+                                        } else {
+                                            echo "Sorry, there was an error uploading your file.";
+                                        }
+                                
+                                    } else {
+                                        echo "Sorry, alleen Excel bestanden zijn toegestaan.";
+                                    }
+                            
+                                    $uploadweeggegevens = $_FILES['uploadweeggegevens']['tmp_name']; 
+                                    $bijlageWeeggegevens = addslashes(file_get_contents($uploadweeggegevens));
+
+
+                                    // upload afbeeldingen //
+                                    $target_dir = "../uploads/";
+                                    $target_file_afbeeldingen = $target_dir . basename($_FILES["uploadafbeelding"]["name"]);
+                                    $imageFileTypeafbeeldingen = strtolower(pathinfo($target_file_afbeeldingen,PATHINFO_EXTENSION));
+                                    
+                                    // Check if file already exists
+                                    if (file_exists($target_file_afbeeldingen)) {
+                                    echo "Sorry, bestand is al geupload";
+                                    }
+                                    // Check file size
+                                    if ($_FILES["uploadafbeelding"]["size"] > 5000000) {
+                                    echo "Sorry, bestand is te groot (maximaal 5MB toegestaan)";
+                                    }
+                                    // Allow certain file formats
+                                    if($_FILES['uploadafbeelding']['type'] == 'image/png' || $_FILES['uploadafbeelding']['type'] == 'image/jpeg' || $_FILES['uploadafbeelding']['type'] == 'image/jpg' ) {
+                                        if (move_uploaded_file($_FILES["uploadafbeelding"]["tmp_name"], $target_file_afbeeldingen)) {
+                                            echo "Het bestand ". htmlspecialchars( basename( $_FILES["uploadafbeelding"]["name"])). " is succesvol geupload.";
+                                        } else {
+                                            echo "Sorry, there was an error uploading your file.";
+                                        }
+                                
+                                    } else {
+                                        echo "Sorry, alleen PNG, JPG & JPEG afbeeldingen zijn toegestaan.";
+                                    }
+                            
+                                    $uploadafbeeldingen = $_FILES['uploadafbeelding']['tmp_name']; 
+                                    $bijlageAfbeelding = addslashes(file_get_contents($uploadafbeeldingen));
+
+    
         
 
     //$_SESSION['studentNaam'] = "";
@@ -166,7 +289,7 @@ if (isset($_POST['LSubmit']))
     $last_id = mysqli_insert_id($conn);    
     
     
-    if(!empty($veiligheid)){
+   /* if(!empty($veiligheid)){
         $fileName = basename($_FILES["uploadveiligheid"]["name"]); 
         $fileType = pathinfo($fileName, PATHINFO_EXTENSION);
         if($fileType == 'pdf'){ 
@@ -179,7 +302,7 @@ if (isset($_POST['LSubmit']))
             querySluiten();
 
         }
-    }
+    }*/
 	header("location: ../pages/labjournalen.php?addLabjournaal=succes");  
 
 }

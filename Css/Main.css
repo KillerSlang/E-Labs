@@ -332,6 +332,10 @@ input[class="studentInput"]
     float: right;
     margin: 0 0 1vw 1vw;
 }
+#PbuttonLeft{
+    float: left;
+    margin: 0 0 1vw 1vw;
+}
 .PTable{
 	border-collapse: collapse;
     width: 100%;

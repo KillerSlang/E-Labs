@@ -58,7 +58,6 @@
 				bijlageAfbeelding,vak,jaar
 				FROM labjournaal
                 WHERE labjournaalID ='.$ID;
-
                 queryAanmaken($sql);
                 
                 mysqli_stmt_bind_result($stmt, $labjournaalTitel, $uitvoerders, $experimentDatum, $experimentBeginDatum, $experimentEindDatum, 

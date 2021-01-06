@@ -17,7 +17,6 @@
         $options = '';
         foreach($vakken as $input)
         {
-            echo $input;
             if($select == $input)
             {
                 $options .= '<option value="'.$input.'" selected>'.$input.'</option>';
@@ -28,6 +27,18 @@
             }
         }
         return $options;
+    }
+    if(isset($_POST["vak"]))
+    {
+        $selected = $_POST["vak"];
+        $_SESSION["select"] = $selected;
+    }
+    else
+    {
+        if(isset($_SESSION["select"]))
+        {
+            $selected = $_SESSION["select"];
+        }else {$selected = "BML";}
     }
     if(isset($_POST["vak"]))
     {
@@ -52,14 +63,21 @@
                         ?>
                     </select>
                 </form>
-                <a class="bluebtn" id="Pbutton" href='labjournalenBekijken.php'>Bekijk labjournalen</a>
+                <a class="bluebtn" id="PbuttonLeft" href='labjournalen.php'>Bewerk labjournalen</a>
                 <br>
                 <?php
-                    queryaanmaken('SELECT studentNummer
+                    queryAanmaken('SELECT studentNummer
                                     FROM student
-                                    WHERE studentID = '.$_SESSION["studentID"]);
+                                    WHERE studentID = '.$_SESSION["StudentID"]);
                     mysqli_stmt_bind_result($stmt,$studentNummer);
                     mysqli_stmt_store_result($stmt);
+                    if(mysqli_stmt_num_rows($stmt) != 0)
+                    {
+                        while (mysqli_stmt_fetch($stmt)) 
+                        {
+                            $studentNummer = $studentNummer;
+                        }
+                    }
                     querysluiten(); 
                     queryaanmaken('SELECT uitvoerders,labjournaalID
                                    FROM labjournaal');
@@ -79,84 +97,95 @@
                                 }
                             }
                         }
-                    }
-                    querysluiten();
-                    $labjournalen = "";
-                    foreach ($labjournalenArray as $labjournaal)
-                    {
-                        if(empty($labjournalen))
+                        $labjournalen = "";
+                        foreach ($labjournalenArray as $labjournaal)
                         {
-                            $labjournalen .= " WHERE (labjournaalID =".$labjournaal;
+                            if(empty($labjournalen))
+                            {
+                                $labjournalen .= " WHERE (labjournaalID =".$labjournaal;
+                            }
+                            else
+                            {
+                                $labjournalen .= " OR labjournaalID =".$labjournaal;
+                            }
+                        } $labjournalen .= ")"; 
+                        $queryError = false;
+                        
+                    }else {$queryError = true;}
+                    querysluiten();
+                    if(!$queryError)
+                    {                   
+                        $sql = '
+                        SELECT studentNaam,labjournaalTitel,experimentDatum,vak,jaar,labjournaalID
+                        FROM labjournaal as l
+                        JOIN student AS s ON l.studentID = s.studentID';
+                        if(!empty($_GET['jaar']))
+                        {
+                            $jaarlaag = $_GET['jaar'];
+                            $sql .= $labjournalen.' AND jaar = '.$jaarlaag;                // student of docent       
                         }
                         else
                         {
-                            $labjournalen .= " OR labjournaalID =".$labjournaal;
+                            $jaarlaag = 0;
+                            $sql .= $labjournalen;      // student of docent
                         }
-                    } $labjournalen .= ")";                    
-                    $sql = '
-                    SELECT studentNaam,labjournaalTitel,experimentDatum,vak,jaar,labjournaalID
-                    FROM labjournaal as l
-                    JOIN student AS s ON l.studentID = s.studentID';
-                    if(!empty($_GET['jaar']))
-                    {
-                        $jaarlaag = $_GET['jaar'];
-                        $sql .= $labjournalen.' AND jaar = '.$jaarlaag;                // student of docent       
-                    }
-                    else
-                    {
-                        $jaarlaag = 0;
-                        $sql .= $labjournalen;      // student of docent
-                    }
-                    if(!empty($_POST['vak']))
-                    {
-                        $sql .= ' AND l.vak = "'.$_POST['vak'].'" ';
-                    }else
-                    {
-                        $sql .= ' AND l.vak = "BML" ';
-                    }
-                    $sql .= 'ORDER BY experimentDatum DESC ';
-                    if(!isset($_GET['page']) || $_GET['page'] == 0){
-                        $sql = $sql.'LIMIT 5'; 
-                    } else {
-                        $counter = $_GET['page'];
-                        $limit = 20;
-                        $offset = $limit*($counter-1);
-                        $sql = $sql.'LIMIT '.$limit.' OFFSET '.$offset.'';
-                    }
-                    queryAanmaken($sql);
-                    mysqli_stmt_bind_result($stmt, $studentNaam, $labjournaalTitel,$experimentDatum, $vak, $jaar,$labjournaalID);
-                    mysqli_stmt_store_result($stmt);
-                    if(mysqli_stmt_num_rows($stmt) != 0)
-                    {
-                        echo "<table class='LTable'><th>Titel</th><th>Auteur</th><th>Experiment datum</th><th>Vakken</th><th>Jaar</th><th>download</th><th>Bekijken</th>";
-                        while(mysqli_stmt_fetch($stmt))
+                        if(!empty($_POST['vak']))
                         {
-                            echo '<tr>
-                            <td>'.$labjournaalTitel.'</td>
-                            <td>'.$studentNaam.'</td>
-                            <td>'.$experimentDatum.'</td>
-                            <td>'.$vak.'</td>
-                            <td>'.$jaar.'</td>
-                            <td><a class="labjournaalLink"href="../Include/downloadLabjournaal.inc.php?ID='.$labjournaalID .'"</a><i class="fas fa-download"></i></td>
-                            <td><a class="labjournaalLink"href="labjournaalBekijken.php?ID='.$labjournaalID .'"</a>Bekijken</td>
-                            </tr>' ;
+                            $sql .= ' AND l.vak = "'.$_POST['vak'].'" ';
+                        }else
+                        {
+                            $sql .= ' AND l.vak = "BML" ';
                         }
-                        echo"</table>";
-                        
+                        $sql .= 'ORDER BY experimentDatum DESC ';
+                        if(!isset($_GET['page']) || $_GET['page'] == 0){
+                            $sql = $sql.'LIMIT 5'; 
+                        } else {
+                            $counter = $_GET['page'];
+                            $limit = 20;
+                            $offset = $limit*($counter-1);
+                            $sql = $sql.'LIMIT '.$limit.' OFFSET '.$offset.'';
+                        }
+                        queryAanmaken($sql);
+                        mysqli_stmt_bind_result($stmt, $studentNaam, $labjournaalTitel,$experimentDatum, $vak, $jaar,$labjournaalID);
+                        mysqli_stmt_store_result($stmt);
+                        if(mysqli_stmt_num_rows($stmt) != 0)
+                        {
+                            echo "<table class='LTable'><th>Titel</th><th>Auteur</th><th>Experiment datum</th><th>Vakken</th><th>Jaar</th><th>download</th><th>Bekijken</th>";
+                            while(mysqli_stmt_fetch($stmt))
+                            {
+                                echo '<tr>
+                                <td>'.$labjournaalTitel.'</td>
+                                <td>'.$studentNaam.'</td>
+                                <td>'.$experimentDatum.'</td>
+                                <td>'.$vak.'</td>
+                                <td>'.$jaar.'</td>
+                                <td><a class="labjournaalLink"href="../Include/downloadLabjournaal.inc.php?ID='.$labjournaalID .'"</a><i class="fas fa-download"></i></td>
+                                <td><a class="labjournaalLink"href="labjournaalBekijken.php?ID='.$labjournaalID .'"</a>Bekijken</td>
+                                </tr>' ;
+                            }
+                            echo"</table>";
+                            
+                        }
+                        querySluiten();
+                        if(!isset($_GET['page']) || $_GET['page'] == 0){
+                            $url = 'labjournalenBekijken.php?jaar='.$jaarlaag.'&page=';
+                            $next = $url.'1';
+                            echo'<a class="bluebtn" id="Pbutton" href='.$next.'>Alle Labjournalen</a>';
+                        } else {
+                            $url = 'labjournalenBekijken.php?jaar='.$jaarlaag.'&page=';
+                            $next = $_GET['page']+1;
+                            $back = $_GET['page']-1;
+    
+                            echo'<a class="bluebtn" id="Pbutton" href="'.$url.$next.'">Volgende pagina</a>';
+                            echo'<a class="bluebtn" id="Pbutton" href="'.$url.$back.'">Vorige pagina</a>';
+                        }
+                    }else 
+                    {
+                        echo '<div class="bericht">
+                                <b>Er zijn geen labjournalen om te bekijken.</b><hr>
+                              </div>';
                     }
-                    querySluiten();
-                    if(!isset($_GET['page']) || $_GET['page'] == 0){
-                        $url = 'labjournalenBekijken.php?jaar='.$jaarlaag.'&page=';
-                        $next = $url.'1';
-                        echo'<a class="bluebtn" id="Pbutton" href='.$next.'>Alle Labjournalen</a>';
-                    } else {
-                        $url = 'labjournalenBekijken.php?jaar='.$jaarlaag.'&page=';
-                        $next = $_GET['page']+1;
-                        $back = $_GET['page']-1;
 
-                        echo'<a class="bluebtn" id="Pbutton" href="'.$url.$next.'">Volgende pagina</a>';
-                        echo'<a class="bluebtn" id="Pbutton" href="'.$url.$back.'">Vorige pagina</a>';
-                    }
                 ?>
             </div>
         </div>
