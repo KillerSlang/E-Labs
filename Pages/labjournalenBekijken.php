@@ -7,44 +7,40 @@
 </head>
 <body>
     <?php 
-    /* Header */
-    include_once '../Include/Header.php';
-    include_once '../Include/Dbh.inc.php';
+        /* Header */
+        include_once '../Include/Header.php';
+        include_once '../Include/Dbh.inc.php';
 
-    function get_options($select)
-    {
-        $vakken = array('BML','Chemie');
-        $options = '';
-        foreach($vakken as $input)
+        function get_options($select)
         {
-            if($select == $input)
+            $vakken = array('BML','Chemie');
+            $options = '';
+            foreach($vakken as $input)
             {
-                $options .= '<option value="'.$input.'" selected>'.$input.'</option>';
+                if($select == $input)
+                {
+                    $options .= '<option value="'.$input.'" selected>'.$input.'</option>';
+                }
+                else
+                {
+                    $options .= '<option value="'.$input.'" >'.$input.'</option>';
+                }
             }
-            else
-            {
-                $options .= '<option value="'.$input.'" >'.$input.'</option>';
-            }
+            return $options;
         }
-        return $options;
-    }
-    if(isset($_POST["vak"]))
-    {
-        $selected = $_POST["vak"];
-        $_SESSION["select"] = $selected;
-    }
-    else
-    {
-        if(isset($_SESSION["select"]))
+        if(isset($_POST["vak"]))
         {
-            $selected = $_SESSION["select"];
-        }else {$selected = "BML";}
-    }
-    if(isset($_POST["vak"]))
-    {
-        $selected = $_POST["vak"];
-    }
-    ?>
+            $selected = $_POST["vak"];
+            $_SESSION["select"] = $selected;
+        }
+        else
+        {
+            if(isset($_SESSION["select"]))
+            {
+                $selected = $_SESSION["select"];
+            }else {$selected = "BML";}
+        }
+?>
     <main id="Protocol">
     <div class="PageTitle">
             <h1>Te bekijken labjournalen</h1>
@@ -122,20 +118,21 @@
                         if(!empty($_GET['jaar']))
                         {
                             $jaarlaag = $_GET['jaar'];
-                            $sql .= $labjournalen.' AND jaar = '.$jaarlaag;                // student of docent       
+                            $sql .= ' WHERE jaar = '.$jaarlaag;
+                            if($_SESSION['SorD'] == "Student")
+                            {
+                                $sql .= ' AND s.studentID = '.$_SESSION["StudentID"];  
+                            }       
                         }
                         else
                         {
                             $jaarlaag = 0;
-                            $sql .= $labjournalen;      // student of docent
+                            if($_SESSION['SorD'] == "Student")
+                            {
+                                    $sql .= ' WHERE s.studentID = '.$_SESSION["StudentID"].' ';      // student of docent
+                            }       
                         }
-                        if(!empty($_POST['vak']))
-                        {
-                            $sql .= ' AND l.vak = "'.$_POST['vak'].'" ';
-                        }else
-                        {
-                            $sql .= ' AND l.vak = "BML" ';
-                        }
+                        $sql .= ' AND l.vak = "'.$selected.'" ';                    
                         $sql .= 'ORDER BY experimentDatum DESC ';
                         if(!isset($_GET['page']) || $_GET['page'] == 0){
                             $sql = $sql.'LIMIT 5'; 
@@ -185,7 +182,6 @@
                                 <b>Er zijn geen labjournalen om te bekijken.</b><hr>
                               </div>';
                     }
-
                 ?>
             </div>
         </div>

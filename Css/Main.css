@@ -217,6 +217,17 @@ main{
     background-repeat: no-repeat;
     background-size: 100vw;
 }
+.autoresizingBekijken {
+    display: block;
+    overflow: hidden;
+    resize: none;
+    width: 55vw;
+    height: auto;
+    border: none;
+    outline:none;
+    margin-bottom: 5px;
+    margin-left: 10px;
+}
 #Lbutton{
     float: right;
     margin: 0 0 1vw 1vw;

@@ -68,7 +68,7 @@
                 mysqli_stmt_store_result($stmt);  
                  
                                               
-                while (mysqli_stmt_fetch($stmt)) {
+                while (mysqli_stmt_fetch($stmt)) {}
                     echo '
             
                     <label for="titellabjournaal">Titel labjournaal: * </label>';
@@ -76,10 +76,23 @@
                     
                     
                     <label for="uitvoerders">Uitvoerders: * </label>';
-                    echo $uitvoerders.'
-        
+                    $uitvoerdersArray = unserialize(base64_decode($uitvoerders));
+                    foreach($uitvoerdersArray as $uitvoerder)
+                    {
+                        queryAanmaken(
+                            'SELECT studentNaam
+                            FROM student
+                            WHERE studentNummer = '.$uitvoerder);
+                        mysqli_stmt_bind_result($stmt, $studentNaam);
+                        mysqli_stmt_store_result($stmt);
+                        while (mysqli_stmt_fetch($stmt)) 
+                        {
+                            echo '<br> &nbsp; &nbsp; &nbsp;- '.$studentNaam;
+                        }
+                        querySluiten();
+                    }        
+                    echo'
                     <br>
-        
                     <label for="experimentdatum">Experiment datum: * </label>';
                     echo $experimentDatum.'
         
@@ -95,13 +108,11 @@
                     <form method="post"><input type="hidden" name="labjournaalID" value="'.$ID.'">
                             <button id="Ptbutton" class="bluebtn" type="submit" value="submit" name="labjournaalSubmit">Download</button></form>
                     <br>
-                    <br>
         
-                    <label for="doel">Doel: </label>';
-                    echo $doel.'
-        
-                    <br>
-                    <br>
+                    <label for="doel">Doel: </label>
+                    <textarea class="autoresizingBekijken" readonly>';
+                        echo $doel.'
+                    </textarea>        
         
                     <label for="uploadwaarnemingen">Upload waarnemingen bestand: </label>
                     <!--<input type="file" id="uploadwaarnemingen" name="uploadwaarnemingen" accept="image/*">-->
@@ -109,23 +120,23 @@
                     <br>
                     <br>
                 
-                    <label for="hypothese">Hypothese: </label>';
-                    echo $hypothese.'
+                    <label for="hypothese">Hypothese: </label>
+                    <textarea class="autoresizingBekijken" readonly>';
+                        echo $hypothese.'
+                    </textarea>
+
         
-                    <br>
-                    <br>
+                    <label for="materialen">Materialen: </label>
+                    <textarea class="autoresizingBekijken" readonly>';
+                        echo $materialen.'
+                    </textarea>
+
         
-                    <label for="materialen">Materialen: </label>';
-                    echo $materialen.'
-        
-                    <br>
-                    <br>
-        
-                    <label for="methode">Methode: </label>';
-                    echo $methode.'
-        
-                    <br>
-                    <br>
+                    <label for="methode">Methode: </label>
+                    <textarea class="autoresizingBekijken" readonly>';
+                        echo $methode.'
+                    </textarea>
+
         
                     <label for="uploadmeetresultaten">Upload meetresultaten bestand: </label>
                     <!--<input type="file" id="uploadmeetresultaten" name="uploadmeetresultaten" accept=".xls,.xlsx,image/*">-->
@@ -133,35 +144,33 @@
                     <br>
                     <br>
                     
-                    <label for="logboek">Logboek: </label>';
-                    echo $logboek.'
+                    <label for="logboek">Logboek: </label>
+                    <textarea class="autoresizingBekijken" readonly>';
+                        echo $logboek.
+                    '</textarea>
         
-                    <br>
-                    <br>
                     
                     <label for="uploadlogboek">Upload logboek bestand: </label>
-                    <!--<input type="file" id="uploadlogboek" name="uploadlogboek" accept=".xls,.xlsx,.doc,.docx">-->
+                    <!--<input type="file" id="uploadlogboek" name="uploadlogboek" accept=".xls,.xlsx,.doc,.docx">--><br>
         
-                    <br>
-                    <br>
+
         
-                    <label for="observaties">Observaties: </label>';
-                    echo $observaties.'
-        
-                    <br>
-                    <br>
+                    <label for="observaties">Observaties: </label>
+                    <textarea class="autoresizingBekijken" readonly>';
+                        echo $observaties.'
+                    </textarea>
+
                     
                     <label for="uploadobservaties">Upload observatie bestand: </label>
-                    <!--<input type="file" id="uploadobservaties" name="uploadobservaties" accept="image/*,.doc,.docx">-->
+                    <!--<input type="file" id="uploadobservaties" name="uploadobservaties" accept="image/*,.doc,.docx">--><br>
         
-                    <br>
-                    <br>
+
         
-                    <label for="weeggegevens">Weeggegevens: </label>';
-                    echo $weeggegevens.'
-        
-                    <br>
-                    <br>
+                    <label for="weeggegevens">Weeggegevens: </label>
+                    <textarea class="autoresizingBekijken" readonly>';
+                        echo $weeggegevens.'
+                    </textarea>
+
                     
                     <label for="uploadweegegevens">Upload weeggegevens bestand: </label>
                     <!--<input type="file" id="uploadweeggegevens" name="uploadweeggegevens" accept=".xls,.xlsx">-->
@@ -242,13 +251,22 @@
         
                     
             ';
-        }
-            querySluiten();
-        
             ?>
-            
-</main>            
-
+</main>
+<script type="text/javascript">
+    textarea = document.querySelectorAll(".autoresizingBekijken");
+    textarea.forEach(function(ta){
+        var event = new CustomEvent("resizeAfterRefresh");
+        ta.addEventListener('input', autoResize, false);
+        ta.addEventListener('resizeAfterRefresh', autoResize, false);
+        ta.dispatchEvent(event);
+    })
+    function autoResize() {
+        this.style.height = 'auto';
+        this.style.height = this.scrollHeight + 'px';
+    }
+</script>            
+</body>
 <?php
     /* Footer */
     include_once '../Include/Footer.php';

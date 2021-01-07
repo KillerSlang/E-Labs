@@ -25,7 +25,8 @@ mysqli_stmt_store_result($stmt);
     
                                 
 while (mysqli_stmt_fetch($stmt)) 
-{    
+{    }
+querySluiten(); 
     require_once __DIR__ . '/vendor/autoload.php';
     $date = date('d-m-y H:i');
     $pdfname = $labjournaalTitel . " " .$date.".pdf";
@@ -50,8 +51,23 @@ while (mysqli_stmt_fetch($stmt))
             </p>
             <p>
                 <strong>Uitvoerders:</strong>
-                <br />
-                '.$uitvoerders.'
+                ';
+                $uitvoerdersArray = unserialize(base64_decode($uitvoerders));
+                foreach($uitvoerdersArray as $uitvoerder)
+                {
+                    queryAanmaken(
+                        'SELECT studentNaam
+                        FROM student
+                        WHERE studentNummer = '.$uitvoerder);
+                    mysqli_stmt_bind_result($stmt, $studentNaam);
+                    mysqli_stmt_store_result($stmt);
+                    while (mysqli_stmt_fetch($stmt)) 
+                    {
+                        $data.= '<br> &nbsp; &nbsp; &nbsp;- '.$studentNaam;
+                    }
+                    querySluiten();
+                } 
+        $data.= '
             </p>
             <p>
                 <strong>Experiment datum:</strong>
@@ -76,7 +92,7 @@ while (mysqli_stmt_fetch($stmt))
             <p>
                 <strong>Doel:</strong>
                 <br />
-                '.$doel.'
+                '.nl2br($doel).'
             </p>
             <p>
                 <strong>Upload waarnemingen:</strong>
@@ -86,17 +102,17 @@ while (mysqli_stmt_fetch($stmt))
             <p>
                 <strong>Hypothese:</strong>
                 <br />
-                '.$hypothese.'
+                '.nl2br($hypothese).'
             </p>
             <p>
                 <strong>Materialen:</strong>
                 <br />
-                '.$materialen.'
+                '.nl2br($materialen).'
             </p>
             <p>
                 <strong>Methode:</strong>
                 <br />
-                '.$methode.'
+                '.nl2br($methode).'
             </p>
             <p>
                 <strong>Upload meetresultaten:</strong>
@@ -106,7 +122,7 @@ while (mysqli_stmt_fetch($stmt))
             <p>
                 <strong>Logboek:</strong>
                 <br />
-                '.$logboek.'
+                '.nl2br($logboek).'
             </p>
             <p>
                 <strong>Upload logboek:</strong>
@@ -116,7 +132,7 @@ while (mysqli_stmt_fetch($stmt))
             <p>
                 <strong>Observaties:</strong>
                 <br />
-                '.$observaties.'
+                '.nl2br($observaties).'
             </p>
             <p>
                 <strong>Upload observaties:</strong>
@@ -126,7 +142,7 @@ while (mysqli_stmt_fetch($stmt))
             <p>
                 <strong>Weeggegevens:</strong>
                 <br />
-                '.$weeggegevens.'
+                '.nl2br($weeggegevens).'
             </p>
             <p>
                 <strong>Upload weeggegevens:</strong>
@@ -155,5 +171,3 @@ while (mysqli_stmt_fetch($stmt))
 
     //output to browser
     $mpdf->Output($pdfname, "D");
-}
-querySluiten();
