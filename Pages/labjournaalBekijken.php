@@ -104,9 +104,17 @@
         
                     <br>
         
-                    <label for="uploadveiligheid">Veiligheid: </label>
-                    <form method="post"><input type="hidden" name="labjournaalID" value="'.$ID.'">
-                            <button id="Ptbutton" class="bluebtn" type="submit" value="submit" name="labjournaalSubmit">Download</button></form>
+                    <label for="uploadveiligheid">Veiligheid: </label>';
+                        if(!empty($veiligheid)){
+                            echo'<a class="bluebtn" id="Pbutton" target="_blank" href="'.$veiligheid.'" download>Download</a>';
+                            $extension = explode(".", $veiligheid);
+                            if ($extension[3] == "jpg" || $extension[3] == "jpeg" || $extension[3] == "png"){
+                                echo '<img src="'.$veiligheid.'">';
+                            }
+                        } else {
+                            echo'Geen bestand geupload.';
+                        }
+                    echo '<br>
                     <br>
         
                     <label for="doel">Doel: </label>
@@ -114,10 +122,14 @@
                         echo $doel.'
                     </textarea>        
         
-                    <label for="uploadwaarnemingen">Upload waarnemingen bestand: </label>
-                    <!--<input type="file" id="uploadwaarnemingen" name="uploadwaarnemingen" accept="image/*">-->
-        
-                    <br>
+                    <label for="uploadwaarnemingen">Download waarnemingen: </label>';
+                    if(!empty($bijlageWaarnemingen)){
+                        echo'<a class="bluebtn" id="Pbutton" target="_blank" href="'.$bijlageWaarnemingen.'" download>Download</a>
+                        <img src="'.$bijlageWaarnemingen.'">';
+                    } else {
+                        echo'Geen bestand geupload.';
+                    }
+                    echo'<br>
                     <br>
                 
                     <label for="hypothese">Hypothese: </label>
@@ -138,8 +150,16 @@
                     </textarea>
 
         
-                    <label for="uploadmeetresultaten">Upload meetresultaten bestand: </label>
-                    <!--<input type="file" id="uploadmeetresultaten" name="uploadmeetresultaten" accept=".xls,.xlsx,image/*">-->
+                    <label for="uploadmeetresultaten">Download meetresultaten: </label>';
+                    if(!empty($bijlageMeetresultaten)){
+                        $extension = explode(".", $bijlageMeetresultaten);
+                        if ($extension[3] == "jpg" || $extension[3] == "jpeg" || $extension[3] == "png"){
+                            echo '<img src="'.$bijlageMeetresultaten.'">';
+                        }  
+                    } else {
+                        echo'Geen bestand geupload.';
+                    }
+                    echo '
         
                     <br>
                     <br>
@@ -150,8 +170,14 @@
                     '</textarea>
         
                     
-                    <label for="uploadlogboek">Upload logboek bestand: </label>
-                    <!--<input type="file" id="uploadlogboek" name="uploadlogboek" accept=".xls,.xlsx,.doc,.docx">--><br>
+                    <label for="uploadlogboek">Download logboek: </label>';
+                    if(!empty($bijlageLogboek)){
+                        echo'<a class="bluebtn" id="Pbutton" target="_blank" href="'.$bijlageLogboek.'" download>Download</a>';
+                    } else {
+                        echo'Geen bestand geupload.';
+                    }
+                    echo'<br>
+                    <br>
         
 
         
@@ -161,10 +187,22 @@
                     </textarea>
 
                     
-                    <label for="uploadobservaties">Upload observatie bestand: </label>
-                    <!--<input type="file" id="uploadobservaties" name="uploadobservaties" accept="image/*,.doc,.docx">--><br>
+                    <label for="uploadobservaties">Download observatie: </label>';
+                    if(!empty($bijlageObservaties)){
+                        echo'<a class="bluebtn" id="Pbutton" target="_blank" href="'.$bijlageObservaties.'" download>Download</a>';
+                        $extension = explode(".", $bijlageObservaties);
+                        if ($extension[3] == "jpg" || $extension[3] == "jpeg" || $extension[3] == "png"){
+                            echo '<img src="'.$bijlageObservaties.'">';
+                        }
+                    } else {
+                        echo'Geen bestand geupload.';
+                    }
+                    echo '
+                    <br>
+                    <br>
         
-
+                    <label for="weeggegevens">Weeggegevens: </label>';
+                    echo $weeggegevens.'
         
                     <label for="weeggegevens">Weeggegevens: </label>
                     <textarea class="autoresizingBekijken" readonly>';
@@ -172,15 +210,24 @@
                     </textarea>
 
                     
-                    <label for="uploadweegegevens">Upload weeggegevens bestand: </label>
-                    <!--<input type="file" id="uploadweeggegevens" name="uploadweeggegevens" accept=".xls,.xlsx">-->
-        
+                    <label for="uploadweegegevens">Download weeggegevens: </label>';
+                    if(!empty($bijlageWeeggegevens)){
+                        echo'<a class="bluebtn" id="Pbutton" target="_blank" href="'.$bijlageWeeggegevens.'" download>Download</a>';
+                    } else {
+                        echo'Geen bestand geupload.';
+                    }
+                    echo'
                     <br>
                     <br>
         
-                    <label for="uploadafbeelding">Upload afbeeldingen: </label>
-                    <!--<input type="file" id="uploadafbeelding" name="uploadafbeelding" accept="image/*" multiple>-->
-        
+                    <label for="uploadafbeelding">Download afbeeldingen: </label>';
+                    if(!empty($bijlageAfbeelding)){
+                        echo'<a class="bluebtn" id="Pbutton" target="_blank" href="'.$bijlageAfbeelding.'" download>Download</a>
+                        <img src="'.$bijlageAfbeelding.'">';
+                    } else {
+                        echo'Geen bestand geupload.';
+                    }
+                    echo'
                     <br>
                     <br>
                     <label for="Vakken">Vak: *</label>
@@ -196,10 +243,10 @@
                                 else
                                 {
                                     echo'
-                                    <!--<input type="radio" id="BML" name="LVak" value="BML">
+                                    <input type="radio" id="BML" name="LVak" value="BML">
                                     <label for="BML">BML</label><br>
                                     <input type="radio" id="Chemie" name="LVak" value="Chemie" checked>
-                                    <label for="Chemie">Chemie</label>-->';
+                                    <label for="Chemie">Chemie</label>';
                                 }
                     echo ' 
                             </div>    
