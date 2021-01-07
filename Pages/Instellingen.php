@@ -46,7 +46,6 @@
             ?>
             <form action="Instellingen.php" method="POST">
             <?php
-                $_SESSION['taal'] = 'engels';
                 if ($_SESSION['taal'] == 'nederlands') {
                 echo "<h2>Jaar</h2>
                 <select>
@@ -55,9 +54,9 @@
                     <option>Jaar 3</option>
                 </select>
                 <h2>Taal</h2>
-                <input type=radio name=taal value=Nederlands checked>
+                <input type='radio' name='taal' value='Nederlands' checked>
                 <label>Nederlands</label>
-                <input type=radio name=taal value=English>
+                <input type='radio' name='taal' value='English'>
                 <label>English</label><br>";
                 }
                 if ($_SESSION['taal'] == 'engels') {
@@ -68,17 +67,30 @@
                         <option>Year 3</option>
                     </select>
                     <h2>Language</h2>
-                    <input type=radio name=taal value=Nederlands>
+                    <input type='radio' name='taal' value='Nederlands'>
                     <label>Nederlands</label>
-                    <input type=radio name=taal value=English checked>
+                    <input type='radio' name='taal' value='English' checked>
                     <label>English</label><br>";
                 }
             ?>
-                <div id="Iknoppen">
-                <input class="bluebtn" type="submit" name="WWwijzig" value="Wachtwoord Wijzigen">
-                <div class="empty">
-                <input id="Iuitlog" type="submit" name="Uitloggen" value="Uitloggen">
-                </div>
+            <?php
+                if ($_SESSION['taal'] == 'nederlands') {
+                    echo "
+                    <div id='Iknoppen'>
+                    <input class='bluebtn' type='submit' name='WWwijzig' value='Wachtwoord Wijzigen'>
+                    <div class='empty'>
+                    <input id='Iuitlog' type='submit' name='Uitloggen' value='Uitloggen'>
+                    </div> ";
+                }
+                if ($_SESSION['taal'] == 'engels') {
+                    echo "
+                    <div id='Iknoppen'>
+                    <input class='bluebtn' type='submit' name='WWwijzig' value='Change Password'>
+                    <div class='empty'>
+                    <input id='Iuitlog' type='submit' name='Uitloggen' value='Log Out'>
+                    </div> ";
+                }
+            ?>
             </form>
             <?php
             /* wachtwoord wijzigen */
@@ -102,6 +114,7 @@
                 if ($_POST["taal"] = "English") {
                     $_SESSION['taal'] = "English";
                 }
+                header("location:Instellingen.php");
             }
             
             ?>
