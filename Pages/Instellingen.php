@@ -54,9 +54,9 @@
                     <option>Jaar 3</option>
                 </select>
                 <h2>Taal</h2>
-                <input type='radio' name='taal' value='Nederlands' checked>
+                <input type='radio' name='taal' onclick=window.location='http://localhost/github/E-Labs/Pages/Instellingen.php'; value='Nederlands' checked>
                 <label>Nederlands</label>
-                <input type='radio' name='taal' value='English'>
+                <input type='radio' name='taal' onclick=window.location='http://localhost/github/E-Labs/Pages/Instellingen.php'; value='English'>
                 <label>English</label><br>";
                 }
                 if ($_SESSION['taal'] == 'engels') {
@@ -67,9 +67,9 @@
                         <option>Year 3</option>
                     </select>
                     <h2>Language</h2>
-                    <input type='radio' name='taal' value='Nederlands'>
+                    <input type='radio' name='taal' onclick=window.location='https://elabs.serverict.nl/Pages/Instellingen.php'; value='Nederlands'>
                     <label>Nederlands</label>
-                    <input type='radio' name='taal' value='English' checked>
+                    <input type='radio' name='taal' onclick=window.location='https://elabs.serverict.nl/Pages/Instellingen.php'; value='English' checked>
                     <label>English</label><br>";
                 }
             ?>
@@ -108,10 +108,10 @@
 
             /*taal selectie */
             if(isset($_POST['taal'])) {
-                if ($_POST["taal"] == "Nederlands") {
+                if ($_POST['taal'] == "Nederlands") {
                     $_SESSION['taal'] = "nederlands";
                 }
-                if ($_POST["taal"] = "English") {
+                if ($_POST['taal'] = "English") {
                     $_SESSION['taal'] = "English";
                 }
                 header("location:Instellingen.php");
