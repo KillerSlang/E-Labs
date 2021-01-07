@@ -50,7 +50,7 @@
 				hypothese,materialen,methode,bijlageMeetresultaten,logboek,bijlageLogboek,
 				observaties,bijlageObservaties,weeggegevens,bijlageWeeggegevens,
 				bijlageAfbeelding,vak,jaar
-                FROM labjournaal as l';
+                FROM labjournaal as l ';
                 if($_SESSION['SorD'] == "Student")
                 {
                     $sql .= 'JOIN student AS s ON l.studentID = s.studentID
