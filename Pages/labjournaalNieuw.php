@@ -129,7 +129,7 @@ echo '<form class="Lform" action="../Include/addlabjournaal.inc.php" method="pos
 
             <br>
 
-            <label for="uploadveiligheid">Upload veiligheid: </label><p>alleen .xls, .xlsx en afbeeldingen toegestaan</p>
+            <label for="uploadveiligheid">Upload veiligheid: </label><p>alleen Excel en afbeeldingen toegestaan</p>
             <input type="file" id="uploadveiligheid" name="uploadveiligheid" accept=".xls,.xlsx,image/*">
 
             <br>
@@ -141,7 +141,7 @@ echo '<form class="Lform" action="../Include/addlabjournaal.inc.php" method="pos
             <br>
             <br>
 
-            <label for="uploadwaarnemingen">Upload waarnemingen bestand: </label>
+            <label for="uploadwaarnemingen">Upload waarnemingen bestand: </label><p>alleen afbeeldingen zijn toegestaan</p>
             <input type="file" id="uploadwaarnemingen" name="uploadwaarnemingen" accept="image/*">
 
             <br>
@@ -165,7 +165,7 @@ echo '<form class="Lform" action="../Include/addlabjournaal.inc.php" method="pos
             <br>
             <br>
 
-            <label for="uploadmeetresultaten">Upload meetresultaten bestand: </label>
+            <label for="uploadmeetresultaten">Upload meetresultaten bestand: </label><p>alleen Excel en afbeeldingen toegestaan</p>
             <input type="file" id="uploadmeetresultaten" name="uploadmeetresultaten" accept=".xls,.xlsx,image/*">
 
             <br>
@@ -177,7 +177,7 @@ echo '<form class="Lform" action="../Include/addlabjournaal.inc.php" method="pos
             <br>
             <br>
             
-            <label for="uploadlogboek">Upload logboek bestand: </label>
+            <label for="uploadlogboek">Upload logboek bestand: </label><p>alleen Excel en Word bestanden zijn toegestaan</p>
             <input type="file" id="uploadlogboek" name="uploadlogboek" accept=".xls,.xlsx,.doc,.docx">
 
             <br>
@@ -189,7 +189,7 @@ echo '<form class="Lform" action="../Include/addlabjournaal.inc.php" method="pos
             <br>
             <br>
             
-            <label for="uploadobservaties">Upload observatie bestand: </label>
+            <label for="uploadobservaties">Upload observatie bestand: </label><p>alleen afbeeldingen en Word bestanden zijn toegestaan</p>
             <input type="file" id="uploadobservaties" name="uploadobservaties" accept="image/*,.doc,.docx">
 
             <br>
@@ -201,13 +201,13 @@ echo '<form class="Lform" action="../Include/addlabjournaal.inc.php" method="pos
             <br>
             <br>
             
-            <label for="uploadweegegevens">Upload weeggegevens bestand: </label>
+            <label for="uploadweegegevens">Upload weeggegevens bestand: </label><p>alleen Excel bestanden zijn toegestaan</p>
             <input type="file" id="uploadweeggegevens" name="uploadweeggegevens" accept=".xls,.xlsx">
 
             <br>
             <br>
 
-            <label for="uploadafbeelding">Upload afbeeldingen: </label>
+            <label for="uploadafbeelding">Upload afbeeldingen: </label><p>alleen afbeeldingen zijn toegestaan</p>
             <input type="file" id="uploadafbeelding" name="uploadafbeelding" accept="image/*" multiple>
 
             <br>
@@ -280,55 +280,7 @@ echo '<form class="Lform" action="../Include/addlabjournaal.inc.php" method="pos
 
             <input class="bluebtn" type="Submit" id="LSubmit" name="LSubmit" value="Opslaan">
     </form>';
-/*if(isset($_POST["LSubmit"])){
-    // upload veiligheid //
-    $target_dir = "uploads/";
-    $target_file = $target_dir . basename($_FILES["uploadveiligheid"]["name"]);
-    $uploadOk = 1;
-    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
-    // Check if image file is a actual image or fake image
-    $check = getimagesize($_FILES["uploadveiligheid"]["tmp_name"]);
-    if($check !== false) {
-        echo "Bestand is een afbeelding of Excel bestand - " . $check["mime"] . ".";
-        $uploadOk = 1;
-    } else {
-        echo "Niet correcte bestandstype geupload";
-        $uploadOk = 0;
-    }
-
-    // Check if file already exists
-    if (file_exists($target_file)) {
-    echo "Sorry, bestand is al geupload";
-    $uploadOk = 0;
-    }
-
-    // Check file size
-    if ($_FILES["uploadveiligheid"]["size"] > 5000000) {
-    echo "Sorry, bestand is te groot (maximaal 5MB toegestaan)";
-    $uploadOk = 0;
-    }
-
-    // Allow certain file formats
-    if($imageFileType == "jpg" && $imageFileType == "png" && $imageFileType == "jpeg"
-    && $imageFileType == "xlsx" && $imageFileType == 'xls') {
-    echo "Sorry, alleen JPG, JPEG, PNG & Excel bestanden zijn toegestaan.";
-    $uploadOk = 0;
-    }
-
-    // Check if $uploadOk is set to 0 by an error
-    if ($uploadOk == 0) {
-    echo "Sorry, your file was not uploaded.";
-    // if everything is ok, try to upload file
-    } else {
-    if (move_uploaded_file($_FILES["uploadveiligheid"]["tmp_name"], $target_file)) {
-        echo "Het bestand ". htmlspecialchars( basename( $_FILES["uploadveiligheid"]["name"])). " is succesvol geupload.";
-    } else {
-        echo "Sorry, there was an error uploading your file.";
-    }
-    }
-
-}    */           
     ?>
 </main>            
 
