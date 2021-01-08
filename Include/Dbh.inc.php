@@ -2,8 +2,8 @@
   function queryAanmaken ($query)
   {
     $dbServername= "localhost";
-    $dbUsername = "elabs";
-    $dbPassword = "Bla_1711";
+    $dbUsername = "root";
+    $dbPassword = "";
     $dbName = "elabs";
     $GLOBALS['conn'] = mysqli_connect($dbServername,$dbUsername, $dbPassword,$dbName);
     if(!$GLOBALS['conn'])

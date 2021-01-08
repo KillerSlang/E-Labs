@@ -200,15 +200,15 @@ if($link)
 
         }elseif($Emailstatus == "Bestaat"){
             
-            echo $Erregemailingebruik."Deze Email is al ingebruik!<br>";
+            echo $Erregemailingebruik;
             
         }elseif($SNumstatus == "Bestaat"){
             
-            echo $Erregstudentnummeringebruik."Dit Studentennummer is al ingebruik!<br>";
+            echo $Erregstudentnummeringebruik;
             
         }elseif(isset($_POST['Submit']) and $SorD == "NoStudent" and strlen($_POST['Voornaam']) >= 1 and strlen($_POST['Studentnummer']) >= 1 and strlen($_POST['Achternaam']) >= 1 and strlen($_POST['Password']) >= 1 and strlen($_POST['Vraag1']) >= 1 and strlen($_POST['Vraag2']) >= 1 and strlen($_POST['Vraag3']) >= 1){
 
-            Echo $Erregfoutemail."Geen Studenten Email ingevoerd<br>";
+            Echo $Erregfoutemail;
 
 
         }

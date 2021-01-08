@@ -27,7 +27,7 @@ $Voorbereidingen =  "Voorbereidingen";
 $Labjournalen =  "Labjournalen";
 $Protocollen =  "Protocollen";
 $Instellingen =  "Instellingen";
-$Logout =  "Logout";
+$Uitloggen =  "Uitloggen";
 
 /* Protocollen */
 $Protocol =  "Protocol";
@@ -58,9 +58,11 @@ $Vraag3 = "Vraag 3: Hoe heet de stad/dorp waarin je bent geboren? ";
 
 $Erregvelden = "Niet alle velden waren ingevuld<br>";
 $Erregwwcheck = "Ingevoerde wachtwoorden niet hetzelfde<br>";
-$Erregemailingebruik = "";
-$Erregstudentnummeringebruik = "";
-$Erregfoutemail = "";
+$Erregemailingebruik = "Deze Email is al ingebruik!<br>";
+$Erregstudentnummeringebruik = "Dit Studentennummer is al ingebruik!<br>";
+$Erregfoutemail = "Geen Studenten Email ingevoerd<br>";
+
+/* wachtwoord vergeten */
 
 
 /* Error codes*/

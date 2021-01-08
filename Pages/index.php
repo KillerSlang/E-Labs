@@ -3,10 +3,15 @@
     <head>
 
         <?php
-        if($_COOKIE["taal"] == "Nederlands"){
-            include_once "Nederlands.php";
+            if(!empty($_GET && !empty($_GET["taal"]))){
+                if($_GET["taal"] == "E"){
+                    setcookie("taal", "english");
+                }
+            }
+            if($_COOKIE["taal"] == "Nederlands"){
+                include_once "../Include/Nederlands.php";
             } else {
-            include_once "Engels.php";
+                include_once "../Include/Engels.php";
             }
         ?>  
 
@@ -32,13 +37,13 @@
                 
                 <div id="inlogruimte">
                    
-                        <form action = "Pages/Inlog.php" method = "POST" >
+                        <form action = "Inlog.php" method = "POST" >
                             <div id="Invoerveld1"><p><label for="Email"><b><?= $Email ?></b></label><br> 
                             <input type = "email" name = "Email" placeholder="voer hier uw e-mail in..."></p></div>
 
                             <div id="Invoerveld2"><p><label for="Password"><b><?= $Wachtwoord ?></b></label><br>
                             <input type = "password" name = "Password" placeholder="voer hier uw wachtwoord in..."></div>
-                            <div id="wwvergeten"><a href = "Pages/wwvergeten.php" ><?= $Wwvergeten ?></a></div>
+                            <div id="wwvergeten"><a href = "wwvergeten.php" ><?= $Wwvergeten ?></a></div>
 
                             <div id="SorD"><p><input type = "radio" id = "Student" name = "SorD" value = "Student" checked = "checked"><?= $Student ?>
                             <input type = "radio" id = "Docent" name = "SorD" value = "Docent"><?= $Docent ?></div>
@@ -49,7 +54,7 @@
                             </div>
                             
                             <div id="registrerenbutton">
-                                <button formaction = "Pages/Registreer.php"><?= $Registreren ?></button>
+                                <button formaction = "Registreer.php"><?= $Registreren ?></button>
                             </div>
                             
                         </form>
@@ -58,11 +63,19 @@
                       <div id="errorcodes"><b>
 
                                 <?php
-                                
-                                $errorcode = "Probeer opnieuw";
-                                
-                                echo $errorcode;
-                                
+                                if(!empty($_GET) && !empty($_GET["error"])){
+                                    $errorcode = $_GET["error"];
+                                    
+                                    if($errorcode == "1"){
+
+                                    $error = "Probeer opnieuw";
+
+                                    echo $error;
+
+                                    }
+
+                                    echo $errorcode;
+                                }
                                 ?>
 
         </b></div>

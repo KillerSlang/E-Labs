@@ -1,7 +1,3 @@
-<<<<<<< Updated upstream
-<nav><?php session_start(); ?>
-=======
-
 <nav>
 <?php
 // Start the session
@@ -26,9 +22,8 @@ if(!isset($_SESSION['SorD'])){
 
 
 
->>>>>>> Stashed changes
 <div>
-    <img onclick='location.href="../index.html"' id='navLogo'src='../Images/Logo.png'>
+    <img onclick='location.href="../Pages/Homepage.php"' id='navLogo'src='../Images/Logo.png'>
 </div>
 <div class = 'menu'>
     <ul>
@@ -47,7 +42,7 @@ if(!isset($_SESSION['SorD'])){
         </div>
         <div class="accountDropdownContent">
             <a href='Instellingen.php'><?=$Instellingen?></a>
-            <a href='Logout.php'><?=$Logout?></a>
+            <a href='Logout.php'><?=$Uitloggen?></a>
         </div>
     </div>
 </div>
