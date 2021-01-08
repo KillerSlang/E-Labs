@@ -38,29 +38,26 @@
                     echo'</div>';
                 }
             ?>
-            <form class="Lform" action="../Include/addvoorbereiding.inc.php" method="post" enctype="multipart/form-data">
+            <form class="Lform" action="../Pages/addvoorbereiding.inc.php" method="post" enctype="multipart/form-data">
             
             <label for="titelvoorbereiding">Titel voorbereiding: * </label>
             <input type="text" id="titellabvoorbereiding" name="titelvoorbereiding" size="40">
-            
+
             <label for="uitvoerders">Uitvoerders: * </label>
             <input type="text" id="uitvoerders" name="uitvoerders" size="40">
-
-            <br>
 
             <label for="voorbereidingsdatum">Voorbereidings datum: * </label>
             <input type="date" id="voorbereidingsdatum" name="voorbereidingsdatum">
 
-            <label for="uitvoeringsdatum">uitvoerings datum: *</label>
+            </br>
+            
+            <label for="uitvoeringsdatum">Uitvoerings datum: *</label>
             <input type="date" id="experimentstartdatum" name="uitvoeringsdatum">
-<!--
-            <label for="experimenteinddatum">Eind datum experiment: </label>
-            <input type="date" id="experimenteinddatum" name="experimenteinddatum"> 
+            
+            </br>
 
-            <br>
--->
             <label for="uploadtheorie">Upload theorie: </label>
-            <input type="file" id="uploadveiligheid" name="uploadtheorie" accept=".xls,.xlsx,image/*"> 
+            <input type="file" id="uploadveiligheid" name="uploadtheorie" accept=".xls,.xlsx,.docx,.doc*"> 
 
             <br>
             <br>
@@ -94,11 +91,6 @@
 
             <br>
             <br>
-            <!-- <label for="uploadwaarnemingen">Upload waarnemingen bestand: </label>
-            <input type="file" id="uploadwaarnemingen" name="uploadwaarnemingen" accept="image/*"> 
-
-            <br>
-            <br> -->
         
             <label for="Methode">Methode: </label>
             <textarea id="hypothese" name="methode" rows="4" cols="50" placeholder="Voer gegevens in..."></textarea>
@@ -112,13 +104,7 @@
             <br>
             <br>
 
-            
-
-            <!-- <label for="Voorbereidendevragen">Voorbereidende vragen: </label>
-            <input type="file" id="uploadmeetresultaten" name="Voorbereidendevragen" accept=".xls,.xlsx,image/*"> 
-
-            <br>
-            <br>    -->
+                
             
             <label for="Voorbereidendevragen">Voorbereidende vragen: </label>
             <textarea id="logboek" name="voorbereidendevragen" rows="4" cols="50" placeholder="Voer gegevens in..."></textarea>
@@ -131,29 +117,6 @@
 
             <br>
             <br>
-
-            
-            
-            <!-- <label for="uploadobservaties">Upload observatie bestand: </label>
-            <input type="file" id="uploadobservaties" name="uploadobservaties" accept="image/*,.doc,.docx">
-
-            <br>
-            <br>
-
-            <label for="weeggegevens">Weeggegevens: </label>
-            <textarea id="weeggegevens" name="weeggegevens" rows="4" cols="50" placeholder="Voer gegevens in..."></textarea>
-
-            <br>
-            <br>
-            
-            <label for="uploadweegegevens">Upload weeggegevens bestand: </label>
-            <input type="file" id="uploadweeggegevens" name="uploadweeggegevens" accept=".xls,.xlsx">
-
-            <br>
-            <br>
-
-            <label for="uploadafbeelding">Upload afbeeldingen: </label>
-            <input type="file" id="uploadafbeelding" name="uploadafbeelding" accept="image/*" multiple> -->
 
             <br>
             <br>

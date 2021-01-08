@@ -52,9 +52,9 @@
 if(isset($_POST["Submit"])){
 
 //controleren of alle velden ingevuld zijn
-if(isset($_POST['Submit']) and strlen($_POST['Voornaam']) == 0 or strlen($_POST['Studentnummer']) == 0 or strlen($_POST['Achternaam']) == 0 or strlen($_POST['Password']) == 0 or strlen($_POST['Vraag1']) == 0 or strlen($_POST['Vraag2']) == 0 or strlen($_POST['Vraag3']) == 0){
+if(isset($_POST['Submit']) and strlen($_POST['Voornaam']) == 0 or strlen($_POST['Studentnummer']) == 0 or strlen($_POST['Achternaam']) == 0 or strlen($_POST['Pass']) == 0 or strlen($_POST['Word']) == 0 or strlen($_POST['Vraag1']) == 0 or strlen($_POST['Vraag2']) == 0 or strlen($_POST['Vraag3']) == 0){
 
-    Echo "Niet alle velden waren ingevuld";
+    Echo "Niet alle velden waren ingevuld<br>";
 
 }
 
@@ -100,7 +100,7 @@ $PW = $Pass;
 
 }else{
     
-    echo "Ingevoerde wachtwoorden niet hetzelfde";
+    echo "Ingevoerde wachtwoorden niet hetzelfde<br>";
     Die;
 }
 
@@ -112,7 +112,7 @@ $vraag3 = sha1($_POST["Vraag3"]);
 // Data controleren + in de database schrijven 
 
     
-$link = mysqli_connect("localhost","root","") 
+$link = mysqli_connect("localhost","elabs","Bla_1711")
 OR DIE("Could not connect to the database!");
 if($link)
 {
@@ -122,7 +122,7 @@ if($link)
 
 
 
-                    $conn = mysqli_connect("127.0.0.1","root","");
+                    $conn = mysqli_connect("localhost","elabs","Bla_1711");
                     mysqli_select_db($conn, "elabs");
                     
               
@@ -182,19 +182,24 @@ if($link)
                     
                     mysqli_close($conn);
 
-                    header("location: inlog.php");  
+                    echo "<script>location='../index.html'</script>";
+
+                   // header("location: ../index.html");  
+
+                    echo "<a href='../index.html'>naar inlog</a>";
+                    
 
         }elseif($Emailstatus == "Bestaat"){
             
-            echo "Deze Email is al ingebruik!";
+            echo "Deze Email is al ingebruik!<br>";
             
         }elseif($SNumstatus == "Bestaat"){
             
-            echo "Dit Studentennummer is al ingebruik!";
+            echo "Dit Studentennummer is al ingebruik!<br>";
             
         }elseif(isset($_POST['Submit']) and $SorD == "NoStudent" and strlen($_POST['Voornaam']) >= 1 and strlen($_POST['Studentnummer']) >= 1 and strlen($_POST['Achternaam']) >= 1 and strlen($_POST['Password']) >= 1 and strlen($_POST['Vraag1']) >= 1 and strlen($_POST['Vraag2']) >= 1 and strlen($_POST['Vraag3']) >= 1){
 
-            Echo "Geen Studenten Email ingevoerd";
+            Echo "Geen Studenten Email ingevoerd<br>";
 
 
         }

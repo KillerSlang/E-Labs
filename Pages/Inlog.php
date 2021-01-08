@@ -1,54 +1,7 @@
-<!DOCTYPE HTML>
-<html>
-    <head>
-        <title>inlogpagina</title>
-        <link href="../Css/inlog.css" rel="stylesheet" type="text/css">
-    </head>
-    <body> 
-        <?php
+<?php
             // Starting session
             session_start();
-        ?>
-        <div id="Container">
-            <div id="inlogbox">
-                <div id="logobalk">
-                    <div id="logobalklogo">
-                        <img src="../Images/Logo.png" alt = "Logo wit" >
-                   </div>
-
-                    <div id="logobalktext">
-                        <h1><b>Welkom!</b></h1>
-                    </div>
-                </div>
-                
-                <div id="inlogruimte">
-                   
-                        <form action = "<?php echo $_SERVER['PHP_SELF']; ?>" method = "POST">
-                            <div id="Invoerveld1"><p><label for="Email"><b>E-mail:</b></label><br> 
-                            <input type = "email" name = "Email" placeholder="voer hier uw e-mail in..."></p></div>
-
-                            <div id="Invoerveld2"><p><label for="Password"><b>Wachtwoord:</b></label><br>
-                            <input type = "password" name = "Password" placeholder="voer hier uw wachtwoord in..."></div>
-                            <div id="wwvergeten"><a href = "wwvergeten.php" >Wachtwoord vergeten?</a></p></div>
-
-                            <div id="SorD"><p><input type = "radio" id = "Student" name = "SorD" value = "Student" checked = "checked">Student
-                            <input type = "radio" id = "Docent" name = "SorD" value = "Docent">Docent</p></div>
-                            
-                            <div id="registrerenbutton">
-                                <button formaction = "Registreer.php">Registreren</button>
-                            </div>
-                            <div id="inlogbutton">
-                                <input type = "submit" name = "Submit" value = "Inloggen">
-                            </div>
-                            
-                        </form>
-                      <div id="errorcodes"><b>
-
-
-        <!-- Validaten -->
-        <?php
-
-if(isset($_POST["Submit"])){
+			if(isset($_POST["Submit"])){
 
             $email = $_POST["Email"];
             $ww = $_POST["Password"];
@@ -58,12 +11,12 @@ if(isset($_POST["Submit"])){
             if(isset($_POST["Submit"]) and $SorD == "Student")
             {
 
-                $link = mysqli_connect("localhost","root","") 
+                $link = mysqli_connect("localhost","elabs","Bla_1711")
                 OR DIE("Could not connect to the database!");
                 if($link)
                 {
             
-                        $connection = mysqli_connect("localhost","root","");
+                        $connection = mysqli_connect("localhost","elabs","Bla_1711");
                         mysqli_select_db($connection, 'elabs');
             
                         $SQL = "SELECT studentID, studentNummer, studentNaam FROM student WHERE wachtwoord = '$wachtwoord' and studentEmail = '$email'";
@@ -77,29 +30,33 @@ if(isset($_POST["Submit"])){
                                 $studentID = $row['studentID'];
                                 $studentNummer = $row['studentNummer'];
                                 $studentNaam = $row['studentNaam'];
-
-                                $_SESSION["StudentID"] = $studentID;
+								
+                                
+								
+				$_SESSION["StudentID"] = $studentID;
                                 $_SESSION["SorD"] = "Student";
                                 $_SESSION["studentNummer"] = $studentNummer;
                                 $_SESSION["Name"] = $studentNaam;
-                            
-                                header("location: Homepage.php");
+								
+				header("Location: https://elabs.serverict.nl/Pages/Homepage.php");
+
+								
                             }else{
-                                echo "Probeer opnieuw";
-                                
+                                //echo "Probeer opnieuw";
+                                header("Location: https://elabs.serverict.nl/Pages/index.php");
                             }
                         mysqli_close($connection);
                 }
             }elseif(isset($_POST["Submit"]) and $SorD == "Docent")
             {
 
-                $link = mysqli_connect("localhost","root","") 
+                $link = mysqli_connect("localhost","elabs","Bla_1711")
                 OR DIE("Could not connect to the database!");
                 if($link)
                 {
             
-                        $connection = mysqli_connect("localhost","root","");
-                        mysqli_select_db($connection, 'e-labs');
+                        $connection = mysqli_connect("localhost","elabs","Bla_1711");
+                        mysqli_select_db($connection, 'elabs');
             
                         $SQL = "SELECT docentID, docentNaam FROM docent WHERE wachtwoord = '$wachtwoord' and docentEmail = '$email'";
                         $login = mysqli_query($connection, $SQL);
@@ -111,16 +68,22 @@ if(isset($_POST["Submit"])){
                                 
                                 $docentID = $row['studentID'];
                                 $docentNaam = $row['studentNaam'];
-
+								
+								//header("Location: http://www.example.com/");
+								
+				session_start();
                                 $_SESSION["docentID"] = $docentID;
                                 $_SESSION["SorD"] = "Docent";
                                 $_SESSION["Name"] = $docentNaam;
-                            
-                                header("location: Homepage.php");
+
+                                echo 'succes';
+                                echo'<meta http-equiv="refresh" content="0; URL=Homepage.php">';
+				die;
+                                
                             }else{
 
-                                echo "Probeer opnieuw";
-                                
+                                //echo "Probeer opnieuw";
+                                header("Location: https://elabs.serverict.nl/Pages/index.php");
                                 
 
                             }
@@ -130,10 +93,3 @@ if(isset($_POST["Submit"])){
             
         }
         ?>
-
-        </b></div>
-                </div>
-            </div>
-        </div>
-    </body>
-</html>
