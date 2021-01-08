@@ -13,7 +13,7 @@
     ?>
     <main id="Protocol">
         <div class="PageTitle">
-            <h1><?=$NieuwProtocol?></h1>
+            <h1><?=$ProtocolNieuw?></h1>
             <hr>
         </div>
         <div class="whitebg">

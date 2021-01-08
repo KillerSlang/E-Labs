@@ -29,13 +29,6 @@ $Protocollen =  "Protocollen";
 $Instellingen =  "Instellingen";
 $Uitloggen =  "Uitloggen";
 
-/* Protocollen */
-$Protocol =  "Protocol";
-$NieuwProtocol =  "Nieuw Protocol";
-$ProtocollenAlle =  "Alle Protocollen";
-$Instellingen =  "Instellingen";
-$Logout =  "Logout";
-
 /* Inlog */
 $InlogPagina = "inlogpagina";
 $Welkom = "Welkom!";
@@ -46,6 +39,10 @@ $Student = "Student";
 $Docent = "Docent";
 $Registreren = "Registreren";
 $Errorcode = "Probeer opnieuw";
+$Inloggen = "Inloggen";
+
+$voeremail = "voer hier uw e-mail in...";
+$voerww = "voer hier uw wachtwoord in...";
 
 /* Registreren */
 $Voornaam = "Voornaam:";
@@ -63,7 +60,25 @@ $Erregstudentnummeringebruik = "Dit Studentennummer is al ingebruik!<br>";
 $Erregfoutemail = "Geen Studenten Email ingevoerd<br>";
 
 /* wachtwoord vergeten */
+$wwvergetentitel = "Wachtwoord Vergeten";
+$wwwijzigen = "Wachtwoord Wijzigen";
+$Beveiligingsvragen = "Beveiligingsvragen";
+$Nieuwww = "Nieuw Wachtwoord";
+$herhaalww = "Herhaal Wachtwoord";
 
+$voerstudentnummer = "voer hier uw studentnummer in...";
+$antwoordvraag1 = "antwoord op vraag 1...";
+$antwoordvraag2 = "antwoord op vraag 2...";
+$antwoordvraag3 = "antwoord op vraag 3...";
+$voernieuwww = "Voer hier uw nieuw wachtwoord in...";
+$voerherhaalww = "Herhaal uw wachtwoord...";
+$Wijzigww = "Wijzig Wachtwoord";
+
+$Probeeropnieuwgegevensonjuist = "Probeer opnieuw gegevens zijn onjuist";
+
+
+/* Instellingen */
+$Naam = "Naam";
 
 /* Error codes*/
 $ErType = "Verkeerde bestandstype geselecteerd";
@@ -71,4 +86,24 @@ $ErBestand = "Geen Bestand geselecteerd";
 $ErJaar = "Geen Jaar geselecteerd";
 $ErVak = "Geen Vak geselecteerd";
 $ErTitel = "Geen Titel geselecteerd";
+
+/* Homepage */
+$Bestemming = "Kies uw bestemming";
+
+/* Protocollen */
+$Protocol =  "Protocol";
+$ProtocolNieuw =  "Nieuw Protocol";
+$ProtocollenAlle =  "Alle Protocollen";
+
+
+/* Labjournaal*/
+$Labjournaal =  "Labjournaal";
+$LabjournaalNieuw =  "Nieuw Labjournaal";
+$ProtocollenAlle =  "Alle Protocollen";
+
+/* Voorbereidingen*/
+$Voorbereiding =  "Voorbereiding";
+$VoorbereidingNieuw =  "Nieuw Voorbereiding";
+$VoorbereidingenAlle =  "Alle Voorbereidingen";
+
 ?>

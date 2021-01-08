@@ -18,7 +18,7 @@
         </div>
         <div class="whitebg">
             <div class="content">
-                <a class="bluebtn" id="Pbutton" href='NewProtocol.php'><?=$NieuwProtocol?></a>
+                <a class="bluebtn" id="Pbutton" href='NewProtocol.php'><?=$ProtocolNieuw?></a>
                 <a class="bluebtn" id="Pbutton" href='Protocollen.php?jaar=3'><?=$Jaar1?></a>
                 <a class="bluebtn" id="Pbutton" href='Protocollen.php?jaar=2'><?=$Jaar2?></a>
                 <a class="bluebtn" id="Pbutton" href='Protocollen.php?jaar=1'><?=$Jaar3?></a>

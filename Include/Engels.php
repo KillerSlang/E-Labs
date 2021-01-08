@@ -5,6 +5,8 @@ $Labjournalen =  "Labjournals";
 $Protocollen =  "Protocols";
 $Instellingen =  "Settings";
 $Uitloggen =  "Logout";
+$Inloggen = "Login";
+
 /* inlog */
 $InlogPagina = "Login Page";
 $Welkom = "Welcome!";

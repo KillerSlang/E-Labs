@@ -19,13 +19,13 @@
         </header>
 
         <div id="mainhomepage">
-            <h1>Kies uw bestemming</h1>
+            <h1><?=$Bestemming?></h1>
             <hr>
 
             <div id ="container">
                 <div id="Voorbereidingen">
                     
-                        <p>Voorbereidingen</p>
+                        <p><?=$Voorbereidingen?></p>
                         <hr>
                     <a href="<?php if($_SESSION["SorD"] == "Student"){echo "voorbereidingen.php";}elseif($_SESSION["SorD"] == "Docent"){echo "voorbereidingen.php";} ?>">
                         <img id="Voorbereidingenimage" src="../Images/Voorbereidingenicon.png" alt="Voorbereiding icon">
@@ -33,7 +33,7 @@
                 </div>
                 <div id="Labjournalen">
                     
-                        <p>Labjournalen</p>
+                        <p><?=$Labjournalen?></p>
                         <hr>
                     <a href="<?php if($_SESSION["SorD"] == "Student"){echo "labjournalen.php";}elseif($_SESSION["SorD"] == "Docent"){echo "labjournalen";} ?>">    
                         <img id="Labjournalenimage" src="../Images/Labjournalenicon.png" alt="Labjournalen icon">
@@ -41,7 +41,7 @@
                 </div> 
                 <div id="Protocollen">
                     
-                        <p>Protocollen</p>
+                        <p><?=$Protocollen?></p>
                         <hr>
                     <a href="<?php if($_SESSION["SorD"] == "Student"){echo "Protocollen.php";}elseif($_SESSION["SorD"] == "Docent"){echo "Protocollen.php";} ?>">
                         <img id="Protocollenimage" src="../Images/Protocollenicon.png" alt="Protocollen icon">
@@ -53,7 +53,7 @@
          if($_SESSION["SorD"] == "Student"){
             echo   "<div id='Voorbereidingenaanmaken'>
                     
-                            <p>Nieuwe Voorbereiding</p>
+                            <p>".$VoorbereidingNieuw."</p>
                             <hr>
                         <a href='Voorbereidingenaanmaak.php'>        
                             <img id='Voorbereidingenaanmakenimage' src='../Images/Voorbereidingen_small.png' alt='Voorbereiding small icon'>
@@ -61,7 +61,7 @@
                     </div>
                     <div id='Labjournalenaanmaken'>
                         
-                            <p>Nieuw Labjournaal</p>
+                            <p>".$LabjournaalNieuw."</p>
                             <hr>
                         <a href='labjournaalformulier.php'>
                             <img id='Labjournalenaanmakenimage' src='../Images/Labjournalen_small.png' alt='Labjournalen small icon'>
@@ -69,7 +69,7 @@
                     </div> 
                     <div id='Protocollenaanmaken'>
                         
-                            <p>Nieuw Protocool</p>
+                            <p>".$ProtocolNieuw."</p>
                             <hr>
                         <a href='NewProtocol.php'>
                             <img id='Protocollenaanmakenimage' src='../Images/Protocollen_small.png' alt='Protocollen small icon'>

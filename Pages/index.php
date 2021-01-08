@@ -39,10 +39,10 @@
                    
                         <form action = "Inlog.php" method = "POST" >
                             <div id="Invoerveld1"><p><label for="Email"><b><?= $Email ?></b></label><br> 
-                            <input type = "email" name = "Email" placeholder="voer hier uw e-mail in..."></p></div>
+                            <input type = "email" name = "Email" placeholder="<?= $voeremail ?>"></p></div>
 
                             <div id="Invoerveld2"><p><label for="Password"><b><?= $Wachtwoord ?></b></label><br>
-                            <input type = "password" name = "Password" placeholder="voer hier uw wachtwoord in..."></div>
+                            <input type = "password" name = "Password" placeholder="<?= $voerww?>"></div>
                             <div id="wwvergeten"><a href = "wwvergeten.php" ><?= $Wwvergeten ?></a></div>
 
                             <div id="SorD"><p><input type = "radio" id = "Student" name = "SorD" value = "Student" checked = "checked"><?= $Student ?>
@@ -50,7 +50,7 @@
                             
                             
                             <div id="inlogbutton">
-                                <input type = "submit" name = "Submit" value = "Inloggen">
+                                <input type = "submit" name = "Submit" value = "<?= $Inloggen ?>">
                             </div>
                             
                             <div id="registrerenbutton">
@@ -84,4 +84,3 @@
         </div>
     </body>
 </html>
-

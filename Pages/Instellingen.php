@@ -13,40 +13,16 @@
     ?>
     <main>
         <div></div>
-        <div id="Imain">
-            <h1 id="Ih1">Accountinstellingen</h1>
+        <div id="Imain">            
+            <h1 id=Ih1>Account <?=$Instellingen?></h1>
             <hr>
-            <h2>Naam:</h2>
-            <?php
-            if(empty($_COOKIE['taal'])){
-                $_COOKIE['taal'] = 'nederlands';
-            }
-                if ($_COOKIE['taal'] == 'nederlands') {
-                echo "<h1 id=Ih1>Account instellingen</h1>";
-                }
-                if ($_COOKIE['taal'] == 'english') {
-                    echo "<h1 id=Ih1>Account Settings</h1>";
-                }
-                echo "<hr>";
-
-                if ($_COOKIE['taal'] == 'nederlands') {
-                echo "<h2>Naam:</h2>";
-                }
-                if ($_COOKIE['taal'] == 'english') {
-                    echo "<h2>Name:</h2>";
-                }
-            /* naam weergeven van student/docent */
+            <h2><?=$Naam?>:</h2>
+            <?php 
             echo $_SESSION["Name"];
             
             /* studentnummer weergeven */
             if ($_SESSION['SorD'] == 'Student') {
-                if ($_COOKIE['taal'] == 'nederlands') {
-                    echo "<h2>Student Nummer</h2>";
-                }
-                if ($_COOKIE['taal'] == 'english') {
-                    echo "<h2>Student Number</h2>";
-                }
-                echo $_SESSION["StudentID"];
+                echo "<h2>".$StudentNummer."</h2>".$_SESSION["StudentID"];
             }
             ?>
             <form action="taalverander.php" method="POST" enctype="multipart/form-data">
