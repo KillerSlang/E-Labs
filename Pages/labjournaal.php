@@ -48,7 +48,7 @@
 				experimentBeginDatum,experimentEindDatum,veiligheid,doel,bijlageWaarnemingen,
 				hypothese,materialen,methode,bijlageMeetresultaten,logboek,bijlageLogboek,
 				observaties,bijlageObservaties,weeggegevens,bijlageWeeggegevens,
-				bijlageAfbeelding,vak,jaar
+				bijlageAfbeelding,vak,l.jaar
 				FROM labjournaal as l
                 JOIN student AS s ON l.studentID = s.studentID
                 WHERE labjournaalID ='.$ID.' AND s.studentID = '.$_SESSION["StudentID"];

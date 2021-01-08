@@ -31,7 +31,7 @@
                         $labjournaalID = $_POST['labjournaalID'];
                         queryAanmaken('SELECT labjournaalTitel, vak, jaar, veiligheid
                                         FROM labjournaal 
-                                        WHERE labjournaalID = '.$labjournaalID.'');
+                                        WHERE labjournaalID = '.$f.'');
                         echo( mysqli_stmt_bind_result($stmt, $titel, $vakken, $jaar, $veiligheid));
                         mysqli_stmt_store_result($stmt);
                         mysqli_stmt_fetch($stmt);
@@ -71,7 +71,7 @@
                 while (mysqli_stmt_fetch($stmt)) {}
                     echo '
             
-                    <label for="titellabjournaal">Titel labjournaal: * </label>';
+                    <label for="titellabjournaal">Titel experiment: * </label>';
                     echo $labjournaalTitel.' <br>
                     
                     
@@ -201,9 +201,10 @@
                     <br>
                     <br>
         
-                    <label for="weeggegevens">Weeggegevens: </label>';
-                    echo $weeggegevens.'
-        
+                    <label for="weeggegevens">Weeggegevens: </label>
+                    <textarea class="autoresizingBekijken" readonly>';
+                        echo $weeggegevens.'
+                    </textarea>
                     <label for="weeggegevens">Weeggegevens: </label>
                     <textarea class="autoresizingBekijken" readonly>';
                         echo $weeggegevens.'
@@ -255,7 +256,7 @@
                             <br>
                                
         
-                    <!--<label for="Jaren">Jaar: *</label>
+                    <label for="Jaren">Jaar: *</label>
                             <div name="Jaren">';
                             if ($jaar == "1") 
                             {
@@ -289,15 +290,31 @@
                                 <input type="radio" id="Jaar 3" name="PJaar" value="3">
                                 <label for="Chemie">Jaar 3</label>';
                             }
-                            echo '
-       
-                            </div>-->
-        
-                            <br>
-                            <br>
-        
-                    
-            ';
+                            echo '    
+                            </div>';
+                           
+                            
+                            $ID = filter_input(INPUT_GET,'ID', FILTER_SANITIZE_SPECIAL_CHARS);
+
+                            if($_SESSION['SorD'] == "Docent") 
+                             {
+                                 echo '<form class="" action="../Include/toevoegenBeoordeling.inc.php?ID='.$ID.'" method="post">
+
+                                    <br>
+                                    <br>
+                                     <label for="beoordeling">Beoordeling: </label>
+                                     <input type="number" id="beoordeling" name="beoordeling" min="0" max="10" value="0" step="0.1" style="width: 3em">
+
+                                     <br>
+                                     <br>
+
+                                     <input class="bluebtn" type="Submit" id="beoordelingSubmit" name="beoordelingSubmit" value="Opslaan">
+                                    </form>';
+                             } 
+
+                            
+                            
+                        
             ?>
 </main>
 <script type="text/javascript">
@@ -313,8 +330,8 @@
         this.style.height = this.scrollHeight + 'px';
     }
 </script>            
-</body>
 <?php
     /* Footer */
     include_once '../Include/Footer.php';
 ?>
+</body>

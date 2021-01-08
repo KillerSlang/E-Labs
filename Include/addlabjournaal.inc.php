@@ -3,22 +3,22 @@
 session_start();
 include_once 'dbh.inc.php';
 // sanitize post
+
+
 $titelLabjournaal =  filter_input(INPUT_POST,'titelLabjournaal', FILTER_SANITIZE_SPECIAL_CHARS); 
 $uitvoerders = base64_encode(serialize($_SESSION ['studentNummerArray']));
 $experimentdatum = filter_input(INPUT_POST,'experimentdatum',FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 $experimentstartdatum = filter_input(INPUT_POST,'experimentstartdatum',FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 $experimenteinddatum = filter_input(INPUT_POST,'experimenteinddatum',FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-$doel = filter_input(INPUT_POST,'doel', FILTER_SANITIZE_SPECIAL_CHARS);
-$hypothese = filter_input(INPUT_POST,'hypothese', FILTER_SANITIZE_SPECIAL_CHARS);
-$materialen = filter_input(INPUT_POST,'materialen', FILTER_SANITIZE_SPECIAL_CHARS);
-$methode = filter_input(INPUT_POST,'methode', FILTER_SANITIZE_SPECIAL_CHARS);
+$doel = filter_input(INPUT_POST,'doel', FILTER_SANITIZE_STRING);
+$hypothese = filter_input(INPUT_POST,'hypothese', FILTER_SANITIZE_STRING);
+$materialen = filter_input(INPUT_POST,'materialen', FILTER_SANITIZE_STRING);
+$methode = filter_input(INPUT_POST,'methode', FILTER_SANITIZE_STRING);
 $logboek = filter_input(INPUT_POST,'logboek',FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 $observaties = filter_input(INPUT_POST,'observaties',FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 $weeggegevens = filter_input(INPUT_POST,'weeggegevens',FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 $vak = $_POST['LVak'];
 $jaar = $_POST['PJaar'];
-
-
 $_SESSION['titelLabjournaal'] = $titelLabjournaal;
 //$_SESSION['uitvoerders'] = $uitvoerders;
 $_SESSION['experimentdatum'] = $experimentdatum;
@@ -256,7 +256,8 @@ if (isset($_POST['LSubmit']))
             DIE;
         }
     }   
-    
+    $aanmaakDatum = date("d.m.y"); 
+    $bewerkTotDatum = date('Y-m-d', strtotime($aanmaakDatum. ' + 1 days'));
     queryAanmaken('
     INSERT INTO labjournaal
     (
@@ -264,16 +265,23 @@ if (isset($_POST['LSubmit']))
        experimentBeginDatum,experimentEindDatum,doel,bijlageWaarnemingen,
        hypothese,materialen,methode,bijlageMeetresultaten,logboek,bijlageLogboek,
        observaties,bijlageObservaties,weeggegevens,bijlageWeeggegevens,
-       bijlageAfbeelding,vak,jaar,veiligheid   
+       bijlageAfbeelding,vak,jaar,veiligheid,bewerkTotDatum 
     )
     VALUES
     (
         '.$_SESSION["StudentID"].',"1","'.$titelLabjournaal.'","'.$uitvoerders.'","'.$experimentdatum.'","'.$experimentstartdatum.'","'
         .$experimenteinddatum.'","'.$doel.'","'.$bijlageWaarnemingen.'","'.$hypothese.'","'.$materialen.'","'.$methode.'","'
         .$bijlageMeetresultaten.'","'.$logboek.'","'.$bijlageLogboek.'","'.$observaties.'","'.$bijlageObservaties.'","'.$weeggegevens.'","'
-        .$bijlageWeeggegevens.'","'.$bijlageAfbeelding.'","'.$vak.'","'.$jaar.'","'.$bijlageVeiligheid.'"
+        .$bijlageWeeggegevens.'","'.$bijlageAfbeelding.'","'.$vak.'","'.$jaar.'","'.$bijlageVeiligheid.'","'.$bewerkTotDatum.'"
     );'); 
     
+    // $query = "INSERT INTO bugdata (ProductName, Version, HardwareType, OS, Frequency, Solution )
+    //         VALUES (?, ?, ?, ?, ?, ?)";
+
+    // if ($statement = mysqli_prepare($connectie, $query))
+    // {
+    //     mysqli_stmt_bind_param($statement, 'sissss',$productname, $version,$hardware, $os, $frequency, $solution);
+
     
 	header("location: ../pages/labjournalen.php?addLabjournaal=succes");  
 

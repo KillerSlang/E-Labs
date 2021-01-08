@@ -42,20 +42,13 @@
                         $experimentdatum = $_SESSION['experimentdatum'];
                         $experimentstartdatum = $_SESSION['experimentstartdatum'];
                         $experimenteinddatum = $_SESSION['experimenteinddatum'];
-                        $veiligheid = $_SESSION['uploadveiligheid'];
                         $doel = $_SESSION['doel'];
-                        $bijlageWaarnemingen = $_SESSION['bijlageWaarnemingen'];
                         $hypothese = $_SESSION['hypothese'];
                         $materialen = $_SESSION['materialen'];
                         $methode = $_SESSION['methode'];
-                        $bijlageMeetresultaten = $_SESSION['meetresultaten'];
                         $logboek = $_SESSION['logboek'];
-                        $bijlageLogboek = $_SESSION['bijlageLogboek'] ;
                         $observaties = $_SESSION['observaties'];
-                        $bijlageObservaties = $_SESSION['bijlageObservaties'];
                         $weeggegevens = $_SESSION['weeggegevens'];
-                        $bijlageWeeggegevens =  $_SESSION['bijlageWeeggegevens'];
-                        $bijlageAfbeelding = $_SESSION['bijlageAfbeelding'];
                         $vak = $_SESSION['vak'];
                         $jaar = $_SESSION['jaar'];
                     echo'</div>';
@@ -88,7 +81,7 @@
             
 echo '<form class="Lform" action="../Include/addlabjournaal.inc.php" method="post" enctype="multipart/form-data">
             
-            <label for="titellabjournaal">Titel labjournaal: * </label>
+            <label for="titellabjournaal">Titel experiment: * </label>
             <input type="text" id="titellabjournaal" name="titelLabjournaal" value="'.$titelLabjournaal.'" size="40">
             
             <label for="uitvoerders">Uitvoerders: * </label>
@@ -136,7 +129,7 @@ echo '<form class="Lform" action="../Include/addlabjournaal.inc.php" method="pos
             <br>
 
             <label for="doel">Doel: </label>
-            <textarea id="doel" name="doel" rows="4" cols="50" placeholder="Voer gegevens in...">'.$doel.'</textarea>
+            <textarea name="doel" class="autoresizingNieuw" placeholder="Voer gegevens in...">'.$doel.'</textarea>
 
             <br>
             <br>
@@ -148,19 +141,19 @@ echo '<form class="Lform" action="../Include/addlabjournaal.inc.php" method="pos
             <br>
         
             <label for="hypothese">Hypothese: </label>
-            <textarea id="hypothese" name="hypothese" rows="4" cols="50" placeholder="Voer gegevens in...">'.$hypothese.'</textarea>
+            <textarea name="hypothese" class="autoresizingNieuw" placeholder="Voer gegevens in...">'.$hypothese.'</textarea>
 
             <br>
             <br>
 
             <label for="materialen">Materialen: </label>
-            <textarea id="materialen" name="materialen" rows="4" cols="50" placeholder="Voer gegevens in...">'.$materialen.'</textarea>
+            <textarea name="materialen" class="autoresizingNieuw" placeholder="Voer gegevens in...">'.$materialen.'</textarea>
 
             <br>
             <br>
 
             <label for="methode">Methode: </label>
-            <textarea id="methode" name="methode" rows="4" cols="50" placeholder="Voer gegevens in...">'.$methode.'</textarea>
+            <textarea  name="methode" class="autoresizingNieuw" placeholder="Voer gegevens in...">'.$methode.'</textarea>
 
             <br>
             <br>
@@ -172,7 +165,7 @@ echo '<form class="Lform" action="../Include/addlabjournaal.inc.php" method="pos
             <br>
             
             <label for="logboek">Logboek: </label>
-            <textarea id="logboek" name="logboek" rows="4" cols="50" placeholder="Voer gegevens in...">'.$logboek.'</textarea>
+            <textarea name="logboek" class="autoresizingNieuw" placeholder="Voer gegevens in...">'.$logboek.'</textarea>
 
             <br>
             <br>
@@ -184,7 +177,7 @@ echo '<form class="Lform" action="../Include/addlabjournaal.inc.php" method="pos
             <br>
 
             <label for="observaties">Observaties: </label>
-            <textarea id="observaties" name="observaties" rows="4" cols="50" placeholder="Voer gegevens in...">'.$observaties.'</textarea>
+            <textarea name="observaties" class="autoresizingNieuw" placeholder="Voer gegevens in...">'.$observaties.'</textarea>
 
             <br>
             <br>
@@ -196,7 +189,7 @@ echo '<form class="Lform" action="../Include/addlabjournaal.inc.php" method="pos
             <br>
 
             <label for="weeggegevens">Weeggegevens: </label>
-            <textarea id="weeggegevens" name="weeggegevens" rows="4" cols="50" placeholder="Voer gegevens in...">'.$weeggegevens.'</textarea>
+            <textarea name="weeggegevens" class="autoresizingNieuw" placeholder="Voer gegevens in...">'.$weeggegevens.'</textarea>
 
             <br>
             <br>
@@ -280,11 +273,23 @@ echo '<form class="Lform" action="../Include/addlabjournaal.inc.php" method="pos
 
             <input class="bluebtn" type="Submit" id="LSubmit" name="LSubmit" value="Opslaan">
     </form>';
-
     ?>
-</main>            
-
+</main>
+<script type="text/javascript">
+    textarea = document.querySelectorAll(".autoresizingNieuw");
+    textarea.forEach(function(ta){
+        var event = new CustomEvent("resizeAfterRefresh");
+        ta.addEventListener('input', autoResize, false);
+        ta.addEventListener('resizeAfterRefresh', autoResize, false);
+        ta.dispatchEvent(event);
+    })
+    function autoResize() {
+        this.style.height = 'auto';
+        this.style.height = this.scrollHeight + 'px';
+    }
+</script>            
 <?php
     /* Footer */
     include_once '../Include/Footer.php';
 ?>
+</body>

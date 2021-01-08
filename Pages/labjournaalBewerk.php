@@ -49,7 +49,7 @@
 				experimentBeginDatum,experimentEindDatum,veiligheid,doel,bijlageWaarnemingen,
 				hypothese,materialen,methode,bijlageMeetresultaten,logboek,bijlageLogboek,
 				observaties,bijlageObservaties,weeggegevens,bijlageWeeggegevens,
-				bijlageAfbeelding,vak,jaar
+				bijlageAfbeelding,vak,l.jaar
                 FROM labjournaal as l ';
                 if($_SESSION['SorD'] == "Student")
                 {
@@ -70,15 +70,56 @@
                 mysqli_stmt_store_result($stmt);  
                  
                                               
-                while (mysqli_stmt_fetch($stmt)) {
+                while (mysqli_stmt_fetch($stmt)) {  } 
+                querysluiten();
                     echo '<form class="Lform" action="../Include/editlabjournaal.inc.php" method="post" enctype="multipart/form-data">
             
-                    <label for="titellabjournaal">Titel labjournaal: * </label>
+                    <label for="titellabjournaal">Titel experiment: * </label>
                     <input type="text" id="titellabjournaal" name="titelLabjournaal" value="'.$labjournaalTitel.'" size="40">
                     
                     <label for="uitvoerders">Uitvoerders: * </label>
-                    <input type="text" id="uitvoerders" name="uitvoerders" value="'.$uitvoerders.'" size="40">
-        
+                    <input type="number" id="uitvoerders" name="uitvoerders" placeholder="studentnummer"  size="40">
+                    '; 
+                   /* $uitvoerdersArray = unserialize(base64_decode($uitvoerders));
+                    if(empty($_SESSION ['studentNaamArray']))
+                    { 
+                        foreach($uitvoerdersArray as $uitvoerder)
+                        {
+                            queryAanmaken(
+                                'SELECT studentNaam
+                                FROM student
+                                WHERE studentNummer = '.$uitvoerder);
+                            mysqli_stmt_bind_result($stmt, $studentNaam);
+                            mysqli_stmt_store_result($stmt);
+                            while (mysqli_stmt_fetch($stmt)) 
+                            {
+                                if (empty($_SESSION ['studentNummerArray']))
+                                {
+                                    $_SESSION ['studentNaamArray'] =  array();
+                                    $_SESSION ['studentNummerArray'] =  array();
+                                }
+                                array_push($_SESSION ['studentNaamArray'],$studentNaam);  
+                                array_push($_SESSION ['studentNummerArray'],$uitvoerder);   
+                            }echo '<input type="text" class="studentInput" value=" '.$studentNaam.'" size="40" readonly/>' ;
+                            querySluiten();
+                        }  
+
+                    }
+                    if (isset($_SESSION["studentNaamArray"]))
+                    {
+                        foreach($_SESSION["studentNaamArray"] as $naam)
+                        {
+                            echo '<input type="text" class="studentInput" value=" '.$naam.'" size="40" readonly/>' ;
+                        }
+                    } 
+                    if(isset($_GET["adduser"]))
+                    {
+                        if($_GET["adduser"] == "failed")
+                        {
+                            echo  'Het studentnummer is niet gevonden in de database.' ;
+                        }
+                    }*/
+                    echo'
                     <br>
         
                     <label for="experimentdatum">Experiment datum: * </label>
@@ -99,7 +140,7 @@
                     <br>
         
                     <label for="doel">Doel: </label>
-                    <textarea id="doel" name="doel" rows="4" cols="50" placeholder="Voer gegevens in...">'.$doel.'</textarea>
+                    <textarea name="doel" class="autoresizingBewerken" placeholder="Voer gegevens in...">'.$doel.'</textarea>
         
                     <br>
                     <br>
@@ -111,19 +152,19 @@
                     <br>
                 
                     <label for="hypothese">Hypothese: </label>
-                    <textarea id="hypothese" name="hypothese" rows="4" cols="50" placeholder="Voer gegevens in...">'.$hypothese.' </textarea>
+                    <textarea name="hypothese" class="autoresizingBewerken" placeholder="Voer gegevens in...">'.$hypothese.' </textarea>
         
                     <br>
                     <br>
         
                     <label for="materialen">Materialen: </label>
-                    <textarea id="materialen" name="materialen" rows="4" cols="50" placeholder="Voer gegevens in...">'.$materialen.'</textarea>
+                    <textarea name="materialen" class="autoresizingBewerken" placeholder="Voer gegevens in...">'.$materialen.'</textarea>
         
                     <br>
                     <br>
         
                     <label for="methode">Methode: </label>
-                    <textarea id="methode" name="methode" rows="4" cols="50" placeholder="Voer gegevens in...">'.$methode.'</textarea>
+                    <textarea name="methode" class="autoresizingBewerken" placeholder="Voer gegevens in...">'.$methode.'</textarea>
         
                     <br>
                     <br>
@@ -135,7 +176,7 @@
                     <br>
                     
                     <label for="logboek">Logboek: </label>
-                    <textarea id="logboek" name="logboek" rows="4" cols="50" placeholder="Voer gegevens in...">'.$logboek.'</textarea>
+                    <textarea name="logboek" class="autoresizingBewerken" placeholder="Voer gegevens in...">'.$logboek.'</textarea>
         
                     <br>
                     <br>
@@ -147,7 +188,7 @@
                     <br>
         
                     <label for="observaties">Observaties: </label>
-                    <textarea id="observaties" name="observaties" rows="4" cols="50" placeholder="Voer gegevens in...">'.$observaties.'</textarea>
+                    <textarea name="observaties" class="autoresizingBewerken" placeholder="Voer gegevens in...">'.$observaties.'</textarea>
         
                     <br>
                     <br>
@@ -159,7 +200,7 @@
                     <br>
         
                     <label for="weeggegevens">Weeggegevens: </label>
-                    <textarea id="weeggegevens" name="weeggegevens" rows="4" cols="50" placeholder="Voer gegevens in...">'.$weeggegevens.'</textarea>
+                    <textarea name="weeggegevens" class="autoresizingBewerken" placeholder="Voer gegevens in...">'.$weeggegevens.'</textarea>
         
                     <br>
                     <br>
@@ -242,17 +283,25 @@
                             <br>
         
                     <input class="bluebtn" type="Submit" id="LSubmit" name="LSubmit" value="Opslaan">
-            </form>';
-        }   
-
-
-            querySluiten();
-        
+            </form>';        
             ?>
             
-</main>            
-
+</main>
+<script type="text/javascript">
+    textarea = document.querySelectorAll(".autoresizingBewerken");
+    textarea.forEach(function(ta){
+        var event = new CustomEvent("resizeAfterRefresh");
+        ta.addEventListener('input', autoResize, false);
+        ta.addEventListener('resizeAfterRefresh', autoResize, false);
+        ta.dispatchEvent(event);
+    })
+    function autoResize() {
+        this.style.height = 'auto';
+        this.style.height = this.scrollHeight + 'px';
+    }
+</script>            
 <?php
     /* Footer */
     include_once '../Include/Footer.php';
 ?>
+</body>
