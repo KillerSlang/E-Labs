@@ -11,7 +11,7 @@
             if(isset($_POST["Submit"]) and $SorD == "Student")
             {
 
-                $link = mysqli_connect("localhost","elabs","Bla_1711")
+                $link = mysqli_connect("localhost","elabs","Bla_1711") 
                 OR DIE("Could not connect to the database!");
                 if($link)
                 {
@@ -33,17 +33,17 @@
 								
                                 
 								
-				$_SESSION["StudentID"] = $studentID;
+								$_SESSION["StudentID"] = $studentID;
                                 $_SESSION["SorD"] = "Student";
                                 $_SESSION["studentNummer"] = $studentNummer;
                                 $_SESSION["Name"] = $studentNaam;
 								
-				header("Location: https://elabs.serverict.nl/Pages/Homepage.php");
+								header("Location: https://elabs.serverict.nl/Pages/Homepage.php");
 
 								
                             }else{
-                                //echo "Probeer opnieuw";
-                                header("Location: https://elabs.serverict.nl/Pages/index.php");
+                                echo "Probeer opnieuw";
+                                
                             }
                         mysqli_close($connection);
                 }
@@ -71,19 +71,18 @@
 								
 								//header("Location: http://www.example.com/");
 								
-				session_start();
+								session_start();
                                 $_SESSION["docentID"] = $docentID;
                                 $_SESSION["SorD"] = "Docent";
                                 $_SESSION["Name"] = $docentNaam;
 
                                 echo 'succes';
                                 echo'<meta http-equiv="refresh" content="0; URL=Homepage.php">';
-				die;
-                                
+								die;
                             }else{
 
-                                //echo "Probeer opnieuw";
-                                header("Location: https://elabs.serverict.nl/Pages/index.php");
+                                echo "Probeer opnieuw";
+                                
                                 
 
                             }

@@ -1,5 +1,5 @@
 <?PHP
-include_once 'dbh.inc.php';
+include_once 'Dbh.inc.php';
 
 session_start();
 
@@ -48,7 +48,7 @@ if (isset($_POST['LSubmit']))
     (
        studentID,voorbereidingTitel,voorbereidingDatum,materialen,
        methode,hypothese,instellingenApparaten,voorbereidendevragen,veiligheid,
-       vakken,uitvoerders,uitvoeringsDatum,theorie,benodigdeFormules,doel,Jaar
+       vakken,uitvoerders,uitvoeringsDatum,theorie,benodigdeFormules,doel,jaar
     )
     VALUES
     (
@@ -57,6 +57,6 @@ if (isset($_POST['LSubmit']))
         .$uploadtheorie.'","'.$benodigdeFormules.'","'.$doel.'","'.$Jaar.'"
     );');
     querySluiten();
-	header("location: ../pages/Voorbereidingenaanmaak.php?=addvoorbereiding=succes");    
+	header("location: ../Pages/Voorbereidingenaanmaak.php?=addvoorbereiding=succes");    
 
 }
