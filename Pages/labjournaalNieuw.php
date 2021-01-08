@@ -42,20 +42,13 @@
                         $experimentdatum = $_SESSION['experimentdatum'];
                         $experimentstartdatum = $_SESSION['experimentstartdatum'];
                         $experimenteinddatum = $_SESSION['experimenteinddatum'];
-                        $veiligheid = $_SESSION['uploadveiligheid'];
                         $doel = $_SESSION['doel'];
-                        $bijlageWaarnemingen = $_SESSION['bijlageWaarnemingen'];
                         $hypothese = $_SESSION['hypothese'];
                         $materialen = $_SESSION['materialen'];
                         $methode = $_SESSION['methode'];
-                        $bijlageMeetresultaten = $_SESSION['meetresultaten'];
                         $logboek = $_SESSION['logboek'];
-                        $bijlageLogboek = $_SESSION['bijlageLogboek'] ;
                         $observaties = $_SESSION['observaties'];
-                        $bijlageObservaties = $_SESSION['bijlageObservaties'];
                         $weeggegevens = $_SESSION['weeggegevens'];
-                        $bijlageWeeggegevens =  $_SESSION['bijlageWeeggegevens'];
-                        $bijlageAfbeelding = $_SESSION['bijlageAfbeelding'];
                         $vak = $_SESSION['vak'];
                         $jaar = $_SESSION['jaar'];
                     echo'</div>';
@@ -67,20 +60,13 @@
                     $experimentdatum = "";
                     $experimentstartdatum = "";
                     $experimenteinddatum = "";
-                    $veiligheid = "";
                     $doel = "";
-                    $bijlageWaarnemingen = "";
                     $hypothese = "";
                     $materialen = "";
                     $methode = "";
-                    $bijlageMeetresultaten = "";
                     $logboek = "";
-                    $bijlageLogboek = "";
                     $observaties = "";
-                    $bijlageObservaties = "";
                     $weeggegevens = "";
-                    $bijlageWeeggegevens = "";
-                    $bijlageAfbeelding = "";
                     $vak = "";
                     $jaar = "";
                 }
@@ -274,6 +260,8 @@ echo '<form class="Lform" action="../Include/addlabjournaal.inc.php" method="pos
                     echo '
 
                     </div>
+
+
 
                     <br>
                     <br>
