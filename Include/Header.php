@@ -2,6 +2,15 @@
 <?php
 // Start the session
 session_start();
+    if(isset($_POST['taal'])) {
+        if ($_POST['taal'] == "Nederlands") {
+            $_COOKIE['taal'] = "nederlands";
+        }
+        if ($_POST['taal'] = "English") {
+            $_COOKIE['taal'] = "english";
+        }
+    header("location:Instellingen.php");
+    }
 $_SESSION["Name"] = 'Ömer avici';
 $_SESSION["studentID"] = '1';
 ?>

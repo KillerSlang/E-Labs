@@ -15,18 +15,21 @@
         <div></div>
         <div id="Imain">
             <?php
-                if ($_SESSION['taal'] == 'nederlands') {
+            if(empty($_COOKIE['taal'])){
+                $_COOKIE['taal'] = 'nederlands';
+            }
+                if ($_COOKIE['taal'] == 'nederlands') {
                 echo "<h1 id=Ih1>Account instellingen</h1>";
                 }
-                if ($_SESSION['taal'] == 'engels') {
+                if ($_COOKIE['taal'] == 'english') {
                     echo "<h1 id=Ih1>Account Settings</h1>";
                 }
                 echo "<hr>";
 
-                if ($_SESSION['taal'] == 'nederlands') {
+                if ($_COOKIE['taal'] == 'nederlands') {
                 echo "<h2>Naam:</h2>";
                 }
-                if ($_SESSION['taal'] == 'engels') {
+                if ($_COOKIE['taal'] == 'english') {
                     echo "<h2>Name:</h2>";
                 }
             /* naam weergeven van student/docent */
@@ -35,66 +38,80 @@
             /* studentnummer weergeven */
             $_SESSION['SorD'] = 'Student';
             if ($_SESSION['SorD'] == 'Student') {
-                if ($_SESSION['taal'] == 'nederlands') {
+                if ($_COOKIE['taal'] == 'nederlands') {
                     echo "<h2>Student Nummer</h2>";
                 }
-                if ($_SESSION['taal'] == 'engels') {
+                if ($_COOKIE['taal'] == 'english') {
                     echo "<h2>Student Number</h2>";
                 }
                 echo $_SESSION["StudentID"];
             }
             ?>
-            <form action="Instellingen.php" method="POST">
+            <form action="taalverander.php" method="POST" enctype="multipart/form-data">
             <?php
-                if ($_SESSION['taal'] == 'nederlands') {
+                if ($_COOKIE['taal'] == 'nederlands') {
                 echo "<h2>Jaar</h2>
-                <select>
-                    <option>Jaar 1</option>
-                    <option>Jaar 2</option>
-                    <option>Jaar 3</option>
+                <select class='select' name='jaar'>
+                    <option value='1'>Jaar 1</option>
+                    <option value='2'>Jaar 2</option>
+                    <option value='3'>Jaar 3</option>
                 </select>
                 <h2>Taal</h2>
-                <input type='radio' name='taal' onclick=window.location='http://localhost/github/E-Labs/Pages/Instellingen.php'; value='Nederlands' checked>
+                <input type='radio' name='taal' value='Nederlands' checked>
                 <label>Nederlands</label>
-                <input type='radio' name='taal' onclick=window.location='http://localhost/github/E-Labs/Pages/Instellingen.php'; value='English'>
-                <label>English</label><br>";
+                <input type='radio' name='taal' value='English'>
+                <label>English</label><br>
+                <input class='save' type='submit' name='Opslaan' value='Opslaan'>";
                 }
-                if ($_SESSION['taal'] == 'engels') {
+                /* onclick=window.location='http://localhost/github/E-Labs/Pages/taalverander.php'; */
+                if ($_COOKIE['taal'] == 'english') {
                     echo "<h2>Year</h2>
-                    <select>
-                        <option>Year 1</option>
-                        <option>Year 2</option>
-                        <option>Year 3</option>
+                    <select class='select' name='jaar'>
+                        <option value='1'>Year 1</option>
+                        <option value='2'>Year 2</option>
+                        <option value='3'>Year 3</option>
                     </select>
                     <h2>Language</h2>
-                    <input type='radio' name='taal' onclick=window.location='https://elabs.serverict.nl/Pages/Instellingen.php'; value='Nederlands'>
+                    <input type='radio' name='taal' value='Nederlands'>
                     <label>Nederlands</label>
-                    <input type='radio' name='taal' onclick=window.location='https://elabs.serverict.nl/Pages/Instellingen.php'; value='English' checked>
-                    <label>English</label><br>";
+                    <input type='radio' name='taal' value='English' checked>
+                    <label>English</label><br>
+                    <input class='save' type='submit' name='Opslaan' value='Save'>";
                 }
+                /*  onclick=window.location='https://elabs.serverict.nl/Pages/Instellingen.php'; */
+
             ?>
+            </form>
+            <form action="Instellingen.php" method="POST">
             <?php
-                if ($_SESSION['taal'] == 'nederlands') {
+                if ($_COOKIE['taal'] == 'nederlands') {
                     echo "
-                    <div id='Iknoppen'>
-                    <input class='bluebtn' type='submit' name='WWwijzig' value='Wachtwoord Wijzigen'>
-                    <div class='empty'>
-                    <input id='Iuitlog' type='submit' name='Uitloggen' value='Uitloggen'>
+                    <div class='Iknoppen'>
+                        <input class='bluebtn' type='submit' name='WWwijzig' value='Wachtwoord Wijzigen'>
+                        <div class='empty'></div>
+                        <input class='Iuitlog' type='submit' name='Uitloggen' value='Uitloggen'>
                     </div> ";
                 }
-                if ($_SESSION['taal'] == 'engels') {
+                if ($_COOKIE['taal'] == 'english') {
                     echo "
-                    <div id='Iknoppen'>
-                    <input class='bluebtn' type='submit' name='WWwijzig' value='Change Password'>
-                    <div class='empty'>
-                    <input id='Iuitlog' type='submit' name='Uitloggen' value='Log Out'>
+                    <div class='Iknoppen'>
+                        <input class='bluebtn' type='submit' name='WWwijzig' value='Change Password'>
+                        <div class='empty'></div>
+                        <input class='Iuitlog' type='submit' name='Uitloggen' value='Log Out'>
                     </div> ";
                 }
             ?>
             </form>
             <?php
+            
+
+            /* opslaan */
+            if(isset($_POST["Opslaan"])) {
+                header("location:taalverander.php");
+            }
+
             /* wachtwoord wijzigen */
-            if(!empty($_POST["WWwijzig"])) {
+            if(isset($_POST["WWwijzig"])) {
                 header("location:wwvergeten.php");
             }
             
@@ -105,18 +122,6 @@
                 header("location:Logout.php");
                 exit();
             }
-
-            /*taal selectie */
-            if(isset($_POST['taal'])) {
-                if ($_POST['taal'] == "Nederlands") {
-                    $_SESSION['taal'] = "nederlands";
-                }
-                if ($_POST['taal'] = "English") {
-                    $_SESSION['taal'] = "English";
-                }
-                header("location:Instellingen.php");
-            }
-            
             ?>
         </div>
     </main>
