@@ -1,6 +1,3 @@
-<?php
-session_start();
-?>
 <!DOCTYPE HTML>
 <head>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
@@ -16,35 +13,35 @@ session_start();
     ?>
     <main id="Protocol">
         <div class="PageTitle">
-            <h1>Nieuw Protocol</h1>
+            <h1><?=$NieuwProtocol?></h1>
             <hr>
         </div>
         <div class="whitebg">
             <div class="content">
                 <form class="Pform" method="POST" action="NewProtocol.php" enctype="multipart/form-data">
                     
-                    <label for="PTitle">Protocol Titel: *</label>
+                    <label for="**PTitle"><?=$Protocol." ".$Titel?>: *</label>
                     <input type="text" name="PTitle" placeholder="Titel" required></input><br>
                     
-                    <label for="Vakken">Vak: *</label>
+                    <label for="Vakken"><?=$Vak?>: *</label>
                     <div name="Vakken">
                         <input type="radio" id="BML" name="PVak" value="BML" checked>
-                        <label for="BML">BML</label><br>
+                        <label for="BML"><?=$BML?></label><br>
                         <input type="radio" id="Chemie" name="PVak" value="Chemie">
-                        <label for="Chemie">Chemie</label>
+                        <label for="Chemie"><?=$Chemie?></label>
                     </div>
 
-                    <label for="Jaren">Jaar: *</label>
+                    <label for="Jaren"><?=$Jaar?>: *</label>
                     <div name="Jaren">
                         <input type="radio" id="Jaar 1" name="PJaar" value="1" checked>
-                        <label for="BML">Jaar 1</label><br>
+                        <label for="BML"><?=$Jaar1?></label><br>
                         <input type="radio" id="Jaar 2" name="PJaar" value="2">
-                        <label for="Chemie">Jaar 2</label><br>
+                        <label for="Chemie"><?=$Jaar2?></label><br>
                         <input type="radio" id="Jaar 3" name="PJaar" value="3">
-                        <label for="Chemie">Jaar 3</label>
+                        <label for="Chemie"><?=$Jaar3?></label>
                     </div>
 
-                    <label for="PUpload">Protocol: *</label>
+                    <label for="PUpload"><?=$Protocol?>: *</label>
                     <input type="file" name="PUpload" id="PUpload"><br>
                     
 
@@ -109,19 +106,19 @@ session_start();
                                         }                                        
                                     }
                                     else {
-                                        echo "Je mag alleen een .pdf bestand uploaden.";
+                                        echo $ErType;
                                     }
                                 }else{
-                                    echo "Geen Bestand geselecteerd";
+                                    echo $ErBestand;
                                 }
                             }else{
-                                echo "Geen Jaar geselecteerd";
+                                echo $ErJaar;
                             }
                         }else{
-                            echo "Geen Vak geselecteerd";
+                            echo $ErVak;
                         }
                     }else{
-                        echo "Geen Titel ingevoerd";
+                        echo $ErTitel;
                     }
                 }
                 ?>
