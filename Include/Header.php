@@ -2,8 +2,17 @@
 <?php
 // Start the session
 session_start();
-$_SESSION["Name"] = 'Ömer avici';
-$_SESSION["studentID"] = '1';
+
+
+
+
+/*
+if(!isset($_SESSION['SorD'])){
+    header("Location: ../Login/login.php");
+    exit;
+} */
+
+
 ?>
 <div>
     <img onclick='location.href="../index.html"' id='navLogo'src='../Images/Logo.png'>
