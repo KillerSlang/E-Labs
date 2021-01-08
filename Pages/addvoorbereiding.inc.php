@@ -1,5 +1,5 @@
 <?PHP
-include_once '../Include/Dbh.inc.php';
+include_once 'Dbh.inc.php';
 
 session_start();
 

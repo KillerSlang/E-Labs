@@ -21,6 +21,28 @@ a{
     text-decoration: none;
     color: white;
 }
+
+a[class="voorbereidingLink"]
+{
+    color:blue;
+    text-decoration: underline;
+}
+a[class="voorbereidingLink"]:visited
+{
+    color:blue;
+    text-decoration: underline;
+}
+a[class="voorbereidingTitel"]
+{
+    color:black;
+    font-weight: bold;
+}
+a[class="voorbereidingTitel"]:visited
+{
+    color:black;
+    font-weight: bold;
+}
+
 a:visited{
     color: white;
 }
@@ -208,10 +230,51 @@ main{
 
 
 /* Labjournaal */
-
+#Labjournaal{
+    background-image: url(../Images/Leerlingen.jpg);
+    background-repeat: no-repeat;
+    background-size: 100vw;
+}
+#Lbutton{
+    float: right;
+    margin: 0 0 1vw 1vw;
+}
+.LTable{
+	border-collapse: collapse;
+    width: 100%;
+}
+.LTable tr:nth-child(odd){
+    background-color: rgba(0,0,0,0.3);
+}
+.LTable td {
+	text-align: center;
+	padding: 8px;
+}
+.LTable th {
+    text-align: center;
+	padding: 8px;
+    background-color: var(--blue);
+	color: white;
+	width: 10%;
+}
 
 /* Nieuw Labjournaal */
+.Lform {
+    display: grid;
+    grid-template-columns: 18vw 30vw 10vw;
 
+}
+.Lform label{
+    font-weight: bold;
+    grid-column: 1/2;
+}
+.Lform input{
+    grid-column: 2/4;
+}
+#LSubmit {
+    grid-column: 3/4;
+    width: 10vw;
+}
 
 /* Voorbereiding */
 
@@ -270,4 +333,44 @@ main{
 }
 
 
+
 /* Instellingen */
+
+#Imain {
+    width: 100%;
+    margin: auto;
+    text-align: center;
+}
+
+.save {
+    margin-top: 10px;
+    color: white;
+    background-color: var(--blue);
+    border-radius: 0.8vw;
+    border: black solid 0.1vw;
+    cursor: pointer;
+    padding: 0.8vw 0.3vw;
+    width: 5vw;
+}
+
+
+.Iknoppen {
+    margin-top: 20px;
+    display: grid;
+    width: 20vw;
+    height: 10px;
+    grid-template-columns: 10vw 2vw 10vw;
+    position: relative;
+    left: 32%;
+}
+
+
+.Iuitlog{
+    color: white;
+    background-color: red;
+    border-radius: 0.8vw;
+    border: black solid 0.1vw;
+    cursor: pointer;
+    padding: 0.8vw 0.3vw;
+}
+
