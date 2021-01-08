@@ -271,25 +271,3 @@ main{
 
 
 /* Instellingen */
-#Imain {
-    width: 100%;
-    margin: auto;
-    text-align: center;
-}
-
-#Iknoppen {
-    margin-top: 20px;
-    display: grid;
-    grid-template-columns: 10vw 10vw;
-    position: relative;
-    left: 33%;
-}
-
-#Iuitlog{
-    color: white;
-    background-color: red;
-    border-radius: 0.8vw;
-    border: black solid 0.1vw;
-    cursor: pointer;
-    padding: 0.8vw 0.3vw;
-}

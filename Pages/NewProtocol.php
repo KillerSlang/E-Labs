@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE HTML>
 <head>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
@@ -7,7 +10,7 @@
 </head>
 <body>
     <?php 
-    /* Header */
+    /* Include */
     include_once '../Include/Header.php';
     include_once '../Include/Dbh.inc.php';
     ?>
@@ -55,25 +58,55 @@
                             if(!empty($_POST["PJaar"])){
                                 if(!empty($_FILES)){
                                 
-                                    $studentID =  filter_var($_SESSION["studentID"], FILTER_SANITIZE_SPECIAL_CHARS);
+                                    $studentID =  filter_var($_SESSION["StudentID"], FILTER_SANITIZE_SPECIAL_CHARS);
                                     $uploadDatum =  date("Y-m-d");
                                     $titel =  filter_input(INPUT_POST,'PTitle', FILTER_SANITIZE_SPECIAL_CHARS);
                                     $vakken =  filter_input(INPUT_POST,'PVak', FILTER_SANITIZE_SPECIAL_CHARS);
                                     $jaar =  filter_input(INPUT_POST,'PJaar', FILTER_SANITIZE_SPECIAL_CHARS); 
 
                                     //Protocol pdf
+                                    
+
                                     $fileName = basename($_FILES["PUpload"]["name"]); 
                                     $fileType = pathinfo($fileName, PATHINFO_EXTENSION); 
-
+                                    
                                     if($fileType == 'pdf'){ 
 
-                                        $pdf = $_FILES['PUpload']['tmp_name']; 
-                                        $pdfContent = addslashes(file_get_contents($pdf)); 
-
-                                        queryAanmaken('INSERT INTO protocol(studentID,uploadDatum,titel,protocol,vakken,jaar)
-                                        VALUES ("'.$studentID.'","'.$uploadDatum.'","'.$titel.'","'.$pdfContent.'","'.$vakken.'","'.$jaar.'")');
-                                        querySluiten();
+                                        $targetDir = "../upload/protocol/";
+                                        $date = date("Y-m-d_h-i-s");
+                                        $targetFile= $targetDir.$_SESSION["Name"].$date.'.'.$fileType;
+                                        $uploadOk = 1;
+                                        //check if file exists
+                                        if (file_exists($targetFile)) {
+                                            echo "Sorry, file already exists.<br>";
+                                            $uploadOk = 0;
+                                        }
                                         
+                                        // Check file size
+                                        if ($_FILES["PUpload"]["size"] > 5000000000) {
+                                            echo "Sorry, your file is too large.<br>";
+                                            $uploadOk = 0;
+                                        }        
+
+                                        // Check if $uploadOk is set to 0 by an error
+                                        if ($uploadOk == 0) {
+                                            echo "Sorry, your file was not uploaded.<br>";
+
+                                        // if everything is ok, try to upload file
+                                        } else {
+                                            if (move_uploaded_file($_FILES["PUpload"]["tmp_name"], $targetFile)) {
+                                                queryAanmaken('INSERT INTO protocol(studentID,uploadDatum,titel,protocol,vakken,jaar)
+                                                    VALUES ("'.$studentID.'","'.$uploadDatum.'","'.$titel.'","'.$targetFile.'","'.$vakken.'","'.$jaar.'")');
+                                                querySluiten();
+
+                                                echo "The file ". htmlspecialchars( basename( $_FILES["PUpload"]["name"])). " has been uploaded.<br>";
+												//echo "<a class="bluebtn" id="Pbutton" href='Protocollen.php'>Protocollen</a>";
+                                            } else {
+                                            echo "Sorry, there was an error uploading your file.<br>";
+											echo $targetDir;
+											echo $targetFile;
+                                            }
+                                        }                                        
                                     }
                                     else {
                                         echo "Je mag alleen een .pdf bestand uploaden.";

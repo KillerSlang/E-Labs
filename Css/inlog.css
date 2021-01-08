@@ -1,0 +1,365 @@
+body{
+
+    font-family: Arial; 
+    background-image: url("../images/achtergrondelabs.jpg");
+    background-size: 100%;
+    background-repeat: repeat;
+    background-color: gray;
+    
+
+}
+
+
+
+#Container{
+
+
+    width: 100%;
+    min-width: 1000px;
+	margin: 0px;
+    display: flex;
+    justify-content: center;
+	  
+
+}
+
+#inlogbox{
+
+
+    border: solid 5px black;
+
+
+    
+    margin-top: 2.5%;
+
+}
+
+#logobalk{
+    background-color: #003a6b;
+    
+    margin: 0px;
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns: 25% 50% 25%;
+    grid-template-rows: 100px;
+}
+
+
+
+#logobalklogo{
+    grid-column: 1/2;
+    grid-row: 1;
+    width: 80%;
+    height: 100%;
+
+}
+
+#logobalktext {
+
+    grid-column: 2/3;
+	grid-row: 1;
+    width: 100%;
+    height: 100%;
+
+}
+
+
+
+
+
+#inlogruimte{
+background-color: rgba(255,255,255,0.8);
+
+
+
+}
+
+
+form{
+
+    display: grid;
+
+
+    grid-template-columns: 33.3333333333333333% 33.3333333333333333% 33.3333333333333333%;
+    grid-template-rows: 30px 50px 50px 50px 50px 50px 50px;
+    grid-row-gap: 15px;
+
+
+}
+
+
+img {
+    width: 100%;
+
+    margin: 0px;
+    padding-left: 15px;
+    padding-top: 15px;
+  }
+
+  h1{
+
+    margin: 0px;
+    color: white;
+    
+    padding-top: 10%;
+    padding-left: 10%;
+
+  }
+
+  p{
+
+    margin: 0px;
+    padding: 0px;
+
+  }
+
+
+  #Invoerveld1{
+
+    width: 100%;
+    margin: 0px;
+    
+
+    grid-column: 2/3;
+    grid-row: 2;
+
+
+  }
+
+  #Invoerveld2{
+
+    width: 100%;
+    margin: 0px;
+    
+
+    grid-column: 2/3;
+    grid-row: 3;
+
+
+  }
+
+
+  #wwvergeten{
+
+    width: 100%;
+    margin: 0px;
+    
+
+    grid-column: 2/3;
+    grid-row: 4;
+
+    padding-left: 25px;
+    
+
+  }
+
+  #SorD{
+
+    width: 100%;
+    margin: 0px;
+    
+
+    grid-column: 2/3;
+    grid-row: 5;
+
+
+  }
+
+  #registrerenbutton{
+
+    width: 50%;
+    margin: 0px;
+    
+
+    grid-column: 1;
+    grid-row: 6;
+    padding-left: 175px;
+    float: right;
+
+  }
+
+  #inlogbutton{
+
+    width: 0%;
+    margin: 0px;
+    float: right;
+    padding-left: 75%;
+
+    grid-column: 2;
+    grid-row: 6;
+
+
+  }
+
+  #errorcodes{
+
+    font-size: 20px;
+    color: black;
+    padding-left: 20px;
+    padding-bottom: 20px;
+    margin-top: 10px;
+    grid-column: 1;
+    grid-row: 6;
+    
+
+  }
+
+
+
+  /* form styling */
+
+
+  input[type=email],input[type=password],input[type=text],input[type=number]{
+    width: 100%;
+    padding: 3px 2px;
+    background-color: white;
+    
+
+  }
+
+  input[type=radio]{
+    
+    cursor: pointer;
+    transform: scale(1.2);
+
+  }
+
+  input[type=submit]{
+    
+    cursor: pointer;
+    color: white;
+    background-color: #003a6b;
+    border-color: black;
+    transform: scale(1.2);
+    padding-left: 13px;
+    padding-right: 13px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    transform: scale(1.4);
+    
+
+  }
+
+  button{
+    
+    cursor: pointer;
+    color: white;
+    background-color: #003a6b;
+    border-color: black;
+    transform: scale(1.4);
+    
+
+  }
+
+ 
+
+  /* registreer pagina */
+
+  #Invoerveld3{
+
+    width: 100%;
+    margin: 0px;
+    
+
+    grid-column: 2/3;
+    grid-row: 4;
+
+
+  }
+  #Invoerveld4{
+
+    width: 100%;
+    margin: 0px;
+    
+
+    grid-column: 2/3;
+    grid-row: 5;
+
+
+  }
+  #Invoerveld5{
+
+    width: 100%;
+    margin: 0px;
+    
+
+    grid-column: 2/3;
+    grid-row: 6;
+
+
+  }
+  #Invoerveld6{
+
+    width: 100%;
+    margin: 0px;
+    
+
+    grid-column: 2/3;
+    grid-row: 7;
+
+
+  }
+  #Invoerveld7{
+
+    width: 100%;
+    margin: 0px;
+    
+
+    grid-column: 2/3;
+    grid-row: 8;
+
+
+  }
+  #Invoerveld8{
+
+    width: 100%;
+    margin: 0px;
+    
+
+    grid-column: 2/3;
+    grid-row: 9;
+
+
+  }
+  #Invoerveld9{
+
+    width: 100%;
+    margin: 0px;
+    
+
+    grid-column: 2/3;
+    grid-row: 10;
+
+
+  }
+
+  #registreerbutton{
+
+    width: 0%;
+    margin: 0px;
+   
+    padding-left: 150%;
+    padding-top: 20px;
+    grid-column: 2;
+    grid-row: 11;
+    margin-bottom: 20px;
+
+  }
+
+  /* wwvergeten pagina */
+
+  #wwwijzigbutton{
+
+    width: 0%;
+    margin: 0px;
+   
+    padding-left: 130%;
+    padding-top: 20px;
+    grid-column: 2;
+    grid-row: 11;
+    margin-bottom: 20px;
+
+  }
+

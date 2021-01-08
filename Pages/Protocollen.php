@@ -27,27 +27,7 @@
                 
                 <br>
                 <?php
-                    if(isset($_POST['protocolSubmit'])){
-                        if(!empty($_POST['protocolID'])) {
-                            
-                            $protocolID = $_POST['protocolID'];
-                            queryAanmaken('SELECT titel, vakken, jaar, protocol
-                                            FROM protocol 
-                                            WHERE protocolID = '.$protocolID.'');
-                            echo( mysqli_stmt_bind_result($stmt, $titel, $vakken, $jaar, $protocol));
-                            mysqli_stmt_store_result($stmt);
-                            mysqli_stmt_fetch($stmt);
-                            
-                            querySluiten();
-
-                            //Bestandsnaam genereren aan de hand van waarden uit database
-                            $fileName = $titel.' '.$vakken.' - Jaar'.$jaar.' - Protocol.pdf';
-                            echo downloadFile($protocol, $fileName);
-                            ob_end_clean();
-
-                        }
-                    }
-                    $sql = 'SELECT protocolID, studentNaam, uploadDatum, titel, vakken, jaar
+                    $sql = 'SELECT protocolID, studentNaam, uploadDatum, titel, vakken, jaar, protocol
                     FROM protocol AS p
                     JOIN student AS s ON p.studentID = s.studentID ';
                     if(!empty($_GET['jaar'])){
@@ -70,7 +50,7 @@
                         $sql = $sql.'LIMIT '.$limit.' OFFSET '.$offset.'';
                     }
                     queryAanmaken($sql);
-                    mysqli_stmt_bind_result($stmt, $protocolID, $studentNaam, $uploadDatum, $titel, $vakken, $jaar);
+                    mysqli_stmt_bind_result($stmt, $protocolID, $studentNaam, $uploadDatum, $titel, $vakken, $jaar, $protocolDir);
                     mysqli_stmt_store_result($stmt);
                     if(mysqli_stmt_num_rows($stmt) != 0)
                     {
@@ -83,8 +63,7 @@
                             <td>".$uploadDatum."</td>
                             <td>".$vakken."</td>
                             <td>".$jaar."</td>
-                            <td><form method='post'><input type='hidden' name='protocolID' value='{$protocolID}'>
-                            <button  class='bluebtn' type='submit' value'submit' name='protocolSubmit'>Download</button></form></td>
+                            <td><a class='bluebtn' id='Pbutton' target='_blank' href='".$protocolDir."'>Download</a></td>
                             </tr>";
                         }
                         echo"</table>";

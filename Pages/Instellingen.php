@@ -14,70 +14,36 @@
     <main>
         <div></div>
         <div id="Imain">
+            <h1 id="Ih1">Accountinstellingen</h1>
+            <hr>
+            <h2>Naam:</h2>
             <?php
-                if ($_SESSION['taal'] == 'nederlands') {
-                echo "<h1 id=Ih1>Account instellingen</h1>";
-                }
-                if ($_SESSION['taal'] == 'engels') {
-                    echo "<h1 id=Ih1>Account Settings</h1>";
-                }
-                echo "<hr>";
-
-                if ($_SESSION['taal'] == 'nederlands') {
-                echo "<h2>Naam:</h2>";
-                }
-                if ($_SESSION['taal'] == 'engels') {
-                    echo "<h2>Name:</h2>";
-                }
             /* naam weergeven van student/docent */
             echo $_SESSION["Name"];
             
             /* studentnummer weergeven */
-            $_SESSION['SorD'] = 'Student';
             if ($_SESSION['SorD'] == 'Student') {
-                if ($_SESSION['taal'] == 'nederlands') {
-                    echo "<h2>Student Nummer</h2>";
-                }
-                if ($_SESSION['taal'] == 'engels') {
-                    echo "<h2>Student Number</h2>";
-                }
-                echo $_SESSION["StudentID"];
+                echo "<h2>Student Nummer</h2>";
+                echo $_SESSION["studentID"];
             }
             ?>
             <form action="Instellingen.php" method="POST">
-            <?php
-                $_SESSION['taal'] = 'engels';
-                if ($_SESSION['taal'] == 'nederlands') {
-                echo "<h2>Jaar</h2>
+                <h2>Jaar</h2>
                 <select>
                     <option>Jaar 1</option>
                     <option>Jaar 2</option>
                     <option>Jaar 3</option>
                 </select>
                 <h2>Taal</h2>
-                <input type=radio name=taal value=Nederlands checked>
+                <input type="radio" name="taal" value="Nederlands" checked>
                 <label>Nederlands</label>
-                <input type=radio name=taal value=English>
-                <label>English</label><br>";
-                }
-                if ($_SESSION['taal'] == 'engels') {
-                    echo "<h2>Year</h2>
-                    <select>
-                        <option>Year 1</option>
-                        <option>Year 2</option>
-                        <option>Year 3</option>
-                    </select>
-                    <h2>Language</h2>
-                    <input type=radio name=taal value=Nederlands>
-                    <label>Nederlands</label>
-                    <input type=radio name=taal value=English checked>
-                    <label>English</label><br>";
-                }
-            ?>
+                <input type="radio" name="taal" value="English">
+                <label>English</label><br>
                 <div id="Iknoppen">
                 <input class="bluebtn" type="submit" name="WWwijzig" value="Wachtwoord Wijzigen">
-                <div class="empty"></div>
-                <input id="Iuitlog" type="submit" name="Uitloggen" value="Uitloggen">
+                <div class="empty">
+				<br>
+                <a class="bluebtn" id="Iuitlog" href="Logout.php">Uitloggen</a>
                 </div>
             </form>
             <?php
@@ -86,24 +52,21 @@
                 header("location:wwvergeten.php");
             }
             
-            /* Uitloggen met de knop */
+            /* Uitloggen met de knop 
             if(!empty($_POST["Uitloggen"])) {
-                session_unset();
-                session_destroy();
                 header("location:Logout.php");
-                exit();
-            }
+            }*/
 
-            /*taal selectie */
+            /* taal selectie
             if(isset($_POST['taal'])) {
-                if ($_POST["taal"] == "Nederlands") {
-                    $_SESSION['taal'] = "nederlands";
+                if ("taal" = "Nederlands") {
+                    $_SESSION['taal'] = "Nederlands";
                 }
-                if ($_POST["taal"] = "English") {
+                if ("taal" = "English") {
                     $_SESSION['taal'] = "English";
                 }
             }
-            
+            */
             ?>
         </div>
     </main>
@@ -112,4 +75,3 @@
     include_once '../Include/Footer.php';
     ?>    
 </body>
-</html>
