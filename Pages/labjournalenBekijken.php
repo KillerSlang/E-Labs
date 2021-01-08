@@ -112,13 +112,13 @@
                     if(!$queryError)
                     {                   
                         $sql = '
-                        SELECT studentNaam,labjournaalTitel,experimentDatum,vak,jaar,labjournaalID
+                        SELECT studentNaam,labjournaalTitel,experimentDatum,vak,l.jaar,labjournaalID
                         FROM labjournaal as l
                         JOIN student AS s ON l.studentID = s.studentID';
                         if(!empty($_GET['jaar']))
                         {
                             $jaarlaag = $_GET['jaar'];
-                            $sql .= ' WHERE jaar = '.$jaarlaag;
+                            $sql .= ' WHERE l.jaar = '.$jaarlaag;
                             if($_SESSION['SorD'] == "Student")
                             {
                                 $sql .= ' AND s.studentID = '.$_SESSION["StudentID"];  

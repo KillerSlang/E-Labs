@@ -73,14 +73,14 @@
                 }
                 
                     $sql = '
-                    SELECT studentNaam,labjournaalTitel,experimentDatum,vak,jaar,labjournaalID
+                    SELECT studentNaam,labjournaalTitel,experimentDatum,vak,l.jaar,labjournaalID
                     FROM labjournaal as l
                     JOIN student AS s ON l.studentID = s.studentID
                     ';    
                     if(!empty($_GET['jaar']))
                     {
                         $jaarlaag = $_GET['jaar'];
-                        $sql .= ' WHERE jaar = '.$jaarlaag;
+                        $sql .= ' WHERE l.jaar = '.$jaarlaag;
                         if($_SESSION['SorD'] == "Student")
                         {
                             $sql .= ' AND s.studentID = '.$_SESSION["StudentID"];  
@@ -94,7 +94,8 @@
                              $sql .= ' WHERE s.studentID = '.$_SESSION["StudentID"].' ';      // student of docent
                         }       
                     }
-                    $sql .= ' AND l.vak = "'.$selected.'" ';                    
+                    $sql .= ' AND l.vak = "'.$selected.'" '; 
+                    $sql .= ' AND l.bewerkTotDatum > NOW()';                  
                     $sql .= 'ORDER BY experimentDatum DESC ';
                     if(!isset($_GET['page']) || $_GET['page'] == 0){
                         $sql = $sql.'LIMIT 5'; 
@@ -112,7 +113,7 @@
                         echo "<table class='LTable'><th>Titel</th><th>Auteur</th><th>Experiment datum</th><th>Vakken</th><th>Jaar</th><th>download</th>";
                         if($_SESSION["SorD"] == "Student")
                         {
-                            echo"<th>Bewerken</th>";
+                            echo"<th>Bewerken</th><th>Verwijderen</th>";
                         }else{ echo"<th>Bekijken</th>";}
                         while(mysqli_stmt_fetch($stmt))
                         {
@@ -122,10 +123,12 @@
                             <td>'.$experimentDatum.'</td>
                             <td>'.$vak.'</td>
                             <td>'.$jaar.'</td>
-                            <td><a class="labjournaalLink"href="../Include/downloadLabjournaal.inc.php?ID='.$labjournaalID .'"</a><i class="fas fa-download"></i></td>';
+                            <td><a class="labjournaalLink" href="../Include/downloadLabjournaal.inc.php?ID='.$labjournaalID .'"</a><i class="fas fa-download"></i></td>';
+                            
                             if($_SESSION["SorD"] == "Student")
                             {
                                 echo'<td><a class="labjournaalLink"href="labjournaalBewerk.php?ID='.$labjournaalID .'"</a>Bewerken</td>';
+                                echo'<td><a class="labjournaalLink" href="../Include/deleteLabjournaal.inc.php?ID='.$labjournaalID .'"</a><i class="fas fa-trash-alt"></i></td>';
                             }else{ echo'<td><a class="labjournaalLink"href="labjournaalBekijken.php?ID='.$labjournaalID .'"</a>Bekijken</td>';}
                             
                             echo '</tr>' ;

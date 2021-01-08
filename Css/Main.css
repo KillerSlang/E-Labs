@@ -228,6 +228,24 @@ main{
     margin-bottom: 5px;
     margin-left: 10px;
 }
+.autoresizingBewerken {
+    display: block;
+    overflow: hidden;
+    resize: none;
+    width: 25vw;
+    height: auto;
+    outline:none;
+    margin-bottom: 5%;
+}
+.autoresizingNieuw {
+    display: block;
+    overflow: hidden;
+    resize: none;
+    width: 35vw;
+    height: auto;
+    outline:none;
+    margin-bottom: 5%;
+}
 #Lbutton{
     float: right;
     margin: 0 0 1vw 1vw;
