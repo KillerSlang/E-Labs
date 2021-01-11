@@ -74,7 +74,7 @@
 
                                     }
 
-                                    echo $errorcode;
+                                    
                                 }
                                 ?>
 

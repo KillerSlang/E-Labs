@@ -24,7 +24,7 @@ $Chemie = "Chemie";
 
 /* Header */
 $Voorbereidingen =  "Voorbereidingen";
-$Labjournalen =  "Labjournalen";
+$Labjournalen =  "Experiments";
 $Protocollen =  "Protocollen";
 $Instellingen =  "Instellingen";
 $Uitloggen =  "Uitloggen";
@@ -41,8 +41,8 @@ $Registreren = "Registreren";
 $Errorcode = "Probeer opnieuw";
 $Inloggen = "Inloggen";
 
-$voeremail = "voer hier uw e-mail in...";
-$voerww = "voer hier uw wachtwoord in...";
+$voeremail = "Voer hier uw e-mail in...";
+$voerww = "Voer hier uw wachtwoord in...";
 
 /* Registreren */
 $Voornaam = "Voornaam:";
@@ -67,15 +67,16 @@ $Nieuwww = "Nieuw Wachtwoord";
 $herhaalww = "Herhaal Wachtwoord";
 
 $voerstudentnummer = "voer hier uw studentnummer in...";
-$antwoordvraag1 = "antwoord op vraag 1...";
-$antwoordvraag2 = "antwoord op vraag 2...";
-$antwoordvraag3 = "antwoord op vraag 3...";
+$antwoordvraag1 = "Antwoord op vraag 1...";
+$antwoordvraag2 = "Antwoord op vraag 2...";
+$antwoordvraag3 = "Antwoord op vraag 3...";
 $voernieuwww = "Voer hier uw nieuw wachtwoord in...";
 $voerherhaalww = "Herhaal uw wachtwoord...";
 $Wijzigww = "Wijzig Wachtwoord";
 
 $Probeeropnieuwgegevensonjuist = "Probeer opnieuw gegevens zijn onjuist";
 
+$Updatedsucces = "Wachtwoord succesvol bijgewerkt! druk <a href='inlog.php'>Hier</a> Om terug te gaan naar de <a href='inlog.php'>login pagina</a>.";
 
 /* Instellingen */
 $Naam = "Naam";
@@ -97,9 +98,9 @@ $ProtocollenAlle =  "Alle Protocollen";
 
 
 /* Labjournaal*/
-$Labjournaal =  "Labjournaal";
-$LabjournaalNieuw =  "Nieuw Labjournaal";
-$ProtocollenAlle =  "Alle Protocollen";
+$Labjournaal =  "Experiment";
+$LabjournaalNieuw =  "Nieuw Experiment";
+$LabjournaalAlle =  "Alle Protocollen";
 
 /* Voorbereidingen*/
 $Voorbereiding =  "Voorbereiding";

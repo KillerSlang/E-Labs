@@ -2,13 +2,16 @@
 <html>
     <head>  
 
-        <?php
-        if($_COOKIE["taal"] == "Nederlands"){
-            include_once "Nederlands.php";
-            } else {
-            include_once "Engels.php";
-            }
-        ?>
+    <?php
+        if(empty($_COOKIE["taal"])){
+            setcookie("taal", "nederlands");
+        }
+        if($_COOKIE["taal"] == "english"){
+            include_once "../Include/Engels.php";
+        } else {
+            include_once "../Include/Nederlands.php";
+        }
+        ?> 
 
         <title><?= $Registreren ?></title>
         <link href="../Css/inlog.css" rel="stylesheet" type="text/css">

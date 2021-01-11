@@ -36,7 +36,7 @@
 
                     <form action = "<?php echo $_SERVER['PHP_SELF']; ?>" method = "POST">
         
-                        <div id="Invoerveld1"><p><label for="Studentnummer"><?= $StudentNummer ?></label><br> 
+                        <div id="Invoerveld1"><p><label for="Studentnummer"><b><?= $StudentNummer ?></b></label><br> 
                         <input type = "Number" name = "Studentnummer" placeholder="<?= $voerstudentnummer ?>"></p></div>
                         
                         <div id="Invoerveld2"><p><label for="Email"><b><?= $Email ?></b></label><br> 
@@ -115,7 +115,7 @@ if(isset($_POST["Submit"])){
                                 $SQLUW = "UPDATE student SET wachtwoord='$Password' WHERE studentID = '$studentID'";
                                 
                                 if(mysqli_query($conn, $SQLUW)) {
-                                    echo "Wachtwoord succesvol bijgewerkt! druk <a href='inlog.php'>Hier</a> Om terug te gaan naar de <a href='inlog.php'>login pagina</a>.";
+                                    echo $Updatedsucces;
                                 } else {
                                     echo "Error updating record: " . mysqli_error($conn);
                                 }
