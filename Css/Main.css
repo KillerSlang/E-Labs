@@ -225,7 +225,6 @@ main{
     height: auto;
     border: none;
     outline:none;
-    margin-bottom: 5px;
     margin-left: 10px;
 }
 .autoresizingBewerken {
@@ -246,7 +245,13 @@ main{
     outline:none;
     margin-bottom: 5%;
 }
-#Lbutton{
+.Lbutton{
+    color: white;
+    background-color: var(--blue);
+    border-radius: 0.8vw;
+    height: 3vw;
+    border: black solid 0.1vw;
+    cursor: pointer;
     float: right;
     margin: 0 0 1vw 1vw;
 }
@@ -320,6 +325,7 @@ input[class="studentInput"]
     border: none;
     outline: none;
 }
+
 /*input[class="studentInput"]:visited
 {
     border:none;

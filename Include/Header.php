@@ -4,16 +4,17 @@
 session_start();
 $_SESSION["Name"] = 'Ömer avici';
 $_SESSION["StudentID"] = '1';
+$_SESSION["DocentID"] = '1';
 $_SESSION["SorD"] = "Student";
 ?>
 <div>
-    <img onclick='location.href="../index.html"' id='navLogo'src='../Images/Logo.png'>
+    <img onclick='location.href="../index.html"' id='navLogo' src='../Images/Logo.png' alt="logo">
 </div>
 <div class = 'menu'>
     <ul>
-        <li id=''><a href='Voorbereidingen.php'>Voorbereidingen</a></li>
-        <li id=''><a href='Labjournalen.php'>Labjournalen</a></li>
-        <li id=''><a href='Protocollen.php?jaar=0'>Protocollen</a></li>
+        <li><a href='Voorbereidingen.php'>Voorbereidingen</a></li>
+        <li><a href='Labjournalen.php'>Labjournalen</a></li>
+        <li><a href='Protocollen.php?jaar=0'>Protocollen</a></li>
     </ul>    
 </div>
 <div class = 'account'>
