@@ -1,6 +1,3 @@
-<?php
-session_start();
-?>
 <!DOCTYPE HTML>
 <head>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
@@ -24,7 +21,7 @@ session_start();
                 <form class="Pform" method="POST" action="NewProtocol.php" enctype="multipart/form-data">
                     
                     <label for="PTitle">Protocol Titel: *</label>
-                    <input type="text" name="PTitle" placeholder="Titel" required></input><br>
+                    <input type="text" name="PTitle" placeholder="Titel" required></input>
                     
                     <label for="Vakken">Vak: *</label>
                     <div name="Vakken">
@@ -34,19 +31,10 @@ session_start();
                         <label for="Chemie">Chemie</label>
                     </div>
 
-                    <label for="Jaren">Jaar: *</label>
-                    <div name="Jaren">
-                        <input type="radio" id="Jaar 1" name="PJaar" value="1" checked>
-                        <label for="BML">Jaar 1</label><br>
-                        <input type="radio" id="Jaar 2" name="PJaar" value="2">
-                        <label for="Chemie">Jaar 2</label><br>
-                        <input type="radio" id="Jaar 3" name="PJaar" value="3">
-                        <label for="Chemie">Jaar 3</label>
-                    </div>
 
-                    <label for="PUpload">Protocol: *</label>
-                    <input type="file" name="PUpload" id="PUpload"><br>
                     
+                    <label for="PUpload">Protocol: *</label>
+                    <input type="file" name="PUpload" id="PUpload" accept=".pdf">
 
                     <input class="bluebtn" id="PSubmit" type="submit" value="Upload protocol" name="PSubmit">
                 </form>
@@ -96,7 +84,7 @@ session_start();
                                         } else {
                                             if (move_uploaded_file($_FILES["PUpload"]["tmp_name"], $targetFile)) {
                                                 queryAanmaken('INSERT INTO protocol(studentID,uploadDatum,titel,protocol,vakken,jaar)
-                                                    VALUES ("'.$studentID.'","'.$uploadDatum.'","'.$titel.'","'.$targetFile.'","'.$vakken.'","'.$jaar.'")');
+                                                    VALUES ("'.$studentID.'","'.$uploadDatum.'","'.$titel.'","'.$targetFile.'","'.$vakken.'","'.$_SESSION["jaar"].'")');
                                                 querySluiten();
 
                                                 echo "The file ". htmlspecialchars( basename( $_FILES["PUpload"]["name"])). " has been uploaded.<br>";

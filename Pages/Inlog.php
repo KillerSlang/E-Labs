@@ -11,12 +11,12 @@
             if(isset($_POST["Submit"]) and $SorD == "Student")
             {
 
-                $link = mysqli_connect("localhost","elabs","Bla_1711") 
+                $link = mysqli_connect("localhost","root","") 
                 OR DIE("Could not connect to the database!");
                 if($link)
                 {
             
-                        $connection = mysqli_connect("localhost","elabs","Bla_1711");
+                        $connection = mysqli_connect("localhost","root","");
                         mysqli_select_db($connection, 'elabs');
             
                         $SQL = "SELECT studentID, studentNummer, studentNaam FROM student WHERE wachtwoord = '$wachtwoord' and studentEmail = '$email'";

@@ -1,5 +1,6 @@
 :root {
     --blue: #003a6b;
+    --darkblue: #006cbe;
 }
 
 body{
@@ -198,7 +199,7 @@ main{
 }
 .whitebg{
     grid-column: 2/3;
-    background-color: rgba(255,255,255,0.5);
+    background-color: white;
     padding: 1vw;
     margin: 0;
     border: solid 0.1vw;
@@ -290,20 +291,41 @@ main{
     background-size: cover;
 
 }
-#Pbutton{
-    float: right;
-    margin: 0 0 1vw 1vw;
+#Pcontent{
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 1vw;
+}
+.Pbutton{
+    grid-row: 1/2;
+    display: block;
+}
+.Pselected{
+    background-color: var(--darkblue);
+}
+#Pdropdwn{
+    grid-row: 1/2;
+}
+select.bluebtn {
+    width: 100%;
+    height: 100%;
 }
 .PTable{
+    grid-row: 2/3;
+    grid-column: 1/7;
 	border-collapse: collapse;
     width: 100%;
 }
+.PTable tr:nth-child(even){
+    background-color: rgba(0,0,0,0.05);
+}
 .PTable tr:nth-child(odd){
-    background-color: rgba(0,0,0,0.3);
+    background-color: rgba(0,0,0,0.2);
 }
 .PTable td {
 	text-align: center;
-	padding: 8px;
+    padding: 8px;
 }
 .PTable th {
     text-align: center;
@@ -312,7 +334,34 @@ main{
 	color: white;
 	width: 10%;
 }
-
+.PTable .Pbutton{
+    margin: 0.5vw;
+}
+.Ppages1{
+    width: 75%;
+    grid-row: 3/4;
+    grid-column: 2/4;
+}
+.Ppages2{
+    color: black;
+    text-align: center;
+    grid-row: 3/4;
+    grid-column: 3/5;
+    font-size: 1.5vw;
+    margin-top: 0.5vw;
+}
+.Ppages3{
+    width: 75%;
+    justify-self: end;
+    grid-row: 3/4;
+    grid-column: 4/6;
+}
+.Ppages4{
+    text-align: center;
+    grid-row: 3/4;
+    grid-column: 3/5;
+    margin-top: 0.5vw;
+}
 
 /* Nieuw Protocol */
 .Pform {
@@ -323,8 +372,13 @@ main{
 .Pform label{
     font-weight: bold;
     grid-column: 1/2;
+
 }
 .Pform input{
+    grid-column: 2/4;
+    margin-bottom: 1vw;
+}
+#Pupload{
     grid-column: 2/4;
 }
 #PSubmit {
