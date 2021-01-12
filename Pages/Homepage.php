@@ -21,7 +21,7 @@
         </header>
 
         <div id="mainhomepage">
-            <h1>Kies uw bestemming</h1>
+            <h1 id="Hh1">Kies uw bestemming</h1>
             <hr>
 
             <div id ="container">

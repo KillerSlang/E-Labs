@@ -11,6 +11,7 @@
     include_once '../Include/Header.php';
     include_once '../Include/Dbh.inc.php';
     ?>
+    <div id="Iachtergrond">
     <main>
         <div></div>
         <div id="Imain">
@@ -125,6 +126,7 @@
             ?>
         </div>
     </main>
+    </div>
     <?php 
     /* Footer */
     include_once '../Include/Footer.php';
