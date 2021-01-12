@@ -203,64 +203,15 @@
                             echo'Geen bestand geupload.';
                         }
                 echo'</p>
-                    
-                        <label>Vak: *</label>
-                        <div ID="Vakken">';
-                            if ($vak == "BML")
-                            {
-                                echo'
-                                <input type="radio" id="BML" name="LVak" value="BML" checked>
-                                <label>BML</label><br>
-                                <input type="radio" id="Chemie" name="LVak" value="Chemie">
-                                <label>Chemie</label>';
-                            }
-                            else
-                            {
-                                echo'
-                                <input type="radio" id="BML" name="LVak" value="BML">
-                                <label>BML</label><br>
-                                <input type="radio" id="Chemie" name="LVak" value="Chemie" checked>
-                                <label>Chemie</label>';
-                            }
-                  echo '</div>  
-                                                 
-                    
-                        <label>Jaar: *</label>
-                        <div id="Jaren">';
-                        if ($jaar == "1") 
-                        {
-                            echo '<input type="radio" id="Jaar1" name="PJaar" value="1" checked>
-                            <label>Jaar 1</label><br>
-                            <input type="radio" id="Jaar2" name="PJaar" value="2">
-                            <label>Jaar 2</label><br>
-                            <input type="radio" id="Jaar3" name="PJaar" value="3">
-                            <label>Jaar 3</label>';
-                        } elseif ($jaar == "2")
-                        {
-                            echo '<input type="radio" id="Jaar1" name="PJaar" value="1">
-                            <label>Jaar 1</label><br>
-                            <input type="radio" id="Jaar2" name="PJaar" value="2" checked>
-                            <label>Jaar 2</label><br>
-                            <input type="radio" id="Jaar3" name="PJaar" value="3">
-                            <label>Jaar 3</label>';
-                        } elseif ($jaar == "3") 
-                        {
-                            echo '<input type="radio" id="Jaar1" name="PJaar" value="1" >
-                            <label>Jaar 1</label><br>
-                            <input type="radio" id="Jaar2" name="PJaar" value="2">
-                            <label>Jaar 2</label><br>
-                            <input type="radio" id="Jaar3" name="PJaar" value="3" checked>
-                            <label>Jaar 3</label>';
-                        } else {
-                            echo '<input type="radio" id="Jaar1" name="PJaar" value="1" checked>
-                            <label>Jaar 1</label><br>
-                            <input type="radio" id="Jaar2" name="PJaar" value="2">
-                            <label>Jaar 2</label><br>
-                            <input type="radio" id="Jaar3" name="PJaar" value="3">
-                            <label>Jaar 3</label>';
-                        }
-                        echo '    
+                        <br>
+                        <div ID="Vakken">
+                            Vak: '.$vak.'
+                        </div>                                            
+                        <br>
+                        <div id="Jaren">
+                        Jaar:  '.$jaar.'    
                         </div>
+                        <br>
                     ';   
                     if($_SESSION['SorD'] == "Docent") 
                     {

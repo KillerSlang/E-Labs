@@ -181,7 +181,6 @@
                                 $url = 'labjournalen.php?jaar='.$jaarlaag.'&page=';
                                 $next = $_GET['page']+1;
                                 $back = $_GET['page']-1;
-
                                 echo'<a class="Lbutton"  href="'.$url.$next.'">Volgende pagina</a>';
                                 echo'<a class="Lbutton"  href="'.$url.$back.'">Vorige pagina</a>';
                             }

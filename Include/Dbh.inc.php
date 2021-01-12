@@ -61,7 +61,7 @@ De advanced functie wordt gebruikt om door de code heen een query op te bouwen. 
       if(!$GLOBALS['conn']) //wanneer de connectie niet werkt.
       {
         DIE("Could not connect". mysqli_error($GLOBALS['conn']));
-      }
+      } 
       $GLOBALS ['stmt'] = mysqli_prepare($GLOBALS['conn'], $sql) or DIE("Preparation error"); // is het een werkende query
       if(!empty($types))// wanneer er een type is ingevuld. 
       {

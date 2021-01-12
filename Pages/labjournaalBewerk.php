@@ -68,10 +68,9 @@
                     mysqli_stmt_bind_result($stmt, $labjournaalTitel, $uitvoerders, $experimentDatum, $experimentBeginDatum, $experimentEindDatum, 
                                             $veiligheid, $doel, $bijlageWaarnemingen, $hypothese, $materialen, $methode, $bijlageMeetresultaten, $logboek,
                                             $bijlageLogboek, $observaties, $bijlageObservaties, $weeggegevens, $bijlageWeeggegevens, $bijlageAfbeelding,
-                                            $vak, $jaar); // bind de resultaten
-                    
-                    mysqli_stmt_store_result($stmt);  //sla de resultaten op.                                                          
-                    while (mysqli_stmt_fetch($stmt)) {  } 
+                                            $vak, $jaar); // bind de resultaten                    
+                    mysqli_stmt_store_result($stmt);  //sla de resultaten op.
+                    while (mysqli_stmt_fetch($stmt)) {  }
                         /* maak de while statement aan en sluit deze.
                         omdat er altijd maar 1 resultaat is wordt deze meteen gesloten zodat de database connectie
                         weer kan worden gebruikt. */
