@@ -3,6 +3,7 @@
     <head>
         <title>inlogpagina</title>
         <link href="../Css/inlog.css" rel="stylesheet" type="text/css">
+        <link href="../Css/Main.css" rel="stylesheet" type="text/css">
     </head>
     <body> 
         <div id="ILachtergrond">
