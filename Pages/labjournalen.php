@@ -77,9 +77,9 @@
                                 FROM labjournaal as l
                                 JOIN student AS s ON l.studentID = s.studentID
                                 ',false);    
-                            if(!empty($_GET['jaar'])) // wanneer er op een jaar knop is gedrukt.
+                            if(!empty($_SESSION['jaar'])) // wanneer er op een jaar knop is gedrukt.
                             {
-                                $jaarlaag = $_GET['jaar']; // haal het jaar uit de get
+                                $jaarlaag = $_SESSION['jaar']; // haal het jaar uit de get
                                 queryAanmakenAdvanced(
                                     ' WHERE l.jaar = ?',
                                     false,
@@ -171,7 +171,8 @@
                                     echo '</tr>' ;
                                 }
                                 echo"</table>";
-                            }
+                                $queryError = false;
+                            }else {$queryError = true;}
                             if(!isset($_GET['page']) || $_GET['page'] == 0){ // de knoppen printen om door de labjournalen heen te gaan.
                                 $url = 'labjournalen.php?jaar='.$jaarlaag.'&page=';
                                 $next = $url.'1';
@@ -185,6 +186,13 @@
                                 echo'<a class="Lbutton"  href="'.$url.$back.'">Vorige pagina</a>';
                             }
                             querySluiten(); // de database connectie sluiten.
+                            
+                            if($queryError)
+                            { 
+                                echo '<div class="bericht">
+                                        <b>Er zijn geen labjournalen om te bewerken.</b><hr>
+                                    </div>';
+                            }
                         ?>
                 </div>
             </div>

@@ -183,7 +183,8 @@ main{
 }
 .bericht
 {
-	text-align: center;
+    text-align: center;
+    float: left;
 }
 
 .content{
@@ -324,6 +325,13 @@ input[class="studentInput"]
     margin-left: 1%;
     border: none;
     outline: none;
+}
+
+.imageBekijken
+{
+    width: 45%;
+    height: auto;
+
 }
 
 /*input[class="studentInput"]:visited

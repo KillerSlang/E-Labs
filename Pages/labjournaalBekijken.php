@@ -91,7 +91,7 @@
                                 echo'<a class="downloadLink" target="_blank" href="'.$veiligheid.'">'.$veiligheid.'</a><br>'; //print de downloadlink uit.
                                 $extension = explode(".", $veiligheid);
                                 if ($extension[3] == "jpg" || $extension[3] == "jpeg" || $extension[3] == "png"){ // wanneer het bestand een afbeelding is
-                                    echo '<img src="'.$veiligheid.'">'; // print de afbeelding
+                                    echo '<img class="imageBekijken" src="'.$veiligheid.'">'; // print de afbeelding
                                 }
                             } else { // wanneer er geen bestand is geupload
                                 echo'Geen bestand geupload.';
@@ -107,7 +107,7 @@
                         <label>Download waarnemingen: </label>';
                         if(!empty($bijlageWaarnemingen)){// wanneer er een bestand is geupload
                             echo'<a class="downloadLink" target="_blank" href="'.$bijlageWaarnemingen.'">'.$bijlageWaarnemingen.'</a><br>
-                            <img src="'.$bijlageWaarnemingen.'">'; //print de downloadlink uit en print de afbeelding. Hier hoeft geen check op omdat je alleen maar afbeeldingen kan uploaden.
+                            <img class="imageBekijken" src="'.$bijlageWaarnemingen.'">'; //print de downloadlink uit en print de afbeelding. Hier hoeft geen check op omdat je alleen maar afbeeldingen kan uploaden.
                         } else {// wanneer er geen bestand is geupload
                             echo'Geen bestand geupload.';
                         }
@@ -136,7 +136,7 @@
                             echo'<a class="downloadLink" target="_blank" href="'.$bijlageMeetresultaten.'">'.$bijlageMeetresultaten.'</a><br>';//print de downloadlink uit.
                             $extension = explode(".", $bijlageMeetresultaten);// wanneer het bestand een afbeelding is
                             if ($extension[3] == "jpg" || $extension[3] == "jpeg" || $extension[3] == "png"){
-                                echo '<img src="'.$bijlageMeetresultaten.'">';// print de afbeelding
+                                echo '<img class="imageBekijken" src="'.$bijlageMeetresultaten.'">';// print de afbeelding
                             }  
                         } else {// wanneer er geen bestand is geupload
                             echo'Geen bestand geupload.';
@@ -168,7 +168,7 @@
                             echo'<a class="downloadLink" target="_blank" href="'.$bijlageObservaties.'">'.$bijlageObservaties.'</a><br>';//print de downloadlink uit.
                             $extension = explode(".", $bijlageObservaties);
                             if ($extension[3] == "jpg" || $extension[3] == "jpeg" || $extension[3] == "png"){// wanneer het bestand een afbeelding is
-                                echo '<img src="'.$bijlageObservaties.'">';// print de afbeelding
+                                echo '<img class="imageBekijken" src="'.$bijlageObservaties.'">';// print de afbeelding
                             }
                         } else {// wanneer er geen bestand is geupload
                             echo'Geen bestand geupload.';
@@ -198,7 +198,7 @@
                         <label>Download afbeeldingen: </label>';
                         if(!empty($bijlageAfbeelding)){// wanneer er een bestand is geupload
                             echo'<a class="downloadLink" target="_blank" href="'.$bijlageAfbeelding.'">'.$bijlageAfbeelding.'</a><br>
-                            <img src="'.$bijlageAfbeelding.'">';//print de downloadlink uit en print de afbeelding. Hier hoeft geen check op omdat je alleen maar afbeeldingen kan uploaden.
+                            <img class="imageBekijken" src="'.$bijlageAfbeelding.'">';//print de downloadlink uit en print de afbeelding. Hier hoeft geen check op omdat je alleen maar afbeeldingen kan uploaden.
                         } else {// wanneer er geen bestand is geupload
                             echo'Geen bestand geupload.';
                         }

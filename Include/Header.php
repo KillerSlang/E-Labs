@@ -3,7 +3,7 @@
 // Start the session
 session_start();
 $_SESSION["Name"] = 'Ömer avici';
-$_SESSION["StudentID"] = '1';
+$_SESSION["StudentID"] = '2';
 $_SESSION["DocentID"] = '1';
 $_SESSION["SorD"] = "Student";
 ?>
