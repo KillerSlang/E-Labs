@@ -28,9 +28,8 @@ omdat er altijd maar 1 resultaat is wordt deze meteen gesloten zodat de database
 weer kan worden gebruikt. */
 querySluiten(); 
     require_once __DIR__ . '/vendor/autoload.php'; // voeg de library toe om de functies van mpdf uit te voeren.
-    $date = date('d-m-y H:i'); // vraag de datum met tijd aan om toe te voegen aan de naam van de pdf.
+    $date = date('d-m-y HH:MM'); // vraag de datum met tijd aan om toe te voegen aan de naam van de pdf.
     $pdfname = $labjournaalTitel . " " .$date.".pdf"; // naam van de pdf
-
     // maak nieuw pdf aan.
     $mpdf = new \Mpdf\Mpdf();
     $mpdf->showImageErrors = true; // deze is toegevoegd zodat er afbeeldingen kunnen worden getoond.

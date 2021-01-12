@@ -72,18 +72,28 @@
                         </form>
                     <?PHP
                             // Bouw de query via de sql variabele op.
-                            $sql = '
-                                SELECT studentNaam,labjournaalTitel,experimentDatum,vak,l.jaar,labjournaalID
+                            queryAanmakenAdvanced(
+                                'SELECT studentNaam,labjournaalTitel,experimentDatum,vak,l.jaar,labjournaalID
                                 FROM labjournaal as l
                                 JOIN student AS s ON l.studentID = s.studentID
-                                ';    
+                                ',false);    
                             if(!empty($_GET['jaar'])) // wanneer er op een jaar knop is gedrukt.
                             {
                                 $jaarlaag = $_GET['jaar']; // haal het jaar uit de get
-                                $sql .= ' WHERE l.jaar = '.$jaarlaag; // Voeg de Where statement met jaar toe aan de query.
+                                queryAanmakenAdvanced(
+                                    ' WHERE l.jaar = ?',
+                                    false,
+                                    "i",
+                                    $jaarlaag
+                                ); // Voeg de Where statement met jaar toe aan de query.
                                 if($_SESSION['SorD'] == "Student")// wanneer een student ingelogd is zal er gecontroleerd worden of het studentID overeenkomt.
                                 {
-                                    $sql .= ' AND s.studentID = '.$_SESSION["StudentID"];  
+                                    queryAanmakenAdvanced(
+                                        ' AND s.studentID = ? ',
+                                        false,
+                                        "i",
+                                        $_SESSION["StudentID"]
+                                    );  
                                 }       
                             }
                             else // anders wordt er alleen gecontroleerd op de student
@@ -91,26 +101,47 @@
                                 $jaarlaag = 0; 
                                 if($_SESSION['SorD'] == "Student")
                                 {
-                                    $sql .= ' WHERE s.studentID = '.$_SESSION["StudentID"].' ';   
+                                    queryAanmakenAdvanced(
+                                        ' WHERE s.studentID = ? ',
+                                        false,
+                                        "i",
+                                        $_SESSION["StudentID"]
+                                    );
                                 }       
                             }
-                            $sql .= ' AND l.vak = "'.$selected.'" '; // voegt toe aan de query welk vak geselecteerd is.
-
+                            queryAanmakenAdvanced(
+                                ' AND l.vak = ? ',
+                                false,
+                                "s",
+                                $selected
+                            );// voegt toe aan de query welk vak geselecteerd is.
                             if($_SESSION['SorD'] == "Student") // voor een docent is dit een bekijk pagina. Dus is deze query niet nodig bij de student wel.
                             { 
-                                $sql .= ' AND l.bewerkTotDatum > NOW()'; // controleer de bewerkDatum met de datum van Nu.
+                                queryAanmakenAdvanced(
+                                    ' AND l.bewerkTotDatum >= NOW()',
+                                    false
+                                ); // controleer de bewerkDatum met de datum van Nu.
                             }                  
-                            $sql .= 'ORDER BY experimentDatum DESC '; // de volgorde van de labjournalen is via de experiment datum.
+                            queryAanmakenAdvanced(
+                                'ORDER BY experimentDatum DESC ',
+                                false
+                            ); // de volgorde van de labjournalen is via de experiment datum.
                 
-                            if(!isset($_GET['page']) || $_GET['page'] == 0){ // De pagina van de labjournalen onderverdelen in groepjes van vijf.
-                                $sql = $sql.'LIMIT 5'; 
+                            if(!isset($_GET['page']) || $_GET['page'] == 0){
+                                queryAanmakenAdvanced('LIMIT 5',false); 
                             } else {
                                 $counter = $_GET['page'];
                                 $limit = 20;
                                 $offset = $limit*($counter-1);
-                                $sql = $sql.'LIMIT '.$limit.' OFFSET '.$offset.'';
+                                //$sql = $sql.'LIMIT '.$limit.' OFFSET '.$offset.'';
+                                queryAanmakenAdvanced(
+                                    'LIMIT ? OFFSET ?',
+                                    false,
+                                    "ii",
+                                    $limit,$offset
+                                );
                             }
-                            queryAanmaken($sql); // de opgebouwde query wordt via deze functie uitgevoerd.
+                            queryAanmakenAdvanced(' ',true); // de opgebouwde query wordt via deze functie uitgevoerd.
                             mysqli_stmt_bind_result($stmt, $studentNaam, $labjournaalTitel,$experimentDatum, $vak, $jaar,$labjournaalID);
                             mysqli_stmt_store_result($stmt);
                             if(mysqli_stmt_num_rows($stmt) != 0) // wanneer er resultaten zijn wordt de tabel uitgeprint en de knoppen onderaan ook weergeven anders niet.

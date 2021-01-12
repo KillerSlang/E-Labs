@@ -67,22 +67,25 @@
                     <?php
                         queryAanmaken('SELECT studentNummer
                                         FROM student
-                                        WHERE studentID = '.$_SESSION["StudentID"]);// zoek het studentnummer op van de ingelogde student.
+                                        WHERE studentID = ?',
+                                        "i",
+                                         $_SESSION["StudentID"]);// zoek het studentnummer op van de ingelogde student.
                         mysqli_stmt_bind_result($stmt,$studentNummer);
                         mysqli_stmt_store_result($stmt);
-                        if(mysqli_stmt_num_rows($stmt) != 0)
+                        if(mysqli_stmt_num_rows($stmt) != 0) // wanneer er resultaat is
                         {
                             while (mysqli_stmt_fetch($stmt)) 
                             {
                                 $studentNummer = $studentNummer;
                             }
                         }
+
                         querysluiten(); 
                         queryaanmaken('SELECT uitvoerders,labjournaalID
                                     FROM labjournaal');// haal de uitvoerders array en labjournaalID op uit de database.
                         mysqli_stmt_bind_result($stmt,$uitvoerders,$labjournaalID);
                         mysqli_stmt_store_result($stmt);  
-                        if(mysqli_stmt_num_rows($stmt) != 0)
+                        if(mysqli_stmt_num_rows($stmt) != 0) // wanneer er resultaat is.
                         {            
                             $labjournalenArray = array(); // maak een nieuwe array aan.             
                             while (mysqli_stmt_fetch($stmt)) 
@@ -96,37 +99,66 @@
                                     }
                                 }
                             }
-                            $labjournalen = ""; 
+                            $queryError = false; // er is geen error de de queryerror is false.
+                            
+                        }else {$queryError = true;  }// wanneer er geen labjournalen op te halen zijn is de true.
+                            queryAanmakenAdvanced(
+                               'SELECT studentNaam,labjournaalTitel,experimentDatum,vak,l.jaar,labjournaalID
+                                FROM labjournaal as l
+                                JOIN student AS s ON l.studentID = s.studentID',
+                                false // deze boolean is ervoor om de query uit te voeren ja of nee. In dit geval dus nog niet.
+                            ); // er wordt nu dus ook nog geen connectie gemaakt met de database.
+                            $labjournalen = true;
                             foreach ($labjournalenArray as $labjournaal) 
                             {
-                                if(empty($labjournalen))// als labjournalen variabele nog leeg is begin met de where statement. Om de labjournalen op te halen
+                                if($labjournalen)// als labjournalen variabele nog leeg is begin met de where statement. Om de labjournalen op te halen
                                 {
-                                    $labjournalen .= " WHERE ((labjournaalID =".$labjournaal;
+                                    $labjournalen = false;
+                                    queryAanmakenAdvanced(
+                                        ' WHERE ((labjournaalID = ? ',
+                                        false,
+                                        "i",
+                                        $labjournaal
+                                    );
                                 }
                                 else// anders de OR statement gebruiken om labjournalen op te halen.
                                 {
-                                    $labjournalen .= " OR labjournaalID =".$labjournaal;
+                                   // $labjournalen .= " OR labjournaalID =".$labjournaal;
+                                   queryAanmakenAdvanced(
+                                       ' OR labjournaalID = ? ',
+                                       false,
+                                       "i",
+                                       $labjournaal
+                                   );
                                 }
-                            } $labjournalen .= ")"; // wanneer de foreach is afgelopen sluit af met een haakje.
-                            $queryError = false; // er is geen error de de queryerror is false.
-                            
-                        }else {$queryError = true;}// wanneer er geen labjournalen op te halen zijn is de true.
+                            } queryAanmakenAdvanced (")",false); // wanneer de foreach is afgelopen sluit af met een haakje.
+
                         querysluiten(); // de database connectie sluiten. 
                         if(!$queryError)// wanneer er labjournalen zijn gevonden.
                         {                   
-                            $sql = '
+                            /*$sql = '
                             SELECT studentNaam,labjournaalTitel,experimentDatum,vak,l.jaar,labjournaalID
                             FROM labjournaal as l
-                            JOIN student AS s ON l.studentID = s.studentID'; //haal de gegevens van de labjournalen op.
-                            $sql .= $labjournalen; // voeg de labjournalen array toe aan de query
+                            JOIN student AS s ON l.studentID = s.studentID'; *///haal de gegevens van de labjournalen op.
+                            //$sql .= $labjournalen; // voeg de labjournalen array toe aan de query
                             $sqljaar = "";
                             if(!empty($_GET['jaar'])) // pas de filter van het geselecteerde jaar toe.
                             {
                                 $jaarlaag = $_GET['jaar'];
-                                $sqljaar .= ' AND l.jaar = '.$jaarlaag;
+                                queryAanmakenAdvanced (
+                                    ' AND l.jaar = ? ',
+                                    false,
+                                    "i",
+                                    $jaarlaag
+                                );
                                 if($_SESSION['SorD'] == "Student") // wanneer student is ingelogd controleren op studentID.
                                 {
-                                    $sqljaar .= ' AND s.studentID = '.$_SESSION["StudentID"];  
+                                    queryAanmakenAdvanced(
+                                        ' AND s.studentID = ? ',
+                                        false,
+                                        "i",
+                                        $_SESSION["StudentID"]
+                                    );  
                                 }       
                             }
                             else //wanneer geen jaar is geselecteerd zet jaar op nul.
@@ -134,21 +166,47 @@
                                 $jaarlaag = 0;
                                 if($_SESSION['SorD'] == "Student")
                                 {
-                                        $sqljaar .= ' AND s.studentID = '.$_SESSION["StudentID"].' ';   // wanneer student is ingelogd controleren op studentID.
+                                    queryAanmakenAdvanced(
+                                        ' AND s.studentID = ? ',
+                                        false,
+                                        "i",
+                                        $_SESSION["StudentID"]                                        
+                                    );// wanneer student is ingelogd controleren op studentID.
                                 }       
                             }
-                            $sql .= $sqljaar.' AND l.vak = "'.$selected.'" ';    // voeg de vak filter toe aan de query.     
-                            $sql .= ') OR (l.studentID = s.studentID AND l.vak = "'.$selected.'" '.$sqljaar.')  '; // laat de labjournalen ook zien waar de ingelogde student auteur van is.       
-                            $sql .= 'ORDER BY experimentDatum DESC '; 
+                            queryAanmakenAdvanced(
+                                ' AND l.vak = ? ',
+                                false,
+                                "s",
+                                $selected
+                            );    // voeg de vak filter toe aan de query.     
+                            queryAanmakenAdvanced(
+                                ') OR (l.studentID = s.studentID AND l.vak = ? AND l.jaar = ? )',
+                                false,
+                                "si",
+                                $selected,$sqljaar // laat de labjournalen ook zien waar de ingelogde student auteur van is.  
+                            );     
+                            queryAanmakenAdvanced(
+                                'ORDER BY experimentDatum DESC ',
+                                false); 
                             if(!isset($_GET['page']) || $_GET['page'] == 0){
-                                $sql = $sql.'LIMIT 5'; 
+                                queryAanmakenAdvanced('LIMIT 5',false); 
                             } else {
                                 $counter = $_GET['page'];
                                 $limit = 20;
                                 $offset = $limit*($counter-1);
-                                $sql = $sql.'LIMIT '.$limit.' OFFSET '.$offset.'';
+                                //$sql = $sql.'LIMIT '.$limit.' OFFSET '.$offset.'';
+                                queryAanmakenAdvanced(
+                                    'LIMIT ? OFFSET ?',
+                                    false,
+                                    "ii",
+                                    $limit,$offset
+                                );
                             }
-                            queryAanmaken($sql);
+                            queryAanmakenAdvanced(
+                                ' ',
+                                true
+                            );
                             mysqli_stmt_bind_result($stmt, $studentNaam, $labjournaalTitel,$experimentDatum, $vak, $jaar,$labjournaalID);
                             mysqli_stmt_store_result($stmt);
                             if(mysqli_stmt_num_rows($stmt) != 0) // print de tabel uit met de labjournalen.

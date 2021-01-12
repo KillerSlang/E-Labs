@@ -262,8 +262,9 @@ if (isset($_POST['LSubmit'])) // wanneer er vanaf de labjournaalNieuw pagina op 
             exit;
         }
     }   
-    $aanmaakDatum = date("d.m.y"); // maak een variabele aan met de datum van nu.
-    $bewerkTotDatum = date('Y-m-d', strtotime($aanmaakDatum. ' + 1 days')); // tel 1 dag bij deze datum op. Tot en met deze datum is het labjournaal te bewerken.
+    $aanmaakDatum = date("Y-m-d H:i:s"); // maak een variabele aan met de datum van nu.
+   // echo $aanmaakDatum; exit;
+    $bewerkTotDatum = date('Y-m-d H:i:s', strtotime($aanmaakDatum. ' + 1 days')); // tel 1 dag bij deze datum op. Tot en met deze datum is het labjournaal te bewerken.
     queryAanmaken('
     INSERT INTO labjournaal
     (
