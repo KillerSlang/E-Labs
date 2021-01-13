@@ -1,9 +1,19 @@
 <?php
             // Starting session
             session_start();
-            include_once'../Include/Dbh.inc.php';
-            $email = filter_input(INPUT_POST,'Email',FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-            $ww = filter_input(INPUT_POST,'Password',FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            if(empty($_COOKIE["taal"])){
+                setcookie("taal", "nederlands");
+            }
+            if($_COOKIE["taal"] == "english"){
+                include_once "../Include/Engels.php";
+            } else {
+                include_once "../Include/Nederlands.php";
+            }
+            
+			if(isset($_POST["Submit"])){
+
+            $email = $_POST["Email"];
+            $ww = $_POST["Password"];
             $wachtwoord = sha1($ww);
             $SorD = filter_input(INPUT_POST,'SorD',FILTER_SANITIZE_FULL_SPECIAL_CHARS);   
             if(isset($_POST["Submit"]) and $SorD == "Student")

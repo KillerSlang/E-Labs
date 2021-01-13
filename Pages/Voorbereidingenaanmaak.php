@@ -41,10 +41,10 @@
             <form class="Lform" action="../Pages/addvoorbereiding.inc.php" method="post" enctype="multipart/form-data">
             
             <label for="titelvoorbereiding">Titel voorbereiding: * </label>
-            <input type="text" id="titellabvoorbereiding" name="titelvoorbereiding" size="40">
+            <input type="text" id="titellabvoorbereiding" name="titelvoorbereiding" size="40"><br>
 
             <label for="uitvoerders">Uitvoerders: * </label>
-            <input type="text" id="uitvoerders" name="uitvoerders" size="40">
+            <input type="text" id="uitvoerders" name="uitvoerders" size="40"><br>
 
             <label for="voorbereidingsdatum">Voorbereidings datum: * </label>
             <input type="date" id="voorbereidingsdatum" name="voorbereidingsdatum">

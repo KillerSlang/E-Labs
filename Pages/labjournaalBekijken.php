@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="../Css/Main.css">
     <link rel="stylesheet" href="../Css/Responsive.css">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Voorbereiding Bekijken</title>
+    <title>Nieuw Labjournaal</title>
 </head>
 
 <body>
@@ -18,7 +18,7 @@
 
 <main id="Labjournaal">
     <div class="PageTitle">
-        <h1>Voorbereiding</h1>
+        <h1>Labjournaal</h1>
         <hr>
     </div>
     <div class="whitebg">
@@ -50,16 +50,20 @@
                 }else{ $ID = 0; }
                 
 
-                $sql = 'SELECT studentID,voorbereidingTitel,voorbereidingDatum,materialen,
-       methode,hypothese,instellingenApparaten,voorbereidendevragen,veiligheid,
-       vakken,uitvoerders,uitvoeringsDatum,theorie,benodigdeFormules,doel,jaar
-				FROM voorbereiding
-                WHERE voorbereidingID ='.$ID;
+                $sql = 'SELECT labjournaalTitel,uitvoerders,experimentdatum,
+				experimentBeginDatum,experimentEindDatum,veiligheid,doel,bijlageWaarnemingen,
+				hypothese,materialen,methode,bijlageMeetresultaten,logboek,bijlageLogboek,
+				observaties,bijlageObservaties,weeggegevens,bijlageWeeggegevens,
+				bijlageAfbeelding,vak,jaar
+				FROM labjournaal
+                WHERE labjournaalID ='.$ID;
 
                 queryAanmaken($sql);
                 
-                mysqli_stmt_bind_result($stmt, $studentID, $titelvoorbereiding, $voorbereidingsdatum, $materialen, $methode, $hypothese,
-                $instellingenappraten, $voorbereidendevragen, $veiligheid, $vak, $uitvoerders, $uitvoeringsdatum, $uploadtheorie, $benodigdeFormules, $doel, $Jaar);
+                mysqli_stmt_bind_result($stmt, $labjournaalTitel, $uitvoerders, $experimentDatum, $experimentBeginDatum, $experimentEindDatum, 
+                                        $veiligheid, $doel, $bijlageWaarnemingen, $hypothese, $materialen, $methode, $bijlageMeetresultaten, $logboek,
+                                        $bijlageLogboek, $observaties, $bijlageObservaties, $weeggegevens, $bijlageWeeggegevens, $bijlageAfbeelding,
+                                        $vak, $jaar);
                 
                 mysqli_stmt_store_result($stmt);  
                  
@@ -67,115 +71,125 @@
                 while (mysqli_stmt_fetch($stmt)) {
                     echo '
             
-                    <label for="titellabjournaal">Titel labjournaal: </label>';
-                    echo $titelvoorbereiding.' <br>
+                    <label for="titellabjournaal">Titel labjournaal: * </label>';
+                    echo '<p>'.$labjournaalTitel.'</p> <br>
                     
                     
-                    <label for="uitvoerders">Uitvoerders: </label>';
-                    echo $uitvoerders.'
+                    <label for="uitvoerders">Uitvoerders: * </label>';
+                    echo '<p>'.$uitvoerders.'</p> <br>
         
                     <br>
         
-                    <label for="experimentdatum">Experiment datum: </label>';
-                    echo $voorbereidingsdatum.'
+                    <label for="experimentdatum">Experiment datum: * </label>';
+                    echo '<p>'.$experimentDatum.'</p> <br>
         
+
                     <br><label for="experimentstartdatum">Start datum experiment: </label>';
-                    echo $uitvoeringsdatum.'
-        
+                    echo '<p>'.$experimentBeginDatum.'</p> <br>
+
+
+                    <br><label for="experimenteinddatum">Eind datum experiment: </label>';
+                    echo '<p>'.$experimentEindDatum.'</p> <br>
+
                     <br>
         
-                    <label for="uploadveiligheid">Theorie: </label>
+                    <label for="uploadveiligheid">Veiligheid: </label>
                     <form method="post"><input type="hidden" name="labjournaalID" value="'.$ID.'">
                             <button id="Ptbutton" class="bluebtn" type="submit" value="submit" name="labjournaalSubmit">Download</button></form>
                     <br>
                     <br>
         
-                    <label for="benodigdeFormules">Benodigde formules: </label>';
-                    echo $benodigdeFormules.'
+                    <label for="doel">Doel: </label>';
+                    echo '<p>'.$doel.'</p> <br>
         
                     <br>
                     <br>
         
-                    <!--<label for="uploadwaarnemingen">Upload waarnemingen bestand: </label>
+                    <label for="uploadwaarnemingen">Upload waarnemingen bestand: </label>
+                    <form method="post"><input type="hidden" name="labjournaalID" value="'.$ID.'">
+                    <button id="Ptbutton" class="bluebtn" type="submit" value="submit" name="labjournaalSubmit">Download</button></form>
                     <!--<input type="file" id="uploadwaarnemingen" name="uploadwaarnemingen" accept="image/*">-->
         
                     <br>
                     <br>
                 
-                    <label for="instellingenappraten">Instellingen appraten: </label>';
-                    echo $instellingenappraten.'
-        
-                    <br>
-                    <br>
-        
-                    <label for="doel">Doel: </label>';
-                    echo $doel.'
-        
-                    <br>
-                    <br>
-        
                     <label for="hypothese">Hypothese: </label>';
-                    echo $hypothese.'
-        
+                    echo '<p>'.$hypothese.'</p> <br>
+
                     <br>
                     <br>
         
-                    <!--<label for="uploadmeetresultaten">Upload meetresultaten bestand: </label>
+                    <label for="materialen">Materialen: </label>';
+                    echo '<p>'.$materialen.'</p> <br>
+
+                    <br>
+                    <br>
+        
+                    <label for="methode">Methode: </label>';
+                    echo '<p>'.$methode.'</p> <br>
+
+                    <br>
+                    <br>
+        
+                    <label for="uploadmeetresultaten">Upload meetresultaten bestand: </label>
+                    <form method="post"><input type="hidden" name="labjournaalID" value="'.$ID.'">
+                    <button id="Ptbutton" class="bluebtn" type="submit" value="submit" name="labjournaalSubmit">Download</button></form>
                     <!--<input type="file" id="uploadmeetresultaten" name="uploadmeetresultaten" accept=".xls,.xlsx,image/*">-->
         
                     <br>
                     <br>
                     
-                    <label for="materialen">Materialen: </label>';
-                    echo $materialen.'
+                    <label for="logboek">Logboek: </label>';
+                    echo '<p>'.$logboek.'</p> <br>
         
                     <br>
                     <br>
                     
-                    <!-- <label for="uploadlogboek">Upload logboek bestand: </label>
+                    <label for="uploadlogboek">Upload logboek bestand: </label>
+                    <form method="post"><input type="hidden" name="labjournaalID" value="'.$ID.'">
+                    <button id="Ptbutton" class="bluebtn" type="submit" value="submit" name="labjournaalSubmit">Download</button></form>
                     <!--<input type="file" id="uploadlogboek" name="uploadlogboek" accept=".xls,.xlsx,.doc,.docx">-->
         
                     <br>
                     <br>
         
-                    <label for="methode">Methode: </label>';
-                    echo $methode.'
-        
+                    <label for="observaties">Observaties: </label>';
+                    echo '<p>'.$observaties.'</p> <br>
+
                     <br>
                     <br>
                     
-                    <!--<label for="uploadobservaties">Upload observatie bestand: </label>
+                    <label for="uploadobservaties">Upload observatie bestand: </label>
+                    <form method="post"><input type="hidden" name="labjournaalID" value="'.$ID.'">
+                    <button id="Ptbutton" class="bluebtn" type="submit" value="submit" name="labjournaalSubmit">Download</button></form>
                     <!--<input type="file" id="uploadobservaties" name="uploadobservaties" accept="image/*,.doc,.docx">-->
         
                     <br>
                     <br>
         
-                    <label for="veiligheid">Veiligheid: </label>';
-                    echo $veiligheid.'
-        
-                    <br>
-                    <br>
+                    <label for="weeggegevens">Weeggegevens: </label>';
+                    echo '<p>'.$weeggegevens.'</p> <br>
 
-                    <label for="voorbereidendevragen">Voorbereidende vragen: </label>';
-                    echo $voorbereidendevragen.'
-        
                     <br>
                     <br>
                     
-                    <!--<label for="uploadweegegevens">Upload weeggegevens bestand: </label>
+                    <label for="uploadweegegevens">Upload weeggegevens bestand: </label>
+                    <form method="post"><input type="hidden" name="labjournaalID" value="'.$ID.'">
+                    <button id="Ptbutton" class="bluebtn" type="submit" value="submit" name="labjournaalSubmit">Download</button></form>
                     <!--<input type="file" id="uploadweeggegevens" name="uploadweeggegevens" accept=".xls,.xlsx">-->
         
                     <br>
                     <br>
         
-                    <!--<label for="uploadafbeelding">Upload afbeeldingen: </label>
+                    <label for="uploadafbeelding">Upload afbeeldingen: </label>
+                    <form method="post"><input type="hidden" name="labjournaalID" value="'.$ID.'">
+                    <button id="Ptbutton" class="bluebtn" type="submit" value="submit" name="labjournaalSubmit">Download</button></form>
                     <!--<input type="file" id="uploadafbeelding" name="uploadafbeelding" accept="image/*" multiple>-->
         
                     <br>
                     <br>
-                    <label for="Vakken">Vak: </label>';
-                    echo $vak.'
-                    <!--        <div name="Vakken">';
+                    <label for="Vakken">Vak: *</label>
+                            <div name="Vakken">';
                                 if ($vak == "BML")
                                 {
                                     echo'
