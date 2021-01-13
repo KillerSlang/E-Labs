@@ -64,23 +64,23 @@
                 
                 <br>
                 <?php
-                    $sql = 'SELECT protocolID, studentNaam, uploadDatum, titel, vakken, jaar, protocol
+                    $sql = 'SELECT protocolID, studentNaam, uploadDatum, titel, vakken, p.jaar, protocol
                     FROM protocol AS p
                     JOIN student AS s ON p.studentID = s.studentID ';
-                    $sql .= 'AND p.vakken = "'.$selected.'" ';
+                    $sql .= 'WHERE p.vakken = "'.$selected.'" ';
                     if(!empty($_GET['jaar'])){
                         if($_GET['jaar'] == 0 ){
                             
                         } else {
-                            $jaar = $_GET['jaar'];
-                            $sql .= 'AND p.jaar = '.$jaar.' ';
+                            $sqljaar = $_GET['jaar'];
+                            $sql .= 'AND p.jaar = '.$sqljaar.' ';
                         }
                     }
 
-                    $sql = $sql.'ORDER BY uploadDatum DESC ';
+                    $sql .= 'ORDER BY uploadDatum DESC ';
                     
                     if(!isset($_GET['page']) || $_GET['page'] == 0){
-                        $sql = $sql.'LIMIT 5'; 
+                        $sql .= 'LIMIT 5'; 
                     } else {
                         $counter = $_GET['page'];
                         $limit = 20;

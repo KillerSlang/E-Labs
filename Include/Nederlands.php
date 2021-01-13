@@ -37,7 +37,7 @@ $Wachtwoord = "Wachtwoord:";
 $Wwvergeten = "Wachtwoord vergeten?";
 $Student = "Student";
 $Docent = "Docent";
-$Registreren = "Registreren";
+$Registreren = "Registratie";
 $Errorcode = "Probeer opnieuw";
 $Inloggen = "Inloggen";
 
@@ -89,6 +89,7 @@ $ErVak = "Geen Vak geselecteerd";
 $ErTitel = "Geen Titel geselecteerd";
 
 /* Homepage */
+$Homepagina = "Homepagina";
 $Bestemming = "Kies uw bestemming";
 
 /* Protocollen */

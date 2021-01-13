@@ -81,6 +81,7 @@ $ErVak = "No subject selected";
 $ErTitel = "No title selected";
 
 /* Homepage */
+$Homepagina = "Homepage";
 $Bestemming = "Choose your destination";
 
 /* Protocollen */
