@@ -28,7 +28,7 @@ if(empty($_SESSION) || empty($_SESSION['SorD'])){
 <div class = 'menu'>
     <ul>
         <li id=''><a href='voorbereidingen.php'><?=$Voorbereidingen?></a></li>
-        <li id=''><a href='labjournalen.php'><?=$Labjournalen?></a></li>
+        <li id=''><a href='labjournalen.php?jaar=0'><?=$Labjournalen?></a></li>
         <li id=''><a href='Protocollen.php?jaar=0'><?=$Protocollen?></a></li>
     </ul>    
 </div>

@@ -208,6 +208,8 @@ main{
 }
 .bericht
 {
+    grid-row: 2/3;
+    grid-column: 1/-1;
     text-align: center;
     float: left;
 }
@@ -228,6 +230,8 @@ main{
     border: black solid 0.1vw;
     cursor: pointer;
     padding: 0.8vw 0.3vw;
+    text-align: center;
+    justify-content: space-around;
 }
 
 
@@ -804,13 +808,40 @@ a:hover{
     background-repeat: no-repeat;
     background-size: 100vw;
 }
-#Lbutton{
-    float: right;
-    margin: 0 0 1vw 1vw;
+#Lcontent6{
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 1vw;
+}
+#Lcontent7{
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: repeat(7, 1fr);
+    grid-gap: 1vw;
+}
+.Lbutton{
+    grid-row: 1/2;
+    display: block;
+}
+.Lselected{
+    background-color: var(--darkblue);
+}
+#Ldropdwn{
+    grid-row: 1/2;
+}
+select.bluebtn {
+    width: 100%;
+    height: 100%;
 }
 .LTable{
+    grid-row: 2/3;
+    grid-column: 1/7;
 	border-collapse: collapse;
     width: 100%;
+}
+.LTable tr:nth-child(even){
+    background-color: rgba(0,0,0,0.05);
 }
 .LTable tr:nth-child(odd){
     background-color: rgba(0,0,0,0.3);
@@ -826,7 +857,36 @@ a:hover{
 	color: white;
 	width: 10%;
 }
-
+.LTable .Lbutton{
+    margin: 0.5vw;
+}
+.Lpages1{
+    width: 75%;
+    grid-row: 3/4;
+    grid-column: 2/-4;
+    text-align: center;
+}
+.Lpages2{
+    color: black;
+    text-align: center;
+    grid-row: 3/4;
+    grid-column: 3/-3;
+    font-size: 1.5vw;
+    margin-top: 0.5vw;
+}
+.Lpages3{
+    width: 75%;
+    justify-self: end;
+    grid-row: 3/4;
+    grid-column: 4/-2;
+    text-align: center;
+}
+.Lpages4{
+    text-align: center;
+    grid-row: 3/4;
+    grid-column: 3/-3;
+    margin-top: 0.5vw;
+}
 /* Nieuw Labjournaal */
 .Lform {
     display: grid;
@@ -878,6 +938,7 @@ a:hover{
 select.bluebtn {
     width: 100%;
     height: 100%;
+    text-align: center;
 }
 .PTable{
     grid-row: 2/3;
@@ -909,6 +970,7 @@ select.bluebtn {
     width: 75%;
     grid-row: 3/4;
     grid-column: 2/4;
+    text-align: center;
 }
 .Ppages2{
     color: black;
@@ -923,6 +985,7 @@ select.bluebtn {
     justify-self: end;
     grid-row: 3/4;
     grid-column: 4/6;
+    text-align: center;
 }
 .Ppages4{
     text-align: center;
