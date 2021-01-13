@@ -134,8 +134,8 @@
                         <label>Download meetresultaten: </label>';
                         if(!empty($bijlageMeetresultaten)){// wanneer er een bestand is geupload
                             echo'<a class="downloadLink" target="_blank" href="'.$bijlageMeetresultaten.'">'.$bijlageMeetresultaten.'</a><br>';//print de downloadlink uit.
-                            $extension = explode(".", $bijlageMeetresultaten);// wanneer het bestand een afbeelding is
-                            if ($extension[3] == "jpg" || $extension[3] == "jpeg" || $extension[3] == "png"){
+                            $extension = explode(".", $bijlageMeetresultaten);
+                            if ($extension[3] == "jpg" || $extension[3] == "jpeg" || $extension[3] == "png"){// wanneer het bestand een afbeelding is
                                 echo '<img class="imageBekijken" src="'.$bijlageMeetresultaten.'">';// print de afbeelding
                             }  
                         } else {// wanneer er geen bestand is geupload
