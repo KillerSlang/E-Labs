@@ -1,10 +1,13 @@
-
 <?PHP
 // Start the session
 session_start();
 include_once 'dbh.inc.php';
+// sanitize post
+if(!empty($_GET['ID']))
+    {
+        $ID = filter_input(INPUT_GET,'ID', FILTER_SANITIZE_SPECIAL_CHARS);
+    }else{ $ID = 0; }
 
-// filter de ingevulde velden
 $titelVoorbereiding =  filter_input(INPUT_POST,'titelvoorbereiding', FILTER_SANITIZE_SPECIAL_CHARS); 
 $uitvoerders = base64_encode(serialize($_SESSION ['studentNummerArray']));
 $voorbereidingsdatum = filter_input(INPUT_POST,'voorbereidingsdatum',FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -40,7 +43,7 @@ $_SESSION['voorbereidendevragen'] = $voorbereidendevragen;
 $_SESSION['vak'] = $vak;
 $_SESSION['jaar'] = $jaar;
 
-if (isset($_POST['LSubmit'])) // wanneer er een voorbereiding wordt opgeslagen.
+if (isset($_POST['LSubmit'])) // wanneer er een labjournaal wordt opgeslagen.
 {    
     if(!empty($_FILES["uploadtheorie"]))
     {
@@ -198,26 +201,24 @@ if (isset($_POST['LSubmit'])) // wanneer er een voorbereiding wordt opgeslagen.
     {
         if(empty($input)) // wanneer dit niet het geval is, ga terug naar het formulier.
         {
-            header("location: ../pages/Voorbereidingenaanmaak.php?addVoorbereiding=failed");
+            header("location: ../pages/voorbereidingBewerk.php?ID=".$ID."&addVoorbereiding=failed");
             exit;
         }
     }   
     queryAanmaken('
-        INSERT INTO voorbereiding
-        (
-        studentID,voorbereidingTitel,uitvoerders,voorbereidingdatum,
-        uitvoeringsDatum,benodigdeFormules,InstellingenApparaten,hypothese,
-        materialen,methode,veiligheid,voorbereidendevragen,bijlageTheorie,
-        ,bijlageMaterialen,bijlageMethode, bijlageveiligheid,
-        bijlageVoorbereidendevragen,vak,jaar
-        )
-        VALUES
-        (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)'
+        UPDATE voorbereiding
+        SET
+        studentID = ?,voorbereidingTitel = ?,uitvoerders = ?,voorbereidingdatum = ?,
+        uitvoeringsDatum = ?,benodigdeFormules = ?,InstellingenApparaten = ?,hypothese = ?,
+        materialen = ?,methode = ?,veiligheid = ?,voorbereidendevragen = ?,bijlageTheorie = ?,
+        ,bijlageMaterialen = ?,bijlageMethode = ?, bijlageveiligheid = ?,
+        bijlageVoorbereidendevragen = ?,vak = ?,jaar = ?,
+        WHERE voorbereidingID = ?'
         ,"isssssssssssssssssi"
         ,$_SESSION["StudentID"],$titelVoorbereiding,$uitvoerders,$voorbereidingsdatum,$uitvoeringsdatum,
         $benodigdeFormules,$InstellingenApparaten,$hypothese,$materialen,$methode,$veiligheid,
         $voorbereidendevragen,$bijlageTheorie,$bijlageMaterialen,$bijlageMethode,$bijlageVeiligheid,$bijlageVoorbereidendevragen,
-        $vak,$jaar
+        $vak,$jaar,$ID
     );    
     querysluiten();   
 	header("location: ../pages/voorbereidingen.php?addVoorbereiding=succes");  
@@ -249,14 +250,14 @@ if (isset($_POST['userSubmit'])) // wanneer er op de gebruiker toevoegen knop wo
                 array_push($_SESSION ['studentNummerArray'],$studentNummer); // voeg het studentnummer van de uitvoerder toe aan de array.           
             }
             querysluiten(); // sluit de connectie met de database.            
-            header("location: ../pages/voorbereidingaanmaak.php?adduser=succes"); 
+            header("location: ../pages/voorbereidingBewerk.php?ID=".$ID."&adduser=succes"); 
         }
         else // wanneer geen resultaat ga terug naar het formulier met de GET Failed.
         {
-            header("location: ../pages/voorbevoorbereidingaanmaakreidingBewerk.php?dduser=failed");  
+            header("location: ../pages/voorbereidingBewerk.php?ID=".$ID."&adduser=failed");  
         }
     }
-    header("location: ../pages/voorbereidingaanmaak.php?adduser=succes");      
+    header("location: ../pages/voorbereidingBewerk.php?ID=".$ID."&adduser=succes");      
 }
 if(isset($_POST['userVerwijderen'])) // wanneer er op de knop uitvoerder verwijderen wordt gedrukt.
 {
@@ -265,7 +266,7 @@ if(isset($_POST['userVerwijderen'])) // wanneer er op de knop uitvoerder verwijd
         array_pop($_SESSION ['studentNaamArray']); // verwijder de laatst toegevoegde waarde van de array.
         array_pop($_SESSION ['studentNummerArray']); // verwijder de laatst toegevoegde waarde van de array.
     }
-    header("location: ../pages/voorbereidingaanmaak.php?deleteuser=succes"); // ga terug naar het formulier.
+    header("location: ../pages/voorbereidingBewerk.php?ID=".$ID."&deleteuser=succes"); // ga terug naar het formulier.
 }
 
 

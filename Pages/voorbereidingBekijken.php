@@ -51,8 +51,8 @@
                 
 
                 $sql = 'SELECT studentID,voorbereidingTitel,voorbereidingDatum,materialen,
-       methode,hypothese,instellingenApparaten,voorbereidendevragen,veiligheid,
-       vakken,uitvoerders,uitvoeringsDatum,theorie,benodigdeFormules,doel,jaar
+                methode,hypothese,instellingenApparaten,voorbereidendevragen,veiligheid,
+                vakken,uitvoerders,uitvoeringsDatum,theorie,benodigdeFormules,doel,jaar
 				FROM voorbereiding
                 WHERE voorbereidingID ='.$ID;
 
