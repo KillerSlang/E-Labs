@@ -89,20 +89,6 @@
             ?>
             </form>
             <?php
-            /* jaar selectie*/
-            if(isset($_POST["jaar"])) {
-                if ("jaar" == 1) {
-                    $_SESSION['jaar'] = 1;
-                }
-                if ("jaar" == 2) {
-                    $_SESSION['jaar'] = 2;
-                }
-                if ("jaar" == 3) {
-                    $_SESSION['jaar'] = 3;
-                }
-                echo $_SESSION['jaar'];
-            }
-
             /* opslaan */
             if(isset($_POST["Opslaan"])) {
                 header("location:taalverander.php");
