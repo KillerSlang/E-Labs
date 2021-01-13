@@ -50,7 +50,6 @@
                             $observaties = $_SESSION['observaties'];
                             $weeggegevens = $_SESSION['weeggegevens'];
                             $vak = $_SESSION['vak'];
-                            $jaar = $_SESSION['jaar'];
                         echo'</div>';
                     }
                     else // wanneer je niet vanuit een include komt maar van de overzichtpagina schrijf alle variabelen leeg.
@@ -75,7 +74,6 @@
                         $bijlageWeeggegevens = "";
                         $bijlageAfbeelding = "";
                         $vak = "";
-                        $jaar = "";
                     }
 
                 
@@ -225,50 +223,7 @@
                             }
                 echo ' 
                         </div>    
-
-                    
-                        <br>
-                        
-
-                <label>Jaar: *</label>
-                        <div id="Jaren">'; // haal het jaartal uit de sessie en selecteer deze 
-                        if ($jaar == "1") 
-                        {
-                            echo '<input type="radio" id="Jaar1" name="PJaar" value="1" checked>
-                            <label>Jaar 1</label><br>
-                            <input type="radio" id="Jaar2" name="PJaar" value="2">
-                            <label>Jaar 2</label><br>
-                            <input type="radio" id="Jaar3" name="PJaar" value="3">
-                            <label>Jaar 3</label>';
-                        } elseif ($jaar == "2")
-                        {
-                            echo '<input type="radio" id="Jaar1" name="PJaar" value="1">
-                            <label>Jaar 1</label><br>
-                            <input type="radio" id="Jaar2" name="PJaar" value="2" checked>
-                            <label>Jaar 2</label><br>
-                            <input type="radio" id="Jaar3" name="PJaar" value="3">
-                            <label>Jaar 3</label>';
-                        } elseif ($jaar == "3") 
-                        {
-                            echo '<input type="radio" id="Jaar1" name="PJaar" value="1" >
-                            <label>Jaar 1</label><br>
-                            <input type="radio" id="Jaar2" name="PJaar" value="2">
-                            <label>Jaar 2</label><br>
-                            <input type="radio" id="Jaar3" name="PJaar" value="3" checked>
-                            <label>Jaar 3</label>';
-                        } else {
-                            echo '<input type="radio" id="Jaar1" name="PJaar" value="1" checked>
-                            <label>Jaar 1</label><br>
-                            <input type="radio" id="Jaar2" name="PJaar" value="2">
-                            <label>Jaar 2</label><br>
-                            <input type="radio" id="Jaar3" name="PJaar" value="3">
-                            <label>Jaar 3</label>';
-                        }
-                        echo '
-
-                        </div>
-                        <br>
-                        <br>
+                        <br><br>
 
                 <input class="bluebtn" type="Submit" id="LSubmit" name="LSubmit" value="Opslaan">
         </form>';

@@ -94,7 +94,7 @@ querySluiten();
                     }
                     else
                     {
-                        $data.='<a class="downloadLink" " target="_blank" href="'.$veiligheid.'">'.$veiligheid.'</a>';
+                        $data.='<a class="downloadLink" target="_blank" href="'.$veiligheid.'">'.$veiligheid.'</a>';
                     }  
                 } else {
                     $data.='Geen bestand geupload.';
@@ -141,7 +141,7 @@ querySluiten();
                     }
                     else
                     {
-                        $data.='<a class="downloadLink" " target="_blank" href="'.$bijlageMeetresultaten.'">'.$bijlageMeetresultaten.'</a>';
+                        $data.='<a class="downloadLink"  target="_blank" href="'.$bijlageMeetresultaten.'">'.$bijlageMeetresultaten.'</a>';
                     }  
                 } else {
                     $data.='Geen bestand geupload.';
@@ -157,7 +157,7 @@ querySluiten();
                 <strong>Upload logboek:</strong>
                 <br />';
                 if(!empty($bijlageLogboek)){
-                    $data.='<a class="downloadLink" " target="_blank" href="'.$bijlageLogboek.'">'.$bijlageLogboek.'</a>';
+                    $data.='<a class="downloadLink"  target="_blank" href="'.$bijlageLogboek.'">'.$bijlageLogboek.'</a>';
                 } else {
                     $data.='Geen bestand geupload.';
                 }
@@ -178,7 +178,7 @@ querySluiten();
                     }
                     else
                     {
-                        $data.='<a class="downloadLink" " target="_blank" href="'.$bijlageObservaties.'">'.$bijlageObservaties.'</a>';
+                        $data.='<a class="downloadLink"  target="_blank" href="'.$bijlageObservaties.'">'.$bijlageObservaties.'</a>';
                     }  
                 } else {
                     $data.='Geen bestand geupload.';
@@ -194,7 +194,7 @@ querySluiten();
                 <strong>Upload weeggegevens:</strong>
                 <br />';
                 if(!empty($bijlageWeeggegevens)){
-                    $data.='<a class="downloadLink" " target="_blank" href="'.$bijlageWeeggegevens.'">'.$bijlageWeeggegevens.'</a>';
+                    $data.='<a class="downloadLink"  target="_blank" href="'.$bijlageWeeggegevens.'">'.$bijlageWeeggegevens.'</a>';
                 } else {
                     $data.='Geen bestand geupload.';
                 }
@@ -223,6 +223,7 @@ querySluiten();
         </body>
     </html>
     ';  
+    
     // maak het pdf.
     $mpdf->WriteHTML($data);
 

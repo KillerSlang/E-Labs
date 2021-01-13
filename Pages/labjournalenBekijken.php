@@ -134,9 +134,9 @@
                                     );
                                     }
                                 } queryAanmakenAdvanced (")",false); // wanneer de foreach is afgelopen sluit af met een haakje.
-                                if(!empty($_SESSION['jaar'])) // pas de filter van het geselecteerde jaar toe.
+                                if(!empty($_GET['jaar'])) // pas de filter van het geselecteerde jaar toe.
                                 {
-                                    $jaarlaag = $_SESSION['jaar'];
+                                    $jaarlaag = $_GET['jaar'];
                                     queryAanmakenAdvanced (
                                         ' AND l.jaar = ? ',
                                         false,
@@ -170,9 +170,9 @@
                             }
                             else
                             {
-                                if(!empty($_SESSION['jaar'])) // pas de filter van het geselecteerde jaar toe.
+                                if(!empty($_GET['jaar'])) // pas de filter van het geselecteerde jaar toe.
                                 {
-                                    $jaarlaag = $_SESSION['jaar'];
+                                    $jaarlaag = $_GET['jaar'];
                                     queryAanmakenAdvanced (
                                         ' WHERE (l.jaar = ? ',
                                         false,
@@ -217,9 +217,9 @@
                                 $selected // laat de labjournalen ook zien waar de ingelogde student auteur van is.  
                             );   
                              
-                            if(!empty($_SESSION['jaar'])) // pas de filter van het geselecteerde jaar toe.
+                            if(!empty($_GET['jaar'])) // pas de filter van het geselecteerde jaar toe.
                             {
-                                $jaarlaag = $_SESSION['jaar'];
+                                $jaarlaag = $_GET['jaar'];
                                 queryAanmakenAdvanced (
                                     ' AND l.jaar = ? )',
                                     false,

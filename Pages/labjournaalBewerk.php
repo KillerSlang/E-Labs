@@ -49,7 +49,7 @@
                     experimentBeginDatum,experimentEindDatum,veiligheid,doel,bijlageWaarnemingen,
                     hypothese,materialen,methode,bijlageMeetresultaten,logboek,bijlageLogboek,
                     observaties,bijlageObservaties,weeggegevens,bijlageWeeggegevens,
-                    bijlageAfbeelding,vak,l.jaar
+                    bijlageAfbeelding,vak
                     FROM labjournaal as l '; //maak query aan
                     if($_SESSION['SorD'] == "Student")//wanneer de gebruiker student is.
                     {
@@ -68,7 +68,7 @@
                     mysqli_stmt_bind_result($stmt, $labjournaalTitel, $uitvoerders, $experimentDatum, $experimentBeginDatum, $experimentEindDatum, 
                                             $veiligheid, $doel, $bijlageWaarnemingen, $hypothese, $materialen, $methode, $bijlageMeetresultaten, $logboek,
                                             $bijlageLogboek, $observaties, $bijlageObservaties, $weeggegevens, $bijlageWeeggegevens, $bijlageAfbeelding,
-                                            $vak, $jaar); // bind de resultaten                    
+                                            $vak); // bind de resultaten                    
                     mysqli_stmt_store_result($stmt);  //sla de resultaten op.
                     while (mysqli_stmt_fetch($stmt)) {  }
                         /* maak de while statement aan en sluit deze.
@@ -145,7 +145,7 @@
                         <br>
             
                         <label for="uploadveiligheid">Upload veiligheid: </label>
-                        <input type="file" id="uploadveiligheid" name="uploadveiligheid" accept=".xls,.xlsx,image/*">';
+                        <input type="file" id="uploadveiligheid" name="uploadveiligheid" accept=".xls,.xlsx,image/*" value="'.$veiligheid.'">';
                         if(!empty($veiligheid)){
                             echo'<a class="downloadLink" " target="_blank" href="'.$veiligheid.'">'.$veiligheid.'</a>';
                         }
@@ -246,44 +246,8 @@
                                         <input type="radio" id="Chemie" name="LVak" value="Chemie" checked>
                                         <label for="Chemie">Chemie</label>';
                                     }
-                        echo ' 
-                                </div>                              
-                        <label for="Jaren">Jaar: *</label>
-                                <div id="Jaren">';
-                                if ($jaar == "1") 
-                                {
-                                    echo '<input type="radio" id="Jaar1" name="PJaar" value="1" checked>
-                                    <label for="BML">Jaar 1</label><br>
-                                    <input type="radio" id="Jaar2" name="PJaar" value="2">
-                                    <label for="Chemie">Jaar 2</label><br>
-                                    <input type="radio" id="Jaar3" name="PJaar" value="3">
-                                    <label for="Chemie">Jaar 3</label>';
-                                } elseif ($jaar == "2")
-                                {
-                                    echo '<input type="radio" id="Jaar1" name="PJaar" value="1">
-                                    <label for="BML">Jaar 1</label><br>
-                                    <input type="radio" id="Jaar2" name="PJaar" value="2" checked>
-                                    <label for="Chemie">Jaar 2</label><br>
-                                    <input type="radio" id="Jaar3" name="PJaar" value="3">
-                                    <label for="Chemie">Jaar 3</label>';
-                                } elseif ($jaar == "3") 
-                                {
-                                    echo '<input type="radio" id="Jaar1" name="PJaar" value="1" >
-                                    <label for="BML">Jaar 1</label><br>
-                                    <input type="radio" id="Jaar2" name="PJaar" value="2">
-                                    <label for="Chemie">Jaar 2</label><br>
-                                    <input type="radio" id="Jaar3" name="PJaar" value="3" checked>
-                                    <label for="Chemie">Jaar 3</label>';
-                                } else {
-                                    echo '<input type="radio" id="Jaar1" name="PJaar" value="1" checked>
-                                    <label for="BML">Jaar 1</label><br>
-                                    <input type="radio" id="Jaar2" name="PJaar" value="2">
-                                    <label for="Chemie">Jaar 2</label><br>
-                                    <input type="radio" id="Jaar3" name="PJaar" value="3">
-                                    <label for="Chemie">Jaar 3</label>';
-                                }
-                                echo '      
-                                </div>        
+                    echo'
+                    <br><br>
                     <input class="bluebtn" type="Submit" id="LSubmit" name="LSubmit" value="Opslaan">
                 </form>';        
                 ?>

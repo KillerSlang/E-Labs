@@ -6,6 +6,8 @@ $_SESSION["Name"] = 'Ömer avici';
 $_SESSION["StudentID"] = '2';
 $_SESSION["DocentID"] = '1';
 $_SESSION["SorD"] = "Student";
+$_SESSION['jaar'] = '1';
+
 ?>
 <div>
     <img onclick='location.href="../index.html"' id='navLogo' src='../Images/Logo.png' alt="logo">

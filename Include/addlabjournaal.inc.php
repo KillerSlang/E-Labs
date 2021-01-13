@@ -17,7 +17,6 @@ $logboek = filter_input(INPUT_POST,'logboek',FILTER_SANITIZE_FULL_SPECIAL_CHARS)
 $observaties = filter_input(INPUT_POST,'observaties',FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 $weeggegevens = filter_input(INPUT_POST,'weeggegevens',FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 $vak = filter_input(INPUT_POST,'LVak',FILTER_SANITIZE_FULL_SPECIAL_CHARS);//$_POST['LVak'];
-$jaar = filter_input(INPUT_POST,'PJaar',FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 $beoordeling = filter_input(INPUT_POST,'beoordeling', FILTER_SANITIZE_STRING);
 
     /* vul de sessies met de post variabelen, zodat wanneer
@@ -35,7 +34,7 @@ $_SESSION['logboek'] = $logboek;
 $_SESSION['observaties'] = $observaties;
 $_SESSION['weeggegevens'] = $weeggegevens;
 $_SESSION['vak'] = $vak;
-$_SESSION['jaar'] = $jaar;
+
 
 $bijlageWaarnemingen = "" ;
 $bijlageMeetresultaten = "" ;
@@ -52,14 +51,14 @@ if (isset($_POST['LSubmit'])) // wanneer er vanaf de labjournaalNieuw pagina op 
     {
         $target_dir = "../uploads/"; // sla het bestand op in de map uploads
         $target_file_veiligheid = $target_dir . basename($_FILES["uploadveiligheid"]["name"]);
-        $imageFileTypeveiligheid = strtolower(pathinfo($target_file_veiligheid,PATHINFO_EXTENSION));
+        $FileTypeveiligheid = strtolower(pathinfo($target_file_veiligheid,PATHINFO_EXTENSION));
         
         // Controleer of het bestand al bestaat
         if (file_exists($target_file_veiligheid)) {
         echo "Sorry, bestand is al geupload";
         }
         // Controleer de grootte van het bestand.
-        if ($_FILES["uploadveiligheid"]["size"] > 5000000) {
+        if ($_FILES["uploadveiligheid"]["size"] > 40000000) {
         echo "Sorry, bestand is te groot (maximaal 5MB toegestaan)";
         }
         // Sta de goede bestandtypes toe
@@ -82,14 +81,14 @@ if (isset($_POST['LSubmit'])) // wanneer er vanaf de labjournaalNieuw pagina op 
         // upload waarnemingen
         $target_dir = "../uploads/";
         $target_file_waarnemingen = $target_dir . basename($_FILES["uploadwaarnemingen"]["name"]);
-        $imageFileTypewaarnemingen = strtolower(pathinfo($target_file_waarnemingen,PATHINFO_EXTENSION));
+        $FileTypewaarnemingen = strtolower(pathinfo($target_file_waarnemingen,PATHINFO_EXTENSION));
         
         // Controleer of het bestand al bestaat
         if (file_exists($target_file_waarnemingen)) {
         echo "Sorry, bestand is al geupload";
         }
         // Controleer de grootte van het bestand.
-        if ($_FILES["uploadwaarnemingen"]["size"] > 5000000) {
+        if ($_FILES["uploadwaarnemingen"]["size"] > 40000000) {
         echo "Sorry, bestand is te groot (maximaal 5MB toegestaan)";
         }
         // Sta de goede bestandtypes toe
@@ -111,14 +110,14 @@ if (isset($_POST['LSubmit'])) // wanneer er vanaf de labjournaalNieuw pagina op 
         // upload meetresultaten
         $target_dir = "../uploads/";
         $target_file_meetresultaten = $target_dir . basename($_FILES["uploadmeetresultaten"]["name"]);
-        $imageFileTypemeetresultaten = strtolower(pathinfo($target_file_meetresultaten,PATHINFO_EXTENSION));
+        $FileTypemeetresultaten = strtolower(pathinfo($target_file_meetresultaten,PATHINFO_EXTENSION));
         
         // Controleer of het bestand al bestaat
         if (file_exists($target_file_meetresultaten)) {
         echo "Sorry, bestand is al geupload";
         }
         // Controleer de grootte van het bestand.
-        if ($_FILES["uploadmeetresultaten"]["size"] > 5000000) {
+        if ($_FILES["uploadmeetresultaten"]["size"] > 40000000) {
         echo "Sorry, bestand is te groot (maximaal 5MB toegestaan)";
         }
         // Sta de goede bestandtypes toe
@@ -140,14 +139,14 @@ if (isset($_POST['LSubmit'])) // wanneer er vanaf de labjournaalNieuw pagina op 
         // upload logboek
         $target_dir = "../uploads/";
         $target_file_logboek = $target_dir . basename($_FILES["uploadlogboek"]["name"]);
-        $imageFileTypelogboek = strtolower(pathinfo($target_file_logboek,PATHINFO_EXTENSION));
+        $FileTypelogboek = strtolower(pathinfo($target_file_logboek,PATHINFO_EXTENSION));
         
         // Controleer of het bestand al bestaat
         if (file_exists($target_file_logboek)) {
         echo "Sorry, bestand is al geupload";
         }
         // Controleer de grootte van het bestand.
-        if ($_FILES["uploadlogboek"]["size"] > 5000000) {
+        if ($_FILES["uploadlogboek"]["size"] > 40000000) {
         echo "Sorry, bestand is te groot (maximaal 5MB toegestaan)";
         }
         // Sta de goede bestandtypes toe
@@ -169,14 +168,14 @@ if (isset($_POST['LSubmit'])) // wanneer er vanaf de labjournaalNieuw pagina op 
         // upload observatie
         $target_dir = "../uploads/";
         $target_file_observaties = $target_dir . basename($_FILES["uploadobservaties"]["name"]);
-        $imageFileTypeobservaties = strtolower(pathinfo($target_file_observaties,PATHINFO_EXTENSION));
+        $FileTypeobservaties = strtolower(pathinfo($target_file_observaties,PATHINFO_EXTENSION));
         
         // Controleer of het bestand al bestaat
         if (file_exists($target_file_observaties)) {
         echo "Sorry, bestand is al geupload";
         }
         // Controleer de grootte van het bestand.
-        if ($_FILES["uploadobservaties"]["size"] > 5000000) {
+        if ($_FILES["uploadobservaties"]["size"] > 40000000) {
         echo "Sorry, bestand is te groot (maximaal 5MB toegestaan)";
         }
         // Sta de goede bestandtypes toe
@@ -198,14 +197,14 @@ if (isset($_POST['LSubmit'])) // wanneer er vanaf de labjournaalNieuw pagina op 
         // upload weeggegevens
         $target_dir = "../uploads/";
         $target_file_weeggegevens = $target_dir . basename($_FILES["uploadweeggegevens"]["name"]);
-        $imageFileTypeweeggegevens = strtolower(pathinfo($target_file_weeggegevens,PATHINFO_EXTENSION));
+        $FileTypeweeggegevens = strtolower(pathinfo($target_file_weeggegevens,PATHINFO_EXTENSION));
         
         // Controleer of het bestand al bestaat
         if (file_exists($target_file_weeggegevens)) {
         echo "Sorry, bestand is al geupload";
         }
         // Controleer de grootte van het bestand.
-        if ($_FILES["uploadweeggegevens"]["size"] > 5000000) {
+        if ($_FILES["uploadweeggegevens"]["size"] > 40000000) {
         echo "Sorry, bestand is te groot (maximaal 5MB toegestaan)";
         }
         // Sta de goede bestandtypes toe
@@ -227,14 +226,14 @@ if (isset($_POST['LSubmit'])) // wanneer er vanaf de labjournaalNieuw pagina op 
         // upload afbeeldingen
         $target_dir = "../uploads/";
         $target_file_afbeeldingen = $target_dir . basename($_FILES["uploadafbeelding"]["name"]);
-        $imageFileTypeafbeeldingen = strtolower(pathinfo($target_file_afbeeldingen,PATHINFO_EXTENSION));
+        $FileTypeafbeeldingen = strtolower(pathinfo($target_file_afbeeldingen,PATHINFO_EXTENSION));
         
         // Controleer of het bestand al bestaat
         if (file_exists($target_file_afbeeldingen)) {
         echo "Sorry, bestand is al geupload";
         }
         // Controleer de grootte van het bestand.
-        if ($_FILES["uploadafbeelding"]["size"] > 5000000) {
+        if ($_FILES["uploadafbeelding"]["size"] > 40000000) {
         echo "Sorry, bestand is te groot (maximaal 5MB toegestaan)";
         }
         // Sta de goede bestandtypes toe
@@ -252,7 +251,7 @@ if (isset($_POST['LSubmit'])) // wanneer er vanaf de labjournaalNieuw pagina op 
     }
     // array met alle verplichte waardes die ingevuld moeten worden.
     $verplichteInput = array($titelLabjournaal,$uitvoerders, $experimentdatum, $experimentstartdatum, $experimenteinddatum, $doel,
-                             $hypothese, $materialen, $methode, $logboek, $observaties, $weeggegevens, $vak, $jaar);//studentnummer
+                             $hypothese, $materialen, $methode, $logboek, $observaties, $weeggegevens, $vak);//studentnummer
   
     foreach($verplichteInput as $input) // loop door de gehele array heen.
     {
@@ -280,7 +279,7 @@ if (isset($_POST['LSubmit'])) // wanneer er vanaf de labjournaalNieuw pagina op 
     ,$_SESSION["StudentID"],$titelLabjournaal,$uitvoerders,$experimentdatum,$experimentstartdatum,
     $experimenteinddatum,$doel,$bijlageWaarnemingen,$hypothese,$materialen,$methode,
     $bijlageMeetresultaten,$logboek,$bijlageLogboek,$observaties,$bijlageObservaties,$weeggegevens,
-    $bijlageWeeggegevens,$bijlageAfbeelding,$vak,$jaar,$bijlageVeiligheid,$bewerkTotDatum); 
+    $bijlageWeeggegevens,$bijlageAfbeelding,$vak,$_SESSION['jaar'],$bijlageVeiligheid,$bewerkTotDatum); 
 
 	header("location: ../pages/labjournalen.php?addLabjournaal=succes"); // na het succesvol uploaden van het labjournaal ga terug naar de overzichtpagina. 
 }

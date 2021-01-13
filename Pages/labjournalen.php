@@ -77,9 +77,9 @@
                                 FROM labjournaal as l
                                 JOIN student AS s ON l.studentID = s.studentID
                                 ',false);    
-                            if(!empty($_SESSION['jaar'])) // wanneer er op een jaar knop is gedrukt.
+                            if(!empty($_GET['jaar'])) // wanneer er op een jaar knop is gedrukt.
                             {
-                                $jaarlaag = $_SESSION['jaar']; // haal het jaar uit de get
+                                $jaarlaag = $_GET['jaar']; // haal het jaar uit de get
                                 queryAanmakenAdvanced(
                                     ' WHERE l.jaar = ?',
                                     false,

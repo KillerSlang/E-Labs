@@ -25,6 +25,9 @@
     <div class="whitebg">
         <div class="content">
             <?PHP
+                
+
+
 				if(!empty($_GET['ID']))// haal het ID op uit de GET en filter deze.
 				{
 					$ID = filter_input(INPUT_GET,'ID', FILTER_SANITIZE_SPECIAL_CHARS);

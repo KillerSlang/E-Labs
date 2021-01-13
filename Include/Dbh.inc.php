@@ -4,9 +4,9 @@ Wanneer er vraagtekens in de sql statement zitten kun je deze binden d.m.v. de v
 types is voor de datatypes dus bijvoorbeeld "i" voor integer en de bind parameter kun je de variabelen van de vraagtekens meegeven.
 De advanced functie wordt gebruikt om door de code heen een query op te bouwen. Wanneer de variabele send true is wordt de query pas verstuurd.*/
 
-  function queryAanmaken ($sql,$types = "",...$bindParameters) 
+  function queryAanmaken ($sql,$types = "",...$bindParameters)
   {
-     // instellingen.
+        // instellingen.
     $dbServername= "localhost";
     $dbUsername = "root";
     $dbPassword = "";
@@ -18,8 +18,8 @@ De advanced functie wordt gebruikt om door de code heen een query op te bouwen. 
     }  
     $GLOBALS ['stmt'] = mysqli_prepare($GLOBALS['conn'], $sql) or DIE("Preparation error"); // is het een werkende query
     if(!empty($types))// wanneer er een type is ingevuld. 
-    {
-        mysqli_stmt_bind_param($GLOBALS ['stmt'],$types,...$bindParameters); //zet de types voor de parameters en bind de parameter die gegeven zijn. 
+    {        
+        mysqli_stmt_bind_param($GLOBALS['stmt'],$types,...$bindParameters); //zet de types voor de parameters en bind de parameter die gegeven zijn. 
     }
     mysqli_stmt_execute($GLOBALS ['stmt']) or DIE(mysqli_error($GLOBALS['conn'])); // execute de sql statement.
 
