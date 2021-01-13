@@ -1,95 +1,70 @@
 <?php
             // Starting session
             session_start();
-			if(isset($_POST["Submit"])){
-
-            $email = $_POST["Email"];
-            $ww = $_POST["Password"];
+            include_once'../Include/Dbh.inc.php';
+            $email = filter_input(INPUT_POST,'Email',FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+            $ww = filter_input(INPUT_POST,'Password',FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $wachtwoord = sha1($ww);
-            $SorD = $_POST["SorD"];
-
+            $SorD = filter_input(INPUT_POST,'SorD',FILTER_SANITIZE_FULL_SPECIAL_CHARS);   
             if(isset($_POST["Submit"]) and $SorD == "Student")
             {
-
-                $link = mysqli_connect("localhost","elabs","Bla_1711")
-                OR DIE("Could not connect to the database!");
-                if($link)
+                queryAanmaken(
+                    'SELECT studentID, studentNummer, studentNaam FROM student WHERE wachtwoord = ? AND studentEmail = ? ',
+                    "ss",
+                    $wachtwoord,$email
+                );    
+                mysqli_stmt_bind_result($stmt, $studentID, $studentNummer,$studentNaam);
+                mysqli_stmt_store_result($stmt);
+                if(mysqli_stmt_num_rows($stmt) != 0) // wanneer er resultaten zijn wordt de tabel uitgeprint en de knoppen onderaan ook weergeven anders niet.
                 {
-            
-                        $connection = mysqli_connect("localhost","elabs","Bla_1711");
-                        mysqli_select_db($connection, 'elabs');
-            
-                        $SQL = "SELECT studentID, studentNummer, studentNaam FROM student WHERE wachtwoord = '$wachtwoord' and studentEmail = '$email'";
-                        $login = mysqli_query($connection, $SQL);
-            
-        
-                            if(mysqli_num_rows($login) == 1){
-                                
-                                $row = mysqli_fetch_array($login);
-                                
-                                $studentID = $row['studentID'];
-                                $studentNummer = $row['studentNummer'];
-                                $studentNaam = $row['studentNaam'];
-								
-                                
-								
-				$_SESSION["StudentID"] = $studentID;
-                                $_SESSION["SorD"] = "Student";
-                                $_SESSION["studentNummer"] = $studentNummer;
-                                $_SESSION["Name"] = $studentNaam;
-								
-				header("Location: https://elabs.serverict.nl/Pages/Homepage.php");
-
-								
-                            }else{
-                                //echo "Probeer opnieuw";
-                                header("Location: https://elabs.serverict.nl/Pages/index.php");
-                            }
-                        mysqli_close($connection);
+                    while(mysqli_stmt_fetch($stmt)) // alle resultaten in een rij van de tabel zetten.
+                    {                    
+                        $studentID = $row['studentID'];
+                        $studentNummer = $row['studentNummer'];
+                        $studentNaam = $row['studentNaam'];                        
+                        $_SESSION["StudentID"] = $studentID;
+                        $_SESSION["SorD"] = "Student";
+                        $_SESSION["studentNummer"] = $studentNummer;
+                        $_SESSION["Name"] = $studentNaam;      
+                    }              
+                    header("Location: https://elabs.serverict.nl/Pages/Homepage.php");
+                }else
+                {
+                    header("Location: https://elabs.serverict.nl/Pages/index.php");
                 }
-            }elseif(isset($_POST["Submit"]) and $SorD == "Docent")
+                querySluiten();
+            }
+            
+            if(isset($_POST["Submit"]) and $SorD == "Docent")
             {
-
-                $link = mysqli_connect("localhost","elabs","Bla_1711")
-                OR DIE("Could not connect to the database!");
-                if($link)
+                
+                queryAanmaken(
+                    'SELECT docentID, docentNaam FROM docent WHERE wachtwoord = ? and docentEmail = ? ',
+                    "ss",
+                    $wachtwoord,$email
+                );
+                    mysqli_stmt_bind_result($stmt, $docentID, $docentNaam);
+                    mysqli_stmt_store_result($stmt);            
+                if(mysqli_stmt_num_rows($stmt) != 0) // wanneer er resultaten zijn wordt de tabel uitgeprint en de knoppen onderaan ook weergeven anders niet.
                 {
-            
-                        $connection = mysqli_connect("localhost","elabs","Bla_1711");
-                        mysqli_select_db($connection, 'elabs');
-            
-                        $SQL = "SELECT docentID, docentNaam FROM docent WHERE wachtwoord = '$wachtwoord' and docentEmail = '$email'";
-                        $login = mysqli_query($connection, $SQL);
-            
-        
-                            if(mysqli_num_rows($login) == 1){
-                                
-                                $row = mysqli_fetch_array($login);
-                                
-                                $docentID = $row['studentID'];
-                                $docentNaam = $row['studentNaam'];
-								
-								//header("Location: http://www.example.com/");
-								
-				session_start();
-                                $_SESSION["docentID"] = $docentID;
-                                $_SESSION["SorD"] = "Docent";
-                                $_SESSION["Name"] = $docentNaam;
+                    while(mysqli_stmt_fetch($stmt)) // alle resultaten in een rij van de tabel zetten.
+                    {
+                        $docentID = $row['studentID'];
+                        $docentNaam = $row['studentNaam'];
+                        $_SESSION["docentID"] = $docentID;
+                        $_SESSION["SorD"] = "Docent";
+                        $_SESSION["Name"] = $docentNaam;
+                        echo 'succes';
+                        echo'<meta http-equiv="refresh" content="0; URL=https://elabs.serverict.nl/Pages/Homepage.php">';
+                    }
 
-                                echo 'succes';
-                                echo'<meta http-equiv="refresh" content="0; URL=Homepage.php">';
-				die;
+                }else
+                {
                                 
-                            }else{
-
-                                //echo "Probeer opnieuw";
-                                header("Location: https://elabs.serverict.nl/Pages/index.php");
-                                
-
-                            }
-                        mysqli_close($connection);
+                    header("Location: https://elabs.serverict.nl/Pages/index.php");
                 }
+                querySluiten();
             }   
             
-        }
+        
         ?>

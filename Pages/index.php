@@ -20,7 +20,7 @@
                 
                 <div id="inlogruimte">
                    
-                        <form action = "Pages/Inlog.php" method = "POST" >
+                        <form action = "Inlog.php" method = "POST" >
                             <div id="Invoerveld1"><p><label for="Email"><b>E-mail:</b></label><br> 
                             <input type = "email" name = "Email" placeholder="voer hier uw e-mail in..."></p></div>
 

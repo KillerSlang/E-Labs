@@ -48,6 +48,7 @@
 
 
 <?php
+include_once'../Include/Dbh.inc.php';
 
 if(isset($_POST["Submit"])){
 
@@ -122,10 +123,9 @@ if($link)
 
 
 
-                    $conn = mysqli_connect("localhost","elabs","Bla_1711");
-                    mysqli_select_db($conn, "elabs");
                     
-              
+                    
+                    
                     $SQLSNum = "SELECT * FROM student WHERE studentNummer = '$Studentnummer'";
                     $checkSNum = mysqli_query($conn, $SQLSNum);
 
