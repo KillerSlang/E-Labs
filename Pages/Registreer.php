@@ -1,7 +1,19 @@
 <!DOCTYPE HTML>
 <html>
     <head>  
-        <title>Registreren</title>
+
+    <?php
+        if(empty($_COOKIE["taal"])){
+            setcookie("taal", "nederlands");
+        }
+        if($_COOKIE["taal"] == "english"){
+            include_once "../Include/Engels.php";
+        } else {
+            include_once "../Include/Nederlands.php";
+        }
+        ?> 
+
+        <title><?= $Registreren ?></title>
         <link href="../Css/inlog.css" rel="stylesheet" type="text/css">
     </head>
         <div id="Container">
@@ -11,33 +23,33 @@
                         <img src="../Images/Logo.png" alt = "Logo wit" >
                     </div>
                     <div id="logobalktext">
-                        <h1><b>Registreren</b></h1>                       
+                        <h1><b><?= $Registreren ?></b></h1>                       
                     </div>
                 </div>
                 <div id="inlogruimte">
                         <form action = "<?php echo $_SERVER['PHP_SELF']; ?>" method = "POST">
 
-                            <div id="Invoerveld1"><p><label for="Voornaam">Voornaam:</label><br> 
+                            <div id="Invoerveld1"><p><label for="Voornaam"><?= $Voornaam ?></label><br> 
                             <input type = "Text" name = "Voornaam"></p></div>
 
-                            <div id="Invoerveld2"><p><label for="Achternaam">Achternaam:</label><br> 
+                            <div id="Invoerveld2"><p><label for="Achternaam"><?= $Achternaam ?></label><br> 
                             <input type = "Text" name = "Achternaam"></p></div>
 
-                            <div id="Invoerveld3"><p><label for="Studentnummer">Studentnummer:</label><br> 
+                            <div id="Invoerveld3"><p><label for="Studentnummer"><?= $StudentNummer ?></label><br> 
                             <input type = "Number" name = "Studentnummer"></p></div>
 
-                            <div id="Invoerveld4"><p><label for="Email">E-Mail:</label><br> 
+                            <div id="Invoerveld4"><p><label for="Email"><?= $Email ?></label><br> 
                             <input type = "email" name = "Email"></p></div>
 
-                            <div id="Invoerveld5"><p><label for="Pass">Wachtwoord:</label><br>
+                            <div id="Invoerveld5"><p><label for="Pass"><?= $Wachtwoord ?></label><br>
                             <input type = "password" name = "Pass"></p></div>
 
-                            <div id="Invoerveld6"><p><label for="Word">Voor wachtwoord opnieuw in:</label><br>
+                            <div id="Invoerveld6"><p><label for="Word"><?= $Vwoi ?></label><br>
                             <input type = "password" name = "Word"></p></div>
 
-                            <div id="Invoerveld7"><p>Vraag 1: Wat is je lievelingskleur? <input type = "text" name = "Vraag1"></p></div>
-                            <div id="Invoerveld8"><p>Vraag 2: Wat is de naam van je eerste huisdier? <input type = "text" name = "Vraag2"></p></div>
-                            <div id="Invoerveld9"><p>Vraag 3: Hoe heet de stad/dorp waarin je bent geboren? <input type = "text" name = "Vraag3"></p></div>
+                            <div id="Invoerveld7"><p><?= $Vraag1 ?><input type = "text" name = "Vraag1"></p></div>
+                            <div id="Invoerveld8"><p><?= $Vraag2 ?><input type = "text" name = "Vraag2"></p></div>
+                            <div id="Invoerveld9"><p><?= $Vraag3 ?><input type = "text" name = "Vraag3"></p></div>
 
                             <div id="registreerbutton"><p>   
                                 <input type = "submit" name = "Submit" value = "Submit">
@@ -54,7 +66,7 @@ if(isset($_POST["Submit"])){
 //controleren of alle velden ingevuld zijn
 if(isset($_POST['Submit']) and strlen($_POST['Voornaam']) == 0 or strlen($_POST['Studentnummer']) == 0 or strlen($_POST['Achternaam']) == 0 or strlen($_POST['Pass']) == 0 or strlen($_POST['Word']) == 0 or strlen($_POST['Vraag1']) == 0 or strlen($_POST['Vraag2']) == 0 or strlen($_POST['Vraag3']) == 0){
 
-    Echo "Niet alle velden waren ingevuld<br>";
+    Echo $Erregvelden;
 
 }
 
@@ -100,7 +112,7 @@ $PW = $Pass;
 
 }else{
     
-    echo "Ingevoerde wachtwoorden niet hetzelfde<br>";
+    echo $Erregwwcheck;
     Die;
 }
 
@@ -191,15 +203,15 @@ if($link)
 
         }elseif($Emailstatus == "Bestaat"){
             
-            echo "Deze Email is al ingebruik!<br>";
+            echo $Erregemailingebruik;
             
         }elseif($SNumstatus == "Bestaat"){
             
-            echo "Dit Studentennummer is al ingebruik!<br>";
+            echo $Erregstudentnummeringebruik;
             
         }elseif(isset($_POST['Submit']) and $SorD == "NoStudent" and strlen($_POST['Voornaam']) >= 1 and strlen($_POST['Studentnummer']) >= 1 and strlen($_POST['Achternaam']) >= 1 and strlen($_POST['Password']) >= 1 and strlen($_POST['Vraag1']) >= 1 and strlen($_POST['Vraag2']) >= 1 and strlen($_POST['Vraag3']) >= 1){
 
-            Echo "Geen Studenten Email ingevoerd<br>";
+            Echo $Erregfoutemail;
 
 
         }

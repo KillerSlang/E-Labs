@@ -3,10 +3,12 @@
     font-family: Arial; 
     background-image: url("../images/achtergrondelabs.jpg");
     background-size: 100%;
-    background-repeat: repeat;
+    
     background-color: gray;
     
-
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 
@@ -70,7 +72,7 @@
 
 
 #inlogruimte{
-background-color: rgba(255,255,255,0.8);
+background-color: white;
 
 
 
@@ -363,3 +365,29 @@ img {
 
   }
 
+
+  #engelsknop{
+
+    float: right;
+    color: white;
+    margin-top: 3px;
+    margin-right: 10px;
+
+    cursor: pointer;
+    
+    border-color: black;
+    transform: scale(1.3);
+
+  }
+
+  a:active#engelsknop{
+
+    text-decoration: none;
+
+  }
+
+  a:link#engelsknop{
+
+    text-decoration: none;
+
+  }

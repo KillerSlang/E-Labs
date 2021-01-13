@@ -1,6 +1,15 @@
 <?php
             // Starting session
             session_start();
+            if(empty($_COOKIE["taal"])){
+                setcookie("taal", "nederlands");
+            }
+            if($_COOKIE["taal"] == "english"){
+                include_once "../Include/Engels.php";
+            } else {
+                include_once "../Include/Nederlands.php";
+            }
+            
 			if(isset($_POST["Submit"])){
 
             $email = $_POST["Email"];
@@ -38,11 +47,11 @@
                                 $_SESSION["studentNummer"] = $studentNummer;
                                 $_SESSION["Name"] = $studentNaam;
 								
-								header("Location: https://elabs.serverict.nl/Pages/Homepage.php");
+								header("Location: Homepage.php");
 
 								
                             }else{
-                                echo "Probeer opnieuw";
+                                echo'<meta http-equiv="refresh" content="0; URL=index.php?error=1">';
                                 
                             }
                         mysqli_close($connection);
@@ -55,7 +64,7 @@
                 if($link)
                 {
             
-                        $connection = mysqli_connect("localhost","elabs","Bla_1711");
+                        $connection = mysqli_connect("localhost","root","");
                         mysqli_select_db($connection, 'elabs');
             
                         $SQL = "SELECT docentID, docentNaam FROM docent WHERE wachtwoord = '$wachtwoord' and docentEmail = '$email'";
@@ -80,8 +89,8 @@
                                 echo'<meta http-equiv="refresh" content="0; URL=Homepage.php">';
 								die;
                             }else{
-
-                                echo "Probeer opnieuw";
+                                
+                                echo'<meta http-equiv="refresh" content="0; URL=index.php?error=1">';
                                 
                                 
 

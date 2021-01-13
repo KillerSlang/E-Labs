@@ -13,27 +13,25 @@
     ?>
     <main id="Protocol">
         <div class="PageTitle">
-            <h1>Nieuw Protocol</h1>
+            <h1><?=$ProtocolNieuw?></h1>
             <hr>
         </div>
         <div class="whitebg">
             <div class="content">
                 <form class="Pform" method="POST" action="NewProtocol.php" enctype="multipart/form-data">
                     
-                    <label for="PTitle">Protocol Titel: *</label>
+                    <label for="**PTitle"><?=$Protocol." ".$Titel?>: *</label>
                     <input type="text" name="PTitle" placeholder="Titel" required></input>
                     
-                    <label for="Vakken">Vak: *</label>
+                    <label for="Vakken"><?=$Vak?>: *</label>
                     <div name="Vakken">
                         <input type="radio" id="BML" name="PVak" value="BML" checked>
-                        <label for="BML">BML</label><br>
+                        <label for="BML"><?=$BML?></label><br>
                         <input type="radio" id="Chemie" name="PVak" value="Chemie">
-                        <label for="Chemie">Chemie</label>
+                        <label for="Chemie"><?=$Chemie?></label>
                     </div>
-
-
                     
-                    <label for="PUpload">Protocol: *</label>
+                    <label for="PUpload"><?=$Protocol?>: *</label>
                     <input type="file" name="PUpload" id="PUpload" accept=".pdf">
 
                     <input class="bluebtn" id="PSubmit" type="submit" value="Upload protocol" name="PSubmit">
@@ -43,14 +41,13 @@
                 if(isset($_POST["PSubmit"])){
                     if(!empty($_POST["PTitle"])){
                         if(!empty($_POST["PVak"])){
-                            if(!empty($_POST["PJaar"])){
+                            if(!empty($_SESSION["jaar"])){
                                 if(!empty($_FILES)){
                                 
                                     $studentID =  filter_var($_SESSION["StudentID"], FILTER_SANITIZE_SPECIAL_CHARS);
                                     $uploadDatum =  date("Y-m-d");
                                     $titel =  filter_input(INPUT_POST,'PTitle', FILTER_SANITIZE_SPECIAL_CHARS);
                                     $vakken =  filter_input(INPUT_POST,'PVak', FILTER_SANITIZE_SPECIAL_CHARS);
-                                    $jaar =  filter_input(INPUT_POST,'PJaar', FILTER_SANITIZE_SPECIAL_CHARS); 
 
                                     //Protocol pdf
                                     
@@ -97,19 +94,19 @@
                                         }                                        
                                     }
                                     else {
-                                        echo "Je mag alleen een .pdf bestand uploaden.";
+                                        echo $ErType;
                                     }
                                 }else{
-                                    echo "Geen Bestand geselecteerd";
+                                    echo $ErBestand;
                                 }
                             }else{
-                                echo "Geen Jaar geselecteerd";
+                                echo "<a href='Instellingen.php'>".$ErJaar."</a>";
                             }
                         }else{
-                            echo "Geen Vak geselecteerd";
+                            echo $ErVak;
                         }
                     }else{
-                        echo "Geen Titel ingevoerd";
+                        echo $ErTitel;
                     }
                 }
                 ?>

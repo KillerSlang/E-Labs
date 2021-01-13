@@ -13,7 +13,7 @@
 <?PHP
     /* Header */
     include_once '../Include/Header.php';
-	include_once 'Dbh.inc.php';
+	include_once '../Include/Dbh.inc.php';
 ?>
 
 <main id="Labjournaal">
@@ -52,7 +52,7 @@
 
                 $sql = 'SELECT studentID,voorbereidingTitel,voorbereidingDatum,materialen,
        methode,hypothese,instellingenApparaten,voorbereidendevragen,veiligheid,
-       vakken,uitvoerders,uitvoeringsDatum,theorie,benodigdeFormules,doel,Jaar
+       vakken,uitvoerders,uitvoeringsDatum,theorie,benodigdeFormules,doel,jaar
 				FROM voorbereiding
                 WHERE voorbereidingID ='.$ID;
 
