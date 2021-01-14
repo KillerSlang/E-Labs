@@ -262,10 +262,12 @@
                                 echo "<table class='LTable'><tr><th>Titel</th><th>Auteur</th><th>Experiment datum</th><th>Vakken</th><th>Jaar</th><th>download</th><th>Bekijken</th></tr>";
                                 while(mysqli_stmt_fetch($stmt))
                                 {
+                                    $datum = explode("-", $experimentDatum);
+                                    $experimentDatumB = $datum[2]."-".$datum[1]."-".$datum[0];
                                     echo '<tr>
                                     <td>'.$labjournaalTitel.'</td>
                                     <td>'.$studentNaam.'</td>
-                                    <td>'.$experimentDatum.'</td>
+                                    <td>'.$experimentDatumB.'</td>
                                     <td>'.$vak.'</td>
                                     <td>'.$jaar.'</td>
                                     <td><a class="labjournaalLink" href="../Include/downloadLabjournaal.inc.php?ID='.$labjournaalID .'"> <i class="fas fa-download"></i> </a></td>

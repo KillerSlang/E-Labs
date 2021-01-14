@@ -110,13 +110,13 @@
                 </div>
 
                 <label>Experiment datum: * </label>
-                <input type="date" id="experimentdatum" name="experimentdatum" value="'.$experimentdatum.'">
+                <input type="date" id="experimentdatum" name="experimentdatum" placeholder="dd/mm/yyyy" value="'.$experimentdatum.'">
 
                 <label>Start datum experiment: </label>
-                <input type="date" id="experimentstartdatum" name="experimentstartdatum" value="'.$experimentstartdatum.'">
+                <input type="date" id="experimentstartdatum" name="experimentstartdatum" placeholder="dd/mm/yyyy" value="'.$experimentstartdatum.'">
 
                 <label>Eind datum experiment: </label>
-                <input type="date" id="experimenteinddatum" name="experimenteinddatum" value="'.$experimenteinddatum.'">
+                <input type="date" id="experimenteinddatum" name="experimenteinddatum" placeholder="dd/mm/yyyy" value="'.$experimenteinddatum.'">
 
                 <br>
 
