@@ -7,16 +7,18 @@ if(!empty($_GET['ID']))
 }else{ $ID = 0; }
 
 queryAanmaken(
-    'SELECT voorbereidingTitel,uitvoerders,voorbereidingdatum,
-    uitvoeringDatum,theorie,benodigdeFormules,InstellingenApparaten,doel,hypothese,materialen,
-    methode,veiligheid,voorbereidendeVragen,vak,jaar
+    'SELECT voorbereidingTitel,voorbereidingDatum,materialen,methode,hypothese,
+    instellingenApparaten,voorbereidendeVragen,veiligheid,vak,uitvoerders,
+    uitvoeringsDatum,benodigdeFormules,jaar,bijlageTheorie,bijlageMaterialen,
+    bijlageMethode,bijlageVeiligheid,bijlageVoorbereidendevragen,doel,docentID,beoordeling
     FROM voorbereiding
     WHERE voorbereidingID = ?'
     ,"i",$ID    
 ); // vraag alle gegevens op van de database.
-mysqli_stmt_bind_result($stmt, $voorbereidingTitel, $uitvoerders, $voorbereidingdatum, $uitvoeringDatum, $uploadtheorie, $benodigdeFormules, 
-                        $InstellingenApparaten, $doel, $hypothese, $materialen, $methode, $veiligheid, $voorbereidendeVragen,
-                        $vak, $jaar); // bind de resultaten
+mysqli_stmt_bind_result($stmt, $titelvoorbereiding,$voorbereidingsdatum,$materialen,$methode,$hypothese,
+                        $InstellingenApparaten,$voorbereidendevragen,$veiligheid,$vak,$uitvoerders,$uitvoeringsdatum,$benodigdeFormules,
+                        $jaar,$bijlageTheorie,$bijlageMaterialen,$bijlageMethode,$bijlageVeiligheid,$bijlageVoorbereidendevragen,
+                        $doel,$docent,$beoordeling); // bind de resultaten
 mysqli_stmt_store_result($stmt);  // sla de resultaten op.                                
 while (mysqli_stmt_fetch($stmt)) 
 {    }
@@ -24,9 +26,29 @@ while (mysqli_stmt_fetch($stmt))
 omdat er altijd maar 1 resultaat is wordt deze meteen gesloten zodat de database connectie
 weer kan worden gebruikt. */
 querySluiten(); 
+
+//haal docent naam op
+if(!empty($docent))
+{
+    queryAanmaken(
+    'SELECT docentNaam
+     FROM docent
+     WHERE docentID = ?
+    ',
+    "i",
+    $docent
+    );
+    mysqli_stmt_bind_result($stmt, $docentNaam);
+    mysqli_stmt_store_result($stmt);
+    while (mysqli_stmt_fetch($stmt)) 
+    {    }
+    querySluiten();
+
+ }; 
+
     require_once __DIR__ . '/vendor/autoload.php'; // voeg de library toe om de functies van mpdf uit te voeren.
     $date = date('d-m-y HH:MM'); // vraag de datum met tijd aan om toe te voegen aan de naam van de pdf.
-    $pdfname = $voorbereidingTitel . " " .$date.".pdf"; // naam van de pdf
+    $pdfname = $titelvoorbereiding . " " .$date.".pdf"; // naam van de pdf
     // maak nieuw pdf aan.
     $mpdf = new \Mpdf\Mpdf();
     $mpdf->showImageErrors = true; // deze is toegevoegd zodat er afbeeldingen kunnen worden getoond.
@@ -42,9 +64,9 @@ querySluiten();
         <body>
             <h1>Voorbereiding</h1>
             <p>
-                <strong>Titel experiment:</strong>
+                <strong>Titel voorbereiding:</strong>
                 <br />
-                '.$voorbereidingTitel.'
+                '.$titelvoorbereiding.'
             </p>
             <p>
                 <strong>Uitvoerders:</strong>
@@ -67,23 +89,41 @@ querySluiten();
     $data.= '
             </p>
             <p>
-                <strong>Voorbereiding datum:</strong>
+                <strong>Voorbereidings datum:</strong>
                 <br />
-                '.$voorbereidingdatum.'
+                '.$voorbereidingsdatum.'
             </p>
             <p>
-                <strong>Uitvoerings Datum:</strong>
+                <strong>Start datum experiment:</strong>
                 <br />
-                '.$uitvoeringDatum.'
+                '.$uitvoeringsdatum.'
             </p>
+            
+            <p>
 
+                <strong>Upload Theorie:</strong>
+                <br />';
+                if(!empty($bijlageTheorie)){
+                    $extension = explode(".", $bijlageTheorie);
+                    if ($extension[3] == "jpg" || $extension[3] == "jpeg" || $extension[3] == "png"){
+                        $data.= '<img src="'.$bijlageTheorie.'" width=30% height=30%/>';
+                    }
+                    else
+                    {
+                        $data.='<a class="downloadLink" target="_blank" href="'.$bijlageTheorie.'">'.$bijlageTheorie.'</a>';
+                    }  
+                } else {
+                    $data.='Geen bestand geupload.';
+                }
+    $data.='
+            </p>
             <p>
-                <strong>Benodigde formules:</strong>
+                <strong>Benodigde Formules: </strong>
                 <br />
                 '.nl2br($benodigdeFormules).'
             </p>
             <p>
-                <strong>Instellingen apparaten:</strong>
+                <strong>InstellingenApparaten:</strong>
                 <br />
                 '.nl2br($InstellingenApparaten).'
             </p>
@@ -103,24 +143,89 @@ querySluiten();
                 '.nl2br($materialen).'
             </p>
             <p>
+                <strong>Upload Materialen:</strong>
+                <br />';
+                if(!empty($bijlageMaterialen)){
+                    $extension = explode(".", $bijlageMaterialen);
+                    if ($extension[3] == "jpg" || $extension[3] == "jpeg" || $extension[3] == "png"){
+                        $data.= '<img src="'.$bijlageMaterialen.'" width=30% height=30%/>';
+                    }
+                    else
+                    {
+                        $data.='<a class="downloadLink"  target="_blank" href="'.$bijlageMaterialen.'">'.$bijlageMaterialen.'</a>';
+                    }  
+                } else {
+                    $data.='Geen bestand geupload.';
+                }
+    $data.='
+            </p>
+            <p>
                 <strong>Methode:</strong>
                 <br />
                 '.nl2br($methode).'
-            </p>  
-            uploadbestand?
+            </p>
+            <p>
+                <strong>Upload Methode:</strong>
+                <br />';
+                if(!empty($bijlageMethode)){
+                    $extension = explode(".", $bijlageMethode);
+                    if ($extension[3] == "jpg" || $extension[3] == "jpeg" || $extension[3] == "png"){
+                        $data.= '<img src="'.$bijlageMethode.'" width=30% height=30%/>';
+                    }
+                    else
+                    {
+                        $data.='<a class="downloadLink"  target="_blank" href="'.$bijlageMethode.'">'.$bijlageMethode.'</a>';
+                    }  
+                } else {
+                    $data.='Geen bestand geupload.';
+                }
+    $data.='
+            </p>
             <p>
                 <strong>Veiligheid:</strong>
                 <br />
                 '.nl2br($veiligheid).'
-            </p> 
-            uploadbestand?
+            </p>
             <p>
-                <strong>Voorbereidende vragen:</strong>
+                <strong>Upload Veiligheid:</strong>
+                <br />';
+                if(!empty($bijlageVeiligheid)){
+                    $extension = explode(".", $bijlageVeiligheid);
+                    if ($extension[3] == "jpg" || $extension[3] == "jpeg" || $extension[3] == "png"){
+                        $data.= '<img src="'.$bijlageVeiligheid.'" width=30% height=30%/>';
+                    }
+                    else
+                    {
+                        $data.='<a class="downloadLink"  target="_blank" href="'.$bijlageVeiligheid.'">'.$bijlageVeiligheid.'</a>';
+                    }  
+                } else {
+                    $data.='Geen bestand geupload.';
+                }
+    $data.='
+            </p>
+            <p>
+                <strong>Voorbereidende vragen: :</strong>
                 <br />
-                '.nl2br($voorbereidendeVragen).'
-            </p>   
-            uploadbestand?
-                $data.='<a class="downloadLink" " target="_blank" href="'.$bijlageLogboek.'">'.$bijlageLogboek.'</a>';
+                '.nl2br($voorbereidendevragen).'
+            </p>
+            <p>
+                <strong>Upload Voorbereidendevragen:</strong>
+                <br />';
+                if(!empty($bijlageVoorbereidendevragen)){
+                    $extension = explode(".", $bijlageVoorbereidendevragen);
+                    if ($extension[3] == "jpg" || $extension[3] == "jpeg" || $extension[3] == "png"){
+                        $data.= '<img src="'.$bijlageVoorbereidendevragen.'" width=30% height=30%/>';
+                    }
+                    else
+                    {
+                        $data.='<a class="downloadLink"  target="_blank" href="'.$bijlageVoorbereidendevragen.'">'.$bijlageVoorbereidendevragen.'</a>';
+                    }  
+                } else {
+                    $data.='Geen bestand geupload.';
+                }
+    $data.='
+            </p>
+            
             <p>
                 <strong>Vak:</strong>
                 <br />
@@ -131,9 +236,20 @@ querySluiten();
                 <br />
                 '.$jaar.'
             </p>
+            <p>
+                <strong>Cijfer:</strong>
+                <br />
+                '.$beoordeling.'
+            </p>
+            <p>
+                <strong>Beoordeeld door:</strong>
+                <br />
+                '.$docentNaam.'
+            </p>
         </body>
     </html>
     ';  
+    
     // maak het pdf.
     $mpdf->WriteHTML($data);
 

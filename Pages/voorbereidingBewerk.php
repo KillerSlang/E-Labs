@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="../Css/Main.css">
         <link rel="stylesheet" href="../Css/Responsive.css">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Voorbereiding bewerken</title>
+        <title>Nieuw Labjournaal</title>
     </head>
 
     <body>
@@ -19,19 +19,19 @@
 
     <main id="Labjournaal">
         <div class="PageTitle">
-            <h1>Voorbereiding</h1>
+            <h1>Labjournaal</h1>
             <hr>
         </div>
         <div class="whitebg">
             <div class="content">
                 <?PHP
-                    if(!empty($_GET['addVoorbereiding']))// wanneer er een addvoorbereiding in de get staat.
+                    if(!empty($_GET['addLabjournaal']))// wanneer er een addlabjournaal in de get staat.
                     {
                         echo'<div class="bericht">';
-                            $addvoorbereiding = $_GET["addVoorbereiding"];
-                            if($addvoorbereiding != "failed") // wanneer niet failed is.
+                            $addlabjournaal = $_GET["addLabjournaal"];
+                            if($addlabjournaal != "failed") // wanneer niet failed is.
                             {
-                                echo'<b>De voorbereiding is opgeslagen.</b><hr>';
+                                echo'<b>Het labjournaal is opgeslagen.</b><hr>';
                             }
                             else // anders
                             {
@@ -45,10 +45,9 @@
                     }else{ $ID = 0; }// anders wordt ID 0 om geen error te veroorzaken. 
                     
 
-                    $sql = 'SELECT voorbereidingTitel,uitvoerders,voorbereidingdatum,
-                    uitvoeringDatum,theorie,benodigdeFormules,InstellingenApparaten,doel
-                    hypothese,materialen,methode,veiligheid,voorbereidendeVragen,
-                    ,vak,l.jaar
+                    $sql = 'SELECT voorbereidingTitel, voorbereidingDatum, materialen, methode, hypothese, instellingenApparaten,
+                             voorbereidendeVragen, veiligheid, vak, uitvoerders, uitvoeringsDatum, benodigdeFormules, bijlageTheorie,
+                             bijlageMaterialen, bijlageMethode, bijlageVeiligheid, bijlageVoorbereidendevragen, doel
                     FROM voorbereiding as l '; //maak query aan
                     if($_SESSION['SorD'] == "Student")//wanneer de gebruiker student is.
                     {
@@ -58,24 +57,23 @@
                             $sql,
                             "ii",
                             $ID,$_SESSION["StudentID"]
-                        );//student kan alleen voorbereiding bewerken waar hij auteur van is.
+                        );//student kan alleen labjournalen bewerken waar hij auteur van is.
                     } 
                     else // docent komt niet op deze pagina. Dus deze else bestaat eigenlijk niet.
                     {
                         echo 'Session is niet ingevuld met student'; exit;
                     }                
-                    mysqli_stmt_bind_result($stmt, $voorbereidingTitel, $uitvoerders, $voorbereidingdatum, $uitvoeringDatum, $benodigdeFormules, 
-                                            $InstellingenApparaten, $doel, $hypothese, $materialen, $methode, $veiligheid, $voorbereidendeVragen,
-                                            $vak, $jaar); // bind de resultaten
-                    
-                    mysqli_stmt_store_result($stmt);  //sla de resultaten op.                                                          
-                    while (mysqli_stmt_fetch($stmt)) {  } 
+                    mysqli_stmt_bind_result($stmt, $voorbereidingTitel, $voorbereidingDatum, $materialen, $methode, $hypothese, $instellingenApparaten,
+                                            $voorbereidendeVragen, $veiligheid, $vak, $uitvoerders, $uitvoeringsDatum, $benodigdeFormules, $bijlageTheorie,
+                                            $bijlageMaterialen, $bijlageMethode, $bijlageVeiligheid, $bijlageVoorbereidendevragen, $doel); // bind de resultaten                    
+                    mysqli_stmt_store_result($stmt);  //sla de resultaten op.
+                    while (mysqli_stmt_fetch($stmt)) {  }
                         /* maak de while statement aan en sluit deze.
                         omdat er altijd maar 1 resultaat is wordt deze meteen gesloten zodat de database connectie
                         weer kan worden gebruikt. */
                     querysluiten(); // sluit de connectie met de database.
-          - - -  - - echo '<form class="Lform" action="../Include/editVoorbereiding.inc.php?ID='.$ID.'" method="post" enctype="multipart/form-data">            
-                        <label for="titelvoorbereiding">Titel Voorbereiding: * </label>
+                echo '<form class="Lform" action="../Include/editlabjournaal.inc.php?ID='.$ID.'" method="post" enctype="multipart/form-data">            
+                        <label for="titelvoorbereiding">Titel voorbereiding: * </label>
                         <input type="text" id="titelvoorbereiding" name="titelvoorbereiding" value="'.$voorbereidingTitel.'" size="40">
                         
                         <label for="uitvoerders">Uitvoerders: * </label>
@@ -132,131 +130,112 @@
                                 <i class="fas fa-user-minus"> </i>
                             </button>
                         </div>
-
                         <br>        
-                        <label for="voorbereidingsdatum">Voorbereidings datum: * </label>
-                        <input type="date" id="voorbereidingsdatum" name="voorbereidingsdatum" value="'.$voorbereidingsdatum.'">
+                        <label for="voorbereidingsDatum">voorbereidings datum: * </label>
+                        <input type="date" id="voorbereidingsDatum" name="voorbereidingsDatum" value="'.$voorbereidingDatum.'">
             
-                        </br>
-
-                        <label for="uitvoeringsdatum">Uitvoerings datum: *</label>
-                        <input type="date" id="experimentstartdatum" name="uitvoeringsdatum" value="'.$uitvoeringsdatum.'">
-                 
-                        </br>
+                        <label for="uitvoeringsDatum">uitvoerings datum: </label>
+                        <input type="date" id="uitvoeringsDatum" name="uitvoeringsDatum" value="'.$uitvoeringsDatum.'">
+                    
+                        <br>
             
-                        <label for="uploadtheorie">Upload theorie: </label><p>Alleen afbeeldingen en word</p>
-                        <input type="file" id="uploadveiligheid" name="uploadtheorie" accept=".image/*,.docx,.doc">
-
+                        <label for="uploadtheorie">Upload theorie: </label>
+                        <input type="file" id="uploadtheorie" name="uploadtheorie" accept=".xls,.xlsx,image/*" value="'.$bijlageTheorie.'">';
+                        if(!empty($bijlageTheorie)){
+                            echo'<a class="downloadLink" " target="_blank" href="'.$bijlageTheorie.'">'.$bijlageTheorie.'</a>';
+                        }
+                        echo'                    
                         <br>
                         <br>
-
-                        <label for="benodigdeFormules">Benodigde formules: </label>
-                        <textarea id="weeggegevens" name="benodigdeFormules" rows="4" cols="50" placeholder="Voer gegevens in..." value="'.$benodigdeFormules.'"></textarea>
-
+                        <label for="benodigdeFormules">benodigdeFormules: </label>
+                        <textarea name="benodigdeFormules" class="autoresizingBewerken" placeholder="Voer gegevens in...">'.$benodigdeFormules.'</textarea>        
                         <br>
+                        <br>  
+                        <label for="InstellingenApparaten">InstellingenApparaten: </label>
+                        <textarea name="InstellingenApparaten" class="autoresizingBewerken" placeholder="Voer gegevens in...">'.$instellingenApparaten.' </textarea>        
                         <br>
-
-                        <label for="InstellingenApparaten">Instellingen apparaten: </label>
-                        <textarea id="methode" name="instellingenapparaten" rows="4" cols="50" placeholder="Voer gegevens in..." value="'.$InstellingenApparaten.'"></textarea>
-                                  
-
-                        <label for="hypothese">Hypothese: </label>
-                        <tex
-                        
+                        <br> 
+                        <label for="doel">doel: </label>
+                        <textarea name="doel" class="autoresizingBewerken" placeholder="Voer gegevens in...">'.$doel.'</textarea>        
+                        <br>
+                        <br>        
                         <label for="Hypothese">Hypothese: </label>
-                        <textarea id="materialen" name="hypothese" rows="4" cols="50" placeholder="Voer gegevens in..." value="'.$hypothese.'"></textarea>
-
+                        <textarea name="Hypothese" class="autoresizingBewerken" placeholder="Voer gegevens in...">'.$hypothese.'</textarea>        
                         <br>
                         <br>
-
                         <label for="materialen">Materialen: </label>
-                        <textarea id="materialen" name="materialen" rows="4" cols="50" placeholder="Voer gegevens in..." value="'.$materialen.'"></textarea>
+                        <textarea id="materialen" name="materialen" rows="4" cols="50" placeholder="Voer gegevens in...">'.$materialen.'</textarea>
 
                         <br>
+                        <br>         
+                        <label for="uploadmaterialen">Upload Materialen bestand: </label>
+                        <input type="file" id="uploadmaterialen" name="uploadmaterialen" accept="image/*value="'.$bijlageMaterialen.'">
                         <br>
-
-                        <label>Upload Materialen bestand: </label><p>Alleen excel</p>
-                        <input type="file" id="uploadwaarnemingen" name="uploadmaterialen" accept=".xls,.xlsx">
-
-                        <br>
-                        <br>
-
+                        <br>';
+                        if(!empty($bijlageMaterialen)){
+                            echo'<a class="downloadLink" " target="_blank" href="'.$bijlageMaterialen.'">'.$bijlageMaterialen.'</a>';
+                        } 
+                        echo'                
                         <label for="Methode">Methode: </label>
-                        <textarea id="hypothese" name="methode" rows="4" cols="50" placeholder="Voer gegevens in..." value="'.$methode.'"></textarea>
-
+                        <textarea id="methode" name="methode" rows="4" cols="50" placeholder="Voer gegevens in...">'.$methode.'</textarea>
+            
                         <br>
-                        <br>
-
-                        <label>Upload methode bestand: </label><p>Alleen excel</p>
-                        <input type="file" id="uploadmeetresultaten" name="uploadmethode" accept=".xls,.xlsx">
-
-                        <br>
-                        <br>
-
+                        <br>   
+                        <label for="uploadmethode">Upload methode bestand: </label>
+                        <input type="file" id="uploadmethode" name="uploadmethode" accept=".xls,.xlsx,image/* value='.$bijlageMethode.'>';
+                        if(!empty($bijlageMethode)){
+                            echo'<a class="downloadLink" " target="_blank" href="'.$bijlageMethode.'">'.$bijlageMethode.'</a>';
+                        }
+                        echo'               
                         <label for="Veiligheid">Veiligheid: </label>
-                        <textarea id="observaties" name="veiligheid" rows="4" cols="50" placeholder="Voer gegevens in..." value="'.$veiligheid.'"></textarea>
+                        <textarea id="veiligheid" name="veiligheid" rows="4" cols="50" placeholder="Voer gegevens in...">'.$veiligheid.'</textarea>
+                        
+                        <br>
+                        <br>                    
+                                     
+                        <label for="uploadveiligheid">Upload veiligheid bestand: </label>
+                        <input type="file" id="uploadveiligheid" name="uploadveiligheid" accept=".xls,.xlsx,.doc,.docx" value='.$bijlageVeiligheid.'>';
+                        if(!empty($bijlageVeiligheid)){
+                            echo'<a class="downloadLink" " target="_blank" href="'.$bijlageVeiligheid.'">'.$bijlageVeiligheid.'</a>';
+                        }
+                        echo'
+                        <br>
+                        <br>        
+                        <label for="Voorbereidendevragen">Voorbereidende Vragen: </label>
+                        <textarea name="Voorbereidendevragen" class="autoresizingBewerken" placeholder="Voer gegevens in...">'.$voorbereidendeVragen.'</textarea>        
+                        <br>
+                        <br>                  
+                        <label for="uploadvoorbereidendevragen">Upload voorbereidendevragen bestand: </label>
+                        <input type="file" id="uploadvoorbereidendevragen" name="uploadvoorbereidendevragen" accept="image/*,.doc,.docx" value='.$bijlageVoorbereidendevragen.'>';
+                        if(!empty($bijlageVoorbereidendevragen)){
+                            echo'<a class="downloadLink" " target="_blank" href="'.$bijlageVoorbereidendevragen.'">'.$bijlageVoorbereidendevragen.'</a>';
+                        }
+                        echo'       
                         
                         <br>
                         <br>
-                        
-                        <label>Upload veiligheid bestand: </label><p>Alleen afbeeldingen en excel</p>
-                        <input type="file" id="uploadlogboek" name="uploadveiligheid" accept="image/*,.xls,.xlsx">
-
-                        <br>
-                        <br>
-                        
-
-                        <label for="Voorbereidendevragen">Voorbereidende vragen: </label>
-                        <textarea id="logboek" name="voorbereidendevragen" rows="4" cols="50" placeholder="Voer gegevens in..." value="'.$voorbereidendevragen.'"></textarea>
-
-                        <br>
-                        <br>
-                        
-
-                        <label>Upload voorbereidende vragen bestand: </label><p>Alleen afbeeldingen, excel, en word</p>
-                        <input type="file" id="uploadlogboek" name="uploadvoorbereidendevragen" accept=".xls,.xlsx,.doc,.docx,image/*">
-
-                        <br>
-                        <br>
-        }
-                        <label for="Jaren">Jaar: *</label>
-                                <div id="Jaren">';
-                                if ($jaar == "1") 
-                                {
-                                    echo '<input type="radio" id="Jaar1" name="PJaar" value="1" checked>
-                                    <label for="BML">Jaar 1</label><br>
-                                    <input type="radio" id="Jaar2" name="PJaar" value="2">
-                                    <label for="Chemie">Jaar 2</label><br>
-                                    <input type="radio" id="Jaar3" name="PJaar" value="3">
-                                    <label for="Chemie">Jaar 3</label>';
-                                } elseif ($jaar == "2")
-                                {
-                                    echo '<input type="radio" id="Jaar1" name="PJaar" value="1">
-                                    <label for="BML">Jaar 1</label><br>
-                                    <input type="radio" id="Jaar2" name="PJaar" value="2" checked>
-                                    <label for="Chemie">Jaar 2</label><br>
-                                    <input type="radio" id="Jaar3" name="PJaar" value="3">
-                                    <label for="Chemie">Jaar 3</label>';
-                                } elseif ($jaar == "3") 
-                                {
-                                    echo '<input type="radio" id="Jaar1" name="PJaar" value="1" >
-                                    <label for="BML">Jaar 1</label><br>
-                                    <input type="radio" id="Jaar2" name="PJaar" value="2">
-                                    <label for="Chemie">Jaar 2</label><br>
-                                    <input type="radio" id="Jaar3" name="PJaar" value="3" checked>
-                                    <label for="Chemie">Jaar 3</label>';
-                                } else {
-                                    echo '<input type="radio" id="Jaar1" name="PJaar" value="1" checked>
-                                    <label for="BML">Jaar 1</label><br>
-                                    <input type="radio" id="Jaar2" name="PJaar" value="2">
-                                    <label for="Chemie">Jaar 2</label><br>
-                                    <input type="radio" id="Jaar3" name="PJaar" value="3">
-                                    <label for="Chemie">Jaar 3</label>';
-                                }
-                                echo '      
-                                </div>        
+                        <label for="Vakken">Vak: *</label>
+                                <div id="Vakken">';
+                                    if ($vak == "BML")
+                                    {
+                                        echo'
+                                        <input type="radio" id="BML" name="LVak" value="BML" checked>
+                                        <label for="BML">BML</label><br>
+                                        <input type="radio" id="Chemie" name="LVak" value="Chemie">
+                                        <label for="Chemie">Chemie</label>';
+                                    }
+                                    else
+                                    {
+                                        echo'
+                                        <input type="radio" id="BML" name="LVak" value="BML">
+                                        <label for="BML">BML</label><br>
+                                        <input type="radio" id="Chemie" name="LVak" value="Chemie" checked>
+                                        <label for="Chemie">Chemie</label>';
+                                    }
+                    echo'
+                    <br><br>
                     <input class="bluebtn" type="Submit" id="LSubmit" name="LSubmit" value="Opslaan">
-                </form> ';        
+                </form>';        
                 ?>
                 
     </main>
@@ -278,4 +257,4 @@
         include_once '../Include/Footer.php';
     ?>
     </body>
-</html>/
+</html>

@@ -13,11 +13,11 @@ if(isset($_POST["Submit"])){
     if(isset($_POST["Submit"]) and $SorD == "Student")
     {
         queryAanmaken(
-            'SELECT studentID, studentNummer, studentNaam FROM student WHERE wachtwoord = ? AND studentEmail = ? ',
+            'SELECT studentID, studentNummer, studentNaam, jaar FROM student WHERE wachtwoord = ? AND studentEmail = ? ',
             "ss",
             $wachtwoord,$email
         );    
-        mysqli_stmt_bind_result($stmt, $studentID, $studentNummer,$studentNaam);
+        mysqli_stmt_bind_result($stmt, $studentID, $studentNummer,$studentNaam,$jaar);
         mysqli_stmt_store_result($stmt);
         if(mysqli_stmt_num_rows($stmt) != 0) // wanneer er resultaten zijn wordt de tabel uitgeprint en de knoppen onderaan ook weergeven anders niet.
         {
@@ -29,7 +29,8 @@ if(isset($_POST["Submit"])){
                 $_SESSION["StudentID"] = $studentID;
                 $_SESSION["SorD"] = "Student";
                 $_SESSION["studentNummer"] = $studentNummer;
-                $_SESSION["Name"] = $studentNaam;      
+                $_SESSION["Name"] = $studentNaam; 
+     	$_SESSION["jaar"] = $jaar;
             }
             header("Location: Homepage.php");
         }else

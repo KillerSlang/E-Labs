@@ -1,76 +1,61 @@
 <!DOCTYPE HTML>
 <html>
     <head>  
-
-    <?php
-        if(empty($_COOKIE["taal"])){
-            setcookie("taal", "nederlands");
-        }
-        if($_COOKIE["taal"] == "english"){
-            include_once "../Include/Engels.php";
-        } else {
-            include_once "../Include/Nederlands.php";
-        }
-        ?> 
-
-        <title><?= $Registreren ?></title>
+        <title>Registreren</title>
         <link href="../Css/inlog.css" rel="stylesheet" type="text/css">
     </head>
-    <body>
-        <div id="ILachtergrond">
-            <div id="Container">
-                <div id="inlogbox">
-                    <div id="logobalk">
-                        <div id="logobalklogo">
-                            <img class="ILimg" src="../Images/Logo.png" alt = "Logo wit" >
-                        </div>
-                        <div id="logobalktext">
-                            <h1><b><?= $Registreren ?></b></h1>                       
-                        </div>
+        <div id="Container">
+            <div id="inlogbox">
+                <div id="logobalk">
+                    <div id="logobalklogo">
+                        <img src="../Images/Logo.png" alt = "Logo wit" >
                     </div>
-                    <div id="inlogruimte">
-                            <form class="ILform" action = "<?php echo $_SERVER['PHP_SELF']; ?>" method = "POST">
+                    <div id="logobalktext">
+                        <h1><b>Registreren</b></h1>                       
+                    </div>
+                </div>
+                <div id="inlogruimte">
+                        <form action = "" method = "POST">
 
-                                <div id="Invoerveld1"><p><label for="Voornaam"><?= $Voornaam ?></label><br> 
-                                <input class="ILinput" type = "Text" name = "Voornaam"></p></div>
+                            <div id="Invoerveld1"><p><label for="Voornaam">Voornaam:</label><br> 
+                            <input type = "Text" name = "Voornaam"></p></div>
 
-                                <div id="Invoerveld2"><p><label for="Achternaam"><?= $Achternaam ?></label><br> 
-                                <input class="ILinput" type = "Text" name = "Achternaam"></p></div>
+                            <div id="Invoerveld2"><p><label for="Achternaam">Achternaam:</label><br> 
+                            <input type = "Text" name = "Achternaam"></p></div>
 
-                                <div id="Invoerveld3"><p><label for="Studentnummer"><?= $StudentNummer ?></label><br> 
-                                <input class="ILinput" type = "Number" name = "Studentnummer"></p></div>
+                            <div id="Invoerveld3"><p><label for="Studentnummer">Studentnummer:</label><br> 
+                            <input type = "Number" name = "Studentnummer"></p></div>
 
-                                <div id="Invoerveld4"><p><label for="Email"><?= $Email ?></label><br> 
-                                <input class="ILinput" type = "email" name = "Email"></p></div>
+                            <div id="Invoerveld4"><p><label for="Email">E-Mail:</label><br> 
+                            <input type = "email" name = "Email"></p></div>
 
-                                <div id="Invoerveld5"><p><label for="Pass"><?= $Wachtwoord ?></label><br>
-                                <input class="ILinput" type = "password" name = "Pass"></p></div>
+                            <div id="Invoerveld5"><p><label for="Pass">Wachtwoord:</label><br>
+                            <input type = "password" name = "Pass"></p></div>
 
-                                <div id="Invoerveld6"><p><label for="Word"><?= $Vwoi ?></label><br>
-                                <input class="ILinput" type = "password" name = "Word"></p></div>
+                            <div id="Invoerveld6"><p><label for="Word">Voor wachtwoord opnieuw in:</label><br>
+                            <input type = "password" name = "Word"></p></div>
 
-                                <div id="Invoerveld7"><p><?= $Vraag1 ?><input class="ILinput" type = "text" name = "Vraag1"></p></div>
-                                <div id="Invoerveld8"><p><?= $Vraag2 ?><input class="ILinput" type = "text" name = "Vraag2"></p></div>
-                                <div id="Invoerveld9"><p><?= $Vraag3 ?><input class="ILinput" type = "text" name = "Vraag3"></p></div>
+                            <div id="Invoerveld7"><p>Vraag 1: Wat is je lievelingskleur? <input type = "text" name = "Vraag1"></p></div>
+                            <div id="Invoerveld8"><p>Vraag 2: Wat is de naam van je eerste huisdier? <input type = "text" name = "Vraag2"></p></div>
+                            <div id="Invoerveld9"><p>Vraag 3: Hoe heet de stad/dorp waarin je bent geboren? <input type = "text" name = "Vraag3"></p></div>
 
-                                <div id="registreerbutton"><p>   
-                                    <input class="ILsubmit" type = "submit" name = "Submit" value = "Submit">
-                                </p></div>
-                            </form>
+                            <div id="registreerbutton"><p>   
+                                <input type = "submit" name = "Submit" value = "Submit">
+                            </p></div>
+                        </form>
 
-                        <div id="errorcodes"><b>
+                    <div id="errorcodes"><b>
 
 
 <?php
 include_once'../Include/Dbh.inc.php';
 
-    if(isset($_POST["Submit"])){
-
+if(isset($_POST["Submit"]))
+{
     //controleren of alle velden ingevuld zijn
     if(isset($_POST['Submit']) and strlen($_POST['Voornaam']) == 0 or strlen($_POST['Studentnummer']) == 0 or strlen($_POST['Achternaam']) == 0 or strlen($_POST['Pass']) == 0 or strlen($_POST['Word']) == 0 or strlen($_POST['Vraag1']) == 0 or strlen($_POST['Vraag2']) == 0 or strlen($_POST['Vraag3']) == 0){
 
-        Echo $Erregvelden;
-
+        echo "Niet alle velden waren ingevuld<br>";
     }
 
     // Data ophalen uit de Form
@@ -115,8 +100,8 @@ include_once'../Include/Dbh.inc.php';
 
     }else{
         
-        echo $Erregwwcheck;
-        Die;
+        echo "Ingevoerde wachtwoorden niet hetzelfde<br>";
+        exit;
     }
 
     $Password = sha1($PW); 
@@ -125,94 +110,65 @@ include_once'../Include/Dbh.inc.php';
     $vraag3 = sha1($_POST["Vraag3"]);  
 
     // Data controleren + in de database schrijven 
-
-        
-    $link = mysqli_connect("localhost","root","")
-    OR DIE("Could not connect to the database!");
-    if($link)
-    {
-        
-            if($SorD == "Student" and isset($_POST['Submit']) and strlen($_POST['Voornaam']) >= 1 and strlen($_POST['Studentnummer']) >= 1 and strlen($_POST['Achternaam']) >= 1 and strlen($_POST['Email']) >= 1 and strlen($_POST['Pass']) >= 1 and strlen($_POST['Word']) >= 1 and strlen($_POST['Vraag1']) >= 1 and strlen($_POST['Vraag2']) >= 1 and strlen($_POST['Vraag3']) >= 1){
-
-
-
-
-                    
-                    
-                    
-                    $SQLSNum = "SELECT * FROM student WHERE studentNummer = '$Studentnummer'";
-                    $checkSNum = mysqli_query($conn, $SQLSNum);
-
-                            if(mysqli_num_rows($checkemail) >= 1){
-                                
-                                $Emailstatus = "Bestaat";
-                                
-                            }else{
-                                
-                                $Emailstatus = "Nieuw";
-                                
-                            }
-
-                            
-                        if($Emailstatus == "Nieuw" AND $SNumstatus == "Nieuw"){
-                        
-                        $sql = "INSERT INTO student 
-                                (studentNummer, studentNaam, studentEmail, wachtwoord, beveiligingsVraag1, beveiligingsVraag2, beveiligingsVraag3)
-                                VALUES
-                                (
-                                        
-                                        '$Studentnummer',
-                                        '$Naam',
-                                        '$Email',
-                                        '$Password',
-                                        '$vraag1',
-                                        '$vraag2',
-                                        '$vraag3'
-                                        
-                                )";
-                        $stmt = mysqli_prepare($conn, $sql)
-                        OR DIE("Preparation Error");
-                        mysqli_stmt_execute($stmt)
-                        OR DIE(mysqli_error($conn));
-                        mysqli_stmt_close($stmt);
-                        
-                        mysqli_close($conn);
-
-                        echo "<script>location='../index.html'</script>";
-
-                    // header("location: ../index.html");  
-
-                        echo "<a href='../index.html'>naar inlog</a>";
-                        
-
-            }elseif($Emailstatus == "Bestaat"){
-                
-                echo $Erregemailingebruik;
-                
-            }elseif($SNumstatus == "Bestaat"){
-                
-                echo $Erregstudentnummeringebruik;
-                
-            }elseif(isset($_POST['Submit']) and $SorD == "NoStudent" and strlen($_POST['Voornaam']) >= 1 and strlen($_POST['Studentnummer']) >= 1 and strlen($_POST['Achternaam']) >= 1 and strlen($_POST['Password']) >= 1 and strlen($_POST['Vraag1']) >= 1 and strlen($_POST['Vraag2']) >= 1 and strlen($_POST['Vraag3']) >= 1){
-
-                Echo $Erregfoutemail;
-
-
+     if($SorD == "Student" and isset($_POST['Submit']) and strlen($_POST['Voornaam']) >= 1 and strlen($_POST['Studentnummer']) >= 1 and strlen($_POST['Achternaam']) >= 1 and strlen($_POST['Email']) >= 1 and strlen($_POST['Pass']) >= 1 and strlen($_POST['Word']) >= 1 and strlen($_POST['Vraag1']) >= 1 and strlen($_POST['Vraag2']) >= 1 and strlen($_POST['Vraag3']) >= 1)
+     {          
+        queryAanmaken(
+            'SELECT studentNummer FROM student WHERE studentNummer = ? ',
+            "i",
+            $Studentnummer);
+            mysqli_stmt_bind_result($stmt, $studentNummerD);
+            mysqli_stmt_store_result($stmt);
+            if(mysqli_stmt_num_rows($stmt) != 0) // wanneer er resultaten zijn.
+            {
+                $SNumstatus = "Bestaat";
             }
-
+            else
+            {
+                $SNumstatus = "Nieuw";
             }
-            
+        querySluiten();  
+        
+        queryAanmaken(
+            'SELECT studentEmail FROM student WHERE studentEmail = ? ',
+            "s",
+            $Email);
+            mysqli_stmt_bind_result($stmt, $EmailD);
+            mysqli_stmt_store_result($stmt);
+            if(mysqli_stmt_num_rows($stmt) != 0) // wanneer er resultaten zijn.
+            {
+                $Emailstatus = "Bestaat";
+            }
+            else
+            {
+                $Emailstatus = "Nieuw";
+            }
+        querySluiten();
+
+        if($Emailstatus == "Nieuw" AND $SNumstatus == "Nieuw")
+        {
+            queryAanmaken(
+                'INSERT INTO student 
+                (studentNummer, studentNaam, studentEmail, wachtwoord, beveiligingsVraag1, beveiligingsVraag2, beveiligingsVraag3)
+                VALUES
+                ( ?,?,?,?,?,?,? )',
+                "issssss",
+                $Studentnummer,$Naam,$Email,$Password,$vraag1,$vraag2,$vraag3    
+            ); 
+            querySluiten();
+            header("location: ../index.html");  
         }
-
+        elseif($Emailstatus == "Bestaat")
+        {
+            echo "Deze Email is al ingebruik!<br>";
+        }elseif($SNumstatus == "Bestaat")
+        {
+            echo "Dit Studentennummer is al ingebruik!<br>";
+        }        
     }
+}
+?>
 
-    
-
-
-    ?>
-
-                        </b></div>
-                    </div>
+                    </b></div>
                 </div>
             </div>
         </div>

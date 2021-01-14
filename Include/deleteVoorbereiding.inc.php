@@ -9,5 +9,4 @@ queryAanmaken (
     $ID,$_SESSION["StudentID"]
 );
 querySluiten();
-header("location: ../Pages/voorbereidingen.php?deleteVoorbereiding=succes");  
-
+header("location: ../Pages/voorbereidingen.php?deleteLabjournaal=succes");  

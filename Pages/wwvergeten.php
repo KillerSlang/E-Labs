@@ -68,8 +68,9 @@
 
 
             <?php
+    include_once '../Include/Dbh.inc.php';
     if(isset($_POST["Submit"])){
-
+        
                 $email = $_POST["Email"];
                 $studentnummer = $_POST["Studentnummer"];
                 
@@ -80,59 +81,41 @@
 
                 $PW = $Pass;
 
-                }else{
-                    
+                }else{                    
                     echo $Erregwwcheck;
                     Die;
                 }
-
                 $Password = sha1($PW); 
                 $vraag1 = sha1($_POST["Vraag1"]);
                 $vraag2 = sha1($_POST["Vraag2"]); 
                 $vraag3 = sha1($_POST["Vraag3"]);
-                
-                
-                if(isset($_POST["Submit"]))
+                queryAanmaken(
+                    'SELECT studentID 
+                    FROM student 
+                    WHERE studentNummer = ? AND studentEmail = ? AND beveiligingsVraag1 = ? AND beveiligingsVraag2 = ? AND beveiligingsVraag3 = ?'
+                    ,"issss",
+                    $studentnummer,$email,$vraag1,$vraag2,$vraag3
+                );
+                mysqli_stmt_bind_result($stmt, $studentID);
+                mysqli_stmt_store_result($stmt);
+                if(mysqli_stmt_num_rows($stmt) != 0) // we gaan er vanuit dat er maar 1 resultaat is.
                 {
-
-                    $link = mysqli_connect("localhost","root","") 
-                    OR DIE("Could not connect to the database!");
-                    if($link)
-                    {
-                
-                            $conn = mysqli_connect("localhost","root","");
-                            mysqli_select_db($conn, 'elabs');
-                
-                            $SQL = "SELECT studentID FROM student WHERE studentNummer = '$studentnummer' and studentEmail = '$email' and beveiligingsVraag1 = '$vraag1' and beveiligingsVraag2 = '$vraag2' and beveiligingsVraag3 = '$vraag3'";
-                            $check = mysqli_query($conn, $SQL);
-                
-            
-                                if(mysqli_num_rows($check) == 1){
-                                    
-                                    $row = mysqli_fetch_array($check);
-                                    
-                                    $studentID = $row['studentID'];
-                                    
-                                    $SQLUW = "UPDATE student SET wachtwoord='$Password' WHERE studentID = '$studentID'";
-                                    
-                                    if(mysqli_query($conn, $SQLUW)) {
-                                        echo $Updatedsucces;
-                                    } else {
-                                        echo "Error updating record: " . mysqli_error($conn);
-                                    }
-                                        
-                                    
-                                    
-                                }else{
-                                    echo $Probeeropnieuwgegevensonjuist;
-                                    
-                                    
-                                }
-                            mysqli_close($conn);
-                    }
+                    while (mysqli_stmt_fetch($stmt)){ }                                                            
+                }
+                querySluiten();   
+                queryAanmaken(
+                    'UPDATE student 
+                    SET wachtwoord = ?
+                    WHERE studentID = ?'
+                    ,"si",
+                    $Password,$studentID
+                    
+                );
+                querySluiten();
+                            
                 } 
                 
-            }
+            
             ?>
 
                         </div>

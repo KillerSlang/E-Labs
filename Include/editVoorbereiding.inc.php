@@ -8,48 +8,48 @@ if(!empty($_GET['ID']))
         $ID = filter_input(INPUT_GET,'ID', FILTER_SANITIZE_SPECIAL_CHARS);
     }else{ $ID = 0; }
 
-$titelVoorbereiding =  filter_input(INPUT_POST,'titelvoorbereiding', FILTER_SANITIZE_SPECIAL_CHARS); 
-$uitvoerders = base64_encode(serialize($_SESSION ['studentNummerArray']));
-$voorbereidingsdatum = filter_input(INPUT_POST,'voorbereidingsdatum',FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-$uitvoeringsdatum = filter_input(INPUT_POST,'uitvoeringsdatum',FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-
-$benodigdeFormules = filter_input(INPUT_POST,'benodigdeFormules', FILTER_SANITIZE_STRING);
-$InstellingenApparaten = filter_input(INPUT_POST,'InstellingenApparaten', FILTER_SANITIZE_STRING);
-$hypothese = filter_input(INPUT_POST,'hypothese', FILTER_SANITIZE_STRING);
-$materialen = filter_input(INPUT_POST,'materialen', FILTER_SANITIZE_STRING);
-$methode = filter_input(INPUT_POST,'methode',FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-$veiligheid = filter_input(INPUT_POST,'veiligheid',FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-$voorbereidendevragen = filter_input(INPUT_POST,'voorbereidendevragen',FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-$vak = $_POST['LVak'];
-$jaar = $_POST['PJaar'];
-$bijlageTheorie = "" ; 
-$bijlageMaterialen = "" ; 
-$bijlagemethode = "" ; 
-$bijlageVeiligheid = "" ; 
-$bijlageVoorbereidendevragen = "" ; 
-
+    $titelvoorbereiding =  filter_input(INPUT_POST,'titelvoorbereiding', FILTER_SANITIZE_SPECIAL_CHARS); 
+    $uitvoerders = base64_encode(serialize($_SESSION ['studentNummerArray']));
+    $voorbereidingsdatum = filter_input(INPUT_POST,'voorbereidingsDatum',FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $uitvoeringsdatum = filter_input(INPUT_POST,'uitvoeringsDatum',FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $doel = filter_input(INPUT_POST,'doel',FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $benodigdeFormules = filter_input(INPUT_POST,'benodigdeFormules', FILTER_SANITIZE_STRING);
+    $InstellingenApparaten = filter_input(INPUT_POST,'InstellingenApparaten', FILTER_SANITIZE_STRING);
+    $hypothese = filter_input(INPUT_POST,'Hypothese', FILTER_SANITIZE_STRING);
+    $materialen = filter_input(INPUT_POST,'materialen', FILTER_SANITIZE_STRING);
+    $methode = filter_input(INPUT_POST,'methode',FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $veiligheid = filter_input(INPUT_POST,'veiligheid',FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $voorbereidendevragen = filter_input(INPUT_POST,'Voorbereidendevragen',FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+    $vak = $_POST['LVak'];
+    $bijlageTheorie = "" ; 
+    $bijlageMaterialen = "" ; 
+    $bijlageMethode = "" ; 
+    $bijlageVeiligheid = "" ; 
+    $bijlageVoorbereidendevragen = "" ; 
+$uploadArray = array();
+$databaseNames = array();
 
 $_SESSION['titelvoorbereiding'] = $titelvoorbereiding;
 $_SESSION['voorbereidingsdatum'] = $voorbereidingsdatum;
 $_SESSION['uitvoeringsdatum'] = $uitvoeringsdatum;
+$_SESSION['doel'] = $doel;
 $_SESSION['benodigdeFormules'] = $benodigdeFormules;
 $_SESSION['InstellingenApparaten'] = $InstellingenApparaten;
 $_SESSION['hypothese'] = $hypothese;
 $_SESSION['materialen'] = $materialen;
 $_SESSION['methode'] = $methode;
 $_SESSION['veiligheid'] = $veiligheid;
-$_SESSION['observaties'] = $observaties;
 $_SESSION['voorbereidendevragen'] = $voorbereidendevragen;
 $_SESSION['vak'] = $vak;
-$_SESSION['jaar'] = $jaar;
 
-if (isset($_POST['LSubmit'])) // wanneer er een labjournaal wordt opgeslagen.
+if (isset($_POST['LSubmit'])) // wanneer er vanaf de VoorbereidingNieuw pagina op de opslaan knop wordt gedrukt.
 {    
+    
     if(!empty($_FILES["uploadtheorie"]))
     {
         // upload veiligheid
         $target_dir = "../uploads/voorbereiding/theorie";
-        $target_file_veiligheid = $target_dir . basename($_FILES["uploadtheorie"]["name"]);
+        $target_file_theorie = $target_dir . basename($_FILES["uploadtheorie"]["name"]);
         $imageFileTypeveiligheid = strtolower(pathinfo($target_file_theorie,PATHINFO_EXTENSION));
         
         // Controleer of het bestand al bestaat.
@@ -83,7 +83,7 @@ if (isset($_POST['LSubmit'])) // wanneer er een labjournaal wordt opgeslagen.
         $imageFileTypematerialen = strtolower(pathinfo($target_file_materialen,PATHINFO_EXTENSION));
         
         // Controleer of het bestand al bestaat.
-        if (file_exists($target_file_waarnemingen)) {
+        if (file_exists($target_file_materialen)) {
         echo "Sorry, bestand is al geupload";
         }
         // Controleer de grootte van het bestand.
@@ -112,7 +112,7 @@ if (isset($_POST['LSubmit'])) // wanneer er een labjournaal wordt opgeslagen.
         $imageFileTypemethode = strtolower(pathinfo($target_file_methode,PATHINFO_EXTENSION));
         
         // Controleer of het bestand al bestaat.
-        if (file_exists($target_file_waarnemingen)) {
+        if (file_exists($target_file_methode)) {
         echo "Sorry, bestand is al geupload";
         }
         // Controleer de grootte van het bestand.
@@ -137,7 +137,7 @@ if (isset($_POST['LSubmit'])) // wanneer er een labjournaal wordt opgeslagen.
     {
         // upload logboek
         $target_dir = "../uploads/voorbereiding/veiligheid";
-        $target_file_logboek = $target_dir . basename($_FILES["uploadveiligheid"]["name"]);
+        $target_file_veiligheid = $target_dir . basename($_FILES["uploadveiligheid"]["name"]);
         $imageFileTypeveiligheid = strtolower(pathinfo($target_file_veiligheid,PATHINFO_EXTENSION));
         
         // Controleer of het bestand al bestaat.
@@ -170,7 +170,7 @@ if (isset($_POST['LSubmit'])) // wanneer er een labjournaal wordt opgeslagen.
         $imageFileTypevoorbereidendevragen = strtolower(pathinfo($target_file_voorbereidendevragen,PATHINFO_EXTENSION));
         
         // Controleer of het bestand al bestaat.
-        if (file_exists($target_file_observaties)) {
+        if (file_exists($target_file_voorbereidendevragen)) {
         echo "Sorry, bestand is al geupload";
         }
         // Controleer de grootte van het bestand.
@@ -189,43 +189,39 @@ if (isset($_POST['LSubmit'])) // wanneer er een labjournaal wordt opgeslagen.
         } else {
             echo "Sorry, alleen PNG, JPG, JPEG & Word & Excel bestanden zijn toegestaan.";
         }
-    }        
-                    
- 
-
+    }
     // array van alle verplichten inputvelden.
-    $verplichteInput = array($titelVoorbereiding,$uitvoerders, $voorbereidingsdatum, $uitvoeringsdatum, $benodigdeFormules, $InstellingenApparaten,
-                             $hypothese, $materialen, $methode, $veiligheid, $voorbereidendevragen, $vak, $jaar);//studentnummer
-  
+    $verplichteInput = array($titelvoorbereiding, $voorbereidingsdatum, $uitvoeringsdatum, $benodigdeFormules, $InstellingenApparaten,
+    $hypothese, $materialen, $methode, $veiligheid, $voorbereidendevragen, $vak,$doel);//studentnummer
+    
     foreach($verplichteInput as $input) //check of alle verplichte velden zijn ingevuld.
     {
         if(empty($input)) // wanneer dit niet het geval is, ga terug naar het formulier.
         {
-            header("location: ../pages/voorbereidingBewerk.php?ID=".$ID."&addVoorbereiding=failed");
+            header("location: ../pages/voorbereidingBewerk.php?ID=".$ID."&addLabjournaal=failed");
             exit;
         }
-    }   
+    }    
     queryAanmaken('
         UPDATE voorbereiding
         SET
-        studentID = ?,voorbereidingTitel = ?,uitvoerders = ?,voorbereidingdatum = ?,
-        uitvoeringsDatum = ?,benodigdeFormules = ?,InstellingenApparaten = ?,hypothese = ?,
-        materialen = ?,methode = ?,veiligheid = ?,voorbereidendevragen = ?,bijlageTheorie = ?,
-        ,bijlageMaterialen = ?,bijlageMethode = ?, bijlageveiligheid = ?,
-        bijlageVoorbereidendevragen = ?,vak = ?,jaar = ?,
+        studentID = ?,voorbereidingTitel = ?,voorbereidingDatum = ?,materialen = ?,methode = ?,hypothese = ?,
+        instellingenApparaten = ?,voorbereidendeVragen = ?,veiligheid = ?,vak = ?,uitvoerders = ?,
+        uitvoeringsDatum = ?,benodigdeFormules = ?,jaar = ?,bijlageTheorie = ?,bijlageMaterialen = ?,
+        bijlageMethode = ?,bijlageVeiligheid = ?,bijlageVoorbereidendevragen= ?,doel = ? 
         WHERE voorbereidingID = ?'
-        ,"isssssssssssssssssi"
-        ,$_SESSION["StudentID"],$titelVoorbereiding,$uitvoerders,$voorbereidingsdatum,$uitvoeringsdatum,
-        $benodigdeFormules,$InstellingenApparaten,$hypothese,$materialen,$methode,$veiligheid,
-        $voorbereidendevragen,$bijlageTheorie,$bijlageMaterialen,$bijlageMethode,$bijlageVeiligheid,$bijlageVoorbereidendevragen,
-        $vak,$jaar,$ID
+        ,"issssssssssssissssssi"
+        ,$_SESSION["StudentID"],$titelvoorbereiding,$voorbereidingsdatum,$materialen,$methode,$hypothese,
+        $InstellingenApparaten,$voorbereidendevragen,$veiligheid,$vak,$uitvoerders,$uitvoeringsdatum,$benodigdeFormules,
+        $_SESSION['jaar'],$bijlageTheorie,$bijlageMaterialen,$bijlageMethode,$bijlageVeiligheid,$bijlageVoorbereidendevragen,
+        $doel,$ID
     );    
     querysluiten();   
-	header("location: ../pages/voorbereidingen.php?addVoorbereiding=succes");  
+	header("location: ../pages/voorbereidingen.php?addLabjournaal=succes");  
 }
 
 if (isset($_POST['userSubmit'])) // wanneer er op de gebruiker toevoegen knop wordt gedrukt.
-{
+{ 
     $uitvoerders = filter_input(INPUT_POST,'uitvoerders', FILTER_SANITIZE_SPECIAL_CHARS); // haal de POST van uitvoerders op
     if(!empty($uitvoerders)) // wanneer de POST niet leeg is.
     {
