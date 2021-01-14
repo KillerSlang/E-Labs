@@ -5,7 +5,14 @@
         <script src="https://kit.fontawesome.com/cda83c7af3.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="../Css/Main.css">
         <link rel="stylesheet" href="../Css/Responsive.css">
-        <title>LabjournaalBekijken</title>
+        <?php
+        if($_COOKIE['taal'] == 'english') {
+            echo "<title>View Lab Journal</title>";
+        }
+        if($_COOKIE['taal'] == 'nederlands') {
+            echo "<title>Labjournaal Bekijken</title>";
+        }
+    ?>
     </head>
     <body>
     <?php 
@@ -45,16 +52,16 @@
         ?>
         <main id="Protocol">
         <div class="PageTitle">
-                <h1>Te bekijken labjournalen</h1>
+                <h1><?=$LabjournaalTBL?></h1>
                 <hr>
             </div>
             <div class="whitebg">
                 <div id="Lcontent6" class="content">
-                    <a class="bluebtn Lbutton" id="lbuttonLeft" href='labjournalen.php?jaar=0'>Bewerk labjournalen</a>
-                    <a class="bluebtn Lbutton <?=($_GET["jaar"] == 1) ? "Pselected" : ""?>"  href="labjournalenBekijken.php?jaar=1">Jaar 1</a>
-                    <a class="bluebtn Lbutton <?=($_GET["jaar"] == 2) ? "Pselected" : ""?>"  href="labjournalenBekijken.php?jaar=2">Jaar 2</a>
-                    <a class="bluebtn Lbutton <?=($_GET["jaar"] == 3) ? "Pselected" : ""?>"  href="labjournalenBekijken.php?jaar=3">Jaar 3</a>
-                    <a class="bluebtn Lbutton <?=($_GET["jaar"] == 0) ? "Pselected" : ""?>"  href="labjournalenBekijken.php?jaar=0">Alle jaren</a>
+                    <a class="bluebtn Lbutton" id="lbuttonLeft" href='labjournalen.php?jaar=0'><?=$LabjournaalBL?></a>
+                    <a class="bluebtn Lbutton <?=($_GET["jaar"] == 1) ? "Pselected" : ""?>"  href="labjournalenBekijken.php?jaar=1"><?=$Jaar1?></a>
+                    <a class="bluebtn Lbutton <?=($_GET["jaar"] == 2) ? "Pselected" : ""?>"  href="labjournalenBekijken.php?jaar=2"><?=$Jaar2?></a>
+                    <a class="bluebtn Lbutton <?=($_GET["jaar"] == 3) ? "Pselected" : ""?>"  href="labjournalenBekijken.php?jaar=3"><?=$Jaar3?></a>
+                    <a class="bluebtn Lbutton <?=($_GET["jaar"] == 0) ? "Pselected" : ""?>"  href="labjournalenBekijken.php?jaar=0"><?=$JaarAlle?></a>
                     <!-- Formulier van de select button van BML en Chemie -->
                     <form action="labjournalenBekijken.php?jaar=<?=$_GET["jaar"]?>" name="selectform" method="post">
                         <select class="bluebtn Lbutton" name="vak" onchange="this.form.submit();">                        
@@ -259,7 +266,7 @@
                             mysqli_stmt_store_result($stmt);
                             if(mysqli_stmt_num_rows($stmt) != 0) // print de tabel uit met de labjournalen.
                             {
-                                echo "<table class='LTable'><tr><th>Titel</th><th>Auteur</th><th>Experiment datum</th><th>Vakken</th><th>Jaar</th><th>download</th><th>Bekijken</th></tr>";
+                                echo "<table class='LTable'><tr><th>".$Titel."</th><th>".$Auteur."</th><th>".$LabjournaalED."</th><th>".$Vakken."</th><th>".$Jaar."</th><th>Download</th><th>".$LabjournaalB."</th></tr>";
                                 while(mysqli_stmt_fetch($stmt))
                                 {
                                     $datum = explode("-", $experimentDatum);
@@ -271,7 +278,7 @@
                                     <td>'.$vak.'</td>
                                     <td>'.$jaar.'</td>
                                     <td><a class="labjournaalLink" href="../Include/downloadLabjournaal.inc.php?ID='.$labjournaalID .'"> <i class="fas fa-download"></i> </a></td>
-                                    <td><a class="labjournaalLink" href="labjournaalBekijken.php?ID='.$labjournaalID .'">Bekijken </a> </td>
+                                    <td><a class="labjournaalLink" href="labjournaalBekijken.php?ID='.$labjournaalID .'">'.$LabjournaalB.' </a> </td>
                                     </tr>' ;
                                 }
                                 echo"</table>";

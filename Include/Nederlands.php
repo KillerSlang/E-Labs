@@ -101,6 +101,7 @@ $ProtocollenAlle =  "Alle Protocollen";
 
 /* Labjournaal*/
 $Labjournaaloverzicht = "Experiment Overzicht";
+$LabjournaalBekijken = "Bekijk Labjournaal";
 $Labjournaal =  "Experiment";
 $LabjournaalNieuw =  "Nieuw Experiment";
 $LabjournaalAlle =  "Alle Experimenten";
@@ -125,6 +126,17 @@ $LabjournaalWeeg = "Weeggegevens";
 $LabjournaalWeegU = "Upload Weeggegevens bestand";
 $LabjournaalImg = "Upload Afbeeldingen";
 $LabGegevens = "'Voer gegevens in...'";
+$LabjournaalEA = "alleen Excel en afbeeldingen toegestaan";
+$LabjournaalA = "alleen afbeeldingen zijn toegestaan";
+$LabjournaalEW = "alleen Excel en Word bestanden zijn toegestaan";
+$LabjournaalAW = "alleen afbeeldingen en Word bestanden zijn toegestaan";
+$LabjournaalE = "alleen Excel bestanden zijn toegestaan";
+$labjournaalB = "Bekijken";
+$LabjournaalED = "Experiment Datum";
+$LabjournaalBL = "Bewerk Labjournaal";
+$LabjournaalTBL = "Te bekijken labjournalen";
+$LabjournaalError = "Er zijn geen labjournalen om te bewerken";
+
 
 
 /* Voorbereidingen*/

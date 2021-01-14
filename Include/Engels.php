@@ -92,16 +92,17 @@ $ProtocollenAlle =  "All Protocollen";
 
 
 /* Labjournaal*/
-$Labjournaaloverzicht = "Experiment Overview";
-$Labjournaal =  "Experiment";
-$LabjournaalNieuw =  "New Experiment";
-$LabjournaalAlle =  "All Experiments";
-$LabjournaalNieuwFA = "Create new Experiment form";
+$Labjournaaloverzicht = "Lab Journal Overview";
+$LabjournaalBekijken = "View Lab Journal";
+$Labjournaal =  "Lab Journal";
+$LabjournaalNieuw =  "New Lab Journal";
+$LabjournaalAlle =  "All Lab Journals";
+$LabjournaalNieuwFA = "Create new Lab Journal form";
 $LabjournaalTitel = "Title Experiment";
 $LabjournaalUitvoerder = "Executors";
-$LabjournaalDatum = "Date Experiment";
-$LabjournaalDatumS = "Starting Date Experiment";
-$LabjournaalDatumE = "End Date Experiment";
+$LabjournaalDatum = "Lab Journal Date";
+$LabjournaalDatumS = "Lab Journal Starting Date";
+$LabjournaalDatumE = "Lab Journal End Date";
 $LabjournaalVeiligheid = "Upload Safety";
 $LabjournaalDoel = "Goal";
 $LabjournaalWaarneming = "Upload Observation file";
@@ -117,6 +118,16 @@ $LabjournaalWeeg = "Weighing Data";
 $LabjournaalWeegU = "Upload Weighing Data file";
 $LabjournaalImg = "Upload Images";
 $LabGegevens = "'Enter Data...'";
+$LabjournaalEA = "Only Excel and Images allowed";
+$LabjournaalA = "Only Images allowed";
+$LabjournaalEW = "Only Excel and Word allowed";
+$LabjournaalAW = "Only Images and Word allowed";
+$LabjournaalE = "Only Excel allowed";
+$LabjournaalB = "View";
+$LabjournaalED = "Experiment Date";
+$LabjournaalBL = "Edit Lab Journal";
+$LabjournaalTBL = "Viewable Lab Journals";
+$LabjournaalError = "The're are no Lab Journal to be edited";
 
 /* Voorbereidingen*/
 $Voorbereiding =  "Preperation";
