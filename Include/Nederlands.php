@@ -21,6 +21,7 @@ $PaginaVolgende = "Volgende Pagina";
 $PaginaVorige = "Vorige Pagina";
 $BML = "BML";
 $Chemie = "Chemie";
+$Opslaan = "Opslaan";
 
 /* Header */
 $Voorbereidingen =  "Voorbereidingen";
@@ -98,9 +99,32 @@ $ProtocollenAlle =  "Alle Protocollen";
 
 
 /* Labjournaal*/
+$Labjournaaloverzicht = "Experiment Overzicht";
 $Labjournaal =  "Experiment";
 $LabjournaalNieuw =  "Nieuw Experiment";
-$LabjournaalAlle =  "Alle Protocollen";
+$LabjournaalAlle =  "Alle Experimenten";
+$LabjournaalNieuwFA = "Nieuw Experiment formulier aanmaken";
+$LabjournaalTitel = "Titel Experiment";
+$LabjournaalUitvoerder = "Uitvoerders";
+$LabjournaalDatum = "Datum Experiment";
+$LabjournaalDatumS = "Begin Datum Experiment";
+$LabjournaalDatumE = "Eind Datum Experiment";
+$LabjournaalVeiligheid = "Upload Veligheid";
+$LabjournaalDoel = "Doel";
+$LabjournaalWaarneming = "Upload waarnemingen bestand";
+$LabjournaalHypothese = "Hypothese";
+$LabjournaalMateriaal = "Materialen";
+$LabjournaalMethode = "Methode";
+$LabjournaalMeetR = "Upload Meetresultaten bestand";
+$LabjournaalLogboek = "Logboek";
+$LabjournaalLogboekU = "Upload Logboek bestand";
+$LabjournaalObservatie = "Observaties";
+$LabjournaalObservatieU = "Upload Observatie bestand";
+$LabjournaalWeeg = "Weeggegevens";
+$LabjournaalWeegU = "Upload Weeggegevens bestand";
+$LabjournaalImg = "Upload Afbeeldingen";
+$LabGegevens = "'Voer gegevens in...'";
+
 
 /* Voorbereidingen*/
 $Voorbereiding =  "Voorbereiding";

@@ -13,7 +13,8 @@ $Vak = "Subject";
 $PaginaVolgende = "Next Page";
 $PaginaVorige = "Previous Page";
 $BML = "BML";
-$Chemie = "Chemie";
+$Chemie = "Chemistry";
+$Opslaan = "Save";
 
 /* Header */
 $Voorbereidingen =  "Preperations";
@@ -90,9 +91,31 @@ $ProtocollenAlle =  "All Protocollen";
 
 
 /* Labjournaal*/
+$Labjournaaloverzicht = "Experiment Overview";
 $Labjournaal =  "Experiment";
 $LabjournaalNieuw =  "New Experiment";
 $LabjournaalAlle =  "All Experiments";
+$LabjournaalNieuwFA = "Create new Experiment form";
+$LabjournaalTitel = "Title Experiment";
+$LabjournaalUitvoerder = "Executors";
+$LabjournaalDatum = "Date Experiment";
+$LabjournaalDatumS = "Starting Date Experiment";
+$LabjournaalDatumE = "End Date Experiment";
+$LabjournaalVeiligheid = "Upload Safety";
+$LabjournaalDoel = "Goal";
+$LabjournaalWaarneming = "Upload Observation file";
+$LabjournaalHypothese = "Hypothesis";
+$LabjournaalMateriaal = "Materials";
+$LabjournaalMethode = "Method";
+$LabjournaalMeetR = "Upload Measurement Result file";
+$LabjournaalLogboek = "Log";
+$LabjournaalLogboekU = "Upload Log file";
+$LabjournaalObservatie = "Observations";
+$LabjournaalObservatieU = "Upload Observation file";
+$LabjournaalWeeg = "Weighing Data";
+$LabjournaalWeegU = "Upload Weighing Data file";
+$LabjournaalImg = "Upload Images";
+$LabGegevens = "'Enter Data...'";
 
 /* Voorbereidingen*/
 $Voorbereiding =  "Preperation";

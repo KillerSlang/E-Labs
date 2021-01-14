@@ -13,16 +13,16 @@
     ?>
     <main id="Protocol">
     <div class="PageTitle">
-            <h1>Labjournalen Overzicht</h1>
+            <h1><?=$Labjournaaloverzicht?></h1>
             <hr>
         </div>
         <div class="whitebg">
             <div class="content">
-                <a class="bluebtn" id="Pbutton" href='labjournaalformulier.php'>Nieuw Labjournaal</a>
-                <a class="bluebtn" id="Pbutton" href='labjournalen.php?jaar=3'>Jaar 3</a>
-                <a class="bluebtn" id="Pbutton" href='labjournalen.php?jaar=2'>Jaar 2</a>
-                <a class="bluebtn" id="Pbutton" href='labjournalen.php?jaar=1'>Jaar 1</a>
-                <a class="bluebtn" id="Pbutton" href='labjournalen.php?jaar=0'>Alle jaren</a>
+                <a class="bluebtn" id="Pbutton" href='labjournaalformulier.php'><?=$LabjournaalNieuw?></a>
+                <a class="bluebtn" id="Pbutton" href='labjournalen.php?jaar=3'><?=$Jaar3?></a>
+                <a class="bluebtn" id="Pbutton" href='labjournalen.php?jaar=2'><?=$Jaar2?></a>
+                <a class="bluebtn" id="Pbutton" href='labjournalen.php?jaar=1'><?=$Jaar1?></a>
+                <a class="bluebtn" id="Pbutton" href='labjournalen.php?jaar=0'><?=$LabjournaalAlle?></a>
                 <br>
                 <?php
 					$sql = '
@@ -79,8 +79,8 @@
                         $next = $_GET['page']+1;
                         $back = $_GET['page']-1;
 
-                        echo'<a class="bluebtn" id="Pbutton" href="'.$url.$next.'">Volgende pagina</a>';
-                        echo'<a class="bluebtn" id="Pbutton" href="'.$url.$back.'">Vorige pagina</a>';
+                        echo'<a class="bluebtn" id="Pbutton" href="'.$url.$next.'">'.$PaginaVolgende.'</a>';
+                        echo'<a class="bluebtn" id="Pbutton" href="'.$url.$back.'">'.$PaginaVorige.'</a>';
                     }
                 ?>
             </div>
