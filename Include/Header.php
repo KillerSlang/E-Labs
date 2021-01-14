@@ -13,7 +13,7 @@ if($_COOKIE["taal"] == "english"){
 
 
 if(empty($_SESSION) || empty($_SESSION['SorD'])){
-    header("Location: ../Login/login.php");
+    header("Location: ../Pages/index.php");
     exit;
 } 
 
