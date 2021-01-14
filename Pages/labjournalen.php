@@ -2,7 +2,6 @@
 <html lang="en">
     <head>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
-        <script src="https://kit.fontawesome.com/cda83c7af3.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="../Css/Main.css">
         <link rel="stylesheet" href="../Css/Responsive.css">
         <title>Labjournalen</title>
@@ -45,7 +44,7 @@
         ?>
         <main id="Protocol">
             <div class="PageTitle">
-                <h1>Labjournalen Overzicht</h1>
+                <h1><?=$Labjournaaloverzicht?></h1>
                 <hr>
             </div>
             <div class="whitebg">
@@ -53,14 +52,14 @@
                     <?PHP
                         if($_SESSION['SorD'] == "Student") // waneeer een student is ingelogd is de Nieuw labjournaal knop en de bekijk knop beschikbaar.
                         {
-                            echo '<a class="bluebtn Lbutton"  href="labjournaalNieuw.php?NEW">Nieuw Labjournaal</a>
-                                <a class="bluebtn Lbutton" id="PbuttonLeft" href="labjournalenBekijken.php?jaar=0">Bekijk labjournalen</a>';
+                            echo '<a class="bluebtn Lbutton"  href="labjournaalNieuw.php?NEW">'.$LabjournaalNieuw.'</a>
+                                <a class="bluebtn Lbutton" id="PbuttonLeft" href="labjournalenBekijken.php?jaar=0">'.$LabjournaalBekijken.'</a>';
                         }
                     ?> 
-                        <a class="bluebtn Lbutton <?=($_GET["jaar"] == 1) ? "Pselected" : ""?>"  href="labjournalen.php?jaar=1">Jaar 1</a>
-                        <a class="bluebtn Lbutton <?=($_GET["jaar"] == 2) ? "Pselected" : ""?>"  href="labjournalen.php?jaar=2">Jaar 2</a>
-                        <a class="bluebtn Lbutton <?=($_GET["jaar"] == 3) ? "Pselected" : ""?>"  href="labjournalen.php?jaar=3">Jaar 3</a>
-                        <a class="bluebtn Lbutton <?=($_GET["jaar"] == 0) ? "Pselected" : ""?>"  href="labjournalen.php?jaar=0">Alle jaren</a>
+                        <a class="bluebtn Lbutton <?=($_GET["jaar"] == 1) ? "Pselected" : ""?>"  href="labjournalen.php?jaar=1"><?=$Jaar1?></a>
+                        <a class="bluebtn Lbutton <?=($_GET["jaar"] == 2) ? "Pselected" : ""?>"  href="labjournalen.php?jaar=2"><?=$Jaar2?></a>
+                        <a class="bluebtn Lbutton <?=($_GET["jaar"] == 3) ? "Pselected" : ""?>"  href="labjournalen.php?jaar=3"><?=$Jaar3?></a>
+                        <a class="bluebtn Lbutton <?=($_GET["jaar"] == 0) ? "Pselected" : ""?>"  href="labjournalen.php?jaar=0"><?=$JaarAlle?></a>
                     
                         <!-- Formulier van de select button van BML en Chemie -->
                         <form action="labjournalen.php?jaar=<?=$_GET["jaar"]?>" name="selectform" method="post"> 
@@ -190,7 +189,7 @@
                             if($queryError)
                             { 
                                 echo '<div class="bericht">
-                                        <b>Er zijn geen labjournalen om te bewerken.</b><hr>
+                                        <b>'.$LabjournaalError.'.</b><hr>
                                     </div>';
                             }
                         ?>
