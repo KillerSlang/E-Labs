@@ -55,22 +55,22 @@
                 <hr>
             </div>
             <div class="whitebg">
-                <div class="content">
+                <div id="Lcontent7" class="content">
                     <?PHP
                         if($_SESSION['SorD'] == "Student") // waneeer een student is ingelogd is de Nieuw labjournaal knop en de bekijk knop beschikbaar.
                         {
-                            echo '<a class="Lbutton"  href="labjournaalNieuw.php?NEW">Nieuw Labjournaal</a>
-                                <a class="Lbutton" id="PbuttonLeft" href="labjournalenBekijken.php">Bekijk labjournalen</a>';
+                            echo '<a class="bluebtn Lbutton"  href="labjournaalNieuw.php?NEW">Nieuw Labjournaal</a>
+                                <a class="bluebtn Lbutton" id="PbuttonLeft" href="labjournalenBekijken.php?jaar=0">Bekijk labjournalen</a>';
                         }
-                        echo ' 
-                        <a class="Lbutton"  href="labjournalen.php?jaar=3">Jaar 3</a>
-                        <a class="Lbutton"  href="labjournalen.php?jaar=2">Jaar 2</a>
-                        <a class="Lbutton"  href="labjournalen.php?jaar=1">Jaar 1</a>
-                        <a class="Lbutton"  href="labjournalen.php?jaar=0">Alle jaren</a>';
-                    ?>
+                    ?> 
+                        <a class="bluebtn Lbutton <?=($_GET["jaar"] == 1) ? "Pselected" : ""?>"  href="labjournalen.php?jaar=1">Jaar 1</a>
+                        <a class="bluebtn Lbutton <?=($_GET["jaar"] == 2) ? "Pselected" : ""?>"  href="labjournalen.php?jaar=2">Jaar 2</a>
+                        <a class="bluebtn Lbutton <?=($_GET["jaar"] == 3) ? "Pselected" : ""?>"  href="labjournalen.php?jaar=3">Jaar 3</a>
+                        <a class="bluebtn Lbutton <?=($_GET["jaar"] == 0) ? "Pselected" : ""?>"  href="labjournalen.php?jaar=0">Alle jaren</a>
+                    
                         <!-- Formulier van de select button van BML en Chemie -->
-                        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" name="selectform" method="post"> 
-                            <select class="Lbutton"  name="vak" onchange="this.form.submit();">                        
+                        <form action="labjournalen.php?jaar=<?=$_GET["jaar"]?>" name="selectform" method="post"> 
+                            <select class="bluebtn Lbutton"  name="vak" onchange="this.form.submit();">                        
                                 <?PHP
                                     echo get_options($selected);
                                 ?>
@@ -182,13 +182,14 @@
                             if(!isset($_GET['page']) || $_GET['page'] == 0){ // de knoppen printen om door de labjournalen heen te gaan.
                                 $url = 'labjournalen.php?jaar='.$jaarlaag.'&page=';
                                 $next = $url.'1';
-                                echo'<a class="Lbutton"  href='.$next.'>Alle Labjournalen</a>';
+                                echo'<a class="bluebtn Lbutton Lpages4" href='.$url.'1>'.$LabjournaalAlle.'</a>';
                             } else {
                                 $url = 'labjournalen.php?jaar='.$jaarlaag.'&page=';
                                 $next = $_GET['page']+1;
                                 $back = $_GET['page']-1;
-                                echo'<a class="Lbutton"  href="'.$url.$next.'">Volgende pagina</a>';
-                                echo'<a class="Lbutton"  href="'.$url.$back.'">Vorige pagina</a>';
+                                echo'<a class="bluebtn Lbutton Lpages1"  href='.$url.$back.'>'.$PaginaVorige.'</a>';
+                                echo'<p class="Lpages2">'.$_GET['page'].'</p>';
+                                echo'<a class="bluebtn Lbutton Lpages3" href='.$url.$next.'>'.$PaginaVolgende.'</a>';
                             }
                             querySluiten(); // de database connectie sluiten.
                             
