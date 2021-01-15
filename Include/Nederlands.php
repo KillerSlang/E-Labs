@@ -148,7 +148,7 @@ $VoorbereidingenAlle =  "Alle Voorbereidingen";
 
 /* Credits */
 $AUheader = "Over Ons";
-$AUcontent = "Wij, INF1D, willen iedereen die heeft meegeholpen graag bedanken voor het waarmaken van dit project.
+$AUcontent = "Deze website is medemogelijk gemaakt door de eerste jaars studenten van projectgroep INF1D, van de hogeschool NHL Stenden in Emmen en alle docenten die hierbij hebben meegeholpen. Wij, INF1D, willen iedereen die heeft meegeholpen graag bedanken voor het waarmaken van dit project.
 De opdrachtgevers van dit project zijn: Kirsten Lanting & Laura Redder. 
 De opdrachtnemers van dit project zijn: Remco van Oenen, Simchaja Schonewille, Erik Jan Zanberg, Julian Jager, Peter Bos, Ömer Avci";
 
