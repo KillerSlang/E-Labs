@@ -15,6 +15,8 @@ if(empty($_SESSION) || empty($_SESSION['SorD'])){
     header("Location: ../Pages/index.php");
     exit;
 } 
+
+$_SESSION['StudentID'] = "3";
 ?>
 
 
