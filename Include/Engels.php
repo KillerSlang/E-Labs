@@ -135,5 +135,11 @@ $Voorbereiding =  "Preperation";
 $VoorbereidingNieuw =  "New Preperation";
 $VoorbereidingenAlle =  "All Preperations";
 
-?>
+/* Credits */
+$AUheader = "About Us";
+$AUcontent = "This website was made possible by the first-year students of the INF1D project group, of the NHL Stenden university in Emmen and all the teachers who helped with this project.
+We, INF1D, would like to thank everyone who helped make this project come true.
+The clients of this project are: Kirsten Lanting & Laura Redder.
+The contractors of this project are: Remco van Oenen, Simchaja Schonewille, Erik Jan Zanberg, Julian Jager, Peter Bos, Ömer Avci";
 
+?>
