@@ -4,9 +4,9 @@ Wanneer er vraagtekens in de sql statement zitten kun je deze binden d.m.v. de v
 types is voor de datatypes dus bijvoorbeeld "i" voor integer en de bind parameter kun je de variabelen van de vraagtekens meegeven.
 De advanced functie wordt gebruikt om door de code heen een query op te bouwen. Wanneer de variabele send true is wordt de query pas verstuurd.*/
 
-  function queryAanmaken ($sql,$types = "",...$bindParameters)
+  function queryAanmaken ($sql,$types = "",...$bindParameters) 
   {
-        // instellingen.
+     // instellingen.
     $dbServername= "localhost";
     $dbUsername = "root";
     $dbPassword = "";
