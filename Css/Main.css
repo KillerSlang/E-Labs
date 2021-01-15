@@ -925,6 +925,15 @@ select.bluebtn {
     grid-column: 3/4;
     width: 10vw;
 }
+.labjournaalLink{
+    color: var(--blue);
+}
+
+a[class="labjournaalLink"]:visited
+{
+    color:black;
+    text-decoration: underline;
+}
 
 /* Voorbereiding */
 

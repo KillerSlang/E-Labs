@@ -276,7 +276,7 @@
                                     <td>'.$experimentDatumB.'</td>
                                     <td>'.$vak.'</td>
                                     <td>'.$jaar.'</td>
-                                    <td><a class="labjournaalLink" href="../Include/downloadLabjournaal.inc.php?ID='.$labjournaalID .'"> <i class="fas fa-download"></i> </a></td>
+                                    <td><a class="labjournaalLink" href="../Include/downloadLabjournaal.inc.php?ID='.$labjournaalID .'"> <i class="fa fa-download"></i> </a></td>
                                     <td><a class="labjournaalLink" href="labjournaalBekijken.php?ID='.$labjournaalID .'">'.$LabjournaalB.' </a> </td>
                                     </tr>' ;
                                 }
