@@ -78,12 +78,12 @@
             
         </div>
 
-            <footer>
+            
                 <?php 
                 /* Footer */
                 include_once '../Include/Footer.php';
                 ?> 
-            </footer>
+            
     </body>
 
 </html>
