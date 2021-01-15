@@ -49,6 +49,51 @@
             ?>
             <form action="taalverander.php" method="POST" enctype="multipart/form-data">
             <?php
+                    echo "<h2>".$Jaar."</h2>";
+                    if (empty($_SESSION['jaar'])) {
+                        $_SESSION['jaar'] = '1';
+                    }
+                    if ($_SESSION['jaar'] == '1') {
+                    echo "<select class='select' name='jaar'>
+                        <option value='1' selected>".$Jaar1."</option>
+                        <option value='2'>".$Jaar2."</option>
+                        <option value='3'>".$Jaar3."</option>
+                    </select>";
+                    }
+                    if ($_SESSION['jaar'] == '2') {
+                        echo "<select class='select' name='jaar'>
+                                <option value='1'>".$Jaar1."</option>
+                                <option value='2' selected>".$Jaar2."</option>
+                                <option value='3'>".$Jaar3."</option>
+                            </select>";
+                    }
+                    if ($_SESSION['jaar'] == '3') {
+                    echo "<select class='select' name='jaar'>
+                            <option value='1'>".$Jaar1."</option>
+                            <option value='2'>".$Jaar2."</option>
+                            <option value='3' selected>".$Jaar3."</option>
+                        </select>";
+                    }
+                    echo "<h2>".$Taal."</h2>";
+
+                    if ($_COOKIE['taal'] == 'english') {
+                        echo     "<input type='radio' name='taal' value='Nederlands'>
+                                     <label>Nederlands</label>
+                                 <input type='radio' name='taal' value='English' checked>
+                                     <label>English</label><br>
+                                 <input class='save' type='submit' name='Opslaan' value='Save'>";
+                    } else {
+                        echo    "<input type='radio' name='taal' value='Nederlands' checked>
+                                    <label>Nederlands</label>
+                                <input type='radio' name='taal' value='English'>
+                                    <label>English</label><br>
+                                <input class='save' type='submit' name='Opslaan' value='Opslaan'>";
+                    }
+
+                    
+            ?>
+            <?php
+            /*
                 if ($_COOKIE['taal'] == 'nederlands') {
                 echo "<h2>Jaar</h2>
                 <select class='select' name='jaar'>
@@ -63,7 +108,7 @@
                 <label>English</label><br>
                 <input class='save' type='submit' name='Opslaan' value='Opslaan'>";
                 }
-                /* onclick=window.location='http://localhost/github/E-Labs/Pages/taalverander.php'; */
+                 onclick=window.location='http://localhost/github/E-Labs/Pages/taalverander.php';
                 if ($_COOKIE['taal'] == 'english') {
                     echo "<h2>Year</h2>
                     <select class='select' name='jaar'>
@@ -78,7 +123,7 @@
                     <label>English</label><br>
                     <input class='save' type='submit' name='Opslaan' value='Save'>";
                 }
-                /*  onclick=window.location='https://elabs.serverict.nl/Pages/Instellingen.php'; */
+                onclick=window.location='https://elabs.serverict.nl/Pages/Instellingen.php'; */
 
             ?>
             </form>
