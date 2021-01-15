@@ -11,13 +11,10 @@ if($_COOKIE["taal"] == "english"){
     include_once "Nederlands.php";
 }
 
-
 if(empty($_SESSION) || empty($_SESSION['SorD'])){
     header("Location: ../Pages/index.php");
     exit;
 } 
-
-
 ?>
 
 
@@ -25,7 +22,7 @@ if(empty($_SESSION) || empty($_SESSION['SorD'])){
 <div>
     <img onclick='location.href="../Pages/Homepage.php"' id='navLogo'src='../Images/Logo.png' alt="logo">
 </div>
-<div class = 'menu'>
+<div class ='menu'>
     <ul>
         <li id=''><a href='voorbereidingen.php'><?=$Voorbereidingen?></a></li>
         <li id=''><a href='labjournalen.php?jaar=0'><?=$Labjournalen?></a></li>
@@ -33,7 +30,7 @@ if(empty($_SESSION) || empty($_SESSION['SorD'])){
     </ul>    
 </div>
 <div class = 'account'>
-    <i id='accountLogo' class="fas fa-user-circle" aria-hidden="true"></i>
+    <i id='accountLogo' class="fa fa-user-circle-o" aria-hidden="true"></i>
     
     <div class="accountDropdown">
         <div class="accountDropdownButton">        

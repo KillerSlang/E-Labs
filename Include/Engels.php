@@ -18,7 +18,7 @@ $Opslaan = "Save";
 
 /* Header */
 $Voorbereidingen =  "Preperations";
-$Labjournalen =  "Experiments";
+$Labjournalen =  "Lab journals";
 $Protocollen =  "Protocols";
 $Instellingen =  "Settings";
 $Uitloggen =  "Logout";

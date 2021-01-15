@@ -152,7 +152,7 @@
                             mysqli_stmt_store_result($stmt);
                             if(mysqli_stmt_num_rows($stmt) != 0) // wanneer er resultaten zijn wordt de tabel uitgeprint en de knoppen onderaan ook weergeven anders niet.
                             {
-                                echo "<table class='LTable'><tr> <th>Titel</th><th>Auteur</th><th>Experiment datum</th><th>Vakken</th><th>Jaar</th><th>download</th>";
+                                echo "<table class='LTable'><tr> <th>Titel</th><th>Auteur</th><th>Labjournaal datum</th><th>Vakken</th><th>Jaar</th><th>download</th>";
                                 if($_SESSION["SorD"] == "Student")// een student heeft na het maken van het labjournaal 1 dag om deze te bewerken of te verwijderen.
                                 {
                                     echo"<th>Bewerken</th><th>Verwijderen</th>";

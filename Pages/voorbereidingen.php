@@ -2,10 +2,17 @@
 <html lang="en">
     <head>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
-        <script src="https://kit.fontawesome.com/cda83c7af3.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="../Css/Main.css">
         <link rel="stylesheet" href="../Css/Responsive.css">
-        <title>Voorbereidingen</title>
+        <?php
+        if($_COOKIE['taal'] == 'english') {
+            echo "<title>Preparations</title>";
+        }
+        if($_COOKIE['taal'] == 'nederlands') {
+            echo "<title>Voorbereidingen</title>";
+        }
+        ?>
+
     </head>
     <body>
         <?php 
@@ -53,14 +60,14 @@
                     <?PHP
                         if($_SESSION['SorD'] == "Student") // waneeer een student is ingelogd is de Nieuw Voorbereiding knop en de bekijk knop beschikbaar.
                         {
-                            echo '<a class="bluebtn Lbutton"  href="VoorbereidingNieuw.php?NEW">Nieuwe Voorbereiding</a>
-                                <a class="bluebtn Lbutton" id="PbuttonLeft" href="VoorbereidingenBekijken.php?jaar=0">Bekijk Voorbereidingen</a>';
+                            echo '<a class="bluebtn Lbutton"  href="VoorbereidingNieuw.php?NEW">'.$VoorbereidingNieuw.'</a>
+                                <a class="bluebtn Lbutton" id="PbuttonLeft" href="VoorbereidingenBekijken.php?jaar=0">'.$VoorbereidingBekijken.'</a>';
                         }
                     ?> 
-                        <a class="bluebtn Lbutton <?=($_GET["jaar"] == 1) ? "Pselected" : ""?>"  href="voorbereidingen.php?jaar=1">Jaar 1</a>
-                        <a class="bluebtn Lbutton <?=($_GET["jaar"] == 2) ? "Pselected" : ""?>"  href="voorbereidingen.php?jaar=2">Jaar 2</a>
-                        <a class="bluebtn Lbutton <?=($_GET["jaar"] == 3) ? "Pselected" : ""?>"  href="voorbereidingen.php?jaar=3">Jaar 3</a>
-                        <a class="bluebtn Lbutton <?=($_GET["jaar"] == 0) ? "Pselected" : ""?>"  href="voorbereidingen.php?jaar=0">Alle jaren</a>
+                        <a class="bluebtn Lbutton <?=($_GET["jaar"] == 1) ? "Pselected" : ""?>"  href="voorbereidingen.php?jaar=1"><?=$Jaar1?></a>
+                        <a class="bluebtn Lbutton <?=($_GET["jaar"] == 2) ? "Pselected" : ""?>"  href="voorbereidingen.php?jaar=2"><?=$Jaar2?></a>
+                        <a class="bluebtn Lbutton <?=($_GET["jaar"] == 3) ? "Pselected" : ""?>"  href="voorbereidingen.php?jaar=3"><?=$Jaar3?></a>
+                        <a class="bluebtn Lbutton <?=($_GET["jaar"] == 0) ? "Pselected" : ""?>"  href="voorbereidingen.php?jaar=0"><?=$JaarAlle?></a>
                     
                         <!-- Formulier van de select button van BML en Chemie -->
                         <form action="voorbereidingen.php?jaar=<?=$_GET["jaar"]?>" name="selectform" method="post"> 
@@ -154,6 +161,8 @@
                                 echo '</tr>'; // table row sluiten.
                                 while(mysqli_stmt_fetch($stmt)) // alle resultaten in een rij van de tabel zetten.
                                 {
+                                    $datum = explode("-", $experimentDatum);
+                                    $experimentDatumB = $datum[2]."-".$datum[1]."-".$datum[0];
                                     echo '<tr>
                                     <td>'.$voorbereidingTitel.'</td>
                                     <td>'.$studentID.'</td>
@@ -166,30 +175,31 @@
                                     {
                                         echo'<td> <a class="labjournaalLink" href="voorbereidingBewerk.php?NEW&ID='.$voorbereidingID .'">Bewerken </a></td>';
                                         echo'<td> <a class="labjournaalLink" href="../Include/deleteVoorbereiding.inc.php?ID='.$voorbereidingID .'"> <i class="fas fa-trash-alt"></i> </a> </td>';
-                                    }else{ echo'<td> <a class="labjournaalLink" href="VoorbereidingBekijken.php?ID='.$voorbereidingID .'">Bekijken</a></td>';} // de bekijken-knop van de student printen.
+                                    }else{ echo'<td> <a class="labjournaalLink" href="voorbereidingBekijken.php?ID='.$voorbereidingID .'">Bekijken</a></td>';} // de bekijken-knop van de student printen.
                                     
                                     echo '</tr>' ;
                                 }
                                 echo"</table>";
                                 $queryError = false;
                             }else {$queryError = true;}
-                            if(!isset($_GET['page']) || $_GET['page'] == 0){ // de knoppen printen om door de Voorbereidingen heen te gaan.
+                            if(!isset($_GET['page']) || $_GET['page'] == 0){ // de knoppen printen om door de labjournalen heen te gaan.
                                 $url = 'voorbereidingen.php?jaar='.$jaarlaag.'&page=';
                                 $next = $url.'1';
-                                echo'<a class="Lbutton"  href='.$next.'>Alle Voorbereidingen</a>';
+                                echo'<a class="bluebtn Lbutton Lpages4" href='.$url.'1>'.$VoorbereidingAlle.'</a>';
                             } else {
                                 $url = 'voorbereidingen.php?jaar='.$jaarlaag.'&page=';
                                 $next = $_GET['page']+1;
                                 $back = $_GET['page']-1;
-                                echo'<a class="Lbutton"  href="'.$url.$next.'">Volgende pagina</a>';
-                                echo'<a class="Lbutton"  href="'.$url.$back.'">Vorige pagina</a>';
+                                echo'<a class="bluebtn Lbutton Lpages1"  href='.$url.$back.'>'.$PaginaVorige.'</a>';
+                                echo'<p class="Lpages2">'.$_GET['page'].'</p>';
+                                echo'<a class="bluebtn Lbutton Lpages3" href='.$url.$next.'>'.$PaginaVolgende.'</a>';
                             }
                             querySluiten(); // de database connectie sluiten.
                             
                             if($queryError)
                             { 
                                 echo '<div class="bericht">
-                                        <b>Er zijn geen Voorbereidingen om te bewerken.</b><hr>
+                                        <b>'.$LabjournaalError.'.</b><hr>
                                     </div>';
                             }
                         ?>
@@ -202,3 +212,26 @@
         ?>    
     </body>
 </html>
+
+<!-- //                              $queryError = false;
+                        //     }else {$queryError = true;}
+                        //     if(!isset($_GET['page']) || $_GET['page'] == 0){ // de knoppen printen om door de Voorbereidingen heen te gaan.
+                        //         $url = 'voorbereidingen.php?jaar='.$jaarlaag.'&page=';
+                        //         $next = $url.'1';
+                        //         echo'<a class="Lbutton"  href='.$next.'>Alle Voorbereidingen</a>';
+                        //     } else {
+                        //         $url = 'voorbereidingen.php?jaar='.$jaarlaag.'&page=';
+                        //         $next = $_GET['page']+1;
+                        //         $back = $_GET['page']-1;
+                        //         echo'<a class="Lbutton"  href="'.$url.$next.'">Volgende pagina</a>';
+                        //         echo'<a class="Lbutton"  href="'.$url.$back.'">Vorige pagina</a>';
+                        //     }
+                        //     querySluiten(); // de database connectie sluiten.
+                            
+                        //     if($queryError)
+                        //     { 
+                        //         echo '<div class="bericht">
+                        //                 <b>Er zijn geen Voorbereidingen om te bewerken.</b><hr>
+                        //             </div>';
+                        //     }
+                        // ?> -->

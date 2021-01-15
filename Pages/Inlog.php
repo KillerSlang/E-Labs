@@ -30,7 +30,7 @@ if(isset($_POST["Submit"])){
                 $_SESSION["SorD"] = "Student";
                 $_SESSION["studentNummer"] = $studentNummer;
                 $_SESSION["Name"] = $studentNaam; 
-     	$_SESSION["jaar"] = $jaar;
+     	        $_SESSION["jaar"] = $jaar;
             }
             header("Location: Homepage.php");
         }else

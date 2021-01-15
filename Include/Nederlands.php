@@ -25,7 +25,7 @@ $Opslaan = "Opslaan";
 
 /* Header */
 $Voorbereidingen =  "Voorbereidingen";
-$Labjournalen =  "Experiments";
+$Labjournalen =  "Labjournalen";
 $Protocollen =  "Protocollen";
 $Instellingen =  "Instellingen";
 $Uitloggen =  "Uitloggen";
@@ -100,12 +100,12 @@ $ProtocollenAlle =  "Alle Protocollen";
 
 
 /* Labjournaal*/
-$Labjournaaloverzicht = "Experiment Overzicht";
+$Labjournaaloverzicht = "Labjournaal Overzicht";
 $LabjournaalBekijken = "Bekijk Labjournaal";
-$Labjournaal =  "Experiment";
-$LabjournaalNieuw =  "Nieuw Experiment";
-$LabjournaalAlle =  "Alle Experimenten";
-$LabjournaalNieuwFA = "Nieuw Experiment formulier aanmaken";
+$Labjournaal =  "Labjournaal";
+$LabjournaalNieuw =  "Nieuw Labjournaal";
+$LabjournaalAlle =  "Alle labjournalen";
+$LabjournaalNieuwFA = "Nieuw labjournaal formulier aanmaken";
 $LabjournaalTitel = "Titel Experiment";
 $LabjournaalUitvoerder = "Uitvoerders";
 $LabjournaalDatum = "Datum Experiment";
@@ -141,6 +141,7 @@ $LabjournaalError = "Er zijn geen labjournalen om te bewerken";
 
 /* Voorbereidingen*/
 $Voorbereiding =  "Voorbereiding";
+$VoorbereidingBekijken = "Bekijk Voorbereidingen";
 $VoorbereidingNieuw =  "Nieuw Voorbereiding";
 $VoorbereidingenAlle =  "Alle Voorbereidingen";
 

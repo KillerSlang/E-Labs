@@ -49,14 +49,14 @@
 
          if($_SESSION["SorD"] == "Student"){
             echo'
-                <div onclick=window.location="Voorbereidingenaanmaak.php" class="homebtn" id="Voorbereidingenaanmaken">
+                <div onclick=window.location="VoorbereidingNieuw.php" class="homebtn" id="Voorbereidingenaanmaken">
                    
                         <p>'.$VoorbereidingNieuw.'</p>
                         <hr>      
                         <img class="homeimage" id="Voorbereidingenaanmakenimage" src="../Images/Voorbereidingen_small.png" alt="Voorbereiding small icon">
                        
                 </div>
-                <div onclick=window.location="labjournaalformulier.php" class="homebtn" id="Labjournalenaanmaken">
+                <div onclick=window.location="labjournaalNieuw.php" class="homebtn" id="Labjournalenaanmaken">
                     
                     <p>'.$LabjournaalNieuw.'</p>
                     <hr>
