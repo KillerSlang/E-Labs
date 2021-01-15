@@ -131,4 +131,10 @@ $Voorbereiding =  "Voorbereiding";
 $VoorbereidingNieuw =  "Nieuw Voorbereiding";
 $VoorbereidingenAlle =  "Alle Voorbereidingen";
 
+/* Credits */
+$AUheader = "Over Ons";
+$AUcontent = "Wij, INF1D, willen iedereen die heeft meegeholpen graag bedanken voor het waarmaken van dit project.
+De opdrachtgevers van dit project zijn: Kirsten Lanting & Laura Redder. 
+De opdrachtnemers van dit project zijn: Remco van Oenen, Simchaja Schonewille, Erik Jan Zanberg, Julian Jager, Peter Bos, Ömer Avci";
+
 ?>
