@@ -103,12 +103,12 @@
                 </div>
 
                 <label for="voorbereidingsdatum">Voorbereidings datum: * </label>
-            <input type="date" id="voorbereidingsdatum" name="voorbereidingsdatum" value="'.$voorbereidingsdatum.'">
+            <input type="date" id="voorbereidingsdatum" name="voorbereidingsdatum" placeholder="dd/mm/yyyy" value="'.$voorbereidingsdatum.'">
 
             </br>
             
             <label for="uitvoeringsdatum">Uitvoerings datum: *</label>
-            <input type="date" id="uitvoeringsdatum" name="uitvoeringsdatum" value="'.$uitvoeringsdatum.'">
+            <input type="date" id="uitvoeringsdatum" name="uitvoeringsdatum" placeholder="dd/mm/yyyy" value="'.$uitvoeringsdatum.'">
             
             </br>
 
