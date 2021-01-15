@@ -73,6 +73,7 @@ $Probeeropnieuwgegevensonjuist = "Wrong info, Please try again";
 
 /* Instellingen */
 $Naam = "Name";
+$Taal = "Language";
 
 /* Error codes*/
 $ErType = "Wrong filetype selected";

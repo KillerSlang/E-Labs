@@ -81,6 +81,7 @@ $Updatedsucces = "Wachtwoord succesvol bijgewerkt! druk <a href='inlog.php'>Hier
 
 /* Instellingen */
 $Naam = "Naam";
+$Taal = "Taal";
 
 /* Error codes*/
 $ErType = "Verkeerde bestandstype geselecteerd";
