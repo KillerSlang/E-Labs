@@ -3,11 +3,17 @@
 
 <head>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
-    <!--<script src="https://kit.fontawesome.com/cda83c7af3.js" crossorigin="anonymous"></script>-->
     <link rel="stylesheet" href="../Css/Main.css">
     <link rel="stylesheet" href="../Css/Responsive.css">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Nieuw Labjournaal</title>
+    <?php
+    if($_COOKIE['taal'] == 'english') {
+        echo "<title>View Lab journal</title>";
+    }
+    if($_COOKIE['taal'] == 'nederlands') {
+        echo "<title>Labjournaal Bekijken</title>";
+    }
+    ?>
 </head>
 
 <body>
