@@ -170,7 +170,6 @@ nav{
 
 /* Footer */
 footer{
-    display: grid;
     color: white;
     background-color: var(--blue);
     font-size: 1em;
@@ -179,13 +178,35 @@ footer{
     width: 100vw;
     height: 3vh; 
 }
-.footer{
-    display: block;
+#fgrid{
+    display: grid;
+    grid-template-columns: auto auto;
+}
+.fleft{
     margin: auto;
-    margin-left: 21vw;
-    padding:0
+}
+.fright{
+    margin: auto;
 }
 
+.footercredits{
+    display:inline;
+    padding:0;
+}
+.footerlink{
+    display:inline;
+    margin-right: 8vw;
+    padding:0;
+    text-decoration: underline;
+}
+
+/* about us */
+
+.contenttext{
+    text-align: center;
+    width: 40vw;
+    margin: 0 auto;
+}
 
 /* all pages*/
 main{
