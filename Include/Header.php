@@ -11,11 +11,11 @@ if($_COOKIE["taal"] == "english"){
     include_once "Nederlands.php";
 }
 
-/*
-if(!isset($_SESSION['SorD'])){
-    header("Location: ../Login/login.php");
+
+if(empty($_SESSION) || empty($_SESSION['SorD'])){
+    header("Location: ../Pages/index.php");
     exit;
-} */
+} 
 
 
 ?>
@@ -23,17 +23,17 @@ if(!isset($_SESSION['SorD'])){
 
 
 <div>
-    <img onclick='location.href="../Pages/Homepage.php"' id='navLogo'src='../Images/Logo.png'>
+    <img onclick='location.href="../Pages/Homepage.php"' id='navLogo'src='../Images/Logo.png' alt="logo">
 </div>
 <div class = 'menu'>
     <ul>
         <li id=''><a href='voorbereidingen.php'><?=$Voorbereidingen?></a></li>
-        <li id=''><a href='labjournalen.php'><?=$Labjournalen?></a></li>
+        <li id=''><a href='labjournalen.php?jaar=0'><?=$Labjournalen?></a></li>
         <li id=''><a href='Protocollen.php?jaar=0'><?=$Protocollen?></a></li>
     </ul>    
 </div>
 <div class = 'account'>
-    <i id='accountLogo' class="fa fa-user-circle-o" aria-hidden="true"></i>
+    <i id='accountLogo' class="fas fa-user-circle" aria-hidden="true"></i>
     
     <div class="accountDropdown">
         <div class="accountDropdownButton">        

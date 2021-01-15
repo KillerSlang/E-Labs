@@ -15,12 +15,11 @@ De advanced functie wordt gebruikt om door de code heen een query op te bouwen. 
     if(!$GLOBALS['conn']) //wanneer de connectie niet werkt.
     {
       DIE("Could not connect". mysqli_error($GLOBALS['conn']));
-    }echo $sql.'<br>'.$types.'<br>'; print_r($bindParameters);  
+    }  
     $GLOBALS ['stmt'] = mysqli_prepare($GLOBALS['conn'], $sql) or DIE("Preparation error"); // is het een werkende query
     if(!empty($types))// wanneer er een type is ingevuld. 
-    {
-      
-        mysqli_stmt_bind_param($GLOBALS ['stmt'],$types,...$bindParameters); //zet de types voor de parameters en bind de parameter die gegeven zijn. 
+    {        
+        mysqli_stmt_bind_param($GLOBALS['stmt'],$types,...$bindParameters); //zet de types voor de parameters en bind de parameter die gegeven zijn. 
     }
     mysqli_stmt_execute($GLOBALS ['stmt']) or DIE(mysqli_error($GLOBALS['conn'])); // execute de sql statement.
 
@@ -62,11 +61,10 @@ De advanced functie wordt gebruikt om door de code heen een query op te bouwen. 
       if(!$GLOBALS['conn']) //wanneer de connectie niet werkt.
       {
         DIE("Could not connect". mysqli_error($GLOBALS['conn']));
-      }echo $sql.'<br>'.$types.'<br>'; print_r($bindParameters);
+      } 
       $GLOBALS ['stmt'] = mysqli_prepare($GLOBALS['conn'], $sql) or DIE("Preparation error"); // is het een werkende query
       if(!empty($types))// wanneer er een type is ingevuld. 
       {
-        
           mysqli_stmt_bind_param($GLOBALS ['stmt'],$types,...$bindParameters); //zet de types voor de parameters en bind de parameter die gegeven zijn. 
       }
       mysqli_stmt_execute($GLOBALS ['stmt']) or DIE(mysqli_error($GLOBALS['conn'])); // execute de sql statement.

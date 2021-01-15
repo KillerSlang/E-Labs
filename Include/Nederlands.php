@@ -21,6 +21,7 @@ $PaginaVolgende = "Volgende Pagina";
 $PaginaVorige = "Vorige Pagina";
 $BML = "BML";
 $Chemie = "Chemie";
+$Opslaan = "Opslaan";
 
 /* Header */
 $Voorbereidingen =  "Voorbereidingen";
@@ -99,9 +100,44 @@ $ProtocollenAlle =  "Alle Protocollen";
 
 
 /* Labjournaal*/
+$Labjournaaloverzicht = "Experiment Overzicht";
+$LabjournaalBekijken = "Bekijk Labjournaal";
 $Labjournaal =  "Experiment";
 $LabjournaalNieuw =  "Nieuw Experiment";
-$LabjournaalAlle =  "Alle Protocollen";
+$LabjournaalAlle =  "Alle Experimenten";
+$LabjournaalNieuwFA = "Nieuw Experiment formulier aanmaken";
+$LabjournaalTitel = "Titel Experiment";
+$LabjournaalUitvoerder = "Uitvoerders";
+$LabjournaalDatum = "Datum Experiment";
+$LabjournaalDatumS = "Begin Datum Experiment";
+$LabjournaalDatumE = "Eind Datum Experiment";
+$LabjournaalVeiligheid = "Upload Veligheid";
+$LabjournaalDoel = "Doel";
+$LabjournaalWaarneming = "Upload waarnemingen bestand";
+$LabjournaalHypothese = "Hypothese";
+$LabjournaalMateriaal = "Materialen";
+$LabjournaalMethode = "Methode";
+$LabjournaalMeetR = "Upload Meetresultaten bestand";
+$LabjournaalLogboek = "Logboek";
+$LabjournaalLogboekU = "Upload Logboek bestand";
+$LabjournaalObservatie = "Observaties";
+$LabjournaalObservatieU = "Upload Observatie bestand";
+$LabjournaalWeeg = "Weeggegevens";
+$LabjournaalWeegU = "Upload Weeggegevens bestand";
+$LabjournaalImg = "Upload Afbeeldingen";
+$LabGegevens = "'Voer gegevens in...'";
+$LabjournaalEA = "alleen Excel en afbeeldingen toegestaan";
+$LabjournaalA = "alleen afbeeldingen zijn toegestaan";
+$LabjournaalEW = "alleen Excel en Word bestanden zijn toegestaan";
+$LabjournaalAW = "alleen afbeeldingen en Word bestanden zijn toegestaan";
+$LabjournaalE = "alleen Excel bestanden zijn toegestaan";
+$labjournaalB = "Bekijken";
+$LabjournaalED = "Experiment Datum";
+$LabjournaalBL = "Bewerk Labjournaal";
+$LabjournaalTBL = "Te bekijken labjournalen";
+$LabjournaalError = "Er zijn geen labjournalen om te bewerken";
+
+
 
 /* Voorbereidingen*/
 $Voorbereiding =  "Voorbereiding";

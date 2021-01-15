@@ -3,7 +3,14 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
     <link rel="stylesheet" href="../Css/Main.css">
     <link rel="stylesheet" href="../Css/Responsive.css">
-    
+    <?php
+    if($_COOKIE['taal'] == 'english') {
+        echo "<title>Settings</title>";
+    }
+    if($_COOKIE['taal'] == 'nederlands') {
+        echo "<title>Instellingen</title>";
+    }
+    ?>
 </head>
 <body>
     <?php 
@@ -82,20 +89,6 @@
             ?>
             </form>
             <?php
-            /* jaar selectie*/
-            if(isset($_POST["jaar"])) {
-                if ("jaar" == 1) {
-                    $_SESSION['jaar'] = 1;
-                }
-                if ("jaar" == 2) {
-                    $_SESSION['jaar'] = 2;
-                }
-                if ("jaar" == 3) {
-                    $_SESSION['jaar'] = 3;
-                }
-                echo $_SESSION['jaar'];
-            }
-
             /* opslaan */
             if(isset($_POST["Opslaan"])) {
                 header("location:taalverander.php");

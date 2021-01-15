@@ -29,7 +29,7 @@
                     <img class='homeimage' id="Voorbereidingenimage" src="../Images/Voorbereidingenicon.png" alt="Voorbereiding icon">
 
                 </div>
-                <div class="homebtn" onclick="location.href='labjournalen.php';" id="Labjournalen">
+                <div class="homebtn" onclick="location.href='labjournalen.php?jaar=0';" id="Labjournalen">
                     
                     <p><?=$Labjournalen?></p>
                     <hr>
@@ -37,7 +37,7 @@
                     
                 </div>
                 
-                <div class="homebtn" onclick="location.href='Protocollen.php';" id="Protocollen">
+                <div class="homebtn" onclick="location.href='Protocollen.php?jaar=0';" id="Protocollen">
                     
                     <p><?=$Protocollen?></p>
                     <hr>
