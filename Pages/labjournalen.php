@@ -6,9 +6,8 @@
         <link rel="stylesheet" href="../Css/Responsive.css">
         <?php
         if($_COOKIE['taal'] == 'english') {
-            echo "<title>Lab journals</title>";
-        }
-        if($_COOKIE['taal'] == 'nederlands') {
+            echo "<title>Lab Journals</title>";
+        }else {
             echo "<title>Labjournalen</title>";
         }
         ?>
@@ -168,12 +167,12 @@
                                     <td>'.$experimentDatumB.'</td>
                                     <td>'.$vak.'</td>
                                     <td>'.$jaar.'</td>
-                                    <td> <a class="labjournaalLink" href="../Include/downloadLabjournaal.inc.php?ID='.$labjournaalID .'"> <i class="fas fa-download"></i> </a> </td>';
+                                    <td> <a class="labjournaalLink" href="../Include/downloadLabjournaal.inc.php?ID='.$labjournaalID .'"> <i class="fa fa-download"></i> </a> </td>';
                                     
                                     if($_SESSION["SorD"] == "Student") // de bewerk en de verwijder-knop van de student printen.
                                     {
                                         echo'<td> <a class="labjournaalLink" href="labjournaalBewerk.php?NEW&ID='.$labjournaalID .'">Bewerken </a></td>';
-                                        echo'<td> <a class="labjournaalLink" href="../Include/deleteLabjournaal.inc.php?ID='.$labjournaalID .'"> <i class="fas fa-trash-alt"></i> </a> </td>';
+                                        echo'<td> <a class="labjournaalLink" href="../Include/deleteLabjournaal.inc.php?ID='.$labjournaalID .'"> <i class="fa fa-trash"></i> </a> </td>';
                                     }else{ echo'<td> <a class="labjournaalLink" href="labjournaalBekijken.php?ID='.$labjournaalID .'">Bekijken</a></td>';} // de bekijken-knop van de student printen.
                                     
                                     echo '</tr>' ;

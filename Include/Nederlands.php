@@ -95,7 +95,7 @@ $Homepagina = "Homepagina";
 $Bestemming = "Kies uw bestemming";
 
 /* Protocollen */
-$Protocol =  "Protocol";
+$Protocol =  "Protocol Overzicht";
 $ProtocolNieuw =  "Nieuw Protocol";
 $ProtocollenAlle =  "Alle Protocollen";
 
@@ -144,7 +144,8 @@ $LabjournaalError = "Er zijn geen labjournalen om te bewerken";
 $Voorbereiding =  "Voorbereiding";
 $VoorbereidingBekijken = "Bekijk Voorbereidingen";
 $VoorbereidingNieuw =  "Nieuw Voorbereiding";
-$VoorbereidingenAlle =  "Alle Voorbereidingen";
+$VoorbereidingAlle =  "Alle Voorbereidingen";
+$VoorbereidingError = "Er zijn geen voorbereidingen om te bekijken/bewerken";
 
 /* Credits */
 $AUheader = "Over Ons";

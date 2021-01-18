@@ -2,10 +2,15 @@
 <html lang="en">
     <head>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
-        <script src="https://kit.fontawesome.com/cda83c7af3.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="../Css/Main.css">
         <link rel="stylesheet" href="../Css/Responsive.css">
-        <title>VoorbereidingenBekijken</title>
+        <?php
+        if($_COOKIE['taal'] == 'english') {
+            echo "<title>View Preparations</title>";
+        }else {
+            echo "<title>Voorbereidingen Bekijken</title>";
+        }
+        ?>
     </head>
     <body>
     <?php 
@@ -45,16 +50,16 @@
         ?>
         <main id="Protocol">
         <div class="PageTitle">
-                <h1>Te bekijken labjournalen</h1>
+                <h1>Te bekijken Voorbereidingen</h1>
                 <hr>
             </div>
             <div class="whitebg">
                 <div id="Lcontent6" class="content">
-                    <a class="bluebtn Lbutton" id="lbuttonLeft" href='voorbereidingen.php?jaar=0'>Bewerk labjournalen</a>
-                    <a class="bluebtn Lbutton <?=($_GET["jaar"] == 1) ? "Pselected" : ""?>"  href="VoorbereidingenBekijken.php?jaar=1">Jaar 1</a>
-                    <a class="bluebtn Lbutton <?=($_GET["jaar"] == 2) ? "Pselected" : ""?>"  href="VoorbereidingenBekijken.php?jaar=2">Jaar 2</a>
-                    <a class="bluebtn Lbutton <?=($_GET["jaar"] == 3) ? "Pselected" : ""?>"  href="VoorbereidingenBekijken.php?jaar=3">Jaar 3</a>
-                    <a class="bluebtn Lbutton <?=($_GET["jaar"] == 0) ? "Pselected" : ""?>"  href="VoorbereidingenBekijken.php?jaar=0">Alle jaren</a>
+                    <a class="bluebtn Lbutton" id="lbuttonLeft" href='voorbereidingen.php?jaar=0'>Bewerk Voorbereidingen</a>
+                    <a class="bluebtn Lbutton <?=($_GET["jaar"] == 1) ? "Pselected" : ""?>"  href="VoorbereidingenBekijken.php?jaar=1"><?=$Jaar1?></a>
+                    <a class="bluebtn Lbutton <?=($_GET["jaar"] == 2) ? "Pselected" : ""?>"  href="VoorbereidingenBekijken.php?jaar=2"><?=$Jaar2?></a>
+                    <a class="bluebtn Lbutton <?=($_GET["jaar"] == 3) ? "Pselected" : ""?>"  href="VoorbereidingenBekijken.php?jaar=3"><?=$Jaar3?></a>
+                    <a class="bluebtn Lbutton <?=($_GET["jaar"] == 0) ? "Pselected" : ""?>"  href="VoorbereidingenBekijken.php?jaar=0"><?=$JaarAlle?></a>
                     <!-- Formulier van de select button van BML en Chemie -->
                     <form action="VoorbereidingenBekijken.php?jaar=<?=$_GET["jaar"]?>" name="selectform" method="post">
                         <select class="bluebtn Lbutton" name="vak" onchange="this.form.submit();">                        
@@ -268,7 +273,7 @@
                                     <td>'.$voorbereidingDatum.'</td>
                                     <td>'.$vak.'</td>
                                     <td>'.$jaar.'</td>
-                                    <td><a class="labjournaalLink" href="../Include/downloadVoorbereiding.inc.php?ID='.$voorbereidingID .'"> <i class="fas fa-download"></i> </a></td>
+                                    <td><a class="labjournaalLink" href="../Include/downloadVoorbereiding.inc.php?ID='.$voorbereidingID .'"> <i class="fa fa-download"></i> </a></td>
                                     <td><a class="labjournaalLink" href="VoorbereidingBekijken.php?ID='.$voorbereidingID .'">Bekijken </a> </td>
                                     </tr>' ;
                                 }
@@ -279,7 +284,7 @@
                             if(!isset($_GET['page']) || $_GET['page'] == 0){
                                 $url = 'VoorbereidingenBekijken.php?jaar='.$jaarlaag.'&page=';
                                 $next = $url.'1';
-                                echo'<a class="bluebtn Lbutton Lpages4" href='.$url.'1>'.$LabjournaalAlle.'</a>';
+                                echo'<a class="bluebtn Lbutton Lpages4" href='.$url.'1>'.$VoorbereidingAlle.'</a>';
                             } else {
                                 $url = 'VoorbereidingenBekijken.php?jaar='.$jaarlaag.'&page=';
                                 $next = $_GET['page']+1;
@@ -293,7 +298,7 @@
                             if($queryError)
                             { 
                                 echo '<div class="bericht">
-                                        <b>Er zijn geen Voorbereidingen om te bekijken.</b><hr>
+                                    <b>'.$VoorbereidingError.'.</b><hr>
                                     </div>';
                             }
                         

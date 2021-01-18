@@ -3,11 +3,16 @@
 
     <head>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
-        <script src="https://kit.fontawesome.com/cda83c7af3.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="../Css/Main.css">
         <link rel="stylesheet" href="../Css/Responsive.css">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Nieuw Labjournaal</title>
+        <?php
+        if($_COOKIE['taal'] == 'english') {
+            echo "<title>Edit Preparations</title>";
+        }else {
+            echo "<title>Voorbereiding Bewerken</title>";
+        }
+        ?>
     </head>
 
     <body>
@@ -19,7 +24,7 @@
 
     <main id="Labjournaal">
         <div class="PageTitle">
-            <h1>Labjournaal</h1>
+            <h1>Voorbereiding Bewerken</h1>
             <hr>
         </div>
         <div class="whitebg">
@@ -124,10 +129,10 @@
                         echo'
                         <div id="buttonArea">
                             <button class="userToevoegen" type="Submit" id="userSubmit" name="userSubmit">
-                                <i class="fas fa-user-plus"> </i>
+                                <i class="fa fa-user-plus"> </i>
                             </button>
                             <button class="userVerwijderen" type="Submit" id="userVerwijderen" name="userVerwijderen">
-                                <i class="fas fa-user-minus"> </i>
+                                <i class="fa fa-user-times"> </i>
                             </button>
                         </div>
                         <br>        
@@ -142,7 +147,7 @@
                         <label for="uploadtheorie">Upload theorie: </label>
                         <input type="file" id="uploadtheorie" name="uploadtheorie" accept=".xls,.xlsx,image/*" value="'.$bijlageTheorie.'">';
                         if(!empty($bijlageTheorie)){
-                            echo'<a class="downloadLink" " target="_blank" href="'.$bijlageTheorie.'">'.$bijlageTheorie.'</a>';
+                            echo'<a class="downloadLink"  target="_blank" href="'.$bijlageTheorie.'">'.$bijlageTheorie.'</a>';
                         }
                         echo'                    
                         <br>
@@ -164,7 +169,7 @@
                         <br>
                         <br>
                         <label for="materialen">Materialen: </label>
-                        <textarea id="materialen" name="materialen" rows="4" cols="50" placeholder="Voer gegevens in...">'.$materialen.'</textarea>
+                        <textarea id="materialen" class="autoresizingBewerken" name="materialen" rows="4" cols="50" placeholder="Voer gegevens in...">'.$materialen.'</textarea>
 
                         <br>
                         <br>         
@@ -173,22 +178,22 @@
                         <br>
                         <br>';
                         if(!empty($bijlageMaterialen)){
-                            echo'<a class="downloadLink" " target="_blank" href="'.$bijlageMaterialen.'">'.$bijlageMaterialen.'</a>';
+                            echo'<a class="downloadLink"  target="_blank" href="'.$bijlageMaterialen.'">'.$bijlageMaterialen.'</a>';
                         } 
                         echo'                
                         <label for="Methode">Methode: </label>
-                        <textarea id="methode" name="methode" rows="4" cols="50" placeholder="Voer gegevens in...">'.$methode.'</textarea>
+                        <textarea id="methode" class="autoresizingBewerken" name="methode" rows="4" cols="50" placeholder="Voer gegevens in...">'.$methode.'</textarea>
             
                         <br>
                         <br>   
                         <label for="uploadmethode">Upload methode bestand: </label>
                         <input type="file" id="uploadmethode" name="uploadmethode" accept=".xls,.xlsx,image/* value='.$bijlageMethode.'>';
                         if(!empty($bijlageMethode)){
-                            echo'<a class="downloadLink" " target="_blank" href="'.$bijlageMethode.'">'.$bijlageMethode.'</a>';
+                            echo'<a class="downloadLink"  target="_blank" href="'.$bijlageMethode.'">'.$bijlageMethode.'</a>';
                         }
                         echo'               
                         <label for="Veiligheid">Veiligheid: </label>
-                        <textarea id="veiligheid" name="veiligheid" rows="4" cols="50" placeholder="Voer gegevens in...">'.$veiligheid.'</textarea>
+                        <textarea id="veiligheid" class="autoresizingBewerken" name="veiligheid" rows="4" cols="50" placeholder="Voer gegevens in...">'.$veiligheid.'</textarea>
                         
                         <br>
                         <br>                    
@@ -196,7 +201,7 @@
                         <label for="uploadveiligheid">Upload veiligheid bestand: </label>
                         <input type="file" id="uploadveiligheid" name="uploadveiligheid" accept=".xls,.xlsx,.doc,.docx" value='.$bijlageVeiligheid.'>';
                         if(!empty($bijlageVeiligheid)){
-                            echo'<a class="downloadLink" " target="_blank" href="'.$bijlageVeiligheid.'">'.$bijlageVeiligheid.'</a>';
+                            echo'<a class="downloadLink"  target="_blank" href="'.$bijlageVeiligheid.'">'.$bijlageVeiligheid.'</a>';
                         }
                         echo'
                         <br>
@@ -208,7 +213,7 @@
                         <label for="uploadvoorbereidendevragen">Upload voorbereidendevragen bestand: </label>
                         <input type="file" id="uploadvoorbereidendevragen" name="uploadvoorbereidendevragen" accept="image/*,.doc,.docx" value='.$bijlageVoorbereidendevragen.'>';
                         if(!empty($bijlageVoorbereidendevragen)){
-                            echo'<a class="downloadLink" " target="_blank" href="'.$bijlageVoorbereidendevragen.'">'.$bijlageVoorbereidendevragen.'</a>';
+                            echo'<a class="downloadLink"  target="_blank" href="'.$bijlageVoorbereidendevragen.'">'.$bijlageVoorbereidendevragen.'</a>';
                         }
                         echo'       
                         

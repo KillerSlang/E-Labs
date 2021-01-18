@@ -16,7 +16,7 @@ if(empty($_SESSION) || empty($_SESSION['SorD'])){
     exit;
 } 
 
-$_SESSION['StudentID'] = "3";
+
 ?>
 
 

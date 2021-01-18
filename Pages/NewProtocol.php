@@ -3,7 +3,13 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
     <link rel="stylesheet" href="../Css/Main.css">
     <link rel="stylesheet" href="../Css/Responsive.css">
-
+    <?php
+        if($_COOKIE['taal'] == 'english') {
+            echo "<title>New Protocol</title>";
+        }else {
+            echo "<title>Nieuw Protocol</title>";
+        }
+        ?>
 </head>
 <body>
     <?php 
@@ -57,7 +63,7 @@
                                     
                                     if($fileType == 'pdf'){ 
 
-                                        $targetDir = "../upload/protocol/";
+                                        $targetDir = "../uploads/";
                                         $date = date("Y-m-d_h-i-s");
                                         $targetFile= $targetDir.$_SESSION["Name"].$date.'.'.$fileType;
                                         $uploadOk = 1;

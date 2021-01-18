@@ -6,7 +6,13 @@
     <link rel="stylesheet" href="../Css/Main.css">
     <link rel="stylesheet" href="../Css/Responsive.css">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Nieuw Labjournaal</title>
+    <?php
+        if($_COOKIE['taal'] == 'english') {
+            echo "<title>New Lab Journal</title>";
+        }else {
+            echo "<title>Nieuw Labjournaal</title>";
+        }
+        ?>
 </head>
 
 <body>

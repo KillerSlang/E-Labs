@@ -44,7 +44,7 @@ if (isset($_POST['LSubmit'])) // wanneer er vanaf de VoorbereidingNieuw pagina o
     if(!empty($_FILES["uploadtheorie"]))
     {
         // upload veiligheid
-        $target_dir = "../uploads/voorbereiding/theorie/";
+        $target_dir = "../uploads";
         $target_file_theorie = $target_dir . basename($_FILES["uploadtheorie"]["name"]);
         $imageFileTypeveiligheid = strtolower(pathinfo($target_file_theorie,PATHINFO_EXTENSION));
         
@@ -74,7 +74,7 @@ if (isset($_POST['LSubmit'])) // wanneer er vanaf de VoorbereidingNieuw pagina o
     if(!empty($_FILES["uploadmaterialen"]))
     {
         // upload waarnemingen
-        $target_dir = "../uploads/voorbereiding/materialen/";
+        $target_dir = "../uploads";
         $target_file_materialen = $target_dir . basename($_FILES["uploadmaterialen"]["name"]);
         $imageFileTypematerialen = strtolower(pathinfo($target_file_materialen,PATHINFO_EXTENSION));
         
@@ -103,7 +103,7 @@ if (isset($_POST['LSubmit'])) // wanneer er vanaf de VoorbereidingNieuw pagina o
     if(!empty($_FILES["uploadmethode"]))
     {
         // upload waarnemingen
-        $target_dir = "../uploads/voorbereiding/methode/";
+        $target_dir = "../uploads";
         $target_file_methode = $target_dir . basename($_FILES["uploadmethode"]["name"]);
         $imageFileTypemethode = strtolower(pathinfo($target_file_methode,PATHINFO_EXTENSION));
         
@@ -132,7 +132,7 @@ if (isset($_POST['LSubmit'])) // wanneer er vanaf de VoorbereidingNieuw pagina o
     if(!empty($_FILES["uploadveiligheid"]))
     {
         // upload logboek
-        $target_dir = "../uploads/voorbereiding/veiligheid/";
+        $target_dir = "../uploads";
         $target_file_veiligheid = $target_dir . basename($_FILES["uploadveiligheid"]["name"]);
         $imageFileTypeveiligheid = strtolower(pathinfo($target_file_veiligheid,PATHINFO_EXTENSION));
         
@@ -161,7 +161,7 @@ if (isset($_POST['LSubmit'])) // wanneer er vanaf de VoorbereidingNieuw pagina o
     if(!empty($_FILES["uploadvoorbereidendevragen"]))
     {
         // upload observatie
-        $target_dir = "../uploads/voorbereiding/voorbereidendevragen/";
+        $target_dir = "../uploads";
         $target_file_voorbereidendevragen = $target_dir . basename($_FILES["uploadvoorbereidendevragen"]["name"]);
         $imageFileTypevoorbereidendevragen = strtolower(pathinfo($target_file_voorbereidendevragen,PATHINFO_EXTENSION));
         

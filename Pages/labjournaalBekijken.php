@@ -7,13 +7,12 @@
     <link rel="stylesheet" href="../Css/Responsive.css">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <?php
-    if($_COOKIE['taal'] == 'english') {
-        echo "<title>View Lab journal</title>";
-    }
-    if($_COOKIE['taal'] == 'nederlands') {
-        echo "<title>Labjournaal Bekijken</title>";
-    }
-    ?>
+        if($_COOKIE['taal'] == 'english') {
+            echo "<title>View Lab Journal</title>";
+        }else {
+            echo "<title>Labjournaal Bekijken</title>";
+        }
+        ?>
 </head>
 
 <body>
@@ -25,7 +24,7 @@
 
 <main id="Labjournaal">
     <div class="PageTitle">
-        <h1>Labjournaal</h1>
+        <h1>Labjournaal Bekijken</h1>
         <hr>
     </div>
     <div class="whitebg">
@@ -280,6 +279,7 @@
 
                         if(!empty($docent))
                         {
+                            
                             queryAanmaken(
                             'SELECT docentNaam
                              FROM docent

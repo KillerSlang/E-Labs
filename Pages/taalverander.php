@@ -1,18 +1,22 @@
 <?php
 session_start();
+include_once '../Include/Dbh.inc.php';
 /* verandering van jaar met behulp van een cookie /  jaarselectie*/
     if(isset($_POST['jaar'])) {
         if ($_POST["jaar"] == '1') {
             $_SESSION['jaar'] = "1";
-            $query = "INSERT INTO student (jaar) 1 ('$_POST[jaar]')";
+            queryAanmaken('UPDATE student SET jaar = ? WHERE studentID = ?', 'ii', $_SESSION['jaar'], $_SESSION['StudentID']);
+            querySluiten();
         }
         if ($_POST["jaar"] == '2') {
             $_SESSION['jaar'] = "2";
-            $query = "INSERT INTO student (jaar) 2 ('$_POST[jaar]')";
+            queryAanmaken('UPDATE student SET jaar = ? WHERE studentID = ?', 'ii', $_SESSION['jaar'], $_SESSION['StudentID']);
+            querySluiten();
         }
         if ($_POST["jaar"] == '3') {
             $_SESSION['jaar'] = "3";
-            $query = "INSERT INTO student (jaar) 3 ('$_POST[jaar]')";
+            queryAanmaken('UPDATE student SET jaar = ? WHERE studentID = ?', 'ii', $_SESSION['jaar'], $_SESSION['StudentID']);
+            querySluiten();
         }
        else {
            echo "No Jaar Found";

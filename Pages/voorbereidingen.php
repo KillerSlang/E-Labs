@@ -161,20 +161,20 @@
                                 echo '</tr>'; // table row sluiten.
                                 while(mysqli_stmt_fetch($stmt)) // alle resultaten in een rij van de tabel zetten.
                                 {
-                                    $datum = explode("-", $experimentDatum);
-                                    $experimentDatumB = $datum[2]."-".$datum[1]."-".$datum[0];
+                                    $datum = explode("-", $voorbereidingDatum);
+                                    $voorbereidingDatumB = $datum[2]."-".$datum[1]."-".$datum[0];
                                     echo '<tr>
                                     <td>'.$voorbereidingTitel.'</td>
                                     <td>'.$studentID.'</td>
-                                    <td>'.$voorbereidingDatum.'</td>
+                                    <td>'.$voorbereidingDatumB.'</td>
                                     <td>'.$vak.'</td>
                                     <td>'.$jaar.'</td>
-                                    <td> <a class="labjournaalLink" href="../Include/downloadVoorbereiding.inc.php?ID='.$voorbereidingID .'"> <i class="fas fa-download"></i> </a> </td>';
+                                    <td> <a class="labjournaalLink" href="../Include/downloadVoorbereiding.inc.php?ID='.$voorbereidingID .'"> <i class="fa fa-download"></i> </a> </td>';
                                     
                                     if($_SESSION["SorD"] == "Student") // de bewerk en de verwijder-knop van de student printen.
                                     {
                                         echo'<td> <a class="labjournaalLink" href="voorbereidingBewerk.php?NEW&ID='.$voorbereidingID .'">Bewerken </a></td>';
-                                        echo'<td> <a class="labjournaalLink" href="../Include/deleteVoorbereiding.inc.php?ID='.$voorbereidingID .'"> <i class="fas fa-trash-alt"></i> </a> </td>';
+                                        echo'<td> <a class="labjournaalLink" href="../Include/deleteVoorbereiding.inc.php?ID='.$voorbereidingID .'"> <i class="fa fa-trash"></i> </a> </td>';
                                     }else{ echo'<td> <a class="labjournaalLink" href="voorbereidingBekijken.php?ID='.$voorbereidingID .'">Bekijken</a></td>';} // de bekijken-knop van de student printen.
                                     
                                     echo '</tr>' ;
@@ -199,7 +199,7 @@
                             if($queryError)
                             { 
                                 echo '<div class="bericht">
-                                        <b>'.$LabjournaalError.'.</b><hr>
+                                        <b>'.$VoorbereidingError.'.</b><hr>
                                     </div>';
                             }
                         ?>

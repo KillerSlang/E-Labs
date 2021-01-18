@@ -9,8 +9,7 @@
         <?php
         if($_COOKIE['taal'] == 'english') {
             echo "<title>New Lab Journal</title>";
-        }
-        if($_COOKIE['taal'] == 'nederlands') {
+        }else {
             echo "<title>Nieuw Labjournaal</title>";
         }
     ?>
@@ -106,10 +105,10 @@
                 echo'
                 <div id="buttonArea">
                     <button class="userToevoegen" type="Submit" id="userSubmit" name="userSubmit">
-                        <i class="fas fa-user-plus"> </i>
+                        <i class="fa fa-user-plus"> </i>
                     </button>
                     <button class="userVerwijderen" type="Submit" id="userVerwijderen" name="userVerwijderen">
-                        <i class="fas fa-user-minus"> </i>
+                        <i class="fa fa-user-times"> </i>
                     </button>
                 </div>
 

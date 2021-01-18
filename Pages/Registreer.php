@@ -3,6 +3,13 @@
     <head>  
         <title>Registreren</title>
         <link href="../Css/inlog.css" rel="stylesheet" type="text/css">
+        <?php
+        if($_COOKIE['taal'] == 'english') {
+            echo "<title>Register</title>";
+        }else {
+            echo "<title>Registreren</title>";
+        }
+        ?>
     </head>
         <div id="Container">
             <div id="inlogbox">

@@ -3,6 +3,13 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
     <link rel="stylesheet" href="../Css/Main.css">
     <link rel="stylesheet" href="../Css/Responsive.css">
+    <?php
+        if($_COOKIE['taal'] == 'english') {
+            echo "<title>Protocols</title>";
+        }else {
+            echo "<title>Protocollen</title>";
+        }
+        ?>
 </head>
 <body>
     <?php 
@@ -64,6 +71,7 @@
                 
                 <br>
                 <?php
+                
                     $sql = 'SELECT protocolID, studentNaam, uploadDatum, titel, vakken, p.jaar, protocol
                     FROM protocol AS p
                     JOIN student AS s ON p.studentID = s.studentID ';
@@ -90,6 +98,7 @@
                     queryAanmaken($sql);
                     mysqli_stmt_bind_result($stmt, $protocolID, $studentNaam, $uploadDatum, $titel, $vakken, $jaar, $protocolDir);
                     mysqli_stmt_store_result($stmt);
+             
                     if(mysqli_stmt_num_rows($stmt) != 0)
                     {
                         echo "<table class='PTable'><th>".$Titel."</th><th>".$Auteur."</th><th>".$UploadDatum."</th><th>".$Vakken."</th><th>".$Jaar."</th><th>".$Protocol."</th>";

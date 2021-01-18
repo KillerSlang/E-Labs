@@ -23,9 +23,9 @@ if(isset($_POST["Submit"])){
         {
             while(mysqli_stmt_fetch($stmt)) // alle resultaten in een rij van de tabel zetten.
             {                    
-                $studentID = $row['studentID'];
-                $studentNummer = $row['studentNummer'];
-                $studentNaam = $row['studentNaam'];                        
+                // $studentID = $row['studentID'];
+                // $studentNummer = $row['studentNummer'];
+                // $studentNaam = $row['studentNaam'];                        
                 $_SESSION["StudentID"] = $studentID;
                 $_SESSION["SorD"] = "Student";
                 $_SESSION["studentNummer"] = $studentNummer;

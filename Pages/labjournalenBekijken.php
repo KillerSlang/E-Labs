@@ -7,11 +7,10 @@
         <?php
         if($_COOKIE['taal'] == 'english') {
             echo "<title>View Lab Journal</title>";
+        }else {
+            echo "<title>Labjournalen Bekijken</title>";
         }
-        if($_COOKIE['taal'] == 'nederlands') {
-            echo "<title>Labjournaal Bekijken</title>";
-        }
-    ?>
+        ?>
     </head>
     <body>
     <?php 

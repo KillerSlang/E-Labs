@@ -1,13 +1,16 @@
 <!DOCTYPE HTML>
 <html>
-    <head>
-        <title><?=$Homepagina?></title>
-
-        <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet"> -->
-        
+    <head>       
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
         <link rel="stylesheet" href="../Css/Main.css">
         <link rel="stylesheet" href="../Css/Responsive.css">
+        <?php
+        if($_COOKIE['taal'] == 'english') {
+            echo "<title>Homepage</title>";
+        }else {
+            echo "<title>Homepagina</title>";
+        }
+        ?>
     </head>
     <body>
         <header> 

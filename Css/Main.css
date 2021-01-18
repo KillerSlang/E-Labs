@@ -824,6 +824,39 @@ a:hover{
 }
 
 /* Labjournaal */
+.autoresizingBekijken {
+    display: block;
+    overflow: hidden;
+    resize: none;
+    width: 55vw;
+    height: auto;
+    border: none;
+    outline:none;
+    margin-bottom: 5px;
+    margin-left: 10px;
+}
+.autoresizingBewerken {
+    display: block;
+    overflow: hidden;
+    resize: none;
+    width: 25vw;
+    height: auto;
+    outline:none;
+    margin-bottom: 5%;
+}
+.autoresizingNieuw {
+    display: block;
+    overflow: hidden;
+    resize: none;
+    width: 35vw;
+    height: auto;
+    outline:none;
+    margin-bottom: 5%;
+}
+.downloadLink
+{
+    color: var(--darkblue);
+}
 #Labjournaal{
     background-image: url(../Images/Leerlingen.jpg);
     background-repeat: no-repeat;
@@ -857,7 +890,7 @@ select.bluebtn {
 }
 .LTable{
     grid-row: 2/3;
-    grid-column: 1/7;
+    grid-column: 1/-1;
 	border-collapse: collapse;
     width: 100%;
 }
@@ -933,6 +966,68 @@ a[class="labjournaalLink"]:visited
 {
     color:black;
     text-decoration: underline;
+}
+#buttonArea
+{
+    grid-row: 3 / 4;
+    grid-column: 1 / 2;
+    display: grid;
+    grid-template-columns: 35px 35px auto;
+}
+
+.userToevoegen
+{
+    grid-column: 1 / 2;
+    height: 2.25vw;
+    width: 2.25vw;
+    color: white;
+    background-color: var(--blue);
+    border-radius: 0.8vw;
+    border: black solid 0.1vw;
+    cursor: pointer;
+    padding: 0.6vw 0.5vw;
+    text-align: center;
+    justify-content: space-around;
+    transform: scale(1.1);
+    margin-top: 0.5vw;
+    margin-right: 0.8vw;
+    margin-bottom: 0.5vw;
+
+}
+.userVerwijderen
+{
+    grid-column: 2 / 3;
+    height: 2.25vw;
+    width: 2.25vw;
+    color: white;
+    background-color: var(--blue);
+    border-radius: 0.8vw;
+    border: black solid 0.1vw;
+    cursor: pointer;
+    padding: 0.6vw 0.5vw;
+    text-align: center;
+    justify-content: space-around;
+    transform: scale(1.1);
+    margin-top: 0.5vw;
+    margin-left: 0.8vw;
+    margin-bottom: 0.5vw;
+
+}
+.studentInput
+{
+    grid-column: 1 / 2;
+    margin-left: 1%;
+    border: none;
+    outline: none;
+}
+
+.imageBekijken
+{
+    width: 45%;
+    height: auto;
+    margin-left: 18%;
+    margin-top: 1%;
+
 }
 
 /* Voorbereiding */

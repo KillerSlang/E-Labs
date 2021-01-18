@@ -8,9 +8,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <?php
         if($_COOKIE['taal'] == 'english') {
-            echo "<title>Edit Lab journal</title>";
-        }
-        if($_COOKIE['taal'] == 'nederlands') {
+            echo "<title>Edit Lab Journal</title>";
+        }else {
             echo "<title>Labjournaal Bewerken</title>";
         }
         ?>
@@ -25,7 +24,7 @@
 
     <main id="Labjournaal">
         <div class="PageTitle">
-            <h1>Labjournaal</h1>
+            <h1>Labjournaal Bewerken</h1>
             <hr>
         </div>
         <div class="whitebg">
@@ -133,10 +132,10 @@
                         echo'
                         <div id="buttonArea">
                             <button class="userToevoegen" type="Submit" id="userSubmit" name="userSubmit">
-                                <i class="fas fa-user-plus"> </i>
+                                <i class="fa fa-user-plus"> </i>
                             </button>
                             <button class="userVerwijderen" type="Submit" id="userVerwijderen" name="userVerwijderen">
-                                <i class="fas fa-user-minus"> </i>
+                                <i class="fa fa-user-times"> </i>
                             </button>
                         </div>
                         <br>        
@@ -153,7 +152,7 @@
                         <label for="uploadveiligheid">Upload veiligheid: </label>
                         <input type="file" id="uploadveiligheid" name="uploadveiligheid" accept=".xls,.xlsx,image/*" value="'.$veiligheid.'">';
                         if(!empty($veiligheid)){
-                            echo'<a class="downloadLink" " target="_blank" href="'.$veiligheid.'">'.$veiligheid.'</a>';
+                            echo'<a class="downloadLink"  target="_blank" href="'.$veiligheid.'">'.$veiligheid.'</a>';
                         }
                         echo'                    
                         <br>
@@ -167,7 +166,7 @@
                         <br>
                         <br>';
                         if(!empty($bijlageWaarnemingen)){
-                            echo'<a class="downloadLink" " target="_blank" href="'.$bijlageWaarnemingen.'">'.$bijlageWaarnemingen.'</a>';
+                            echo'<a class="downloadLink"  target="_blank" href="'.$bijlageWaarnemingen.'">'.$bijlageWaarnemingen.'</a>';
                         } 
                         echo'                
                         <label for="hypothese">Hypothese: </label>
@@ -185,7 +184,7 @@
                         <label for="uploadmeetresultaten">Upload meetresultaten bestand: </label>
                         <input type="file" id="uploadmeetresultaten" name="uploadmeetresultaten" accept=".xls,.xlsx,image/*">';
                         if(!empty($bijlageMeetresultaten)){
-                            echo'<a class="downloadLink" " target="_blank" href="'.$bijlageMeetresultaten.'">'.$bijlageMeetresultaten.'</a>';
+                            echo'<a class="downloadLink"  target="_blank" href="'.$bijlageMeetresultaten.'">'.$bijlageMeetresultaten.'</a>';
                         }
                         echo'               
                         <br>
@@ -197,7 +196,7 @@
                         <label for="uploadlogboek">Upload logboek bestand: </label>
                         <input type="file" id="uploadlogboek" name="uploadlogboek" accept=".xls,.xlsx,.doc,.docx">';
                         if(!empty($bijlageLogboek)){
-                            echo'<a class="downloadLink" " target="_blank" href="'.$bijlageLogboek.'">'.$bijlageLogboek.'</a>';
+                            echo'<a class="downloadLink" target="_blank" href="'.$bijlageLogboek.'">'.$bijlageLogboek.'</a>';
                         }
                         echo'
                         <br>
@@ -209,7 +208,7 @@
                         <label for="uploadobservaties">Upload observatie bestand: </label>
                         <input type="file" id="uploadobservaties" name="uploadobservaties" accept="image/*,.doc,.docx">';
                         if(!empty($bijlageObservaties)){
-                            echo'<a class="downloadLink" " target="_blank" href="'.$bijlageObservaties.'">'.$bijlageObservaties.'</a>';
+                            echo'<a class="downloadLink"  target="_blank" href="'.$bijlageObservaties.'">'.$bijlageObservaties.'</a>';
                         }
                         echo'       
                         <br>
@@ -221,7 +220,7 @@
                         <label for="uploadweegegevens">Upload weeggegevens bestand: </label>
                         <input type="file" id="uploadweeggegevens" name="uploadweeggegevens" accept=".xls,.xlsx">';
                         if(!empty($bijlageWeeggegevens)){
-                            echo'<a class="downloadLink" " target="_blank" href="'.$bijlageWeeggegevens.'">'.$bijlageWeeggegevens.'</a>';
+                            echo'<a class="downloadLink"  target="_blank" href="'.$bijlageWeeggegevens.'">'.$bijlageWeeggegevens.'</a>';
                         }
                         echo'
                         <br>
@@ -229,7 +228,7 @@
                         <label for="uploadafbeelding">Upload afbeeldingen: </label>
                         <input type="file" id="uploadafbeelding" name="uploadafbeelding" accept="image/*" multiple>';
                         if(!empty($bijlageAfbeelding)){
-                            echo'<a class="downloadLink" " target="_blank" href="'.$bijlageAfbeelding.'">'.$bijlageAfbeelding.'</a>';
+                            echo'<a class="downloadLink"  target="_blank" href="'.$bijlageAfbeelding.'">'.$bijlageAfbeelding.'</a>';
                         }
                         echo'        
                         <br>

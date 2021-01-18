@@ -7,8 +7,7 @@
         <?php
         if($_COOKIE['taal'] == 'english') {
             echo "<title>About Us</title>";
-        }
-        if($_COOKIE['taal'] == 'nederlands') {
+        }else {
             echo "<title>Over Ons</title>";
         }
         ?>

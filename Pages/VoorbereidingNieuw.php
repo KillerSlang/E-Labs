@@ -3,13 +3,16 @@
 
     <head>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
-        <script src="https://kit.fontawesome.com/cda83c7af3.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="../Css/Main.css">
         <link rel="stylesheet" href="../Css/Responsive.css">
-
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-        <title>Nieuwe Voorbereiding</title>
+        <?php
+        if($_COOKIE['taal'] == 'english') {
+            echo "<title>New Preparations</title>";
+        }else {
+            echo "<title>Nieuwe Voorbereiding</title>";
+        }
+        ?>
     </head>
 
     <body>
@@ -95,10 +98,10 @@
                 echo'
                 <div id="buttonArea">
                     <button class="userToevoegen" type="Submit" id="userSubmit" name="userSubmit">
-                        <i class="fas fa-user-plus"> </i>
+                        <i class="fa fa-user-plus"> </i>
                     </button>
                     <button class="userVerwijderen" type="Submit" id="userVerwijderen" name="userVerwijderen">
-                        <i class="fas fa-user-minus"> </i>
+                        <i class="fa fa-user-times"> </i>
                     </button>
                 </div>
 
@@ -119,31 +122,31 @@
             <br>
 
             <label for="benodigdeFormules">Benodigde formules: </label>
-            <textarea id="benodigdeFormules" name="benodigdeFormules" rows="4" cols="50" placeholder="Voer gegevens in..." value="'.$benodigdeFormules.'"></textarea>
+            <textarea id="benodigdeFormules" class="autoresizingNieuw" name="benodigdeFormules" rows="4" cols="50" placeholder="Voer gegevens in..." value="'.$benodigdeFormules.'"></textarea>
 
             <br>
             <br>
 
             <label for="InstellingenApparaten">Instellingen apparaten: </label>
-            <textarea id="instellingenapparaten" name="instellingenapparaten" rows="4" cols="50" placeholder="Voer gegevens in..." value="'.$InstellingenApparaten.'"></textarea>
+            <textarea id="instellingenapparaten" class="autoresizingNieuw" name="instellingenapparaten" rows="4" cols="50" placeholder="Voer gegevens in..." value="'.$InstellingenApparaten.'"></textarea>
 
             <br>
             <br>
             
             <label for="doel">Doel: </label>
-            <textarea id="doel" name="doel" rows="4" cols="50" placeholder="Voer gegevens in..." value="'.$doel.'"></textarea>
+            <textarea id="doel" class="autoresizingNieuw" name="doel" rows="4" cols="50" placeholder="Voer gegevens in..." value="'.$doel.'"></textarea>
 
             <br>
             <br>
 
             <label for="Hypothese">Hypothese: </label>
-            <textarea id="hypothese" name="hypothese" rows="4" cols="50" placeholder="Voer gegevens in..." value="'.$hypothese.'"></textarea>
+            <textarea id="hypothese" class="autoresizingNieuw" name="hypothese" rows="4" cols="50" placeholder="Voer gegevens in..." value="'.$hypothese.'"></textarea>
 
             <br>
             <br>
             
             <label for="materialen">Materialen: </label>
-            <textarea id="materialen" name="materialen" rows="4" cols="50" placeholder="Voer gegevens in..." value="'.$materialen.'"></textarea>
+            <textarea id="materialen" class="autoresizingNieuw" name="materialen" rows="4" cols="50" placeholder="Voer gegevens in..." value="'.$materialen.'"></textarea>
 
             <br>
             <br>
@@ -155,7 +158,7 @@
             <br>
         
             <label for="Methode">Methode: </label>
-            <textarea id="methode" name="methode" rows="4" cols="50" placeholder="Voer gegevens in..." value="'.$methode.'"></textarea>
+            <textarea id="methode" class="autoresizingNieuw" name="methode" rows="4" cols="50" placeholder="Voer gegevens in..." value="'.$methode.'"></textarea>
 
             <br>
             <br>
@@ -167,7 +170,7 @@
             <br>
 
             <label for="Veiligheid">Veiligheid: </label>
-            <textarea id="veiligheid" name="veiligheid" rows="4" cols="50" placeholder="Voer gegevens in..." value="'.$veiligheid.'"></textarea>
+            <textarea id="veiligheid" class="autoresizingNieuw" name="veiligheid" rows="4" cols="50" placeholder="Voer gegevens in..." value="'.$veiligheid.'"></textarea>
             
             <br>
             <br>
@@ -180,7 +183,7 @@
             
 
             <label for="Voorbereidendevragen">Voorbereidende vragen: </label>
-            <textarea id="voorbereidendevragen" name="voorbereidendevragen" rows="4" cols="50" placeholder="Voer gegevens in..." value="'.$voorbereidendevragen.'"></textarea>
+            <textarea id="voorbereidendevragen" class="autoresizingNieuw" name="voorbereidendevragen" rows="4" cols="50" placeholder="Voer gegevens in..." value="'.$voorbereidendevragen.'"></textarea>
 
             <br>
             <br>

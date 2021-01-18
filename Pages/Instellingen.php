@@ -4,13 +4,12 @@
     <link rel="stylesheet" href="../Css/Main.css">
     <link rel="stylesheet" href="../Css/Responsive.css">
     <?php
-    if($_COOKIE['taal'] == 'english') {
-        echo "<title>Settings</title>";
-    }
-    if($_COOKIE['taal'] == 'nederlands') {
-        echo "<title>Instellingen</title>";
-    }
-    ?>
+        if($_COOKIE['taal'] == 'english') {
+            echo "<title>Settings</title>";
+        }else {
+            echo "<title>Instellingen</title>";
+        }
+        ?>
 </head>
 <body>
     <?php 

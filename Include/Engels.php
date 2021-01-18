@@ -87,7 +87,7 @@ $Homepagina = "Homepage";
 $Bestemming = "Choose your destination";
 
 /* Protocollen */
-$Protocol =  "Protocol";
+$Protocol =  "Protocol Overview";
 $ProtocolNieuw =  "New Protocol";
 $ProtocollenAlle =  "All Protocollen";
 
@@ -128,12 +128,14 @@ $LabjournaalB = "View";
 $LabjournaalED = "Experiment Date";
 $LabjournaalBL = "Edit Lab Journal";
 $LabjournaalTBL = "Viewable Lab Journals";
-$LabjournaalError = "The're are no Lab Journal to be edited";
+$LabjournaalError = "There are no Lab Journals to be edited";
 
 /* Voorbereidingen*/
 $Voorbereiding =  "Preperation";
+$VoorbereidingBekijken = "View Preparation";
 $VoorbereidingNieuw =  "New Preperation";
-$VoorbereidingenAlle =  "All Preperations";
+$VoorbereidingAlle =  "All Preperations";
+$VoorbereidingError = "There are no preperations to be edited/viewed";
 
 /* Credits */
 $AUheader = "About Us";
