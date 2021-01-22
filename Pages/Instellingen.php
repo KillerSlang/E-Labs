@@ -29,7 +29,7 @@
             
             /* studentnummer weergeven */
             if ($_SESSION['SorD'] == 'Student') {
-                echo "<h2>".$StudentNummer."</h2>".$_SESSION["StudentID"];
+                echo "<h2>".$StudentNummer."</h2>".$_SESSION["StudentNummer"];
             }
             ?>
             <form action="taalverander.php" method="POST" enctype="multipart/form-data">
