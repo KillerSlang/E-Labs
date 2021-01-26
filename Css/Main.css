@@ -1,0 +1,273 @@
+:root {
+    --blue: #003a6b;
+}
+
+body{
+    display: grid;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    font-size: 1vw;
+    color: black;
+    grid-template-rows: 10vh auto 3vh;
+    grid-template-columns: auto;
+    overflow-x: hidden;
+}
+p{
+    margin: 0;
+    padding: 0;    
+}
+a{
+    text-decoration: none;
+    color: white;
+}
+a:visited{
+    color: white;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    max-height: 10vh;
+}
+
+li {
+    float: left;
+}
+
+hr{
+    border-color: black;
+}
+
+
+/* Header */
+nav{
+    grid-row: 1;
+    grid-column: 1;
+    display: grid;
+    grid-template-rows: 10vh;
+    grid-template-columns: 30vw 40vw 30vw;
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 10vh;
+    background-color: var(--blue);
+    color: white;
+}
+
+#navLogo{
+    height: 8vh;
+    margin: 1vh;
+    padding: 0;
+    cursor: pointer;
+}
+.menu {
+    margin: 0;
+    grid-column: 2/3;
+    font-size: 1vw;
+    
+}
+.menu ul li a{
+    display: block;
+    margin: 0;
+    margin-top: 7vh;
+    height: 2.7vh;
+    background-color: white;
+    color: var(--blue);
+    text-align: center;
+    border: 0.1vh solid var(--blue);
+}
+.account{
+    display: grid;
+    padding: auto;
+    color: white;
+    margin: 0;
+    padding: 0;
+    grid-template-rows: 3vh 4vh 3vh;
+    grid-template-columns: 14vw 6vw 10vw;
+
+}
+#accountLogo{
+    grid-row: 1/4;
+    grid-column: 2/3;
+    display: block;
+    height: 3vh;
+    font-size: 8vh;
+    margin: 1.2vh;
+}
+#accountName{
+    float: left;
+}
+#accountDrop{ 
+    margin-left: 5px;
+}
+.accountDropdownButton {
+    margin-right: 2vw;
+    margin-top: 1vh;
+    background-color: var(--blue);
+    color: white;
+    padding: 16px;
+    cursor: pointer;
+}
+.accountDropdown {
+    grid-column: 3/4;
+    display: block;
+}
+.accountDropdownContent {
+    display: none;
+    position: absolute;
+    background-color: var(--white);
+    min-width: 8vw;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+.accountDropdownContent a {
+    color: var(--blue);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    background-color: white;
+}
+
+.accountDropdownContent a:hover {
+    background-color: #f1f1f1;
+}
+
+.accountDropdown:hover .accountDropdownContent {
+    display: block;
+}
+  
+.accountDropdown:hover .accountDropdownButton {
+    background-color: white;
+    color: var(--blue);
+}
+
+
+/* Footer */
+footer{
+    display: grid;
+    color: white;
+    background-color: var(--blue);
+    font-size: 1em;
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 3vh; 
+}
+.footer{
+    display: block;
+    margin: auto;
+    margin-left: 21vw;
+    padding:0
+}
+
+
+/* all pages*/
+main{
+    display: grid;
+    grid-template-rows: 13vh auto;
+    grid-template-columns: 20vw 60vw 20vw;  
+    margin: 0;
+    padding: 0;
+    background-attachment: fixed;
+}
+.whitebg{
+    grid-column: 2/3;
+    background-color: rgba(255,255,255,0.5);
+    padding: 1vw;
+    margin: 0;
+    border: solid 0.1vw;
+}
+.content{
+    color:black;
+}
+.PageTitle{
+    grid-column: 1/4;
+    color: black;
+    text-align: center;
+    margin: 0;
+}
+.bluebtn{
+    color: white;
+    background-color: var(--blue);
+    border-radius: 0.8vw;
+    border: black solid 0.1vw;
+    cursor: pointer;
+    padding: 0.8vw 0.3vw;
+}
+
+
+
+/* Login */
+
+
+/* Home */
+
+
+/* Labjournaal */
+
+
+/* Nieuw Labjournaal */
+
+
+/* Voorbereiding */
+
+
+/* Nieuw voorbereiding */
+
+
+/* Protocol */
+#Protocol{
+    background-image: url(../Images/Leerlingen.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+#Pbutton{
+    float: right;
+    margin: 0 0 1vw 1vw;
+}
+.PTable{
+	border-collapse: collapse;
+    width: 100%;
+}
+.PTable tr:nth-child(odd){
+    background-color: rgba(0,0,0,0.3);
+}
+.PTable td {
+	text-align: center;
+	padding: 8px;
+}
+.PTable th {
+    text-align: center;
+	padding: 8px;
+    background-color: var(--blue);
+	color: white;
+	width: 10%;
+}
+
+
+/* Nieuw Protocol */
+.Pform {
+    display: grid;
+    grid-template-columns: 18vw 30vw 10vw;
+
+}
+.Pform label{
+    font-weight: bold;
+    grid-column: 1/2;
+}
+.Pform input{
+    grid-column: 2/4;
+}
+#PSubmit {
+    grid-column: 3/4;
+    width: 10vw;
+}
+
+
+/* Instellingen */
