@@ -1,121 +1,140 @@
+<?php
+    if(!(empty($_GET) || empty($_GET["taal"]))){
+        if($_GET["taal"] == "E"){
+            setcookie("taal", "english");
+            include_once "../Include/Engels.php";
+        }
+        if($_GET["taal"] == "N"){
+            setcookie("taal", "nederlands");
+            include_once "../Include/Nederlands.php";
+        }
+    } elseif($_COOKIE["taal"] == "english"){
+        include_once "../Include/Engels.php";
+    } else {
+        include_once "../Include/Nederlands.php";
+    }
+?>
 <!DOCTYPE HTML>
 <html>
     <head>
-        <title>Wachtwoord Vergeten</title>
-        <link href="../Css/inlog.css" rel="stylesheet" type="text/css">
+        <title><?=$wwvergetentitel?></title>
+        <link href="../Css/Main.css" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" type="image/png" href="../Images/favicon.png"/>
     </head>
-    <body> 
-        <div id="Container">
-            <div id="inlogbox">
-                <div id="logobalk">
-                    <div id="logobalklogo">
-                        <img src="../Images/Logo.png" alt = "Logo wit">
-                    </div>
-                    <div id="logobalktext">
-                        <h1><b>Wachtwoord Wijzigen</b></h1>
-                    </div>
-                </div> 
-                <div id="inlogruimte">
-                    <form action = "<?php echo $_SERVER['PHP_SELF']; ?>" method = "POST">
-        
-                        <div id="Invoerveld1"><p><label for="Studentnummer">Studentnummer:</label><br> 
-                        <input type = "Number" name = "Studentnummer" placeholder="voer hier uw studentnummer in..."></p></div>
+    <body>
+        <div id="ILachtergrond"> 
+            <div id="Container">
+                <div id="inlogbox">
+                    <div id="logobalk">
                         
-                        <div id="Invoerveld2"><p><label for="Email"><b>E-mail:</b></label><br> 
-                        <input type = "email" name = "Email" placeholder="voer hier uw e-mail in..."></p></div>
+                        <div id="logobalklogo">
+                            <img class="ILimg" src="../Images/Logo.png" alt = "Logo wit">
+                        </div>
+
+                        <div id="logobalktext">
+                            <h1 id="ILh1"><b><?= $wwwijzigen ?></b></h1>
+                        </div>
+
+                        <div>
+                            <?php
+                             if($_GET["taal"] == "E"){ // als de taal engels is krijg je nl button.
+
+                                echo '<a id="engelsknop" href="wwvergeten.php?taal=N">Nederlands</a>';
+
+                             }else{                  // anders krijg je english button.
+
+                                echo '<a id="engelsknop" href="wwvergeten.php?taal=E">English</a>';
+
+                             }
+                            ?>
+                            
+                        </div>
+                    </div> 
+                    <div id="inlogruimte">
+
                         
-                        <div id="Invoerveld3"><p><label for="Beveilingsvragen"><b>Beveiligingsvragen</b></label></p>
-                        <p><label for="Beveiligingsvraag1">Vraag 1: Wat is je lievelingskleur?</label><br>
-                        <input type = "text" name = "Vraag1" placeholder="antwoord op vraag 1..."></p></div>
 
-                        <div id="Invoerveld4"><p><label for="Beveiligingsvraag2">Vraag 2: Wat is de naam van je eerste huisdier?</label><br>
-                        <input type = "text" name = "Vraag2" placeholder="antwoord op vraag 2..."></p></div>
-
-                        <div id="Invoerveld5"><p><label for="Beveiligingsvraag3">Vraag 3: Hoe heet de stad/dorp waarin je bent geboren?</label><br>
-                        <input type = "text" name = "Vraag3" placeholder="antwoord op vraag 3..."></p></div>
-
-                        <div id="Invoerveld6"><p><label for="Nieuwwachtwoord"><b>Nieuw Wachtwoord</b></label><br>
-                        <input type = "password" name = "Nieuwwachtwoord" placeholder="Voer hier uw nieuw wachtwoord in..."></p></div>
-
-                        <div id="Invoerveld7"><p><label for="Herhaalwachtwoord"><b>Herhaal Wachtwoord</b></label><br>
-                        <input type = "password" name = "Herhaalwachtwoord" placeholder="Herhaal uw wachtwoord..."></p></div>
-
-                        <div id="wwwijzigbutton"><input type = "submit" name = "Submit" value = "Wijzig Wachtwoord"></div>
-                    </form> 
-
-                    <div id="errorcodes"><b>
-
-
-
-
-        <?php
-if(isset($_POST["Submit"])){
-
-            $email = $_POST["Email"];
-            $studentnummer = $_POST["Studentnummer"];
+                        <form class="ILform" action = "<?php echo $_SERVER['PHP_SELF']; ?>" method = "POST">
             
-            $Pass = $_POST["Nieuwwachtwoord"];
-            $Word = $_POST["Herhaalwachtwoord"];
+                            <div class="Invoerveld"><p><label for="Studentnummer"><b><?= $StudentNummer ?></b></label><br> 
+                            <input class="ILinput" type = "Number" name = "Studentnummer" placeholder="<?= $voerstudentnummer ?>"></p></div>
+                            
+                            <div class="Invoerveld"><p><label for="Email"><b><?= $Email ?></b></label><br> 
+                            <input class="ILinput" type = "email" name = "Email" placeholder="<?= $voeremail ?>"></p></div>
+                            
+                            <div id="Beveiliging"><p><b><?= $Beveiligingsvragen ?></b></p></div>
 
-            if($Pass === $Word){
+                            <div class="Invoerveld"><p><label for="Beveiligingsvraag1"><?= $Vraag1 ?></label><br>
+                            <input class="ILinput" type = "text" name = "Vraag1" placeholder="<?= $antwoordvraag1 ?>"></p></div>
 
-            $PW = $Pass;
+                            <div class="Invoerveld"><p><label for="Beveiligingsvraag2"><?= $Vraag2 ?></label><br>
+                            <input class="ILinput" type = "text" name = "Vraag2" placeholder="<?= $antwoordvraag2 ?>"></p></div>
 
-            }else{
+                            <div class="Invoerveld"><p><label for="Beveiligingsvraag3"><?= $Vraag3 ?></label><br>
+                            <input class="ILinput" type = "text" name = "Vraag3" placeholder="<?= $antwoordvraag3 ?>"></p></div>
+
+                            <div class="Invoerveld"><p><label for="Nieuwwachtwoord"><b><?= $Nieuwww ?></b></label><br>
+                            <input class="ILinput" type = "password" name = "Nieuwwachtwoord" placeholder="<?= $voernieuwww ?>"></p></div>
+
+                            <div class="Invoerveld"><p><label for="Herhaalwachtwoord"><b><?= $herhaalww ?></b></label><br>
+                            <input class="ILinput" type = "password" name = "Herhaalwachtwoord" placeholder="<?= $voerherhaalww ?>"></p></div>
+
+                            <div id="wwwijzigbutton"><input class="ILsubmit" type = "submit" name = "Submit" value = "<?= $Wijzigww ?>"></div>
+                        </form> 
+
+                        <div id="errorcodes"><b>
+
+            <?php
+    include_once '../Include/Dbh.inc.php';
+    if(isset($_POST["Submit"])){
+        
+                $email = $_POST["Email"];
+                $studentnummer = $_POST["Studentnummer"];
                 
-                echo "Ingevoerde wachtwoorden niet hetzelfde";
-                Die;
-            }
+                $Pass = $_POST["Nieuwwachtwoord"];
+                $Word = $_POST["Herhaalwachtwoord"];
 
-            $Password = sha1($PW); 
-            $vraag1 = sha1($_POST["Vraag1"]);
-            $vraag2 = sha1($_POST["Vraag2"]); 
-            $vraag3 = sha1($_POST["Vraag3"]);
-            
-            
-            if(isset($_POST["Submit"]))
-            {
+                if($Pass === $Word){ // alleen als de wachtwoorden overeen komen dan pas mag je verder
 
-                $link = mysqli_connect("localhost","root","") 
-                OR DIE("Could not connect to the database!");
-                if($link)
-                {
-            
-                        $conn = mysqli_connect("localhost","root","");
-                        mysqli_select_db($conn, 'elabs');
-            
-                        $SQL = "SELECT studentID FROM student WHERE studentNummer = '$studentnummer' and studentEmail = '$email' and beveiligingsVraag1 = '$vraag1' and beveiligingsVraag2 = '$vraag2' and beveiligingsVraag3 = '$vraag3'";
-                        $check = mysqli_query($conn, $SQL);
-            
-        
-                            if(mysqli_num_rows($check) == 1){
-                                
-                                $row = mysqli_fetch_array($check);
-                                
-                                $studentID = $row['studentID'];
-                                
-                                $SQLUW = "UPDATE student SET wachtwoord='$Password' WHERE studentID = '$studentID'";
-                                
-                                if(mysqli_query($conn, $SQLUW)) {
-                                    echo "Wachtwoord succesvol bijgewerkt! druk <a href='inlog.php'>Hier</a> Om terug te gaan naar de <a href='inlog.php'>login pagina</a>.";
-                                } else {
-                                    echo "Error updating record: " . mysqli_error($conn);
-                                }
-                                    
-                                
-                                
-                            }else{
-                                echo "Probeer opnieuw gegevens zijn onjuist";
-                                
-                                
-                            }
-                        mysqli_close($conn);
+                $PW = $Pass;
+
+                }else{               // error message 
+                    echo $Erregwwcheck; 
+                    exit;
                 }
-            } 
-            
-        }
-        ?>
+                $Password = sha1($PW); 
+                $vraag1 = sha1($_POST["Vraag1"]);
+                $vraag2 = sha1($_POST["Vraag2"]); 
+                $vraag3 = sha1($_POST["Vraag3"]);
+                queryAanmaken( // kijkt welke studentID bij de gegevens hoort
+                    'SELECT studentID 
+                    FROM student 
+                    WHERE studentNummer = ? AND studentEmail = ? AND beveiligingsVraag1 = ? AND beveiligingsVraag2 = ? AND beveiligingsVraag3 = ?'
+                    ,"issss",
+                    $studentnummer,$email,$vraag1,$vraag2,$vraag3
+                );
+                mysqli_stmt_bind_result($stmt, $studentID);
+                mysqli_stmt_store_result($stmt);
+                if(mysqli_stmt_num_rows($stmt) != 0) // we gaan er vanuit dat er maar 1 resultaat is.
+                {
+                    while (mysqli_stmt_fetch($stmt)){ }                                                            
+                }
+                querySluiten();   
+                queryAanmaken( // als alles klopt wordt het wachtwoord geupdate
+                    'UPDATE student 
+                    SET wachtwoord = ?
+                    WHERE studentID = ?'
+                    ,"si",
+                    $Password,$studentID
+                    
+                );
+                querySluiten(); 
+                Header("location: index.php"); // terug naar de inlog pagina         
+                } 
 
+            ?>
+
+                        </div>
                     </div>
                 </div>
             </div>

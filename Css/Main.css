@@ -1,5 +1,6 @@
 :root {
     --blue: #003a6b;
+    --darkblue: #006cbe;
 }
 
 body{
@@ -12,6 +13,7 @@ body{
     grid-template-rows: 10vh auto 3vh;
     grid-template-columns: auto;
     overflow-x: hidden;
+    font-family: Arial;
 }
 p{
     margin: 0;
@@ -19,10 +21,32 @@ p{
 }
 a{
     text-decoration: none;
-    color: white;
 }
+
+a[class="voorbereidingLink"]
+{
+    color:blue;
+    text-decoration: underline;
+}
+a[class="voorbereidingLink"]:visited
+{
+    color:blue;
+    text-decoration: underline;
+}
+a[class="voorbereidingTitel"]
+{
+    color:black;
+    font-weight: bold;
+}
+a[class="voorbereidingTitel"]:visited
+{
+    color:black;
+    font-weight: bold;
+}
+
 a:visited{
-    color: white;
+    
+    text-decoration: none;
 }
 
 ul {
@@ -82,13 +106,11 @@ nav{
 }
 .account{
     display: grid;
-    padding: auto;
     color: white;
     margin: 0;
     padding: 0;
     grid-template-rows: 3vh 4vh 3vh;
-    grid-template-columns: 14vw 6vw 10vw;
-
+    grid-template-columns: 10vw 10vw 10vw;
 }
 #accountLogo{
     grid-row: 1/4;
@@ -97,24 +119,37 @@ nav{
     height: 3vh;
     font-size: 8vh;
     margin: 1.2vh;
-}
-#accountName{
-    float: left;
-}
-#accountDrop{ 
-    margin-left: 5px;
-}
-.accountDropdownButton {
-    margin-right: 2vw;
-    margin-top: 1vh;
-    background-color: var(--blue);
-    color: white;
-    padding: 16px;
-    cursor: pointer;
+    justify-self: end;
 }
 .accountDropdown {
+    max-height: 100%;
     grid-column: 3/4;
+    grid-row: 1/4;
+    display: inline-block;
+    /*overflow: hidden;*/
+}
+.accountDropdownButton {
+    display: grid;
+    grid-template-columns: 90% 10%;
+    margin-right: 2vw;
+    margin-top: 1vh;
+    height: 6vh;
+    background-color: var(--blue);
+    color: white;
+    padding: 1vh;
+    cursor: pointer;
+    text-align: center;
+    align-items: center;
+}
+
+#accountName{
     display: block;
+    grid-column: 1/2;
+    max-height: 6vh;
+    max-width: calc(10vw * 0.9);
+}
+#accountDrop{ 
+    grid-column: 2/3;
 }
 .accountDropdownContent {
     display: none;
@@ -148,7 +183,6 @@ nav{
 
 /* Footer */
 footer{
-    display: grid;
     color: white;
     background-color: var(--blue);
     font-size: 1em;
@@ -157,13 +191,42 @@ footer{
     width: 100vw;
     height: 3vh; 
 }
-.footer{
-    display: block;
-    margin: auto;
-    margin-left: 21vw;
-    padding:0
+#fgrid{
+    display: grid;
+    grid-template-columns: 20vw 30vw 30vw 20vw;
+}
+.fleft{
+    margin-left: 1vw;
+    grid-column: 2/3;
+}
+.fright{
+    grid-column: 3/4;
+    text-align: right;
 }
 
+.footercredits{
+    display:inline;
+    padding:0;
+   
+}
+.footerlink{
+    display:inline;
+    margin-right: 8vw;
+    padding:0;
+    text-decoration: underline;
+    color: white;
+}
+
+.footerlink a:visited, .footerlink a{
+    color:white;
+}
+/* about us */
+
+.contenttext{
+    text-align: center;
+    width: 40vw;
+    margin: 0 auto;
+}
 
 /* all pages*/
 main{
@@ -176,11 +239,18 @@ main{
 }
 .whitebg{
     grid-column: 2/3;
-    background-color: rgba(255,255,255,0.5);
+    background-color: white;
     padding: 1vw;
     margin: 0;
     border: solid 0.1vw;
 }
+.bericht
+{
+    grid-row: 2/3;
+    grid-column: 1/-1;
+    text-align: center;
+}
+
 .content{
     color:black;
 }
@@ -197,21 +267,663 @@ main{
     border: black solid 0.1vw;
     cursor: pointer;
     padding: 0.8vw 0.3vw;
+    text-align: center;
+    justify-content: space-around;
 }
 
 
 
 /* Login */
+#ILachtergrond {
+    min-height: 100vh;
+    font-family: Arial; 
+    background-image: url(../Images/achtergrondelabs.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
 
 
+
+#Container{
+    width: 100%;
+    min-width: 1000px;
+	margin: 0px;
+    display: flex;
+    justify-content: center;
+}
+
+#inlogbox{
+    min-width: 49.5vw;
+    border: solid 5px black;
+    margin-top: 2.5%;
+}
+
+#logobalk{
+    background-color: #003a6b;
+    margin: 0px;
+    width: 100%;
+    height: 9vw;
+    display: grid;
+    overflow: visible;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: 9vw;
+
+}
+
+#logobalklogo{
+    grid-column: 1/2;
+    grid-row: 1;
+    min-width: 16.5vw;
+    height: 9vw;
+    overflow: auto;
+}
+
+#logobalktext {
+    grid-column: 2/3;
+	grid-row: 1;
+    width: 100%;
+    height: 100%;
+}
+
+#inlogruimte{
+    background-color: white;
+}
+
+.ILform {
+    display: grid;
+    padding: 3vw 0;
+    grid-template-columns: 33.3333333333333333% 33.3333333333333333% 33.3333333333333333%;
+    grid-template-rows: auto;
+    grid-row-gap: 15px;
+}
+
+img {
+    margin: 0px;
+    padding-left: 15px;
+    padding-top: 15px;
+  }
+
+.ILimg {
+    display: block;
+    margin:auto;
+    width: 14.5vw;
+    padding: 1vw;
+    height: 7vw;
+}
+
+#ILh1{
+    display: flex;
+    margin: 3.5vw auto;
+    color: white;
+    justify-self: center;
+}
+.Invoerveld{
+
+    width: 100%;
+    margin: 0px;
+    grid-column:2/3;
+
+}
+.Invoerveld input{
+    width: 100%;
+}
+#Beveiliging{
+    width: 100%;
+    margin: 0px;
+    grid-column:2/3;
+    font-size: 1vw;
+}
+
+#wwvergeten{
+    width: 100%;
+    margin: 0px;
+    grid-column: 2/3;
+    grid-row: 3/4;
+    text-align: center;
+}
+
+#SorD{
+    width: 100%;
+    margin: 1vw 0;
+    text-align: center;
+    grid-column: 2/3;
+    grid-row: 4/5;
+}
+
+#registrerenbutton{
+    grid-column: 1/3;
+    grid-row: 5/6;
+    display: block;
+    margin: auto;
+
+}
+#registrerenbutton button{
+      display: block;
+      margin: auto;
+      width: 10vw;
+      padding-top: 1px;
+      padding-bottom: 1px;
+}
+
+#inlogbutton{
+    float: left;
+    grid-column: 2/4;
+    grid-row: 5/6;
+    display: block;
+    margin: auto;
+}
+
+#errorcodes{
+    font-size: 20px;
+    color: black;
+    padding-left: 20px;
+    padding-bottom: 20px;
+    margin-top: 10px;
+    grid-column: 1;
+    grid-row: 6;
+}
+
+/* Inlog form styling */
+
+
+.ILinput {
+    width: 100%;
+    padding: 3px 2px;
+    background-color: white;
+}
+
+.ILradio {
+    cursor: pointer;
+    transform: scale(1.2);
+}
+
+.ILsubmit {
+    display: block;
+    margin: auto;
+    cursor: pointer;
+    color: white;
+    background-color: #003a6b;
+    border-color: black;
+    width: 10vw;
+    text-align: center;
+    /*padding-left: 13px;
+    padding-right: 13px;*/
+    padding-top: 1px;
+    padding-bottom: 1px;
+    transform: scale(1.4);
+}
+
+#ILww {
+      color: blue;
+}
+
+button{
+    cursor: pointer;
+    color: white;
+    background-color: #003a6b;
+    border-color: black;
+    transform: scale(1.4);
+}
+
+#engelsknop{
+    float: right;
+    color: white;
+    margin-top: 1vw;
+    margin-right: 1.5vw;
+    cursor: pointer;
+    border-color: black;
+    transform: scale(1.3);
+}
+
+a:active#engelsknop{
+    text-decoration: none;
+}
+
+a:link#engelsknop{
+    text-decoration: none;
+}  
+
+/* registreer pagina */
+
+.registreerbutton{
+    margin-top: 2vw;
+    grid-column: 1/4;
+    grid-row: 10/11;
+}
+
+  /* wwvergeten pagina */
+
+#wwwijzigbutton{
+    grid-column: 1/4;
+    grid-row: 11;
+}
+#wwwijzigbutton input{
+    width: 15vw;
+}
+  
 /* Home */
+.homebtn {
+    cursor: pointer;
+    display: grid;
+    grid-template-columns: 1vw 14vw 1vw;
+    grid-template-rows: 1vw 2vw 12vw 1vw;
+    color: white;
+    background-color: #003a6b;
+    grid-column: 2;
+	grid-row: 2;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    box-shadow: 1vw 1vw 1vw black;
+}
+.homebtn p{
+    grid-column: 2/3;
+    grid-row: 2/3;
+}
 
+a.homelink {
+    min-width: 10px;
+    min-height: 10px;
+    margin: 0;
+}
+
+.homeimage {
+    grid-column: 2/3;
+    grid-row: 3/4;
+    justify-content: center;
+    display: block;
+    margin: auto;
+    min-width: 40%;
+    min-height: 70%;
+    max-width: 70%;
+    max-height: 70%;
+}
+
+.Homehr {
+    margin-top: 3vw;
+    width: 16vw;
+    height:0.125vw;
+    border: 0;
+    background-color: white;
+}
+
+#container {
+	width: 100%;
+	margin: 0 auto;
+	display: grid;
+    /* grid-template-columns: 15% 15% 12.5% 15% 12.5% 15% 15%; */
+    grid-template-columns: 14vw 16vw 12vw 16vw 12vw 16vw 14vw;
+    grid-template-rows: 4vw 16vw 4vw 16vw 16vw;
+    align-content: flex;
+}  
+
+#Voorbereidingen{
+    grid-column: 2;
+	grid-row: 2;
+}
+
+#Labjournalen{
+    color: white;
+    background-color: #003a6b;
+    grid-column: 4;
+	grid-row: 2;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+}
+
+#Labjournalenimage{
+    padding-top: 25px;
+}
+
+#Protocollen{
+    color: white;
+    background-color: #003a6b;
+    grid-column: 6;
+	grid-row: 2;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+}
+
+
+#Protocollenimage{
+    padding-top: 10px;
+    padding-left: 25px;
+}
+
+
+/* Aanmaken */
+
+#Voorbereidingenaanmaken{
+    color: white;
+    background-color: #003a6b;
+    grid-column: 2;
+	grid-row: 4;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+}
+
+#Voorbereidingenaanmakenimage{
+    padding-top: 10px;
+}
+
+
+#Labjournalenaanmaken{
+    color: white;
+    background-color: #003a6b;
+    grid-column: 4;
+	grid-row: 4;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+}
+
+#Labjournalenaanmakenimage{
+    padding-top: 10px;
+}
+
+#Protocollenaanmaken{
+    color: white;
+    background-color: #003a6b;
+    grid-column: 6;
+	grid-row: 4;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+}
+
+#Protocollenaanmakenimage{
+    padding-top: 10px;
+}
+
+#Hh1{
+    text-align: center;
+}
+
+/* link styling */
+a:hover{
+    cursor: pointer;
+}
 
 /* Labjournaal */
+.autoresizingBekijken {
+    display: block;
+    overflow: hidden;
+    resize: none;
+    width: 55vw;
+    height: auto;
+    border: none;
+    outline:none;
+    margin-bottom: 5px;
+    margin-left: 10px;
+}
+.autoresizingBewerken {
+    display: block;
+    overflow: hidden;
+    resize: none;
+    width: 25vw;
+    height: auto;
+    height: auto;
+    height: auto;
+    height: auto;
+    height: auto;
+    height: auto;
+    height: auto;
+    height: auto;
+    height: auto;
+    height: auto;
+    height: auto;
+    height: auto;
+    height: auto;
+    height: auto;
+    height: auto;
+    height: auto;
+    height: auto;
+    height: auto;
+    height: auto;
+    height: auto;
+    height: auto;
+    height: auto;
+    height: auto;
+    height: auto;
+    height: auto;
+    height: auto;
+    height: auto;
+    height: auto;
+    height: auto;
+    height: auto;
+    height: auto;
+    height: auto;
+    height: auto;
+    height: auto;
+    height: auto;
+    height: auto;
+    height: auto;
+    height: auto;
+    height: auto;
+    height: auto;
+    height: auto;
+    height: auto;
+    height: auto;
+    height: auto;
+    height: auto;
+    height: auto;
+    height: auto;
+    outline:none;
+    margin-bottom: 5%;
+}
+.autoresizingNieuw {
+    display: block;
+    overflow: hidden;
+    resize: none;
+    width: 35vw;
+    height: auto;
+    outline:none;
+    margin-bottom: 5%;
+}
+.downloadLink
+{
+    color: var(--darkblue);
+}
 
-
+#Labjournaal{
+    background-image: url(../Images/Leerlingen.jpg);
+    background-repeat: no-repeat;
+    background-size: 100vw;
+}
+#Lcontent6{
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 1vw;
+}
+#Lcontent7{
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: repeat(7, 1fr);
+    grid-gap: 1vw;
+}
+.Lbutton{
+    grid-row: 1/2;
+    display: block;
+}
+.Lselected{
+    background-color: var(--darkblue);
+}
+#Ldropdwn{
+    grid-row: 1/2;
+}
+select.bluebtn {
+    width: 100%;
+    height: 100%;
+}
+.LTable{
+    grid-row: 2/3;
+    grid-column: 1/-1;
+	border-collapse: collapse;
+    width: 100%;
+}
+.LTable tr:nth-child(even){
+    background-color: rgba(0,0,0,0.05);
+}
+.LTable tr:nth-child(odd){
+    background-color: rgba(0,0,0,0.2);
+}
+.LTable td {
+	text-align: center;
+	padding: 8px;
+}
+.LTable th {
+    text-align: center;
+	padding: 8px;
+    background-color: var(--blue);
+	color: white;
+	width: 10%;
+}
+a.labjournaalLink {
+    display: block;
+    color: var(--blue);
+    text-decoration: underline;
+    margin: 0.5vw;
+}
+.Lpages1{
+    width: 75%;
+    grid-row: 3/4;
+    grid-column: 2/-4;
+    text-align: center;
+}
+.Lpages2{
+    color: black;
+    text-align: center;
+    grid-row: 3/4;
+    grid-column: 3/-3;
+    font-size: 1.5vw;
+    margin-top: 0.5vw;
+}
+.Lpages3{
+    width: 75%;
+    justify-self: end;
+    grid-row: 3/4;
+    grid-column: 4/-2;
+    text-align: center;
+}
+.Lpages4{
+    text-align: center;
+    grid-row: 3/4;
+    grid-column: 3/-3;
+    margin-top: 0.5vw;
+}
 /* Nieuw Labjournaal */
+.Lform {
+    display: grid;
+    grid-template-columns: 18vw 30vw 10vw;
 
+}
+.Lform label{
+    font-weight: bold;
+    grid-column: 1/2;
+}
+.Lform input{
+    grid-column: 2/4;
+}
+#LSubmit {
+    grid-column: 3/4;
+    width: 10vw;
+}
+/*#buttonArea
+{
+    grid-row: 3 / 4;
+    grid-column: 1 / 2;
+    display: grid;
+    grid-template-columns: 35px 35px auto;  
+}
+
+.userToevoegen
+{
+    grid-column: 1 / 2;
+    height: 2.25vw;
+    width: 2.25vw;
+    color: white;
+    background-color: var(--blue);
+    border-radius: 0.8vw;
+    border: black solid 0.1vw;
+    cursor: pointer;
+    padding: 0.6vw 0.5vw;
+    text-align: center;
+    justify-content: space-around;
+    transform: scale(1.1);
+    margin-top: 0.5vw;
+    margin-right: 0.8vw;
+    margin-bottom: 0.5vw;
+    
+}
+.userVerwijderen
+{
+    grid-column: 2 / 3;
+    height: 2.25vw;
+    width: 2.25vw;
+    color: white;
+    background-color: var(--blue);
+    border-radius: 0.8vw;
+    border: black solid 0.1vw;
+    cursor: pointer;
+    padding: 0.6vw 0.5vw;
+    text-align: center;
+    justify-content: space-around;
+    transform: scale(1.1);
+    margin-top: 0.5vw;
+    margin-left: 0.8vw;
+    margin-bottom: 0.5vw;
+    
+}*/
+#buttonArea
+{
+    grid-row: 3 / 4;
+    grid-column: 1 / 2;
+    display: grid;
+    margin-left: 1vw;
+    padding-bottom: 8px;
+    grid-template-columns: 35px 12px 35px auto;  
+}
+.userToevoegen
+{
+    grid-column: 1 / 2;
+    /*width: 35vw;*/
+    background-color: var(--blue); 
+    border: 1px solid black;
+    margin-bottom: 1px;
+    margin-top: 1px;
+}
+.userVerwijderen
+{
+    grid-column: 3 / 4;
+    /*width: 35vw;*/
+    background-color: var(--blue); 
+    border: 1px solid black;
+    margin-bottom: 1px;
+    margin-top: 1px;
+    margin-left: 3px;
+}
+.studentInput
+{
+    grid-column: 1 / 2;
+    margin-left: 1%;
+    border: none;
+    outline: none;
+}
+
+.imageBekijken
+{
+    width: 45%;
+    height: auto;
+    margin-left: 18%;
+    margin-top: 1%;
+
+}
 
 /* Voorbereiding */
 
@@ -227,20 +939,42 @@ main{
     background-size: cover;
 
 }
-#Pbutton{
-    float: right;
-    margin: 0 0 1vw 1vw;
+#Pcontent{
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 1vw;
+}
+.Pbutton{
+    grid-row: 1/2;
+    display: block;
+}
+.Pselected{
+    background-color: var(--darkblue);
+}
+#Pdropdwn{
+    grid-row: 1/2;
+}
+select.bluebtn {
+    width: 100%;
+    height: 100%;
+    text-align: center;
 }
 .PTable{
+    grid-row: 2/3;
+    grid-column: 1/7;
 	border-collapse: collapse;
     width: 100%;
 }
+.PTable tr:nth-child(even){
+    background-color: rgba(0,0,0,0.05);
+}
 .PTable tr:nth-child(odd){
-    background-color: rgba(0,0,0,0.3);
+    background-color: rgba(0,0,0,0.2);
 }
 .PTable td {
 	text-align: center;
-	padding: 8px;
+    padding: 8px;
 }
 .PTable th {
     text-align: center;
@@ -249,7 +983,36 @@ main{
 	color: white;
 	width: 10%;
 }
-
+.PTable .Pbutton{
+    margin: 0.5vw;
+}
+.Ppages1{
+    width: 75%;
+    grid-row: 3/4;
+    grid-column: 2/4;
+    text-align: center;
+}
+.Ppages2{
+    color: black;
+    text-align: center;
+    grid-row: 3/4;
+    grid-column: 3/5;
+    font-size: 1.5vw;
+    margin-top: 0.5vw;
+}
+.Ppages3{
+    width: 75%;
+    justify-self: end;
+    grid-row: 3/4;
+    grid-column: 4/6;
+    text-align: center;
+}
+.Ppages4{
+    text-align: center;
+    grid-row: 3/4;
+    grid-column: 3/5;
+    margin-top: 0.5vw;
+}
 
 /* Nieuw Protocol */
 .Pform {
@@ -260,8 +1023,13 @@ main{
 .Pform label{
     font-weight: bold;
     grid-column: 1/2;
+
 }
 .Pform input{
+    grid-column: 2/4;
+    margin-bottom: 1vw;
+}
+#Pupload{
     grid-column: 2/4;
 }
 #PSubmit {
@@ -271,3 +1039,60 @@ main{
 
 
 /* Instellingen */
+#Iachtergrond {
+    background-image: url(../Images/achtergrondelabs.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#Imain {
+    background-color: white;
+    height: 80vh;
+    border: solid 2px black;
+    width: 100%;
+    margin: auto;
+    text-align: center;
+}
+
+.save {
+    margin-top: 10px;
+    color: white;
+    background-color: var(--blue);
+    border-radius: 0.8vw;
+    border: black solid 0.1vw;
+    cursor: pointer;
+    padding: 0.8vw 0.3vw;
+    width: 5vw;
+}
+
+
+.Iknoppen {
+    margin-top: 20px;
+    display: grid;
+    width: 20vw;
+    height: 10px;
+    grid-template-columns: 10vw 2vw 10vw;
+    position: relative;
+    left: 32%;
+}
+
+
+.Iuitlog{
+    color: white;
+    background-color: red;
+    border-radius: 0.8vw;
+    border: black solid 0.1vw;
+    cursor: pointer;
+    padding: 0.8vw 0.3vw;
+}
+
+
+/*background voor docent*/
+.Docentbackground{
+
+    background-image: url(../Images/Docenten.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}

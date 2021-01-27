@@ -1,145 +1,70 @@
-<!DOCTYPE HTML>
-<html><?php session_start(); ?>
-    <head>
-        <title>inlogpagina</title>
-        <link href="../Css/inlog.css" rel="stylesheet" type="text/css">
-		<?php
-            // Starting session
-            
-			if(isset($_POST["Submit"])){
+<?php
+// Starting session
+session_start();
+include_once "../Include/Dbh.inc.php";
+//kijkt of Submit gezet is
+if(isset($_POST["Submit"])){
 
-            $email = $_POST["Email"];
-            $ww = $_POST["Password"];
-            $wachtwoord = sha1($ww);
-            $SorD = $_POST["SorD"];
-
-            if(isset($_POST["Submit"]) and $SorD == "Student")
-            {
-
-                $link = mysqli_connect("localhost","elabs","Bla_1711") 
-                OR DIE("Could not connect to the database!");
-                if($link)
-                {
-            
-                        $connection = mysqli_connect("localhost","elabs","Bla_1711");
-                        mysqli_select_db($connection, 'elabs');
-            
-                        $SQL = "SELECT studentID, studentNummer, studentNaam FROM student WHERE wachtwoord = '$wachtwoord' and studentEmail = '$email'";
-                        $login = mysqli_query($connection, $SQL);
-            
-        
-                            if(mysqli_num_rows($login) == 1){
-                                
-                                $row = mysqli_fetch_array($login);
-                                
-                                $studentID = $row['studentID'];
-                                $studentNummer = $row['studentNummer'];
-                                $studentNaam = $row['studentNaam'];
-								
-								//header("Location: http://www.example.com/");
-                                
-								
-								$_SESSION["StudentID"] = $studentID;
-                                $_SESSION["SorD"] = "Student";
-                                $_SESSION["studentNummer"] = $studentNummer;
-                                $_SESSION["Name"] = $studentNaam;
-								echo 'succes';
-                                echo'<meta http-equiv="refresh" content="0; URL=Homepage.php">';
-								die;
-                            }else{
-                                echo "Probeer opnieuw";
-                                
-                            }
-                        mysqli_close($connection);
-                }
-            }elseif(isset($_POST["Submit"]) and $SorD == "Docent")
-            {
-
-                $link = mysqli_connect("localhost","elabs","Bla_1711")
-                OR DIE("Could not connect to the database!");
-                if($link)
-                {
-            
-                        $connection = mysqli_connect("localhost","elabs","Bla_1711");
-                        mysqli_select_db($connection, 'elabs');
-            
-                        $SQL = "SELECT docentID, docentNaam FROM docent WHERE wachtwoord = '$wachtwoord' and docentEmail = '$email'";
-                        $login = mysqli_query($connection, $SQL);
-            
-        
-                            if(mysqli_num_rows($login) == 1){
-                                
-                                $row = mysqli_fetch_array($login);
-                                
-                                $docentID = $row['studentID'];
-                                $docentNaam = $row['studentNaam'];
-								
-								//header("Location: http://www.example.com/");
-								
-								session_start();
-                                $_SESSION["docentID"] = $docentID;
-                                $_SESSION["SorD"] = "Docent";
-                                $_SESSION["Name"] = $docentNaam;
-
-                                echo 'succes';
-                                echo'<meta http-equiv="refresh" content="0; URL=Homepage.php">';
-								die;
-                            }else{
-
-                                echo "Probeer opnieuw";
-                                
-                                
-
-                            }
-                        mysqli_close($connection);
-                }
-            }   
-            
+    $email = $_POST["Email"];
+    $ww = $_POST["Password"];
+    $wachtwoord = sha1($ww);
+    $SorD = filter_input(INPUT_POST,'SorD',FILTER_SANITIZE_FULL_SPECIAL_CHARS); 
+    //kijkt hier of een student inlogt  
+    if(isset($_POST["Submit"]) and $SorD == "Student")
+    {
+        queryAanmaken( //kijkt of er een student account is waarmee de inlog gegevens overheen komen en logt dan daarmee in
+            'SELECT studentID, studentNummer, studentNaam, jaar FROM student WHERE wachtwoord = ? AND studentEmail = ? ',
+            "ss",
+            $wachtwoord,$email
+        ); // maak  de query aan
+        mysqli_stmt_bind_result($stmt, $studentID, $studentNummer,$studentNaam,$jaar);// bind de resultaten.     
+        mysqli_stmt_store_result($stmt); // sla de resultaten op.  
+        if(mysqli_stmt_num_rows($stmt) != 0) 
+        {
+            while(mysqli_stmt_fetch($stmt))
+            {                    
+                //vult de SESSION     
+                $_SESSION["StudentID"] = $studentID;
+                $_SESSION["SorD"] = "Student";
+                $_SESSION["studentNummer"] = $studentNummer;
+                $_SESSION["Name"] = $studentNaam; 
+     	        $_SESSION["jaar"] = $jaar;
+            }
+            header("Location: Homepage.php");
+        }else
+        {
+            header("Location: index.php?error=1");
         }
-        ?>
-    </head>
-    <body> 
+        querySluiten(); // sluit de connectie met de database   
+    }
+    //kijkt hier of een docent inlogt 
+    if(isset($_POST["Submit"]) and $SorD == "Docent")
+    {
         
-        <div id="Container">
-            <div id="inlogbox">
-                <div id="logobalk">
-                    <div id="logobalklogo">
-                        <img src="../Images/Logo.png" alt = "Logo wit" >
-                   </div>
-
-                    <div id="logobalktext">
-                        <h1><b>Welkom!</b></h1>
-                    </div>
-                </div>
+        queryAanmaken( //kijkt of er een docent account is waarmee de inlog gegevens overheen komen en logt dan daarmee in
+            'SELECT docentID, docentNaam FROM docent WHERE wachtwoord = ? and docentEmail = ? ',
+            "ss",
+            $wachtwoord,$email
+        );
+            mysqli_stmt_bind_result($stmt, $docentID, $docentNaam);// bind de resultaten.  
+            mysqli_stmt_store_result($stmt); // sla de resultaten op.           
+        if(mysqli_stmt_num_rows($stmt) != 0)
+        {
+            while(mysqli_stmt_fetch($stmt))
+            {
+                //vult de SESSION
+                $_SESSION["docentID"] = $docentID;
+                $_SESSION["SorD"] = "Docent";
+                $_SESSION["Name"] = $docentNaam;
                 
-                <div id="inlogruimte">
-                   
-                        <form action = "<?php echo $_SERVER['PHP_SELF']; ?>" method = "POST">
-                            <div id="Invoerveld1"><p><label for="Email"><b>E-mail:</b></label><br> 
-                            <input type = "email" name = "Email" placeholder="voer hier uw e-mail in..."></p></div>
-
-                            <div id="Invoerveld2"><p><label for="Password"><b>Wachtwoord:</b></label><br>
-                            <input type = "password" name = "Password" placeholder="voer hier uw wachtwoord in..."></div>
-                            <div id="wwvergeten"><a href = "wwvergeten.php" >Wachtwoord vergeten?</a></p></div>
-
-                            <div id="SorD"><p><input type = "radio" id = "Student" name = "SorD" value = "Student" checked = "checked">Student
-                            <input type = "radio" id = "Docent" name = "SorD" value = "Docent">Docent</p></div>
-                            
-                            <div id="registrerenbutton">
-                                <button formaction = "Registreer.php">Registreren</button>
-                            </div>
-                            <div id="inlogbutton">
-                                <input type = "submit" name = "Submit" value = "Inloggen">
-                            </div>
-                            
-                        </form>
-                      <div id="errorcodes"><b>
-
-
-
-        </b></div>
-                </div>
-            </div>
-        </div>
-    </body>
-</html>
+            }
+            header("Location: Homepage.php");
+        }else
+        {
+                        
+            header("Location: index.php?error=1");
+        }
+        querySluiten(); // sluit de connectie met de database 
+    }   
+}
+?>

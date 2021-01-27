@@ -1,121 +1,123 @@
 <!DOCTYPE HTML>
+<html lang="en">
 <head>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
     <link rel="stylesheet" href="../Css/Main.css">
     <link rel="stylesheet" href="../Css/Responsive.css">
-
+    <link rel="shortcut icon" type="image/png" href="../Images/favicon.png"/>
+    <?php
+    //afhankelijk van de taal maak een nederlandse titel of een engels
+    if($_COOKIE['taal'] == 'english') {
+        echo "<title>New protocol</title>";
+    }
+    else{
+        echo "<title>Nieuw Protocol</title>";
+    }
+    ?>
 </head>
 <body>
     <?php 
-    /* Header */
+    /* Include header en database handler */
     include_once '../Include/Header.php';
     include_once '../Include/Dbh.inc.php';
     ?>
     <main id="Protocol">
         <div class="PageTitle">
-            <h1>Nieuw Protocol</h1>
+            <h1><?=$ProtocolNieuw?></h1>
             <hr>
         </div>
         <div class="whitebg">
             <div class="content">
+            <!-- invulbare Form voor user om protocol in te doen -->
                 <form class="Pform" method="POST" action="NewProtocol.php" enctype="multipart/form-data">
                     
-                    <label for="PTitle">Protocol Titel: *</label>
-                    <input type="text" name="PTitle" placeholder="Titel" required></input><br>
+                    <label for="PTitle"><?=$Protocol." ".$Titel?>:</label>
+                    <input type="text" name="PTitle" id="PTitle" placeholder="<?=$Titel?>" required>
                     
-                    <label for="Vakken">Vak: *</label>
-                    <div name="Vakken">
+                    <label><?=$Vak?>:</label>
+                    <div id="Vakken">
                         <input type="radio" id="BML" name="PVak" value="BML" checked>
-                        <label for="BML">BML</label><br>
+                        <label for="BML"><?=$BML?></label><br>
                         <input type="radio" id="Chemie" name="PVak" value="Chemie">
-                        <label for="Chemie">Chemie</label>
+                        <label for="Chemie"><?=$Chemie?></label>
                     </div>
-
-                    <label for="Jaren">Jaar: *</label>
-                    <div name="Jaren">
-                        <input type="radio" id="Jaar 1" name="PJaar" value="1" checked>
-                        <label for="BML">Jaar 1</label><br>
-                        <input type="radio" id="Jaar 2" name="PJaar" value="2">
-                        <label for="Chemie">Jaar 2</label><br>
-                        <input type="radio" id="Jaar 3" name="PJaar" value="3">
-                        <label for="Chemie">Jaar 3</label>
-                    </div>
-
-                    <label for="PUpload">Protocol: *</label>
-                    <input type="file" name="PUpload" id="PUpload"><br>
                     
+                    <label for="PUpload"><?=$Protocol?>:</label>
+                    <input type="file" id="PUpload" name="PUpload" accept=".pdf">
 
                     <input class="bluebtn" id="PSubmit" type="submit" value="Upload protocol" name="PSubmit">
                 </form>
+
                 <?php
-                
+                /* Aanmaken van Protocol */
                 if(isset($_POST["PSubmit"])){
                     if(!empty($_POST["PTitle"])){
                         if(!empty($_POST["PVak"])){
-                            if(!empty($_POST["PJaar"])){
-                                if(!empty($_FILES)){
-                                
-                                    $studentID =  filter_var($_SESSION["studentID"], FILTER_SANITIZE_SPECIAL_CHARS);
+                            if(!empty($_SESSION["jaar"])){
+                                if(!(empty($_FILES) || $_FILES["PUpload"]["error"] == 4)){
+                                    //filter input
+                                    $studentID =  filter_var($_SESSION["StudentID"], FILTER_SANITIZE_SPECIAL_CHARS);
                                     $uploadDatum =  date("Y-m-d");
                                     $titel =  filter_input(INPUT_POST,'PTitle', FILTER_SANITIZE_SPECIAL_CHARS);
                                     $vakken =  filter_input(INPUT_POST,'PVak', FILTER_SANITIZE_SPECIAL_CHARS);
-                                    $jaar =  filter_input(INPUT_POST,'PJaar', FILTER_SANITIZE_SPECIAL_CHARS); 
 
                                     //Protocol pdf
                                     
-
                                     $fileName = basename($_FILES["PUpload"]["name"]); 
                                     $fileType = pathinfo($fileName, PATHINFO_EXTENSION); 
                                     
                                     if($fileType == 'pdf'){ 
 
-                                        $targetDir = "../upload/protocol/";
-                                        $date = date("Y-m-d_h-i-s");
-                                        $targetFile= $targetDir.$_SESSION["Name"].$date.'.'.$fileType;
+                                        $targetDir = "../upload/protocol/Protocol ";
+                                        $date = date("Y-m-d_G-i-s");
+                                        $targetFile = $targetDir.$_SESSION["Name"]." ".$date.'.'.$fileType;
                                         $uploadOk = 1;
                                         //check if file exists
                                         if (file_exists($targetFile)) {
-                                            echo "Sorry, file already exists.<br>";
+                                            echo $ErFileExist;
                                             $uploadOk = 0;
                                         }
                                         
                                         // Check file size
                                         if ($_FILES["PUpload"]["size"] > 5000000000) {
-                                            echo "Sorry, your file is too large.<br>";
+                                            echo $ErFileSize;
                                             $uploadOk = 0;
                                         }        
 
                                         // Check if $uploadOk is set to 0 by an error
                                         if ($uploadOk == 0) {
-                                            echo "Sorry, your file was not uploaded.<br>";
+                                            echo $ErFileCant;
 
                                         // if everything is ok, try to upload file
                                         } else {
+                                            //Kijk of het verplaatsten van het bestand lukt
                                             if (move_uploaded_file($_FILES["PUpload"]["tmp_name"], $targetFile)) {
+                                                //als dat is gelukt upload dan de nieuwe locatie naar de database
                                                 queryAanmaken('INSERT INTO protocol(studentID,uploadDatum,titel,protocol,vakken,jaar)
-                                                    VALUES ("'.$studentID.'","'.$uploadDatum.'","'.$titel.'","'.$targetFile.'","'.$vakken.'","'.$jaar.'")');
+                                                    VALUES ("'.$studentID.'","'.$uploadDatum.'","'.$titel.'","'.$targetFile.'","'.$vakken.'","'.$_SESSION["jaar"].'")');
                                                 querySluiten();
-
-                                                echo "The file ". htmlspecialchars( basename( $_FILES["PUpload"]["name"])). " has been uploaded.<br>";
+                                                
+                                                echo $File.htmlspecialchars( basename( $_FILES["PUpload"]["name"])).$Uploaded;
                                             } else {
-                                            echo "Sorry, there was an error uploading your file.<br>";
+                                                //Hier onder staan alle error codes
+                                            echo $ErFileNot;
                                             }
                                         }                                        
                                     }
                                     else {
-                                        echo "Je mag alleen een .pdf bestand uploaden.";
+                                        echo $ErType;
                                     }
                                 }else{
-                                    echo "Geen Bestand geselecteerd";
+                                    echo $ErBestand;
                                 }
                             }else{
-                                echo "Geen Jaar geselecteerd";
+                                echo "<a href='Instellingen.php'>".$ErJaar."</a>";
                             }
                         }else{
-                            echo "Geen Vak geselecteerd";
+                            echo $ErVak;
                         }
                     }else{
-                        echo "Geen Titel ingevoerd";
+                        echo $ErTitel;
                     }
                 }
                 ?>
